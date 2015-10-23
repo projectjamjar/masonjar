@@ -16,8 +16,9 @@ Including another URLconf
 from django.conf.urls import include, patterns, url
 from django.contrib import admin
 
-from jamjar.videos.views import VideoList
+from jamjar.videos.views import VideoList, VideoDetails
 
 urlpatterns = patterns('',
     url(r'^videos/$', VideoList.as_view()),
+    url(r'^videos/(?P<id>[0-9]+)$', VideoDetails.as_view()),
 )
