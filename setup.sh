@@ -1,5 +1,7 @@
 #!/bin/bash
 
-virtualenv jam
+if [ ! -d jam ]; then
+  virtualenv jam
+fi
 source jam/bin/activate
 pip install -r requirements.txt
