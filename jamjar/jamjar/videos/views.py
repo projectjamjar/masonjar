@@ -15,9 +15,6 @@ from wsgiref.util import FileWrapper
 
 
 class VideoStream(BaseView):
-    parser_classes = (MultiPartParser,)
-    serializer_class = VideoSerializer
-
     def get(self, request, id):
          # Attempt to get the video
         try:
