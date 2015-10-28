@@ -10,6 +10,26 @@ from jamjar.videos.serializers import VideoSerializer
 
 import uuid
 
+from django.http import HttpResponse
+from wsgiref.util import FileWrapper
+
+
+class VideoStream(BaseView):
+    parser_classes = (MultiPartParser,)
+    serializer_class = VideoSerializer
+
+    def get(self, request, id):
+         # Attempt to get the video
+        try:
+            self.video = Video.objects.get(id=id)
+        except:
+            return self.error_response('Video does not exist or you do not have access to this video.', 404)
+
+        file = FileWrapper(open(self.video.src, 'rb'))
+        response = HttpResponse(file, content_type='video/mp4')
+        response['Content-Disposition'] = 'attachment; filename={:}'.format(self.video.src)
+        return response
+
 class VideoList(BaseView):
     parser_classes = (MultiPartParser,)
     serializer_class = VideoSerializer
@@ -38,8 +58,6 @@ class VideoList(BaseView):
         request.data['src'] = video_path
 
         self.serializer = self.get_serializer(data=request.data)
-
-        import pdb; pdb.set_trace()
 
         if not self.serializer.is_valid():
             return self.error_response(self.serializer.errors, 400)
