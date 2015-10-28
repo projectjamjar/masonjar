@@ -3,11 +3,15 @@ from rest_framework.generics import GenericAPIView
 from rest_framework.authtoken.models import Token
 from jamjar.base.views import BaseView
 
+from rest_framework.parsers import FormParser, MultiPartParser
+
 from jamjar.videos.models import Video
 from jamjar.videos.serializers import VideoSerializer
 
-class VideoList(BaseView):
+import uuid
 
+class VideoList(BaseView):
+    parser_classes = (MultiPartParser,)
     serializer_class = VideoSerializer
 
     def get(self, request):
@@ -17,17 +21,30 @@ class VideoList(BaseView):
         return self.success_response(serializer.data)
 
     def post(self, request):
-        # Initialize the serializer with our data
+
+        if 'file' in request.FILES:
+            video_fh = request.FILES['file']
+        else:
+            return self.error_response('no file given', 400)
+
+        video_uid = uuid.uuid4()
+        video_path = '/opt/code/masonjar/videos/{:}.mp4'.format(video_uid)
+
+        out_fh = open(video_path, 'w')
+        out_fh.write(request.FILES['file'].read())
+        out_fh.close()
+
+        # update the request src
+        request.data['src'] = video_path
+
         self.serializer = self.get_serializer(data=request.data)
 
-        # Validate the data
+        import pdb; pdb.set_trace()
+
         if not self.serializer.is_valid():
             return self.error_response(self.serializer.errors, 400)
 
-        # Errthang looks good.  Save it to the db
         video = self.serializer.save()
-
-        # Return the object
         return self.success_response(self.serializer.data)
 
 
