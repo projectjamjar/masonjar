@@ -1,6 +1,9 @@
 from rest_framework.response import Response
 from django.db import models
 
+from django.http import HttpResponse
+from wsgiref.util import FileWrapper
+
 class BaseModel(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     modified_at = models.DateTimeField(auto_now=True)
@@ -23,3 +26,14 @@ class ErrorResponse(Response):
             "error": error
         }
         super(ErrorResponse, self).__init__(data, status=status)
+
+
+class VideoResponse(HttpResponse):
+
+    "Constructor, takes path to video and returns a streaming url"
+    def __init__(self, src):
+        video_fh = FileWrapper(open(src, 'rb'))
+
+        super(VideoResponse, self).__init__(video_fh, content_type='video/mp4', status=200)
+        self['Content-Disposition'] = 'attachment; filename={:}'.format(src)
+

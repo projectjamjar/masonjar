@@ -11,5 +11,8 @@ class BaseView(GenericAPIView):
     def success_response(self, data):
         return SuccessResponse(data)
 
+    def video_response(self, src):
+        return VideoResponse(src)
+
     # def get(self, request, pk, format=None):
     #   return self.SuccessResponse({})
