@@ -11,5 +11,8 @@ migrate: $(MANAGER)
 run: install
 	python $(MANAGER) runserver 0.0.0.0:5001
 
+kill:
+	pkill -f $(MANAGER)
+
 clean:
 	find . -name "*.pyc" -print0 | xargs -0 rm
