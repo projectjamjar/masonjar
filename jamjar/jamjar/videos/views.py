@@ -1,16 +1,15 @@
+from django.conf import settings
+
 from rest_framework import status
 from rest_framework.generics import GenericAPIView
 from rest_framework.authtoken.models import Token
-from jamjar.base.views import BaseView
-
 from rest_framework.parsers import FormParser, MultiPartParser
 
+from jamjar.base.views import BaseView
 from jamjar.videos.models import Video
 from jamjar.videos.serializers import VideoSerializer
 
 import uuid
-
-
 
 class VideoStream(BaseView):
     def get(self, request, id):
@@ -40,9 +39,9 @@ class VideoList(BaseView):
             return self.error_response('no file given', 400)
 
         video_uid = uuid.uuid4()
-        video_path = '/opt/code/masonjar/videos/{:}.mp4'.format(video_uid)
+        video_path = '{:}/{:}.mp4'.format(settings.VIDEOS_PATH, video_uid)
 
-        out_fh = open(video_path, 'w')
+        out_fh = open(video_path, 'wb')
         out_fh.write(request.FILES['file'].read())
         out_fh.close()
 
