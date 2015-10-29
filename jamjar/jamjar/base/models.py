@@ -33,7 +33,7 @@ class VideoResponse(HttpResponse):
     "Constructor, takes path to video and returns a streaming url"
     def __init__(self, src):
         video_fh = FileWrapper(open(src, 'rb'))
-        self['Content-Disposition'] = 'attachment; filename={:}'.format(src)
 
         super(VideoResponse, self).__init__(video_fh, content_type='video/mp4', status=200)
+        self['Content-Disposition'] = 'attachment; filename={:}'.format(src)
 
