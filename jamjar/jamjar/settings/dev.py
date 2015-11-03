@@ -10,3 +10,12 @@ DATABASES = {
         'PORT': '',
     }
 }
+
+CORS_ORIGIN_WHITELIST = (
+        'dashboard.localhost.dev:5000',
+        'dev.projectjamjar.com'
+)
+
+ALLOWED_HOSTS = [
+    '.localhost.dev'
+]
