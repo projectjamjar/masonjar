@@ -38,5 +38,5 @@ class VideoResponse(HttpResponse):
             video_fh = FileIterWrapper(fh)
 
             super(VideoResponse, self).__init__(video_fh, content_type='video/mp4', status=200)
-            self['Content-Disposition'] = 'attachment; filename={:}'.format(src)
+            self['Content-Disposition'] = 'attachment; filename=video.mp4'
 
