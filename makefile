@@ -11,6 +11,9 @@ migrate: $(MANAGER)
 run: install
 	python $(MANAGER) runserver 0.0.0.0:5001
 
+run_server: install
+	nohup python $(MANAGER) runserver 0.0.0.0:5001 > server.log 2>&1 &
+
 kill:
 	pkill -f $(MANAGER)
 

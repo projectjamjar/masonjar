@@ -4,3 +4,8 @@ env/
 *.db
 *~
 *.mp4
+
+secrets/
+secrets.zip
+jamjar/jamjar/settings/prod.py
+server.log
