@@ -2,9 +2,6 @@ from rest_framework.response import Response
 from django.db import models
 
 from django.http import HttpResponse
-from wsgiref.util import FileWrapper
-
-from jamjar.base.utils.FileIterWrapper import FileIterWrapper
 
 class BaseModel(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
@@ -34,9 +31,11 @@ class VideoResponse(HttpResponse):
 
     "Constructor, takes path to video and returns a streaming url"
     def __init__(self, src):
-        with open(src, 'rb') as fh:
-            video_fh = FileIterWrapper(fh)
 
-            super(VideoResponse, self).__init__(video_fh, content_type='video/mp4', status=200)
-            self['Content-Disposition'] = 'attachment; filename=video.mp4'
+        path = '/opt/code/masonjar/videos/' + src
+        print "Getting: ", path
+        with open(path, 'rb') as fh:
+            super(VideoResponse, self).__init__(fh, content_type='application/vnd.apple.mpegurl', status=200)
+
+        # ffmpeg -i in.mp4 out.m3u8
 

@@ -4,6 +4,8 @@ env/
 *.db
 *~
 *.mp4
+*.ts
+*.m3u8
 
 secrets/
 secrets.zip

@@ -11,15 +11,12 @@ from jamjar.videos.serializers import VideoSerializer
 
 import uuid
 
-class VideoStream(BaseView):
-    def get(self, request, id):
-         # Attempt to get the video
-        try:
-            self.video = Video.objects.get(id=id)
-        except:
-            return self.error_response('Video does not exist or you do not have access to this video.', 404)
+from subprocess import call
 
-        return self.video_response(self.video.src)
+class VideoStream(BaseView):
+    def get(self, request, src):
+
+        return self.video_response(src)
 
 class VideoList(BaseView):
     parser_classes = (MultiPartParser,)
@@ -39,14 +36,21 @@ class VideoList(BaseView):
             return self.error_response('no file given', 400)
 
         video_uid = uuid.uuid4()
-        video_path = '{:}/{:}.mp4'.format(settings.VIDEOS_PATH, video_uid)
+        video_filename = '{:}.mp4'.format(video_uid)
+        video_path = '{:}/{:}'.format(settings.VIDEOS_PATH, video_filename)
+        hls_video_filename = '{:}.m3u8'.format(video_uid)
+        hls_video_path = '{:}/{:}'.format(settings.VIDEOS_PATH, hls_video_filename)
+
+        hls_video_endpoint = "/videos/stream/{:}".format(hls_video_filename)
 
         out_fh = open(video_path, 'wb')
         out_fh.write(request.FILES['file'].read())
         out_fh.close()
 
+        call(["ffmpeg", "-i", video_path, '-start_number', '0', '-hls_list_size', '0', '-f', 'hls', hls_video_path])
+
         # update the request src
-        request.data['src'] = video_path
+        request.data['src'] = hls_video_endpoint
 
         self.serializer = self.get_serializer(data=request.data)
 
