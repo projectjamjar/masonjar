@@ -30,12 +30,8 @@ class ErrorResponse(Response):
 class VideoResponse(HttpResponse):
 
     "Constructor, takes path to video and returns a streaming url"
-    def __init__(self, src):
+    def __init__(self, video_filepath):
 
-        path = '/opt/code/masonjar/videos/' + src
-        print "Getting: ", path
-        with open(path, 'rb') as fh:
+        with open(video_filepath, 'rb') as fh:
             super(VideoResponse, self).__init__(fh, content_type='application/vnd.apple.mpegurl', status=200)
-
-        # ffmpeg -i in.mp4 out.m3u8
 

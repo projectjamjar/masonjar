@@ -1,5 +1,3 @@
-from django.conf import settings
-
 from rest_framework import status
 from rest_framework.generics import GenericAPIView
 from rest_framework.authtoken.models import Token
@@ -9,14 +7,25 @@ from jamjar.base.views import BaseView
 from jamjar.videos.models import Video
 from jamjar.videos.serializers import VideoSerializer
 
-import uuid
+from jamjar.common.video_utils import VideoUtils
 
-from subprocess import call
+from django.shortcuts import redirect
+
+import re
 
 class VideoStream(BaseView):
-    def get(self, request, src):
+    def get(self, request, video_uid):
 
-        return self.video_response(src)
+        if re.search(r'\.\.', video_uid):
+            # don't allow '..' in the video path (for security)
+            return self.error_response('Invalid uuid specified', 400)
+
+        elif re.search(r'(\.m3u8|\.mp4|\.ts)$', video_uid):
+            video_utils = VideoUtils()
+            video_filepath = video_utils.get_video_dir(video_uid)
+            return self.video_response(video_filepath)
+        else:
+            return redirect('/videos/stream/{:}/video.m3u8'.format(video_uid))
 
 class VideoList(BaseView):
     parser_classes = (MultiPartParser,)
@@ -30,27 +39,16 @@ class VideoList(BaseView):
 
     def post(self, request):
 
-        if 'file' in request.FILES:
-            video_fh = request.FILES['file']
-        else:
+        if not 'file' in request.FILES:
             return self.error_response('no file given', 400)
 
-        video_uid = uuid.uuid4()
-        video_filename = '{:}.mp4'.format(video_uid)
-        video_path = '{:}/{:}'.format(settings.VIDEOS_PATH, video_filename)
-        hls_video_filename = '{:}.m3u8'.format(video_uid)
-        hls_video_path = '{:}/{:}'.format(settings.VIDEOS_PATH, hls_video_filename)
+        video_fh = request.FILES['file']
 
-        hls_video_endpoint = "/videos/stream/{:}".format(hls_video_filename)
-
-        out_fh = open(video_path, 'wb')
-        out_fh.write(request.FILES['file'].read())
-        out_fh.close()
-
-        call(["ffmpeg", "-i", video_path, '-start_number', '0', '-hls_list_size', '0', '-f', 'hls', hls_video_path])
+        video_utils = VideoUtils()
+        video_path_dict = video_utils.upload_file(video_fh)
 
         # update the request src
-        request.data['src'] = hls_video_endpoint
+        request.data['src'] = video_path_dict['uid']
 
         self.serializer = self.get_serializer(data=request.data)
 
