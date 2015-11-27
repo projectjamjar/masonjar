@@ -14,6 +14,9 @@ run: install
 run_server: install
 	nohup python $(MANAGER) runserver 0.0.0.0:5001 > server.log 2>&1 &
 
+queue: install
+	cd jamjar/jamjar && celery -A tasks worker --loglevel=info
+
 kill:
 	pkill -f $(MANAGER)
 
