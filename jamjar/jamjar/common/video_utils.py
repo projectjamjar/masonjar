@@ -1,13 +1,11 @@
 from django.conf import settings
 
-import subprocess
 import uuid
 import os
 
 import logging
 
-
-from jamjar.tasks import transcode_video
+from jamjar.tasks.transcode_video import transcode_video
 
 class VideoUtils(object):
     BASE_PATH = settings.VIDEOS_PATH
@@ -34,16 +32,6 @@ class VideoUtils(object):
 
         return video_filepath
 
-    def encode_to_hls(self, src_video_filepath, hls_video_filepath):
-
-        result = subprocess.check_call(["ffmpeg", "-i", src_video_filepath, '-start_number', '0', '-hls_list_size', '0', '-f', 'hls', hls_video_filepath])
-
-        if result == 0:
-            self.logger.info('Successfully transcoded {:} to {:}'.format(src_video_filepath, hls_video_filepath))
-        else:
-            # should this raise?
-            self.logger.error('Error transcoding {:} to {:}. Error code: {:}'.format(src_video_filepath, hls_video_filepath, result))
-
     def process_upload(self, input_fh):
         video_uid = uuid.uuid4()
 
@@ -54,7 +42,7 @@ class VideoUtils(object):
         hls_video_filepath = self.get_video_filepath(video_dir, 'm3u8')
 
         # do this async
-        transcode_video.run.delay(src_video_filepath, hls_video_filepath)
+        transcode_video.delay(src_video_filepath, hls_video_filepath)
 
         return {
             "uid": video_uid,

@@ -1,8 +1,17 @@
+
 from tasks import app
 
-import jamjar.common.video_utils
+import subprocess
+import logging
 
-@app.task
-def run(src_video_filepath, hls_video_filepath):
-    video_utils = video_utils.VideoUtils()
-    video_utils.encode_to_hls(src_video_filepath, hls_video_filepath)
+
+@app.task(name='tasks.transcode_video')
+def transcode_video(src_video_filepath, hls_video_filepath):
+  logger = logging.getLogger(__name__)
+  result = subprocess.check_call(["ffmpeg", "-i", src_video_filepath, '-start_number', '0', '-hls_list_size', '0', '-f', 'hls', hls_video_filepath])
+
+  if result == 0:
+    logger.info('Successfully transcoded {:} to {:}'.format(src_video_filepath, hls_video_filepath))
+  else:
+    # should this raise?
+    logger.error('Error transcoding {:} to {:}. Error code: {:}'.format(src_video_filepath, hls_video_filepath, result))
