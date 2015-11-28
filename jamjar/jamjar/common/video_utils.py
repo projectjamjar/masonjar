@@ -32,15 +32,25 @@ class VideoUtils(object):
 
         return video_filepath
 
+    def make_s3_path(self, uuid, extension):
+      return 'https://s3.amazonaws.com/jamjar-videos/{:}/video.{:}'.format(uuid, extension)
+
+
     def process_upload(self, input_fh):
         video_uid = uuid.uuid4()
 
         # do this synchronously
         video_dir  = self.get_video_dir(video_uid)
         tmp_src = self.do_upload(input_fh, video_dir)
+        hls_src = self.make_s3_path(video_uid, 'm3u8')
+        web_src = self.make_s3_path(video_uid, 'mp4')
 
         # do this async
         transcode_video.delay(tmp_src, video_dir)
 
-        return tmp_src
+        return {
+            'tmp_src' : tmp_src,
+            'hls_src' : hls_src,
+            'web_src' : web_src
+        }
 

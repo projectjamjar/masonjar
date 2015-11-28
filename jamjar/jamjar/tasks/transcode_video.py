@@ -39,7 +39,7 @@ def upload_to_s3(src_dir):
 @app.task(name='tasks.transcode_video')
 def transcode_video(src_filepath, out_dir):
 
-    hls_filepath = get_video_filepath(out_dir, 'hls')
+    hls_filepath = get_video_filepath(out_dir, 'm3u8')
 
     transcode_to_hls(src_filepath, hls_filepath)
     upload_to_s3(out_dir)
