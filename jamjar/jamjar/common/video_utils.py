@@ -25,7 +25,7 @@ class VideoUtils(object):
 
         video_filepath = self.get_video_filepath(output_dir, 'mp4')
 
-        print "Writing uploaded file to {:}".format(video_filepath)
+        self.logger.info("Writing uploaded file to {:}".format(video_filepath))
 
         with open(video_filepath, 'wb') as output_fh:
             output_fh.write(input_fh.read())
@@ -36,19 +36,11 @@ class VideoUtils(object):
         video_uid = uuid.uuid4()
 
         # do this synchronously
-        video_dir = self.get_video_dir(video_uid)
-        src_video_filepath = self.do_upload(input_fh, video_dir)
-
-        hls_video_filepath = self.get_video_filepath(video_dir, 'm3u8')
+        video_dir  = self.get_video_dir(video_uid)
+        tmp_src = self.do_upload(input_fh, video_dir)
 
         # do this async
-        transcode_video.delay(src_video_filepath, hls_video_filepath)
+        transcode_video.delay(tmp_src, video_dir)
 
-        return {
-            "uid": video_uid,
-            "dir": video_dir,
-            "src": src_video_filepath,
-            "hls": hls_video_filepath
-        }
-
+        return tmp_src
 

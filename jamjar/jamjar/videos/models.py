@@ -8,8 +8,8 @@ class Video(BaseModel):
     tmp_src = models.CharField(max_length=128)
 
     # s3 path, for streaming to web
-    web_src = models.CharField(max_length=128)
+    web_src = models.CharField(max_length=128, default="")
 
     # s3 path, for streaming to ios
-    hls_src = models.CharField(max_length=128)
+    hls_src = models.CharField(max_length=128, default="")
 
