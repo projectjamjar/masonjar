@@ -54,8 +54,8 @@ class VideoList(BaseView):
         # both of these things happen outside of the realm of this request!
         video_path_dict = video_utils.process_upload(video_fh)
 
-        # update the request src
-        request.data['src'] = video_path_dict['uid']
+        # tmp_src is where these are stored on disk pending transcode + s3 upload
+        request.data['tmp_src'] = video_path_dict['src']
 
         self.serializer = self.get_serializer(data=request.data)
 
