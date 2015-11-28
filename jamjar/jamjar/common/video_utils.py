@@ -6,6 +6,8 @@ import os
 
 import logging
 
+from tasks import transcode_video
+
 class VideoUtils(object):
     BASE_PATH = settings.VIDEOS_PATH
 
@@ -41,14 +43,17 @@ class VideoUtils(object):
             # should this raise?
             self.logger.error('Error transcoding {:} to {:}. Error code: {:}'.format(src_video_filepath, hls_video_filepath, result))
 
-    def upload_file(self, input_fh):
+    def process_upload(self, input_fh):
         video_uid = uuid.uuid4()
 
+        # do this synchronously
         video_dir = self.get_video_dir(video_uid)
         src_video_filepath = self.do_upload(input_fh, video_dir)
 
         hls_video_filepath = self.get_video_filepath(video_dir, 'm3u8')
-        self.encode_to_hls(src_video_filepath, hls_video_filepath)
+
+        # do this async
+        transcode_video.run.delay(src_video_filepath, hls_video_filepath)
 
         return {
             "uid": video_uid,

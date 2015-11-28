@@ -45,7 +45,14 @@ class VideoList(BaseView):
         video_fh = request.FILES['file']
 
         video_utils = VideoUtils()
-        video_path_dict = video_utils.upload_file(video_fh)
+
+        # This will synchronously upload the video to a temp directory then
+        # queue a job to:
+        # 1) transcode the video for ios and web
+        # 2) upload the video to s3
+        #
+        # both of these things happen outside of the realm of this request!
+        video_path_dict = video_utils.process_upload(video_fh)
 
         # update the request src
         request.data['src'] = video_path_dict['uid']
