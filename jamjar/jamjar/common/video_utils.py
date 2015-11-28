@@ -6,7 +6,8 @@ import os
 
 import logging
 
-from tasks import transcode_video
+
+from jamjar.tasks import transcode_video
 
 class VideoUtils(object):
     BASE_PATH = settings.VIDEOS_PATH
