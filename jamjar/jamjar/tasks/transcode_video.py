@@ -31,9 +31,11 @@ def upload_to_s3(src_dir):
     s3 = boto3.resource('s3')
 
     base_dir = os.path.basename(src_dir)
+    # TODO : make this use the actual environment 
+    s3_dir = os.path.join('prod', base_dir)
     for filename in os.listdir(src_dir):
         disk_path = os.path.join(src_dir, filename)
-        s3_path = os.path.join(base_dir, filename)
+        s3_path = os.path.join(s3_dir, filename)
 
         s3.Object('jamjar-videos', s3_path).put(Body=open(disk_path, 'rb'))
 
