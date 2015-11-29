@@ -37,7 +37,7 @@ def upload_to_s3(src_dir):
         disk_path = os.path.join(src_dir, filename)
         s3_path = os.path.join(s3_dir, filename)
 
-        s3.Object('jamjar-videos', s3_path).put(Body=open(disk_path, 'rb'))
+        s3.Object('jamjar-videos', s3_path).put(Body=open(disk_path, 'rb'), ACL='public-read')
 
 def delete_source(src_dir):
     # can't load settings from job queue task. Why!?
