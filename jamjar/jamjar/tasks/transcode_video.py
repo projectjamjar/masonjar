@@ -4,9 +4,13 @@ from tasks import app
 import subprocess
 import logging
 import os
+import shutil
 
 import boto3
 
+# can't get this to work...
+# from django.conf import settings
+# if not settings.configured: settings.configure()
 
 def get_video_filepath(video_dir, extension, filename="video"):
     full_filename = '{:}.{:}'.format(filename, extension)
@@ -31,10 +35,16 @@ def upload_to_s3(src_dir):
         disk_path = os.path.join(src_dir, filename)
         s3_path = os.path.join(base_dir, filename)
 
-        # put this in settings
-        print "uploading %s to s3://%s" % (disk_path, s3_path)
-
         s3.Object('jamjar-videos', s3_path).put(Body=open(disk_path, 'rb'))
+
+def delete_source(src_dir):
+    # can't load settings from job queue task. Why!?
+    #if settings.VIDEOS_PATH in src_dir:
+    #    shutil.rmtree(src_dir)
+    #else:
+    #    raise RuntimeError("trying to delete dir that shouldn't be deleted!: {:}".format(src_dir))
+
+    shutil.rmtree(src_dir)
 
 @app.task(name='tasks.transcode_video')
 def transcode_video(src_filepath, out_dir):
@@ -43,4 +53,6 @@ def transcode_video(src_filepath, out_dir):
 
     transcode_to_hls(src_filepath, hls_filepath)
     upload_to_s3(out_dir)
+    # TODO : fingerprint here
+    delete_source(out_dir)
 
