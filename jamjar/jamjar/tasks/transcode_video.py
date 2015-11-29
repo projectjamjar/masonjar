@@ -18,7 +18,7 @@ def get_video_filepath(video_dir, extension, filename="video"):
 
 def transcode_to_hls(src, out):
     logger = logging.getLogger(__name__)
-    result = subprocess.check_call(["ffmpeg", "-i", src, '-start_number', '0', '-hls_list_size', '0', '-f', 'hls', out])
+    result = subprocess.check_call(["avconv", "-i", src, '-start_number', '0', '-hls_list_size', '0', '-f', 'hls', out])
 
     if result == 0:
         logger.info('Successfully transcoded {:} to {:}'.format(src, out))
