@@ -33,7 +33,7 @@ class VideoUtils(object):
         return video_filepath
 
     def make_s3_path(self, uuid, extension):
-      return 'https://s3.amazonaws.com/jamjar-videos/{:}/video.{:}'.format(uuid, extension)
+      return 'https://s3.amazonaws.com/jamjar-videos/prod/{:}/video.{:}'.format(uuid, extension)
 
 
     def process_upload(self, input_fh):
