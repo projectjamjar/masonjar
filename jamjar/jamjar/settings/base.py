@@ -38,11 +38,14 @@ DEPENDENCY_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
+    'django_extensions',
+
     'rest_framework'
 ]
 
 PROJECT_APPS = [
-    'jamjar.videos'
+    'jamjar.videos',
+    'jamjar.users'
 ]
 
 
@@ -79,6 +82,8 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'jamjar.wsgi.application'
 
+AUTH_USER_MODEL = 'users.User'
+
 
 # Database
 # https://docs.djangoproject.com/en/1.8/ref/settings/#databases
@@ -89,6 +94,8 @@ DATABASES = {
         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     }
 }
+
+
 
 
 # Internationalization
@@ -103,11 +110,5 @@ USE_I18N = True
 USE_L10N = True
 
 USE_TZ = True
-
-
-# Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/1.8/howto/static-files/
-
-STATIC_URL = '/static/'
 
 VIDEOS_PATH = '/opt/code/masonjar/videos'
