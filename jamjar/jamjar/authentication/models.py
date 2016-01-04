@@ -9,7 +9,7 @@ TOKEN_TYPES = (
     ('I','invite')
 )
 
-class JmaJarToken(BaseModel):
+class JamJarToken(BaseModel):
     # The user that this token corresponds to
     user = models.ForeignKey(User)
 
@@ -32,6 +32,6 @@ class JmaJarToken(BaseModel):
 class UserInvite(BaseModel):
     email = models.EmailField(max_length=255)
     invitor = models.ForeignKey(User,related_name='sent_invites')
-    token = models.ForeignKey(BooksmartToken,related_name='invite')
+    token = models.ForeignKey(JamJarToken,related_name='invite')
     message = models.CharField(max_length=500)
     accepted = models.NullBooleanField(null=True)

@@ -16,10 +16,26 @@ Including another URLconf
 from django.conf.urls import include, patterns, url
 from django.contrib import admin
 
-from jamjar.videos.views import VideoList, VideoDetails, VideoStream
+import jamjar.videos.views as Videos
+import jamjar.authentication.views as Auth
+
 
 urlpatterns = patterns('',
-    url(r'^videos/$', VideoList.as_view()),
-    url(r'^videos/(?P<id>[0-9]+)$', VideoDetails.as_view()),
-    url(r'^videos/stream/(?P<id>.+)$', VideoStream.as_view()),
+
+    ########################################
+    # Video Views
+    ########################################
+    url(r'^videos/$', Videos.VideoList.as_view()),
+    url(r'^videos/(?P<id>[0-9]+)$', Videos.VideoDetails.as_view()),
+    url(r'^videos/stream/(?P<id>.+)$', Videos.VideoStream.as_view()),
+
+    ########################################
+    # Auth Views
+    ########################################
+    url(r'^auth/signup/$', Auth.SignupView.as_view()),
+    url(r'^auth/activate/$', Auth.ActivateView.as_view()),
+    url(r'^auth/login/$', Auth.LoginView.as_view()),
+    url(r'^auth/reset/$', Auth.ResetView.as_view()),
+    url(r'^(?P<user_id>[0-9]{1,4})/change/$', Auth.ChangePasswordView.as_view()),
+    url(r'^(?P<user_id>[0-9]{1,4})/invite/$', Auth.InviteUserView.as_view()),
 )

@@ -36,16 +36,18 @@ DEPENDENCY_APPS = [
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
-    'django.contrib.staticfiles',
 
     'django_extensions',
 
-    'rest_framework'
+    'rest_framework',
+    'rest_framework.authtoken',
+    'rest_auth'
 ]
 
 PROJECT_APPS = [
     'jamjar.videos',
-    'jamjar.users'
+    'jamjar.users',
+    'jamjar.authentication'
 ]
 
 
@@ -83,19 +85,6 @@ TEMPLATES = [
 WSGI_APPLICATION = 'jamjar.wsgi.application'
 
 AUTH_USER_MODEL = 'users.User'
-
-
-# Database
-# https://docs.djangoproject.com/en/1.8/ref/settings/#databases
-
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-    }
-}
-
-
 
 
 # Internationalization
