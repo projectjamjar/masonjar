@@ -5,7 +5,7 @@ from rest_framework.generics import GenericAPIView
 from rest_framework.authtoken.models import Token
 from rest_framework.parsers import FormParser, MultiPartParser
 
-from jamjar.base.views import BaseView
+from jamjar.base.views import BaseView, authenticate
 from jamjar.videos.models import Video
 from jamjar.videos.serializers import VideoSerializer
 
@@ -25,12 +25,14 @@ class VideoList(BaseView):
     parser_classes = (MultiPartParser,)
     serializer_class = VideoSerializer
 
+    @authenticate
     def get(self, request, user_id):
         videos = Video.objects.all()
 
         serializer = self.get_serializer(videos, many=True)
         return self.success_response(serializer.data)
 
+    @authenticate
     def post(self, request, user_id):
 
         if 'file' in request.FILES:
@@ -61,6 +63,7 @@ class VideoDetails(BaseView):
 
     serializer_class = VideoSerializer
 
+    @authenticate
     def get(self, request, user_id, id):
          # Attempt to get the video
         try:
@@ -72,7 +75,7 @@ class VideoDetails(BaseView):
         self.serializer = self.get_serializer(self.video)
         return self.success_response(self.serializer.data)
 
-
+    @authenticate
     def put(self, request, user_id, id):
         # Attempt to get the video
         try:
@@ -91,7 +94,7 @@ class VideoDetails(BaseView):
         video = self.serializer.save()
         return self.success_response(self.serializer.data)
 
-
+    @authenticate
     def delete(self, request, user_id, id):
          # Attempt to get the video
         try:
