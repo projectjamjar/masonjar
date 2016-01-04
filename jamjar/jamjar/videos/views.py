@@ -12,7 +12,7 @@ from jamjar.videos.serializers import VideoSerializer
 import uuid
 
 class VideoStream(BaseView):
-    def get(self, request, id):
+    def get(self, request, user_id, id):
          # Attempt to get the video
         try:
             self.video = Video.objects.get(id=id)
@@ -25,13 +25,13 @@ class VideoList(BaseView):
     parser_classes = (MultiPartParser,)
     serializer_class = VideoSerializer
 
-    def get(self, request):
+    def get(self, request, user_id):
         videos = Video.objects.all()
 
         serializer = self.get_serializer(videos, many=True)
         return self.success_response(serializer.data)
 
-    def post(self, request):
+    def post(self, request, user_id):
 
         if 'file' in request.FILES:
             video_fh = request.FILES['file']
@@ -61,7 +61,7 @@ class VideoDetails(BaseView):
 
     serializer_class = VideoSerializer
 
-    def get(self, request, id):
+    def get(self, request, user_id, id):
          # Attempt to get the video
         try:
             self.video = Video.objects.get(id=id)
@@ -73,7 +73,7 @@ class VideoDetails(BaseView):
         return self.success_response(self.serializer.data)
 
 
-    def put(self, request, id):
+    def put(self, request, user_id, id):
         # Attempt to get the video
         try:
             self.video = Video.objects.get(id=id)
@@ -92,7 +92,7 @@ class VideoDetails(BaseView):
         return self.success_response(self.serializer.data)
 
 
-    def delete(self, request, id):
+    def delete(self, request, user_id, id):
          # Attempt to get the video
         try:
             self.video = Video.objects.get(id=id)

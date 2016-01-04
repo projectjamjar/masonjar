@@ -16,9 +16,9 @@ class BaseModel(models.Model):
 class SuccessResponse(Response):
 
     "Constructor, takes data and puts in the correct field"
-    def __init__(self, data):
+    def __init__(self, data, status):
         data = data
-        super(SuccessResponse, self).__init__(data, status=200)
+        super(SuccessResponse, self).__init__(data, status=status)
 
 class ErrorResponse(Response):
 
