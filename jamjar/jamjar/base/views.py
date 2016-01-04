@@ -36,6 +36,13 @@ class BaseView(GenericAPIView):
             raise NotFound('A {0} with the requested ID does not exist or you do not have access to this {0}.'.format(queryset.model._meta.object_name))
 
 def authenticate(view):
+    """
+    This function decorator is to be used for Class-Based view methods whcih require authentication.
+    It will look for a user_id in the url parameters (denoted by `(?P<user_id>[0-9]{1,4})` in the url pattern)
+    and check it against the Authorization token in the headers.  The token should take the following form:
+    Key: Authorization
+    Value: Token <token>
+    """
     def inner(self, request, *args, **kwargs):
         auth_header = request.META.get('HTTP_AUTHORIZATION')
         user_id = kwargs.get('user_id')
