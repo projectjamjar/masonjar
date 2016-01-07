@@ -10,7 +10,7 @@ class UserSerializer(serializers.ModelSerializer):
         fields = ('id', 'username', 'email', 'first_name', 'last_name', 'full_name', 'first_login')
 
     def get_full_name(self, user):
-        return user.full_name()
+        return user.get_full_name()
 
     def get_first_login(self, user):
         first_login = user.first_login

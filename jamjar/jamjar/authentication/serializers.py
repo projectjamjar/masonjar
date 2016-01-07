@@ -22,7 +22,7 @@ class SignupSerializer(PasswordSerializer):
     email = serializers.EmailField(max_length=255)
     first_name = serializers.CharField(max_length=50)
     last_name = serializers.CharField(max_length=50)
-    invite = serializers.CharField(max_length=50,required=False)
+    invite = serializers.CharField(max_length=50,required=False, allow_null=True)
 
 class LoginSerializer(serializers.Serializer):
     username = serializers.CharField(max_length=255)

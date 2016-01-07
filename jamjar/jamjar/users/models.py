@@ -1,4 +1,4 @@
-from django.contrib.auth.models import AbstractBaseUser, BaseUserManager
+from django.contrib.auth.models import AbstractUser, BaseUserManager
 
 from django.db import models
 from django.utils import timezone
@@ -32,18 +32,10 @@ class UserManager(BaseUserManager):
         return user
 
 
-class User(AbstractBaseUser, BaseModel):
+class User(AbstractUser, BaseModel):
     """
     The JamJar user model
     """
-    username = models.CharField('username', max_length=25, unique=True)
-    email = models.EmailField('email address', max_length=100, unique=True)
-    first_name = models.CharField('first name', max_length=50, blank=True)
-    last_name = models.CharField('last name', max_length=50, blank=True)
-    is_active = models.BooleanField('active',
-                                    default=False,
-                                    help_text='Designates whether this user should be treated as '
-                                              'active. Will be true once user has activated their account.')
     is_deleted = models.BooleanField('deleted',
                                      default=False,
                                      help_text='Designates whether this user should be treated as '
@@ -58,12 +50,6 @@ class User(AbstractBaseUser, BaseModel):
         verbose_name = ('user')
         verbose_name_plural = ('users')
 
-    def email_user(self, subject, message, from_email=None):
-        """
-        Sends an email to this User.
-        """
-        send_mail(subject, message, from_email, [self.email])
-
     def activate(self):
         """
         Set the user to active and handle any other post-activation workflow
@@ -75,7 +61,3 @@ class User(AbstractBaseUser, BaseModel):
         # Post-activation stuff
         #######################################
         # None for now
-
-    def full_name(self):
-        full_name = "{} {}".format(self.first_name, self.last_name)
-        return full_name

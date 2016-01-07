@@ -53,13 +53,13 @@ class SignupView(BaseView):
     Request:
         POST /api/auth/signup/
         {
-            "username": "witty_username",
-            "first_name": "Mark",
-            "last_name": "Koh",
+            "username": "test",
+            "first_name": "Test",
+            "last_name": "User",
             "password": "password",
             "confirm": "password",
-            "email": "mark@projectjamjar.com",
-            "invite": "47o-441afc8f5d17b80ce6b7"
+            "email": "test@projectjamjar.com",
+            "invite": "48c-926669e40c2196dd94de"
         }
 
     Response:
@@ -76,7 +76,7 @@ class SignupView(BaseView):
         # Create the user
         data = request.data
         try:
-            self.user = User.objects.create_user(data['email'], data['first_name'],
+            self.user = User.objects.create_user(data['username'],data['email'], data['first_name'],
                 data['last_name'], data['password'])
         except IntegrityError:
             # TODO: Log signup failure here
@@ -142,7 +142,7 @@ class ActivateView(BaseView):
     Request:
         POST /api/auth/activate/
         {
-            "email": "mark@projectjamjar.com",
+            "email": "test@projectjamjar.com",
             "activation_key": "47o-441afc8f5d17b80ce6b7"
         }
 
@@ -158,7 +158,7 @@ class ActivateView(BaseView):
 
         email = self.serializer.validated_data['email']
         token = self.serializer.validated_data['activation_key']
-
+        import ipdb; ipdb.set_trace()
         # This will fail if the user doesn't exist
         user = User.objects.get(email=email)
 
@@ -205,15 +205,19 @@ class LoginView(BaseView):
     response_user_serializer = UserSerializer
 
     """
-    Check the credentials and return the REST Token
-    if the credentials are valid and authenticated.
-    Calls Django Auth login method to register User ID
-    in Django session framework
+    Description:
+        Check the credentials and return the auth Token if the credentials are valid and authenticated.
+        Calls Django Auth login method to register User ID in Django session framework
 
-    Accept the following POST parameters:
-        - email
-        - password
-    Return the user object and the REST Framework Token Object's key.
+    Request:
+        POST /api/auth/activate/
+        {
+            "username": "test",
+            "password": "password"
+        }
+
+    Response:
+        The user object and the REST Framework Token Object's key.
     """
     def post(self, request):
         # Validate the request
