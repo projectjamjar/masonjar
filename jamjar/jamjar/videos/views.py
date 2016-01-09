@@ -7,8 +7,6 @@ from jamjar.base.views import BaseView
 from jamjar.videos.models import Video
 from jamjar.videos.serializers import VideoSerializer
 
-from jamjar.common.video_utils import VideoUtils
-
 from django.shortcuts import redirect
 
 import re
@@ -21,8 +19,7 @@ class VideoStream(BaseView):
             return self.error_response('Invalid uuid specified', 400)
 
         elif re.search(r'(\.m3u8|\.mp4|\.ts)$', video_uid):
-            video_utils = VideoUtils()
-            video_filepath = video_utils.get_video_dir(video_uid)
+            video_filepath = Video.get_video_dir(video_uid)
             return self.video_response(video_filepath)
         else:
             return redirect('/videos/stream/{:}/video.m3u8'.format(video_uid))
@@ -44,15 +41,13 @@ class VideoList(BaseView):
 
         video_fh = request.FILES['file']
 
-        video_utils = VideoUtils()
-
         # This will synchronously upload the video to a temp directory then
         # queue a job to:
         # 1) transcode the video for ios and web
         # 2) upload the video to s3
         #
         # both of these things happen outside of the realm of this request!
-        video_paths = video_utils.process_upload(video_fh)
+        video_paths = Video.process_upload(video_fh)
 
         # tmp_src is where these are stored on disk pending transcode + s3 upload
         request.data['tmp_src'] = video_paths['tmp_src']
