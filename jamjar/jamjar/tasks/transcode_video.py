@@ -8,7 +8,7 @@ import shutil
 
 import boto3
 
-# from django.conf import settings
+from django.conf import settings
 
 def get_video_filepath(video_dir, extension, filename="video"):
     full_filename = '{:}.{:}'.format(filename, extension)
@@ -29,8 +29,8 @@ def upload_to_s3(src_dir):
     s3 = boto3.resource('s3')
 
     base_dir = os.path.basename(src_dir)
-    # TODO : make this use the actual environment 
-    s3_dir = os.path.join('prod', base_dir)
+    s3_dir = os.path.join(settings.JAMJAR_ENV, base_dir)
+
     for filename in os.listdir(src_dir):
         disk_path = os.path.join(src_dir, filename)
         s3_path = os.path.join(s3_dir, filename)
@@ -38,13 +38,10 @@ def upload_to_s3(src_dir):
         s3.Object('jamjar-videos', s3_path).put(Body=open(disk_path, 'rb'), ACL='public-read')
 
 def delete_source(src_dir):
-    # can't load settings from job queue task. Why!?
-    #if settings.VIDEOS_PATH in src_dir:
-    #    shutil.rmtree(src_dir)
-    #else:
-    #    raise RuntimeError("trying to delete dir that shouldn't be deleted!: {:}".format(src_dir))
-
-    shutil.rmtree(src_dir)
+    if settings.VIDEOS_PATH in src_dir:
+        shutil.rmtree(src_dir)
+    else:
+        raise RuntimeError("trying to delete dir that shouldn't be deleted!: {:}".format(src_dir))
 
 @app.task(name='tasks.transcode_video')
 def transcode_video(src_filepath, out_dir):
