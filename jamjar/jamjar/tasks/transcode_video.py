@@ -8,9 +8,7 @@ import shutil
 
 import boto3
 
-# can't get this to work...
 # from django.conf import settings
-# if not settings.configured: settings.configure()
 
 def get_video_filepath(video_dir, extension, filename="video"):
     full_filename = '{:}.{:}'.format(filename, extension)
