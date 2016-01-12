@@ -125,6 +125,8 @@ class SignupView(BaseView):
                                 'text/html')
         if not settings.DEBUG:
             mail.send()
+        else:
+            self.user.activate()
 
         # TODO: Log signup here
 
