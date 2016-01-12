@@ -111,3 +111,8 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 VIDEOS_PATH = '/opt/code/masonjar/videos'
+
+# for celery (job queue)
+REDIS_QUEUE = 'redis://localhost:6379/0'
+
+CELERY_IMPORTS = ("tasks",)

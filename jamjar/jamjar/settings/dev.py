@@ -10,3 +10,6 @@ DATABASES = {
         'PORT': '',
     }
 }
+
+
+JAMJAR_ENV = 'prod' # TODO

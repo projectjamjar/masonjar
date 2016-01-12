@@ -21,5 +21,5 @@ from jamjar.videos.views import VideoList, VideoDetails, VideoStream
 urlpatterns = patterns('',
     url(r'^videos/$', VideoList.as_view()),
     url(r'^videos/(?P<id>[0-9]+)$', VideoDetails.as_view()),
-    url(r'^videos/stream/(?P<id>.+)$', VideoStream.as_view()),
+    url(r'^videos/stream/(?P<video_uid>.+)$', VideoStream.as_view()),
 )

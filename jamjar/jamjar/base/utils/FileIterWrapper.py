@@ -5,7 +5,7 @@ class FileIterWrapper(object):
     newline. Video files are binary, so it could potentially be a long time until
     a newline or EOF is found. Instead, this reads from a file in 1mb chunks
     """
-    def __init__(self, flo, chunk_size = 1024**2):
+    def __init__(self, flo, chunk_size = 1024):
         self.flo = flo
         self.chunk_size = chunk_size
 
