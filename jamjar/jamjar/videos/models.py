@@ -49,7 +49,7 @@ class Video(BaseModel):
 
         if not os.path.exists(video_dir): os.makedirs(video_dir)
 
-        video_filepath = self.get_video_filepath(output_dir, 'mp4')
+        video_filepath = self.get_video_filepath(video_dir, 'mp4')
 
         tmp_src = self.do_upload(input_fh, video_filepath)
         hls_src = self.make_s3_path(video_uid, 'm3u8')
