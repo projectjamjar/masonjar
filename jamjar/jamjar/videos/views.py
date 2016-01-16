@@ -41,14 +41,6 @@ class VideoList(BaseView):
 
         video_fh = request.FILES['file']
 
-        # This will synchronously upload the video to a temp directory then
-        # queue a job to:
-        # 1) transcode the video for ios and web
-        # 2) upload the video to s3
-        #
-        # both of these things happen outside of the realm of this request!
-        video_paths = Video.process_upload(video_fh)
-
         # tmp_src is where these are stored on disk pending transcode + s3 upload
         request.data['tmp_src'] = video_paths['tmp_src']
         request.data['hls_src'] = video_paths['hls_src']
@@ -60,6 +52,15 @@ class VideoList(BaseView):
             return self.error_response(self.serializer.errors, 400)
 
         video = self.serializer.save()
+
+        # This will synchronously upload the video to a temp directory then
+        # queue a job to:
+        # 1) transcode the video for ios and web
+        # 2) upload the video to s3
+        #
+        # both of these things happen outside of the realm of this request!
+        video_paths = Video.process_upload(video_fh, video.id)
+
         return self.success_response(self.serializer.data)
 
 

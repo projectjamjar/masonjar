@@ -13,7 +13,7 @@ class Video(BaseModel):
     tmp_src = models.CharField(max_length=128)              # where it lives on disk before upload to s3
     web_src = models.CharField(max_length=128, default="")  # s3 path, for streaming to web
     hls_src = models.CharField(max_length=128, default="")  # s3 path, for streaming to ios
-
+    uploaded = models.BooleanField(default=False)
 
     @classmethod
     def get_video_dir(self, uuid):
@@ -41,7 +41,7 @@ class Video(BaseModel):
       return 'https://s3.amazonaws.com/jamjar-videos/prod/{:}/video.{:}'.format(uuid, extension)
 
     @classmethod
-    def process_upload(self, input_fh):
+    def process_upload(self, input_fh, video_id):
         video_uid = uuid.uuid4()
 
         # do this synchronously
@@ -55,8 +55,8 @@ class Video(BaseModel):
         hls_src = self.make_s3_path(video_uid, 'm3u8')
         web_src = self.make_s3_path(video_uid, 'mp4')
 
-        # do this async
-        transcode_video.delay(tmp_src, video_dir, video_uid)
+        # do this async. TODO : change lilo to use Integers for the video_id field
+        transcode_video.delay(tmp_src, video_dir, video_id)
 
         return {
             'tmp_src' : tmp_src,
@@ -64,3 +64,16 @@ class Video(BaseModel):
             'web_src' : web_src
         }
 
+
+class Edge(BaseModel):
+
+    video1 = models.PositiveIntegerField()
+    video2 = models.PositiveIntegerField()
+    offset     = models.IntegerField()
+    confidence = models.IntegerField()
+
+    @classmethod
+    def new(cls, video1_id, video2_id, offset, confidence):
+        edge = Edge(video1=video1_id, video2=video2_id, offset=offset, confidence=confidence)
+        edge.save()
+        return edge

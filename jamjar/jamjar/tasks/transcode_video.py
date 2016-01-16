@@ -22,7 +22,8 @@ class VideoTranscoder(object):
         logger = logging.getLogger(__name__)
 
         try:
-            subprocess.check_call(["ffmpeg", "-i", src, '-start_number', '0', '-hls_list_size', '0', '-f', 'hls', out])
+            with open(os.devnull, "w") as devnull:
+              subprocess.check_call(["ffmpeg", "-i", src, '-start_number', '0', '-hls_list_size', '0', '-f', 'hls', out], stdout=devnull, stderr=devnull)
             logger.info('Successfully transcoded {:} to {:}'.format(src, out))
             return True
         except subprocess.CalledProcessError:
@@ -75,6 +76,13 @@ class VideoTranscoder(object):
         if self.production:
           self.upload_to_s3(out_dir)
           self.delete_source(out_dir)
+
+        try:
+            video = Video.objects.get(id=video_id)
+            video.uploaded = True
+            video.save()
+        except:
+          raise RuntimeError("could not update video with id: {:}".format(video_id))
 
 @app.task(name='tasks.transcode_video')
 def transcode_video(src_filepath, out_dir, video_id):
