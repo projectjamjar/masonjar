@@ -6,15 +6,19 @@ import subprocess, logging, os, shutil
 import boto3
 
 class VideoTranscoder(object):
+    "Helper class for transcoding, uploading, and fingerprinting"
+
     def __init__(self):
         self.production = (settings.JAMJAR_ENV == 'prod')
         self.s3 = boto3.resource('s3')
 
     def get_video_filepath(self, video_dir, extension, filename="video"):
+        "get the relative path for a video"
         full_filename = '{:}.{:}'.format(filename, extension)
         return os.path.join(video_dir, full_filename)
 
     def transcode_to_hls(self, src, out):
+        "transcodes an mp4 file to hls"
         logger = logging.getLogger(__name__)
 
         try:
@@ -27,6 +31,7 @@ class VideoTranscoder(object):
             return False
 
     def do_upload_to_s3(self, s3_path, disk_path):
+        "helper for uploading to s3 so we can easily mock this in testing"
         self.s3.Object('jamjar-videos', s3_path).put(Body=open(disk_path, 'rb'), ACL='public-read')
 
     def upload_to_s3(self, out_dir):
@@ -42,12 +47,14 @@ class VideoTranscoder(object):
               self.do_upload_to_s3(s3_path, disk_path)
 
     def delete_source(self, src_dir):
+        "deletes the source DIRECTORY on disk after uploading to s3"
         if settings.VIDEOS_PATH in src_dir:
             shutil.rmtree(src_dir)
         else:
             raise RuntimeError("trying to delete dir that shouldn't be deleted!: {:}".format(src_dir))
 
     def fingerprint(self, src_filepath, video_id):
+        "fingerprints an mp4 and inserts the fingerprints into the db"
         lilo = Lilo(src_filepath, video_id)
         matched_videos = lilo.recognize_track()
 
@@ -58,6 +65,7 @@ class VideoTranscoder(object):
         lilo.fingerprint_song()
 
     def run(src_filepath, out_dir, video_id):
+        "main entry point to fingerprint, transcode, upload to s3, and delete source dir"
 
         hls_filepath = self.get_video_filepath(out_dir, 'm3u8')
 
