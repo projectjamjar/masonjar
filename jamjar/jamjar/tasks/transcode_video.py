@@ -8,6 +8,8 @@ import shutil
 
 import boto3
 
+from lilo import Lilo
+
 #from django.conf import settings
 
 def get_video_filepath(video_dir, extension, filename="video"):
@@ -44,8 +46,15 @@ def delete_source(src_dir):
     #else:
     #    raise RuntimeError("trying to delete dir that shouldn't be deleted!: {:}".format(src_dir))
 
+def fingerprint(src_filepath, video_id):
+    lilo = Lilo(src_filepath, video_id)
+    matched_videos = lilo.recognize_track()
+    for video in matched_videos:
+        pass
+    lilo.fingerprint_song()
+
 @app.task(name='tasks.transcode_video')
-def transcode_video(src_filepath, out_dir):
+def transcode_video(src_filepath, out_dir, video_id):
 
     logger = logging.getLogger(__name__)
     logger.info('Trying to transcode video: "{:}" and move to "{:}"'.format(src_filepath, out_dir))
@@ -58,8 +67,7 @@ def transcode_video(src_filepath, out_dir):
     #transcode_to_hls(src_filepath, hls_filepath)
     #upload_to_s3(out_dir)
 
-    # TODO : fingerprint here!
-
+    fingerprint(src_filepath, video_id)
 
     #delete_source(out_dir)
 

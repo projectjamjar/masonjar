@@ -56,7 +56,7 @@ class Video(BaseModel):
         web_src = self.make_s3_path(video_uid, 'mp4')
 
         # do this async
-        transcode_video.delay(tmp_src, video_dir)
+        transcode_video.delay(tmp_src, video_dir, video_uid)
 
         return {
             'tmp_src' : tmp_src,
