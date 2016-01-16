@@ -38,7 +38,8 @@ DEPENDENCY_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
-    'rest_framework'
+    'rest_framework',
+    'django_nose'
 ]
 
 PROJECT_APPS = [
@@ -117,3 +118,10 @@ VIDEOS_PATH = '/opt/code/masonjar/videos'
 REDIS_QUEUE = 'redis://localhost:6379/0'
 
 CELERY_IMPORTS = ("tasks",)
+
+TEST_RUNNER = 'django_nose.NoseTestSuiteRunner'
+
+NOSE_ARGS = [
+    '--with-coverage',
+    '--cover-package={:}'.format(",".join(PROJECT_APPS))
+]
