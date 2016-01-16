@@ -42,7 +42,8 @@ DEPENDENCY_APPS = [
 ]
 
 PROJECT_APPS = [
-    'jamjar.videos'
+    'jamjar.videos',
+    'jamjar.tasks'
 ]
 
 
