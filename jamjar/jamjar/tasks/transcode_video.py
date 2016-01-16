@@ -8,6 +8,7 @@ import boto3
 class VideoTranscoder(object):
     def __init__(self):
         self.production = (settings.JAMJAR_ENV == 'prod')
+        self.s3 = boto3.resource('s3')
 
     def get_video_filepath(self, video_dir, extension, filename="video"):
         full_filename = '{:}.{:}'.format(filename, extension)
@@ -15,26 +16,30 @@ class VideoTranscoder(object):
 
     def transcode_to_hls(self, src, out):
         logger = logging.getLogger(__name__)
-        result = subprocess.check_call(["ffmpeg", "-i", src, '-start_number', '0', '-hls_list_size', '0', '-f', 'hls', out])
 
-        if result == 0:
+        try:
+            subprocess.check_call(["ffmpeg", "-i", src, '-start_number', '0', '-hls_list_size', '0', '-f', 'hls', out])
             logger.info('Successfully transcoded {:} to {:}'.format(src, out))
-        else:
+            return True
+        except subprocess.CalledProcessError:
             # this will retry the job
-            raise RuntimeError('Error transcoding {:} to {:}. Error code: {:}'.format(src, out, result))
+            #raise RuntimeError('Error transcoding {:} to {:}. Error code: {:}'.format(src, out, result))
+            return False
 
+    def do_upload_to_s3(self, s3_path, disk_path):
+        self.s3.Object('jamjar-videos', s3_path).put(Body=open(disk_path, 'rb'), ACL='public-read')
 
-    def upload_to_s3(self, src_dir):
-        s3 = boto3.resource('s3')
+    def upload_to_s3(self, out_dir):
 
-        base_dir = os.path.basename(src_dir)
+        base_dir = os.path.basename(out_dir)
         s3_dir = os.path.join('prod', base_dir)
 
-        for filename in os.listdir(src_dir):
-            disk_path = os.path.join(src_dir, filename)
-            s3_path = os.path.join(s3_dir, filename)
-
-            s3.Object('jamjar-videos', s3_path).put(Body=open(disk_path, 'rb'), ACL='public-read')
+        for filename in os.listdir(out_dir):
+            # TODO : regex here
+            if 'mp4' in filename or 'hls' in filename or 'ts' in filename or 'm3u8' in filename:
+              disk_path = os.path.join(out_dir, filename)
+              s3_path = os.path.join(s3_dir, filename)
+              self.do_upload_to_s3(s3_path, disk_path)
 
     def delete_source(self, src_dir):
         if settings.VIDEOS_PATH in src_dir:
