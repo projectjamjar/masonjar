@@ -3,7 +3,7 @@ from jamjar.base.models import BaseModel
 
 from django.conf import settings
 
-from jamjar.tasks.transcode_video import transcode_video
+import jamjar.tasks.transcode_video
 
 import logging, uuid, os
 
@@ -56,7 +56,7 @@ class Video(BaseModel):
         web_src = self.make_s3_path(video_uid, 'mp4')
 
         # do this async. TODO : change lilo to use Integers for the video_id field
-        transcode_video.delay(tmp_src, video_dir, video_id)
+        transcode_video.transcode_video.delay(tmp_src, video_dir, video_id)
 
         return {
             'tmp_src' : tmp_src,
