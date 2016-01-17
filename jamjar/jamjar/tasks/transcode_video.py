@@ -5,6 +5,8 @@ from lilo import Lilo
 import subprocess, logging, os, shutil
 import boto3
 
+from jamjar.videos.models import Video, Edge
+
 class VideoTranscoder(object):
     "Helper class for transcoding, uploading, and fingerprinting"
 
@@ -59,9 +61,8 @@ class VideoTranscoder(object):
         lilo = Lilo(src_filepath, video_id)
         matched_videos = lilo.recognize_track()
 
-        for video in matched_videos:
-            # TODO: make graph edges here :)
-            pass
+        for match in matched_videos:
+            Edge.new(video_id, match['video_id'], video['offset'], video['offset'])
 
         lilo.fingerprint_song()
 
