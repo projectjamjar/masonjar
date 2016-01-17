@@ -3,8 +3,6 @@ from jamjar.base.models import BaseModel
 
 from django.conf import settings
 
-import jamjar.tasks.transcode_video
-
 import logging, uuid, os
 
 class Video(BaseModel):
@@ -41,7 +39,7 @@ class Video(BaseModel):
       return 'https://s3.amazonaws.com/jamjar-videos/prod/{:}/video.{:}'.format(uuid, extension)
 
     @classmethod
-    def process_upload(self, input_fh, video_id):
+    def process_upload(self, input_fh):
         video_uid = uuid.uuid4()
 
         # do this synchronously
@@ -55,13 +53,11 @@ class Video(BaseModel):
         hls_src = self.make_s3_path(video_uid, 'm3u8')
         web_src = self.make_s3_path(video_uid, 'mp4')
 
-        # do this async. TODO : change lilo to use Integers for the video_id field
-        transcode_video.transcode_video.delay(tmp_src, video_dir, video_id)
-
         return {
             'tmp_src' : tmp_src,
             'hls_src' : hls_src,
-            'web_src' : web_src
+            'web_src' : web_src,
+            'video_dir' : video_dir
         }
 
 

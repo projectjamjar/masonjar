@@ -5,8 +5,7 @@ from lilo import Lilo
 import subprocess, logging, os, shutil
 import boto3
 
-# do this to avoid recursive imports
-import jamjar.videos.models as video_models
+from jamjar.videos.models import Edge, Video
 
 class VideoTranscoder(object):
     "Helper class for transcoding, uploading, and fingerprinting"
@@ -63,11 +62,11 @@ class VideoTranscoder(object):
         matched_videos = lilo.recognize_track()
 
         for match in matched_videos:
-            video_models.Edge.new(video_id, match['video_id'], video['offset'], video['offset'])
+            Edge.new(video_id, match['video_id'], video['offset'], video['offset'])
 
         lilo.fingerprint_song()
 
-    def run(src_filepath, out_dir, video_id):
+    def run(self, src_filepath, out_dir, video_id):
         "main entry point to fingerprint, transcode, upload to s3, and delete source dir"
 
         hls_filepath = self.get_video_filepath(out_dir, 'm3u8')
@@ -80,7 +79,7 @@ class VideoTranscoder(object):
           self.delete_source(out_dir)
 
         try:
-            video = video_models.Video.objects.get(id=video_id)
+            video = Video.objects.get(id=video_id)
             video.uploaded = True
             video.save()
         except:

@@ -18,7 +18,7 @@ test:
 	cd jamjar && python manage.py test && cd -
 
 queue: install
-	cd jamjar/jamjar && celery -A tasks.tasks.app worker --loglevel=info
+	cd jamjar && celery -A jamjar.tasks.tasks.app worker --loglevel=info
 
 kill:
 	pkill -f $(MANAGER)

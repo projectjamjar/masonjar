@@ -117,7 +117,7 @@ VIDEOS_PATH = '/opt/code/masonjar/videos'
 # for celery (job queue)
 REDIS_QUEUE = 'redis://localhost:6379/0'
 
-CELERY_IMPORTS = ("tasks",)
+CELERY_IMPORTS = ("jamjar.tasks",)
 
 TEST_RUNNER = 'django_nose.NoseTestSuiteRunner'
 
