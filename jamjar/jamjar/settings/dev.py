@@ -8,6 +8,14 @@ DATABASES = {
         'PASSWORD': 'jamjar',
         'HOST': 'localhost',
         'PORT': '',
+    },
+    'lilo': {
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'dejavu',
+        'USER': 'jamjar',
+        'PASSWORD': 'jamjar',
+        'HOST': 'localhost',
+        'PORT': '3306',
     }
 }
 

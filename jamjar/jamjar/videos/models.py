@@ -65,7 +65,7 @@ class Edge(BaseModel):
 
     video1 = models.PositiveIntegerField()
     video2 = models.PositiveIntegerField()
-    offset     = models.IntegerField()
+    offset     = models.FloatField()
     confidence = models.IntegerField()
 
     @classmethod
