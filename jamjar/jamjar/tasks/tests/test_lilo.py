@@ -16,17 +16,23 @@ TEST_HLS_PATH = os.path.join(os.path.dirname(__file__), 'out/part1.hls')
 TEST_TS_PATH = os.path.join(os.path.dirname(__file__), 'out/part10.ts')
 
 class LiloTestCase(TestCase):
-    def setUp(self):
-        self.video_transcoder = VideoTranscoder()
-
-        self.assertEqual(settings.LILO_CONFIG['database']['db'], 'dejavu_test')
-        lilo = Lilo(settings.LILO_CONFIG, None, None)
-        lilo.djv.db.empty()
+    @classmethod
+    def truncateTestDb(self):
+        if 'test' in settings.LILO_CONFIG['database']['db']:
+            lilo = Lilo(settings.LILO_CONFIG, None, None)
+            lilo.djv.db.empty()
+        else:
+            raise RuntimeError("trying to truncate a non-test table!")
 
     @classmethod
     def tearDownClass(cls):
         os.remove(TEST_HLS_PATH)
         os.remove(TEST_TS_PATH)
+        cls.truncateTestDb()
+
+    def setUp(self):
+        self.video_transcoder = VideoTranscoder()
+        self.truncateTestDb()
 
     def test_transcode(self):
         success = self.video_transcoder.transcode_to_hls(TEST_VIDEO_PATH_1, TEST_HLS_PATH)
