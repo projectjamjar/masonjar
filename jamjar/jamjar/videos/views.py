@@ -26,14 +26,14 @@ class VideoList(BaseView):
     serializer_class = VideoSerializer
 
     @authenticate
-    def get(self, request, user_id):
+    def get(self, request):
         videos = Video.objects.all()
 
         serializer = self.get_serializer(videos, many=True)
         return self.success_response(serializer.data)
 
     @authenticate
-    def post(self, request, user_id):
+    def post(self, request):
 
         if 'file' in request.FILES:
             video_fh = request.FILES['file']
@@ -64,7 +64,7 @@ class VideoDetails(BaseView):
     serializer_class = VideoSerializer
 
     @authenticate
-    def get(self, request, user_id, id):
+    def get(self, request, id):
          # Attempt to get the video
         try:
             self.video = Video.objects.get(id=id)
@@ -76,7 +76,7 @@ class VideoDetails(BaseView):
         return self.success_response(self.serializer.data)
 
     @authenticate
-    def put(self, request, user_id, id):
+    def put(self, request, id):
         # Attempt to get the video
         try:
             self.video = Video.objects.get(id=id)
@@ -95,7 +95,7 @@ class VideoDetails(BaseView):
         return self.success_response(self.serializer.data)
 
     @authenticate
-    def delete(self, request, user_id, id):
+    def delete(self, request, id):
          # Attempt to get the video
         try:
             self.video = Video.objects.get(id=id)

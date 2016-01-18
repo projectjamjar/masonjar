@@ -45,11 +45,11 @@ def authenticate(view):
     """
     def inner(self, request, *args, **kwargs):
         auth_header = request.META.get('HTTP_AUTHORIZATION')
-        user_id = kwargs.get('user_id')
+        # user_id = kwargs.get('user_id')
         error_response = ErrorResponse('Inavlid token', 401)
 
         # Make sure both dependencies are set
-        if not auth_header or not user_id:
+        if not auth_header:
             return error_response
 
         # Make sure header follows the correct format
@@ -60,7 +60,7 @@ def authenticate(view):
         token = tokens[1]
         try:
             # Test the token against the userID
-            request.token = Token.objects.get(key=token, user_id=user_id)
+            request.token = Token.objects.get(key=token)
             response = view(self, request, *args, **kwargs)
             return response
         except Token.DoesNotExist:

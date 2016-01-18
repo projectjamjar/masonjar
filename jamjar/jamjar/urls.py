@@ -25,9 +25,9 @@ urlpatterns = patterns('',
     ########################################
     # Video Views
     ########################################
-    url(r'^(?P<user_id>[0-9]{1,4})/videos/$', Videos.VideoList.as_view()),
-    url(r'^(?P<user_id>[0-9]{1,4})/videos/(?P<id>[0-9]+)$', Videos.VideoDetails.as_view()),
-    url(r'^(?P<user_id>[0-9]{1,4})/videos/stream/(?P<id>.+)$', Videos.VideoStream.as_view()),
+    url(r'^videos/$', Videos.VideoList.as_view()),
+    url(r'^videos/(?P<id>[0-9]+)$', Videos.VideoDetails.as_view()),
+    url(r'^videos/stream/(?P<id>.+)$', Videos.VideoStream.as_view()),
 
     ########################################
     # Auth Views
@@ -36,6 +36,6 @@ urlpatterns = patterns('',
     url(r'^auth/activate/$', Auth.ActivateView.as_view()),
     url(r'^auth/login/$', Auth.LoginView.as_view()),
     url(r'^auth/reset/$', Auth.ResetView.as_view()),
-    url(r'^(?P<user_id>[0-9]{1,4})/change/$', Auth.ChangePasswordView.as_view()),
-    url(r'^(?P<user_id>[0-9]{1,4})/invite/$', Auth.InviteUserView.as_view()),
+    url(r'^change/$', Auth.ChangePasswordView.as_view()),
+    url(r'^invite/$', Auth.InviteUserView.as_view()),
 )
