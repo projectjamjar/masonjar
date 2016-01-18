@@ -36,13 +36,12 @@ class Video(BaseModel):
 
     @classmethod
     def make_s3_path(self, uuid, extension):
-      return 'https://s3.amazonaws.com/jamjar-videos/prod/{:}/video.{:}'.format(uuid, extension)
+      return 'https://s3.amazonaws.com/jamjar-videos/{:}/{:}/video.{:}'.format(settings.JAMJAR_ENV, uuid, extension)
 
     @classmethod
     def process_upload(self, input_fh):
         video_uid = uuid.uuid4()
 
-        # do this synchronously
         video_dir  = self.get_video_dir(video_uid)
 
         if not os.path.exists(video_dir): os.makedirs(video_dir)
@@ -63,8 +62,8 @@ class Video(BaseModel):
 
 class Edge(BaseModel):
 
-    video1 = models.PositiveIntegerField()
-    video2 = models.PositiveIntegerField()
+    video1 = models.ForeignKey(Video, related_name='video1')
+    video2 = models.ForeignKey(Video, related_name='video2')
     offset     = models.FloatField()
     confidence = models.IntegerField()
 
