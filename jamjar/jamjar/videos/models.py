@@ -69,6 +69,6 @@ class Edge(BaseModel):
 
     @classmethod
     def new(cls, video1_id, video2_id, offset, confidence):
-        edge = Edge(video1=video1_id, video2=video2_id, offset=offset, confidence=confidence)
+        edge = Edge(video1_id=video1_id, video2_id=video2_id, offset=offset, confidence=confidence)
         edge.save()
         return edge

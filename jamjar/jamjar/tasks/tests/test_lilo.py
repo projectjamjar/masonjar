@@ -3,6 +3,8 @@ from django.test import TestCase
 from django.conf import settings
 from jamjar.tasks.transcode_video import VideoTranscoder
 
+from jamjar.videos.models import Video, Edge
+
 import os
 import boto3
 
@@ -38,13 +40,17 @@ class LiloTestCase(TestCase):
         self.video_transcoder.do_upload_to_s3 = mocked_upload
         self.video_transcoder.upload_to_s3(out_dir)
 
-        #import pdb; pdb.set_trace()
         self.assertTrue(('prod/out/part1.hls', TEST_HLS_PATH) in uploaded)
         self.assertTrue(('prod/out/part10.ts', TEST_TS_PATH) in uploaded)
         self.assertTrue(len(uploaded) == 2)
 
+        v1 = Video()
+        v1.save()
 
-        self.video_transcoder.fingerprint(TEST_VIDEO_PATH_1, 1)
-        self.video_transcoder.fingerprint(TEST_VIDEO_PATH_2, 2)
+        v2 = Video()
+        v2.save()
+
+        self.video_transcoder.fingerprint(TEST_VIDEO_PATH_1, v1.id)
+        self.video_transcoder.fingerprint(TEST_VIDEO_PATH_2, v2.id)
 
         # TODO : check the edges table
