@@ -14,6 +14,8 @@ API_BASE_URL = 'http://api.localhost.dev:5001'
 SITE_BASE_URL = 'http://dashboard.localhost.dev:5000/#'
 
 # Host origins allowed to access the API
+CORS_ORIGIN_ALLOW_ALL = True
+CORS_ALLOW_CREDENTIALS = False
 CORS_ORIGIN_WHITELIST = (
         'dashboard.localhost.dev:5000',
         'dashboard.localhost.dev',
