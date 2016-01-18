@@ -9,6 +9,8 @@ from jamjar.videos.serializers import VideoSerializer
 
 from django.shortcuts import redirect
 
+from jamjar.tasks.transcode_video import transcode_video
+
 import re
 
 class VideoStream(BaseView):
@@ -60,6 +62,10 @@ class VideoList(BaseView):
             return self.error_response(self.serializer.errors, 400)
 
         video = self.serializer.save()
+
+        # do this async. TODO : change lilo to use Integers for the video_id field
+        transcode_video.delay(video_paths['tmp_src'], video_paths['video_dir'], video.id)
+
         return self.success_response(self.serializer.data)
 
 

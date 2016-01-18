@@ -13,7 +13,7 @@ DATABASES = {
 
 LILO_CONFIG = {
     'database': {
-        'db': 'dejavu',
+        'db': 'dejavu_test',
         'user': 'jamjar',
         'passwd': 'jamjar',
         'host': 'localhost'
@@ -21,4 +21,4 @@ LILO_CONFIG = {
     'multiple_match': True
 }
 
-JAMJAR_ENV = 'dev'
+JAMJAR_ENV = 'test'
