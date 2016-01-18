@@ -4,6 +4,7 @@ from django.conf import settings
 from jamjar.tasks.transcode_video import VideoTranscoder
 
 from jamjar.videos.models import Video, Edge
+from lilo import Lilo
 
 import os
 import boto3
@@ -18,13 +19,14 @@ class LiloTestCase(TestCase):
     def setUp(self):
         self.video_transcoder = VideoTranscoder()
 
+        self.assertEqual(settings.LILO_CONFIG['database']['db'], 'dejavu_test')
+        lilo = Lilo(settings.LILO_CONFIG, None, None)
+        lilo.djv.db.empty()
+
     @classmethod
     def tearDownClass(cls):
         os.remove(TEST_HLS_PATH)
         os.remove(TEST_TS_PATH)
-
-    def test_import(self):
-        from lilo import Lilo # just make sure the lib is included correctly
 
     def test_transcode(self):
         success = self.video_transcoder.transcode_to_hls(TEST_VIDEO_PATH_1, TEST_HLS_PATH)

@@ -8,16 +8,6 @@ import boto3
 from jamjar.videos.models import Edge, Video
 
 
-LILO_CONFIG = {
-    "database": {
-        "host": settings.DATABASES['lilo']['HOST'],
-        "user": settings.DATABASES['lilo']['USER'],
-        "passwd": settings.DATABASES['lilo']['PASSWORD'],
-        "db": settings.DATABASES['lilo']['NAME']
-    },
-    "multiple_match": True
-}
-
 class VideoTranscoder(object):
     "Helper class for transcoding, uploading, and fingerprinting"
 
@@ -69,7 +59,7 @@ class VideoTranscoder(object):
 
     def fingerprint(self, src_filepath, video_id):
         "fingerprints an mp4 and inserts the fingerprints into the db"
-        lilo = Lilo(LILO_CONFIG, src_filepath, video_id)
+        lilo = Lilo(settings.LILO_CONFIG, src_filepath, video_id)
         matched_videos = lilo.recognize_track()
 
         if matched_videos is not None:
