@@ -398,7 +398,7 @@ class ChangePasswordView(BaseView):
         A message saying that the password update was successful
     """
     @authenticate
-    def post(self, request, user_id):
+    def post(self, request):
         # Validate the request
         self.serializer = self.get_serializer(data=self.request.data)
         if not self.serializer.is_valid():
@@ -407,7 +407,7 @@ class ChangePasswordView(BaseView):
         old_password = self.serializer.validated_data['old_password']
         new_password = self.serializer.validated_data['password']
 
-        user = User.objects.get(id=user_id)
+        user = request.token.user
         correct_pw = user.check_password(old_password)
 
         if not correct_pw:
@@ -438,7 +438,7 @@ class InviteUserView(BaseView):
         A message saying that the invite was sent successfully
     """
     @authenticate
-    def post(self, request, user_id):
+    def post(self, request):
         # Validate the request
         self.serializer = self.serializer_class(data=self.request.data)
         if not self.serializer.is_valid():
@@ -451,7 +451,7 @@ class InviteUserView(BaseView):
         # A user exists with that email. Send them a reset link.
 
         # Get the user, then generate the reset link
-        invitor = User.objects.get(pk=user_id)
+        invitor = request.token.user
         invite = None
 
         active_invites = UserInvite.objects.filter(invitor_id=user_id, email=email)
