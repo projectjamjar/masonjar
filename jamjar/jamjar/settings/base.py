@@ -19,31 +19,28 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.8/howto/deployment/checklist/
 
-# SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'wlh!-90ty3!dk5i1vi_gbsi7((jg+@j%k=&cel2$jrod&6^n(y'
-
-# SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
-
-ALLOWED_HOSTS = []
-
-
 # Application definition
-
 DEPENDENCY_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
-    'django.contrib.staticfiles',
+
+    'django_extensions',
 
     'rest_framework',
+    'rest_framework.authtoken',
+    'rest_auth',
+
+    'corsheaders'
     'django_nose'
 ]
 
 PROJECT_APPS = [
     'jamjar.videos',
+    'jamjar.users',
+    'jamjar.authentication'
     'jamjar.tasks',
 ]
 
@@ -52,6 +49,7 @@ INSTALLED_APPS = DEPENDENCY_APPS + PROJECT_APPS
 
 MIDDLEWARE_CLASSES = (
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -81,15 +79,12 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'jamjar.wsgi.application'
 
+AUTH_USER_MODEL = 'users.User'
 
-# Database
-# https://docs.djangoproject.com/en/1.8/ref/settings/#databases
-
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-    }
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework.authentication.TokenAuthentication',
+    )
 }
 
 
@@ -106,6 +101,7 @@ USE_L10N = True
 
 USE_TZ = True
 
+CORS_ORIGIN_ALLOW_ALL = False
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.8/howto/static-files/
@@ -126,3 +122,4 @@ NOSE_ARGS = [
     '--cover-package={:}'.format(",".join(PROJECT_APPS)),
     '--cover-html'
 ]
+

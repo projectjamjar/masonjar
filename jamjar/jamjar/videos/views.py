@@ -3,7 +3,7 @@ from rest_framework.generics import GenericAPIView
 from rest_framework.authtoken.models import Token
 from rest_framework.parsers import FormParser, MultiPartParser
 
-from jamjar.base.views import BaseView
+from jamjar.base.views import BaseView, authenticate
 from jamjar.videos.models import Video
 from jamjar.videos.serializers import VideoSerializer
 
@@ -15,7 +15,6 @@ import re
 
 class VideoStream(BaseView):
     def get(self, request, video_uid):
-
         if re.search(r'\.\.', video_uid):
             # don't allow '..' in the video path (for security)
             return self.error_response('Invalid uuid specified', 400)
@@ -30,12 +29,14 @@ class VideoList(BaseView):
     parser_classes = (MultiPartParser,)
     serializer_class = VideoSerializer
 
+    @authenticate
     def get(self, request):
         videos = Video.objects.all()
 
         serializer = self.get_serializer(videos, many=True)
         return self.success_response(serializer.data)
 
+    @authenticate
     def post(self, request):
 
         if not 'file' in request.FILES:
@@ -73,6 +74,7 @@ class VideoDetails(BaseView):
 
     serializer_class = VideoSerializer
 
+    @authenticate
     def get(self, request, id):
          # Attempt to get the video
         try:
@@ -84,7 +86,7 @@ class VideoDetails(BaseView):
         self.serializer = self.get_serializer(self.video)
         return self.success_response(self.serializer.data)
 
-
+    @authenticate
     def put(self, request, id):
         # Attempt to get the video
         try:
@@ -103,7 +105,7 @@ class VideoDetails(BaseView):
         video = self.serializer.save()
         return self.success_response(self.serializer.data)
 
-
+    @authenticate
     def delete(self, request, id):
          # Attempt to get the video
         try:
@@ -114,3 +116,4 @@ class VideoDetails(BaseView):
         # Serialize the result and return it
         self.video.delete()
         return self.success_response("Video with id {} successfully deleted.".format(id))
+
