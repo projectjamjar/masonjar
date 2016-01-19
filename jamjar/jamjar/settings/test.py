@@ -1,5 +1,7 @@
 from base import *
 
+SECRET_KEY = 's0rryH@xx0r$'
+
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
