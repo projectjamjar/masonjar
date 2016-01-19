@@ -26,7 +26,7 @@ class VideoTranscoder(object):
 
         try:
             with open(os.devnull, "w") as devnull:
-              subprocess.check_call(["ffmpeg", "-i", src, '-start_number', '0', '-hls_list_size', '0', '-f', 'hls', out], stdout=devnull, stderr=devnull)
+              subprocess.check_call(["avconv", "-i", src, '-start_number', '0', '-hls_list_size', '0', '-f', 'hls', out], stdout=devnull, stderr=devnull)
             logger.info('Successfully transcoded {:} to {:}'.format(src, out))
             return True
         except subprocess.CalledProcessError:
