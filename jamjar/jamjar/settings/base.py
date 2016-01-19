@@ -34,12 +34,14 @@ DEPENDENCY_APPS = [
     'rest_auth',
 
     'corsheaders'
+    'django_nose'
 ]
 
 PROJECT_APPS = [
     'jamjar.videos',
     'jamjar.users',
     'jamjar.authentication'
+    'jamjar.tasks',
 ]
 
 
@@ -100,3 +102,24 @@ USE_L10N = True
 USE_TZ = True
 
 CORS_ORIGIN_ALLOW_ALL = False
+
+# Static files (CSS, JavaScript, Images)
+# https://docs.djangoproject.com/en/1.8/howto/static-files/
+
+STATIC_URL = '/static/'
+
+VIDEOS_PATH = '/opt/code/masonjar/videos'
+
+# for celery (job queue)
+REDIS_QUEUE = 'redis://localhost:6379/0'
+
+CELERY_IMPORTS = ("jamjar.tasks",)
+
+TEST_RUNNER = 'django_nose.NoseTestSuiteRunner'
+
+NOSE_ARGS = [
+    '--with-coverage',
+    '--cover-package={:}'.format(",".join(PROJECT_APPS)),
+    '--cover-html'
+]
+

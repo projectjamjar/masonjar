@@ -41,6 +41,12 @@ run-bg: install $(MANAGER)
 runserver: install $(MANAGER)
 	nohup python $(MANAGER) runserver $(IP):$(PORT) > logs/server.log 2>&1 &
 
+test:
+	cd jamjar && python manage.py test && cd -
+
+queue: install
+	cd jamjar && celery -A jamjar.tasks.tasks.app worker --loglevel=info
+
 kill:
 	pkill -f $(MANAGER)
 

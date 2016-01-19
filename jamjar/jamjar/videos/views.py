@@ -1,5 +1,3 @@
-from django.conf import settings
-
 from rest_framework import status
 from rest_framework.generics import GenericAPIView
 from rest_framework.authtoken.models import Token
@@ -9,17 +7,23 @@ from jamjar.base.views import BaseView, authenticate
 from jamjar.videos.models import Video
 from jamjar.videos.serializers import VideoSerializer
 
-import uuid
+from django.shortcuts import redirect
+
+from jamjar.tasks.transcode_video import transcode_video
+
+import re
 
 class VideoStream(BaseView):
-    def get(self, request, user_id, id):
-         # Attempt to get the video
-        try:
-            self.video = Video.objects.get(id=id)
-        except:
-            return self.error_response('Video does not exist or you do not have access to this video.', 404)
+    def get(self, request, video_uid):
+        if re.search(r'\.\.', video_uid):
+            # don't allow '..' in the video path (for security)
+            return self.error_response('Invalid uuid specified', 400)
 
-        return self.video_response(self.video.src)
+        elif re.search(r'(\.m3u8|\.mp4|\.ts)$', video_uid):
+            video_filepath = Video.get_video_dir(video_uid)
+            return self.video_response(video_filepath)
+        else:
+            return redirect('/videos/stream/{:}/video.m3u8'.format(video_uid))
 
 class VideoList(BaseView):
     parser_classes = (MultiPartParser,)
@@ -35,20 +39,23 @@ class VideoList(BaseView):
     @authenticate
     def post(self, request):
 
-        if 'file' in request.FILES:
-            video_fh = request.FILES['file']
-        else:
+        if not 'file' in request.FILES:
             return self.error_response('no file given', 400)
 
-        video_uid = uuid.uuid4()
-        video_path = '{:}/{:}.mp4'.format(settings.VIDEOS_PATH, video_uid)
+        video_fh = request.FILES['file']
 
-        out_fh = open(video_path, 'wb')
-        out_fh.write(request.FILES['file'].read())
-        out_fh.close()
+        # This will synchronously upload the video to a temp directory then
+        # queue a job to:
+        # 1) transcode the video for ios and web
+        # 2) upload the video to s3
+        #
+        # both of these things happen outside of the realm of this request!
+        video_paths = Video.process_upload(video_fh)
 
-        # update the request src
-        request.data['src'] = video_path
+        # tmp_src is where these are stored on disk pending transcode + s3 upload
+        request.data['tmp_src'] = video_paths['tmp_src']
+        request.data['hls_src'] = video_paths['hls_src']
+        request.data['web_src'] = video_paths['web_src']
 
         self.serializer = self.get_serializer(data=request.data)
 
@@ -56,6 +63,10 @@ class VideoList(BaseView):
             return self.error_response(self.serializer.errors, 400)
 
         video = self.serializer.save()
+
+        # do this async. TODO : change lilo to use Integers for the video_id field
+        transcode_video.delay(video_paths['tmp_src'], video_paths['video_dir'], video.id)
+
         return self.success_response(self.serializer.data)
 
 
@@ -105,3 +116,4 @@ class VideoDetails(BaseView):
         # Serialize the result and return it
         self.video.delete()
         return self.success_response("Video with id {} successfully deleted.".format(id))
+

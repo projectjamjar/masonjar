@@ -35,3 +35,15 @@ DATABASES = {
         'PORT': '',
     }
 }
+
+LILO_CONFIG = {
+    'database': {
+        'db': 'dejavu',
+        'user': 'jamjar',
+        'passwd': 'jamjar',
+        'host': 'localhost'
+    },
+    'multiple_match': True
+}
+
+JAMJAR_ENV = 'dev'

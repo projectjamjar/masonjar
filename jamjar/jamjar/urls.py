@@ -39,3 +39,4 @@ urlpatterns = patterns('',
     url(r'^change/$', Auth.ChangePasswordView.as_view()),
     url(r'^invite/$', Auth.InviteUserView.as_view()),
 )
+
