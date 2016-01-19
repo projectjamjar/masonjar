@@ -41,17 +41,21 @@ class LiloTestCase(TestCase):
         out_dir = os.path.join(os.path.dirname(__file__), 'out')
 
         uploaded = []
+        deleted  = []
 
         def mocked_upload(s3_path, file_path):
             uploaded.append((s3_path, file_path))
 
+        def mocked_delete(src_dir):
+            deleted.append(src_dir)
+
         self.video_transcoder.do_upload_to_s3 = mocked_upload
+        self.video_transcoder.delete_source   = mocked_delete
         self.video_transcoder.upload_to_s3(out_dir)
 
         self.assertTrue(('prod/out/part1.hls', TEST_HLS_PATH) in uploaded)
         self.assertTrue(('prod/out/part10.ts', TEST_TS_PATH) in uploaded)
-        #import ipdb; ipdb.set_trace()
-        #self.assertTrue(len(uploaded) == 2)
+        self.assertTrue(len(uploaded) == 2)
 
         v1 = Video()
         v1.save()

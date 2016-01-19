@@ -26,7 +26,7 @@ class VideoTranscoder(object):
 
         try:
             with open(os.devnull, "w") as devnull:
-              subprocess.check_call(["avconv", "-i", src, '-start_number', '0', '-hls_list_size', '0', '-f', 'hls', out], stdout=devnull, stderr=devnull)
+              subprocess.check_call(["avconv", "-i", src, '-start_number', '0', '-hls_list_size', '0', '-hls_time', '10', '-f', 'hls', out], stdout=devnull, stderr=devnull)
             logger.info('Successfully transcoded {:} to {:}'.format(src, out))
             return True
         except subprocess.CalledProcessError:
@@ -39,16 +39,15 @@ class VideoTranscoder(object):
         self.s3.Object('jamjar-videos', s3_path).put(Body=open(disk_path, 'rb'), ACL='public-read')
 
     def upload_to_s3(self, out_dir):
-
         base_dir = os.path.basename(out_dir)
         s3_dir = os.path.join('prod', base_dir)
 
         for filename in os.listdir(out_dir):
             # TODO : regex here
             if 'mp4' in filename or 'hls' in filename or 'ts' in filename or 'm3u8' in filename:
-              disk_path = os.path.join(out_dir, filename)
-              s3_path = os.path.join(s3_dir, filename)
-              self.do_upload_to_s3(s3_path, disk_path)
+                disk_path = os.path.join(out_dir, filename)
+                s3_path = os.path.join(s3_dir, filename)
+                self.do_upload_to_s3(s3_path, disk_path)
 
     def delete_source(self, src_dir):
         "deletes the source DIRECTORY on disk after uploading to s3"
@@ -76,9 +75,8 @@ class VideoTranscoder(object):
         self.fingerprint(src_filepath, video_id)
         self.transcode_to_hls(src_filepath, hls_filepath)
 
-        if self.production:
-          self.upload_to_s3(out_dir)
-          self.delete_source(out_dir)
+        self.upload_to_s3(out_dir)
+        self.delete_source(out_dir)
 
         try:
             video = Video.objects.get(id=video_id)
