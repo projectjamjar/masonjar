@@ -123,3 +123,4 @@ NOSE_ARGS = [
     '--cover-html'
 ]
 
+JAMJAR_ENV = os.environ['JAMJAR_ENV']
