@@ -42,6 +42,8 @@ PROJECT_APPS = [
     'jamjar.users',
     'jamjar.authentication',
     'jamjar.tasks',
+    'jamjar.concerts',
+    'jamjar.venues'
 ]
 
 
