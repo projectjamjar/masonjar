@@ -42,7 +42,7 @@ runserver: install redis $(MANAGER)
 	nohup python $(MANAGER) runserver $(IP):$(PORT) > logs/server.log 2>&1 &
 
 test:
-	cd jamjar && python manage.py test && cd -
+	cd jamjar && JAMJAR_ENV=test python manage.py test && cd -
 
 queue: install redis
 	cd jamjar && celery -A jamjar.tasks.tasks.app worker --loglevel=info

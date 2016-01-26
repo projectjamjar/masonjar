@@ -3,7 +3,12 @@ from django.conf import settings
 
 import os
 
-os.environ.setdefault("DJANGO_SETTINGS_MODULE", "jamjar.settings.dev") #TODO
+jamjar_env = os.environ.get('JAMJAR_ENV', None)
 
-#app = Celery('tasks', backend=settings.REDIS_QUEUE, broker=settings.REDIS_QUEUE)
-app = Celery('tasks', backend='redis://localhost:6379/0', broker='redis://localhost:6379/0', include=['jamjar.tasks'])
+if jamjar_env is None:
+  raise RuntimeError("No JAMJAR_ENV variable given!")
+settings_module = "jamjar.settings.{}".format(jamjar_env)
+
+os.environ.setdefault("DJANGO_SETTINGS_MODULE", settings_module)
+
+app = Celery('tasks', backend=settings.REDIS_QUEUE, broker=settings.REDIS_QUEUE, include=['jamjar.tasks'])
