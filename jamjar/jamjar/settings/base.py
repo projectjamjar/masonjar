@@ -42,6 +42,8 @@ PROJECT_APPS = [
     'jamjar.users',
     'jamjar.authentication',
     'jamjar.tasks',
+    'jamjar.concerts',
+    'jamjar.venues'
 ]
 
 
@@ -123,3 +125,4 @@ NOSE_ARGS = [
     '--cover-html'
 ]
 
+JAMJAR_ENV = os.environ['JAMJAR_ENV']
