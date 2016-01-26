@@ -12,7 +12,6 @@ class VideoTranscoder(object):
     "Helper class for transcoding, uploading, and fingerprinting"
 
     def __init__(self):
-        self.production = (settings.JAMJAR_ENV == 'prod')
         self.s3 = boto3.resource('s3')
 
     def get_video_filepath(self, video_dir, extension, filename="video"):
@@ -40,7 +39,7 @@ class VideoTranscoder(object):
 
     def upload_to_s3(self, out_dir):
         base_dir = os.path.basename(out_dir)
-        s3_dir = os.path.join('prod', base_dir)
+        s3_dir = os.path.join(settings.JAMJAR_ENV, base_dir)
 
         for filename in os.listdir(out_dir):
             # TODO : regex here

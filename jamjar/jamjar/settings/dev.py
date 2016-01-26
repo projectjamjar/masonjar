@@ -45,5 +45,3 @@ LILO_CONFIG = {
     },
     'multiple_match': True
 }
-
-JAMJAR_ENV = 'dev'

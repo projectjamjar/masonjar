@@ -53,8 +53,8 @@ class LiloTestCase(TestCase):
         self.video_transcoder.delete_source   = mocked_delete
         self.video_transcoder.upload_to_s3(out_dir)
 
-        self.assertTrue(('prod/out/part1.hls', TEST_HLS_PATH) in uploaded)
-        self.assertTrue(('prod/out/part10.ts', TEST_TS_PATH) in uploaded)
+        self.assertTrue(('test/out/part1.hls', TEST_HLS_PATH) in uploaded)
+        self.assertTrue(('test/out/part10.ts', TEST_TS_PATH) in uploaded)
         self.assertTrue(len(uploaded) == 2)
 
         v1 = Video()
