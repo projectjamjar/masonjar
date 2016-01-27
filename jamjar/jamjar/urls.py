@@ -27,6 +27,7 @@ urlpatterns = patterns('',
     ########################################
     url(r'^videos/$', Videos.VideoList.as_view()),
     url(r'^videos/(?P<id>[0-9]+)$', Videos.VideoDetails.as_view()),
+    url(r'^videos/(?P<id>[0-9]+)/graph$', Videos.VideoGraph.as_view()),
     url(r'^videos/stream/(?P<id>.+)$', Videos.VideoStream.as_view()),
 
     ########################################

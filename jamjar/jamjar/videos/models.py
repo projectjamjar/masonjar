@@ -75,8 +75,8 @@ def delete_file(sender, instance, **kwargs):
 
 class Edge(BaseModel):
 
-    video1 = models.ForeignKey(Video, related_name='video1')
-    video2 = models.ForeignKey(Video, related_name='video2')
+    video1 = models.ForeignKey(Video, related_name='video1', db_index=True)
+    video2 = models.ForeignKey(Video, related_name='video2', db_index=True)
     offset     = models.FloatField()
     confidence = models.IntegerField()
 

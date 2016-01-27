@@ -4,10 +4,11 @@ from rest_framework.authtoken.models import Token
 from rest_framework.parsers import FormParser, MultiPartParser
 
 from jamjar.base.views import BaseView, authenticate
-from jamjar.videos.models import Video
-from jamjar.videos.serializers import VideoSerializer
+from jamjar.videos.models import Video, Edge
+from jamjar.videos.serializers import VideoSerializer, EdgeSerializer
 
 from django.shortcuts import redirect
+from django.db.models import Q
 
 from jamjar.tasks.transcode_video import transcode_video
 
@@ -116,4 +117,23 @@ class VideoDetails(BaseView):
         # Serialize the result and return it
         self.video.delete()
         return self.success_response("Video with id {} successfully deleted.".format(id))
+
+
+class VideoGraph(BaseView):
+
+    serializer_class = EdgeSerializer
+
+    #@authenticate
+    def get(self, request, id):
+         # Attempt to get the video
+        try:
+            self.video = Video.objects.get(id=id)
+        except:
+            return self.error_response('Video does not exist or you do not have access to this video.', 404)
+
+        edges = Edge.objects.filter(Q(video1_id=self.video.id) | Q(video2_id=self.video.id)).select_related('video1', 'video2')
+
+        edges_data = [self.get_serializer(edge).data for edge in edges]
+
+        return self.success_response(edges_data)
 
