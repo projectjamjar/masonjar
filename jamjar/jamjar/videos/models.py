@@ -33,8 +33,8 @@ class Video(BaseModel):
         logger.info("Writing uploaded file to {:}".format(video_filepath))
 
         with open(video_filepath, 'wb+') as output_fh:
-            file_chunks = input_fh.chunks()
-            for chunk in file_chunks:
+            # read 4k until an empty string is found
+            for chunk in iter(lambda: input_fh.read(4096), b''):
                 output_fh.write(chunk)
 
         return video_filepath
