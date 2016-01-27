@@ -15,6 +15,7 @@ class Video(BaseModel):
     web_src = models.CharField(max_length=128, default="")  # s3 path, for streaming to web
     hls_src = models.CharField(max_length=128, default="")  # s3 path, for streaming to ios
     uploaded = models.BooleanField(default=False)
+    concert  = models.ForeignKey("concerts.Concert", related_name='concert')
 
     @classmethod
     def get_video_dir(self, uuid):

@@ -4,7 +4,7 @@ from jamjar.videos.models import Video, Edge
 class VideoSerializer(serializers.ModelSerializer):
     class Meta:
         model = Video
-        fields = ('id', 'name', 'tmp_src', 'web_src', 'hls_src')
+        fields = ('id', 'name', 'tmp_src', 'web_src', 'hls_src', 'concert')
 
 class EdgeSerializer(serializers.ModelSerializer):
     class Meta:
