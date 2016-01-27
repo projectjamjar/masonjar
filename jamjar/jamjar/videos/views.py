@@ -128,12 +128,38 @@ class VideoGraph(BaseView):
          # Attempt to get the video
         try:
             self.video = Video.objects.get(id=id)
+            from_video = VideoSerializer(self.video).data
         except:
             return self.error_response('Video does not exist or you do not have access to this video.', 404)
 
         edges = Edge.objects.filter(Q(video1_id=self.video.id) | Q(video2_id=self.video.id)).select_related('video1', 'video2')
 
-        edges_data = [self.get_serializer(edge).data for edge in edges]
+        edges_data = []
+        """
+        TODO : document better....
+        way to understand this:
+        if offset is > 0:
+            blob.video starts edge[i].offset seconds AFTER edge[i] starts
+        if offset is < 0:
+            blob.video starts edge[i].offset seconds BEFORE edge[i] starts
+        """
+        for edge in sorted(edges, key=lambda e: -e.confidence):
+            data = self.get_serializer(edge).data
+            if data['video1']['id'] == self.video.id:
+                to_video   = data['video2']
+                offset     = data['offset']
+            else:
+                to_video   = data['video1']
+                offset     = -data['offset']
 
-        return self.success_response(edges_data)
+            edge_data = {
+                'video'  : to_video,
+                'offset' : offset,
+                'confidence' : data['confidence']
+            }
+
+            edges_data.append(edge_data)
+
+        resp = {'video' : from_video, 'edges': edges_data}
+        return self.success_response(resp)
 

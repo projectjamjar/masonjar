@@ -3,7 +3,6 @@ from jamjar.videos.models import Video, Edge
 from jamjar.concerts.serializers import ConcertSerializer
 
 class VideoSerializer(serializers.ModelSerializer):
-    concert = ConcertSerializer(read_only=True)
     class Meta:
         model = Video
         fields = ('id', 'name', 'tmp_src', 'web_src', 'hls_src', 'concert')
