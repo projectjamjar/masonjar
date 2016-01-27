@@ -1,6 +1,9 @@
 from django.db import models
 from jamjar.base.models import BaseModel
 
+from django.db.models.signals import pre_delete
+from django.dispatch import receiver
+
 from django.conf import settings
 
 import logging, uuid, os
@@ -29,8 +32,10 @@ class Video(BaseModel):
 
         logger.info("Writing uploaded file to {:}".format(video_filepath))
 
-        with open(video_filepath, 'wb') as output_fh:
-            output_fh.write(input_fh.read())
+        with open(video_filepath, 'wb+') as output_fh:
+            # read 4k until an empty string is found
+            for chunk in iter(lambda: input_fh.read(4096), b''):
+                output_fh.write(chunk)
 
         return video_filepath
 
@@ -59,6 +64,13 @@ class Video(BaseModel):
             'video_dir' : video_dir
         }
 
+"""
+When deleting a video object, also delete the video files from the server
+"""
+@receiver(pre_delete, sender=Video)
+def delete_file(sender, instance, **kwargs):
+    # Delete the file itself
+    os.remove(instance.get_video_dir())
 
 class Edge(BaseModel):
 
