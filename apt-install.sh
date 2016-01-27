@@ -15,3 +15,9 @@ a2enmod proxy_http
 cp apache2.conf /etc/apache2/
 service apache2 restart
 
+# Install redis
+wget -O /tmp/redis-3.0.6.tar.gz http://download.redis.io/releases/redis-3.0.6.tar.gz
+tar -xvf /tmp/redis-3.0.6.tar.gz -C /tmp/
+make -C /tmp/redis-3.0.6/
+make -C /tmp/redis-3.0.6/ install
+
