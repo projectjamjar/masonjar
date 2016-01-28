@@ -4,6 +4,8 @@ from django.conf import settings
 from jamjar.tasks.transcode_video import VideoTranscoder
 
 from jamjar.videos.models import Video, Edge
+from jamjar.concerts.models import Concert
+from jamjar.venues.models import Venue
 from lilo import Lilo
 
 import os
@@ -57,10 +59,17 @@ class LiloTestCase(TestCase):
         self.assertTrue(('test/out/part10.ts', TEST_TS_PATH) in uploaded)
         self.assertTrue(len(uploaded) == 2)
 
-        v1 = Video()
+        venue = Venue(name="MET Lab")
+        venue.save()
+
+        concert = Concert(date="2016-01-01", venue=venue)
+        concert.save()
+
+
+        v1 = Video(concert_id=concert.id)
         v1.save()
 
-        v2 = Video()
+        v2 = Video(concert_id=concert.id)
         v2.save()
 
         self.video_transcoder.fingerprint(TEST_VIDEO_PATH_1, v1.id)

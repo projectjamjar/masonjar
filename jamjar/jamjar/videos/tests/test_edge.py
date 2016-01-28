@@ -3,6 +3,8 @@ from django.test import TestCase
 from django.conf import settings
 
 from jamjar.videos.models import Video, Edge
+from jamjar.concerts.models import Concert
+from jamjar.venues.models import Venue
 
 import os, logging
 
@@ -10,10 +12,17 @@ TEST_VIDEO_PATH = os.path.join(os.path.dirname(__file__), 'mark-dancing.mp4')
 
 class EdgeTestCase(TestCase):
     def setUp(self):
-        self.video1 = Video()
+
+        venue = Venue(name="MET Lab")
+        venue.save()
+
+        concert = Concert(date="2016-01-01", venue=venue)
+        concert.save()
+
+        self.video1 = Video(concert_id=concert.id)
         self.video1.save()
 
-        self.video2 = Video()
+        self.video2 = Video(concert_id=concert.id)
         self.video2.save()
 
     def test_edge(self):
