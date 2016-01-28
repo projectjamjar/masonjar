@@ -35,7 +35,7 @@ class Video(BaseModel):
 
         with open(video_filepath, 'wb+') as output_fh:
             # read 4k until an empty string is found
-            for chunk in iter(lambda: input_fh.read(4096), b''):
+            for chunk in input_fh.chunks():
                 output_fh.write(chunk)
 
         return video_filepath
