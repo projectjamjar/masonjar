@@ -12,7 +12,7 @@ class Video(BaseModel):
 
     name = models.CharField(max_length=128)
     uploaded = models.BooleanField(default=False)
-    concert = models.ForeignKey("concerts.Concert", related_name='concert')
+    concert = models.ForeignKey('concerts.Concert', related_name='concert')
     tmp_src = models.CharField(max_length=128)              # where it lives on disk before upload to s3
     web_src = models.CharField(max_length=128, default="")  # s3 path, for streaming to web
     hls_src = models.CharField(max_length=128, default="")  # s3 path, for streaming to ios
@@ -20,6 +20,7 @@ class Video(BaseModel):
     file_size = models.FloatField()
     is_private = models.BooleanField(default=False)
     views = models.IntegerField()
+    artists = models.ManyToManyField('artists.Artist', related_name='videos')
 
     @classmethod
     def get_video_dir(self, uuid):
