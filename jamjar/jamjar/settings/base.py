@@ -127,3 +127,9 @@ NOSE_ARGS = [
 ]
 
 JAMJAR_ENV = os.environ['JAMJAR_ENV']
+
+# Automatically import these modules when `make shell`
+SHELL_PLUS_PRE_IMPORTS = (
+    ('jamjar.common.services', ('*')),
+    'pprint'
+)

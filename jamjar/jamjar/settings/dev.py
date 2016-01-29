@@ -13,6 +13,10 @@ VIDEOS_PATH = '/opt/code/masonjar/videos'
 API_BASE_URL = 'http://api.localhost.dev:5001'
 SITE_BASE_URL = 'http://dashboard.localhost.dev:5000/#'
 
+# GMaps API Key
+GMAPS_API_KEY = 'AIzaSyB3ay9JpvAc9SLQKkkuJpYKqCCAH0cVUk0'
+GMAPS_CACHE_BUST = 5 # Update GMapLocations after 5 days of staleness
+
 # Host origins allowed to access the API
 CORS_ORIGIN_WHITELIST = (
         'dashboard.localhost.dev:5000',
