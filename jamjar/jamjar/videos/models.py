@@ -104,3 +104,20 @@ class PlaylistOrder(models.Model):
 
     class Meta:
         ordering = ('number',)
+
+class VideoVote(BaseModel):
+    user = models.ForeignKey('users.User',related_name='votes')
+    video = models.ForeignKey(Video, related_name='votes')
+    vote = models.NullBooleanField(null=True) # True is upvote, False is downvote, null is blank (redacted vote)
+
+FLAG_TYPES = (
+    ('Q','Quality'),
+    ('I','Inappropriate'),
+    ('A','Accuracy'),
+)
+
+class VideoFlag(BaseModel):
+    user = models.ForeignKey('users.User', related_name='flags_submitted')
+    video = models.ForeignKey(Video, related_name='flags')
+    flag_type = models.CharField(max_length=1, choices=FLAG_TYPES)
+    notes = models.CharField(max_length=500,null=True,blank=True)
