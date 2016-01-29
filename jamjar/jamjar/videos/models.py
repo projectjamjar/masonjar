@@ -11,11 +11,15 @@ import logging, uuid, os
 class Video(BaseModel):
 
     name = models.CharField(max_length=128)
+    uploaded = models.BooleanField(default=False)
+    concert = models.ForeignKey("concerts.Concert", related_name='concert')
     tmp_src = models.CharField(max_length=128)              # where it lives on disk before upload to s3
     web_src = models.CharField(max_length=128, default="")  # s3 path, for streaming to web
     hls_src = models.CharField(max_length=128, default="")  # s3 path, for streaming to ios
-    uploaded = models.BooleanField(default=False)
-    concert = models.ForeignKey("concerts.Concert", related_name='concert')
+    length = models.FloatField()
+    file_size = models.FloatField()
+    is_private = models.BooleanField(default=False)
+    views = models.IntegerField()
 
     @classmethod
     def get_video_dir(self, uuid):
@@ -85,3 +89,17 @@ class Edge(BaseModel):
         edge = Edge(video1_id=video1_id, video2_id=video2_id, offset=offset, confidence=confidence)
         edge.save()
         return edge
+
+class Playlist(BaseModel):
+    user = models.ForeignKey('users.User',related_name='playlists')
+    name = models.CharField(max_length=100)
+    is_private = models.BooleanField(default=False)
+    videos = models.ManyToManyField(Video, related_name='playlists',through='PlaylistOrder')
+
+class PlaylistOrder(models.Model):
+    number = models.PositiveIntegerField()
+    playlist = models.ForeignKey(Playlist)
+    video = models.ForeignKey(Video)
+
+    class Meta:
+        ordering = ('number',)
