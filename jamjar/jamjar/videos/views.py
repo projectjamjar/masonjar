@@ -40,10 +40,11 @@ class VideoList(BaseView):
     @authenticate
     def post(self, request):
 
-        if not 'file' in request.FILES:
-            return self.error_response('no file given', 400)
 
-        video_fh = request.FILES['file']
+        video_fh = request.FILES.get('file')
+
+        if not video_fh:
+            return self.error_response('no file given', 400)
 
         # This will synchronously upload the video to a temp directory then
         # queue a job to:
@@ -58,6 +59,7 @@ class VideoList(BaseView):
         request.data['hls_src'] = video_paths['hls_src']
         request.data['web_src'] = video_paths['web_src']
 
+        # Validate the rest of the request
         self.serializer = self.get_serializer(data=request.data)
 
         if not self.serializer.is_valid():
