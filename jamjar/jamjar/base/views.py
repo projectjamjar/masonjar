@@ -15,9 +15,6 @@ class BaseView(GenericAPIView):
     def success_response(self, data, status=200):
         return SuccessResponse(data,status)
 
-    def video_response(self, src):
-        return VideoResponse(src)
-
     def get_object_or_404(self, klass, *args, **kwargs):
         """
         Uses get() to return an object, or raises a Http404 exception if the object

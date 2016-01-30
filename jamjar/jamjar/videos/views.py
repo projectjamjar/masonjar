@@ -14,18 +14,6 @@ from jamjar.tasks.transcode_video import transcode_video
 
 import re
 
-class VideoStream(BaseView):
-    def get(self, request, video_uid):
-        if re.search(r'\.\.', video_uid):
-            # don't allow '..' in the video path (for security)
-            return self.error_response('Invalid uuid specified', 400)
-
-        elif re.search(r'(\.m3u8|\.mp4|\.ts)$', video_uid):
-            video_filepath = Video.get_video_dir(video_uid)
-            return self.video_response(video_filepath)
-        else:
-            return redirect('/videos/stream/{:}/video.m3u8'.format(video_uid))
-
 class VideoList(BaseView):
     parser_classes = (MultiPartParser,)
     serializer_class = VideoSerializer
