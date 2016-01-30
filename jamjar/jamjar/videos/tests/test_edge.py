@@ -19,10 +19,10 @@ class EdgeTestCase(TestCase):
         concert = Concert(date="2016-01-01", venue=venue)
         concert.save()
 
-        self.video1 = Video(concert_id=concert.id)
+        self.video1 = Video(concert_id=concert.id, length=2)
         self.video1.save()
 
-        self.video2 = Video(concert_id=concert.id)
+        self.video2 = Video(concert_id=concert.id, length=2)
         self.video2.save()
 
     def test_edge(self):

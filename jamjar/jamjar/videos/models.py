@@ -11,6 +11,7 @@ import logging, uuid, os
 class Video(BaseModel):
 
     name = models.CharField(max_length=128)
+    length = models.FloatField()
     tmp_src = models.CharField(max_length=128)              # where it lives on disk before upload to s3
     web_src = models.CharField(max_length=128, default="")  # s3 path, for streaming to web
     hls_src = models.CharField(max_length=128, default="")  # s3 path, for streaming to ios

@@ -66,13 +66,16 @@ class LiloTestCase(TestCase):
         concert.save()
 
 
-        v1 = Video(concert_id=concert.id)
+        v1 = Video(concert_id=concert.id, length=2)
         v1.save()
 
-        v2 = Video(concert_id=concert.id)
+        v2 = Video(concert_id=concert.id, length=2)
         v2.save()
 
-        self.video_transcoder.fingerprint(TEST_VIDEO_PATH_1, v1.id)
-        self.video_transcoder.fingerprint(TEST_VIDEO_PATH_2, v2.id)
+        length_1 = self.video_transcoder.fingerprint(TEST_VIDEO_PATH_1, v1.id)
+        length_2 = self.video_transcoder.fingerprint(TEST_VIDEO_PATH_2, v2.id)
+
+        self.assertTrue(abs(5 - length_1) < .1)
+        self.assertTrue(abs(5 - length_2) < .1)
 
         # TODO : check the edges table

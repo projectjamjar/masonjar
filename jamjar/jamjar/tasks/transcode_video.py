@@ -64,14 +64,17 @@ class VideoTranscoder(object):
             for match in matched_videos:
                 Edge.new(video_id, match['video_id'], match['offset_seconds'], match['confidence'])
 
-        lilo.fingerprint_song()
+        data = lilo.fingerprint_song()
+
+        return data["song_length"]
+
 
     def run(self, src_filepath, out_dir, video_id):
         "main entry point to fingerprint, transcode, upload to s3, and delete source dir"
 
         hls_filepath = self.get_video_filepath(out_dir, 'm3u8')
 
-        self.fingerprint(src_filepath, video_id)
+        video_length = self.fingerprint(src_filepath, video_id)
         self.transcode_to_hls(src_filepath, hls_filepath)
 
         self.upload_to_s3(out_dir)
@@ -79,6 +82,7 @@ class VideoTranscoder(object):
 
         try:
             video = Video.objects.get(id=video_id)
+            video.length = video_length
             video.uploaded = True
             video.save()
         except:
