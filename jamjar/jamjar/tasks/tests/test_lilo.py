@@ -18,7 +18,6 @@ TEST_HLS_PATH = os.path.join(os.path.dirname(__file__), 'out/part1.hls')
 TEST_TS_PATH = os.path.join(os.path.dirname(__file__), 'out/part10.ts')
 
 class LiloTestCase(TestCase):
-    @classmethod
     def truncateTestDb(self):
         if 'test' in settings.LILO_CONFIG['database']['db']:
             lilo = Lilo(settings.LILO_CONFIG, None, None)
@@ -26,11 +25,10 @@ class LiloTestCase(TestCase):
         else:
             raise RuntimeError("trying to truncate a non-test table!")
 
-    @classmethod
-    def tearDownClass(cls):
+    def tearDown(self):
         os.remove(TEST_HLS_PATH)
         os.remove(TEST_TS_PATH)
-        cls.truncateTestDb()
+        self.truncateTestDb()
 
     def setUp(self):
         self.video_transcoder = VideoTranscoder()
@@ -78,4 +76,3 @@ class LiloTestCase(TestCase):
         self.assertTrue(abs(5 - length_1) < .1)
         self.assertTrue(abs(5 - length_2) < .1)
 
-        # TODO : check the edges table

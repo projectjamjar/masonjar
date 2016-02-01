@@ -122,8 +122,8 @@ TEST_RUNNER = 'django_nose.NoseTestSuiteRunner'
 
 NOSE_ARGS = [
     '--with-coverage',
-    '--cover-package=.',
-    '--cover-html'
+    '--cover-package=jamjar',
+    '--cover-html',
 ]
 
 JAMJAR_ENV = os.environ['JAMJAR_ENV']

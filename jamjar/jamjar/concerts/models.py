@@ -57,7 +57,7 @@ class Concert(BaseModel):
 
             data = {
                 "video": model_to_dict(video),
-                "conncects_to" : connects_to
+                "connects_to" : connects_to
             }
             graph.append(data)
 
