@@ -11,10 +11,12 @@ import logging, uuid, os
 class Video(BaseModel):
 
     name = models.CharField(max_length=128)
+    length = models.FloatField(null=True, blank=True)
     tmp_src = models.CharField(max_length=128)              # where it lives on disk before upload to s3
     web_src = models.CharField(max_length=128, default="")  # s3 path, for streaming to web
     hls_src = models.CharField(max_length=128, default="")  # s3 path, for streaming to ios
     uploaded = models.BooleanField(default=False)
+    concert = models.ForeignKey("concerts.Concert", related_name='concert')
 
     @classmethod
     def get_video_dir(self, uuid):
@@ -34,7 +36,7 @@ class Video(BaseModel):
 
         with open(video_filepath, 'wb+') as output_fh:
             # read 4k until an empty string is found
-            for chunk in iter(lambda: input_fh.read(4096), b''):
+            for chunk in input_fh.chunks():
                 output_fh.write(chunk)
 
         return video_filepath
@@ -74,8 +76,8 @@ def delete_file(sender, instance, **kwargs):
 
 class Edge(BaseModel):
 
-    video1 = models.ForeignKey(Video, related_name='video1')
-    video2 = models.ForeignKey(Video, related_name='video2')
+    video1 = models.ForeignKey(Video, related_name='video1', db_index=True)
+    video2 = models.ForeignKey(Video, related_name='video2', db_index=True)
     offset     = models.FloatField()
     confidence = models.IntegerField()
 

@@ -26,12 +26,3 @@ class ErrorResponse(Response):
         }
         super(ErrorResponse, self).__init__(data, status=status)
 
-
-class VideoResponse(HttpResponse):
-
-    "Constructor, takes path to video and returns a streaming url"
-    def __init__(self, video_filepath):
-
-        with open(video_filepath, 'rb') as fh:
-            super(VideoResponse, self).__init__(fh, content_type='application/vnd.apple.mpegurl', status=200)
-

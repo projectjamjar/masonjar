@@ -4,26 +4,14 @@ from rest_framework.authtoken.models import Token
 from rest_framework.parsers import FormParser, MultiPartParser
 
 from jamjar.base.views import BaseView, authenticate
-from jamjar.videos.models import Video
-from jamjar.videos.serializers import VideoSerializer
+from jamjar.videos.models import Video, Edge
+from jamjar.videos.serializers import VideoSerializer, EdgeSerializer
 
 from django.shortcuts import redirect
 
 from jamjar.tasks.transcode_video import transcode_video
 
 import re
-
-class VideoStream(BaseView):
-    def get(self, request, video_uid):
-        if re.search(r'\.\.', video_uid):
-            # don't allow '..' in the video path (for security)
-            return self.error_response('Invalid uuid specified', 400)
-
-        elif re.search(r'(\.m3u8|\.mp4|\.ts)$', video_uid):
-            video_filepath = Video.get_video_dir(video_uid)
-            return self.video_response(video_filepath)
-        else:
-            return redirect('/videos/stream/{:}/video.m3u8'.format(video_uid))
 
 class VideoList(BaseView):
     parser_classes = (MultiPartParser,)
@@ -39,10 +27,11 @@ class VideoList(BaseView):
     @authenticate
     def post(self, request):
 
-        if not 'file' in request.FILES:
-            return self.error_response('no file given', 400)
 
-        video_fh = request.FILES['file']
+        video_fh = request.FILES.get('file')
+
+        if not video_fh:
+            return self.error_response('no file given', 400)
 
         # This will synchronously upload the video to a temp directory then
         # queue a job to:
@@ -57,6 +46,7 @@ class VideoList(BaseView):
         request.data['hls_src'] = video_paths['hls_src']
         request.data['web_src'] = video_paths['web_src']
 
+        # Validate the rest of the request
         self.serializer = self.get_serializer(data=request.data)
 
         if not self.serializer.is_valid():
