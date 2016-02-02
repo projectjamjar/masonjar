@@ -15,7 +15,7 @@ class ConcertGraph(BaseView):
         try:
             self.concert = Concert.objects.get(id=id)
         except:
-            return self.error_response('Concert does not exist or you do not have access to this video.', 404)
+            return self.error_response('Concert does not exist or you do not have access to this concert.', 404)
 
         concert_graph = self.concert.make_graph()
         resp = {

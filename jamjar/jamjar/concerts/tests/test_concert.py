@@ -33,6 +33,7 @@ class ConcertTestCase(TestCase):
         graph = self.concert.make_graph()
 
 
+        # TODO: Improve test cases so they map back to requirements
         self.assertEqual(len(graph), 3)
         self.assertEqual(sorted([i['video']['name'] for i in graph]), ['video1', 'video2', 'video3'])
 

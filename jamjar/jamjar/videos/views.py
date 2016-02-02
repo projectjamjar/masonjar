@@ -8,7 +8,6 @@ from jamjar.videos.models import Video, Edge
 from jamjar.videos.serializers import VideoSerializer, EdgeSerializer
 
 from django.shortcuts import redirect
-from django.db.models import Q
 
 from jamjar.tasks.transcode_video import transcode_video
 
