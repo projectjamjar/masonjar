@@ -18,10 +18,10 @@ class Video(BaseModel):
     web_src = models.URLField(max_length=128, default="")  # s3 path, for streaming to web
     hls_src = models.URLField(max_length=128, default="")  # s3 path, for streaming to ios
     thumb_src = models.URLField(max_length=128, default="")
-    length = models.FloatField()
-    file_size = models.FloatField()
+    length = models.FloatField(null=True)
+    file_size = models.FloatField(null=True)
     is_private = models.BooleanField(default=False)
-    views = models.IntegerField()
+    views = models.IntegerField(default=0)
     artists = models.ManyToManyField('artists.Artist', related_name='videos')
 
     @classmethod
