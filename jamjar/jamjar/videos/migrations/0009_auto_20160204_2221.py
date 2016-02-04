@@ -22,7 +22,6 @@ class Migration(migrations.Migration):
                 ('flag_type', models.CharField(max_length=1, choices=[(b'Q', b'Quality'), (b'I', b'Inappropriate'), (b'A', b'Accuracy')])),
                 ('notes', models.CharField(max_length=500, null=True, blank=True)),
                 ('user', models.ForeignKey(related_name='flags_submitted', to=settings.AUTH_USER_MODEL)),
-                ('video', models.ForeignKey(related_name='flags', to='videos.Video')),
             ],
             options={
                 'abstract': False,
@@ -36,10 +35,40 @@ class Migration(migrations.Migration):
                 ('modified_at', models.DateTimeField(auto_now=True)),
                 ('vote', models.NullBooleanField()),
                 ('user', models.ForeignKey(related_name='votes', to=settings.AUTH_USER_MODEL)),
-                ('video', models.ForeignKey(related_name='votes', to='videos.Video')),
             ],
             options={
                 'abstract': False,
             },
+        ),
+        migrations.AddField(
+            model_name='video',
+            name='thumb_src',
+            field=models.URLField(default=b'', max_length=128),
+        ),
+        migrations.AddField(
+            model_name='video',
+            name='user',
+            field=models.ForeignKey(related_name='videos', default=1, to=settings.AUTH_USER_MODEL),
+            preserve_default=False,
+        ),
+        migrations.AlterField(
+            model_name='video',
+            name='hls_src',
+            field=models.URLField(default=b'', max_length=128),
+        ),
+        migrations.AlterField(
+            model_name='video',
+            name='web_src',
+            field=models.URLField(default=b'', max_length=128),
+        ),
+        migrations.AddField(
+            model_name='videovote',
+            name='video',
+            field=models.ForeignKey(related_name='votes', to='videos.Video'),
+        ),
+        migrations.AddField(
+            model_name='videoflag',
+            name='video',
+            field=models.ForeignKey(related_name='flags', to='videos.Video'),
         ),
     ]
