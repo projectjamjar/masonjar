@@ -3,6 +3,8 @@ MANAGER=jamjar/manage.py
 IP=0.0.0.0
 PORT=5001
 
+SEED?=seed_data/basic_seed.json
+
 ###########################################
 # Install
 ###########################################
@@ -21,6 +23,12 @@ migrate: makemigrations
 
 dry-migrate: $(MANAGER)
 	python $(MANAGER) makemigrations --dry-run --verbosity 3 $(MODULE);
+
+seed: $(MANAGER)
+	python $(MANAGER) loaddata $(SEED)
+
+dump: $(MANAGER)
+	python $(MANAGER) dumpdata --natural-foreign --exclude auth.permission --exclude contenttypes --indent 4 > seed_data/seed.json
 
 
 ###########################################

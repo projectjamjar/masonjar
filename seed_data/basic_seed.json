@@ -1,0 +1,87 @@
+[
+{
+    "fields": {
+        "expire_date": "2016-02-18T22:33:24Z",
+        "session_data": "ZDRjYTY0ZGE2ODkzNzQ2MDVjMDgzOTQ3ZGIyYzkzZGRlYWFiOTFjOTp7Il9hdXRoX3VzZXJfaGFzaCI6IjA3MTUwOTJmZjBhMTRmNjU0ZTM2MTkwYmExOTM4NDk1ZDY4NWZmZjEiLCJfYXV0aF91c2VyX2JhY2tlbmQiOiJkamFuZ28uY29udHJpYi5hdXRoLmJhY2tlbmRzLk1vZGVsQmFja2VuZCIsIl9hdXRoX3VzZXJfaWQiOiIxIn0="
+    },
+    "model": "sessions.session",
+    "pk": "37sup2qhatt6rfembgcszfmfdfmov0td"
+},
+{
+    "fields": {
+        "username": "test",
+        "first_name": "Test",
+        "last_name": "User",
+        "is_deleted": false,
+        "is_active": true,
+        "created_at": "2016-02-04T22:33:21Z",
+        "first_login": false,
+        "modified_at": "2016-02-04T22:33:21Z",
+        "is_superuser": false,
+        "is_staff": false,
+        "last_login": "2016-02-04T22:33:24Z",
+        "groups": [],
+        "user_permissions": [],
+        "password": "pbkdf2_sha256$20000$ebRpMry1r0CY$Jqybz3J8g09jRrUJDgfNC57r4TdQDy44SGmMoCQ+JtI=",
+        "email": "test@user.com",
+        "date_joined": "2016-02-04T22:33:21Z"
+    },
+    "model": "users.user",
+    "pk": 1
+},
+{
+    "fields": {
+        "created_at": "2016-02-04T22:33:21Z",
+        "modified_at": "2016-02-04T22:33:21Z",
+        "token_type": "A",
+        "token": "494-a72e62c2b9556204da30",
+        "user": [
+            "test"
+        ],
+        "active": true
+    },
+    "model": "authentication.jamjartoken",
+    "pk": 1
+},
+{
+    "fields": {
+        "date": "2016-02-04",
+        "venue": 1,
+        "created_at": "2016-02-04T22:32:41Z",
+        "modified_at": "2016-02-04T22:32:41Z"
+    },
+    "model": "concerts.concert",
+    "pk": 1
+},
+{
+    "fields": {
+        "website": "http://www.utphilly.com/",
+        "city": "Philadelphia",
+        "utc_offset": -300,
+        "country_short": "US",
+        "name": "Union Transfer",
+        "country": "United States",
+        "created_at": "2016-02-04T22:30:34Z",
+        "place_id": "ChIJPWg_kNXHxokRPXdE7nqMsI4",
+        "modified_at": "2016-02-04T22:30:34Z",
+        "unofficial": false,
+        "state": "Pennsylvania",
+        "state_short": "PA",
+        "lat": "39.96138760",
+        "lng": "-75.15532360",
+        "formatted_address": "1026 Spring Garden St, Philadelphia, PA 19123, United States"
+    },
+    "model": "venues.venue",
+    "pk": 1
+},
+{
+    "fields": {
+        "user": [
+            "test"
+        ],
+        "created": "2016-02-04T22:33:24Z"
+    },
+    "model": "authtoken.token",
+    "pk": "1c941bd992167c12cc60440abdbefc174019bdf5"
+}
+]
