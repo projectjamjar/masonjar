@@ -7,6 +7,7 @@ import boto3
 
 from jamjar.videos.models import Edge, Video
 
+import logging; logger = logging.getLogger(__name__)
 
 class VideoTranscoder(object):
     "Helper class for transcoding, uploading, and fingerprinting"
@@ -21,7 +22,6 @@ class VideoTranscoder(object):
 
     def transcode_to_hls(self, src, out):
         "transcodes an mp4 file to hls"
-        logger = logging.getLogger(__name__)
 
         try:
             with open(os.devnull, "w") as devnull:
@@ -64,15 +64,33 @@ class VideoTranscoder(object):
             for match in matched_videos:
                 Edge.new(video_id, match['video_id'], match['offset_seconds'], match['confidence'])
 
-        lilo.fingerprint_song()
+        data = lilo.fingerprint_song()
+
+        return data["song_length"]
+
+    def extract_thumbnail(self, src, out):
+        "extracts a thumbnail from a video and uploads it to s3"
+
+        try:
+            with open(os.devnull, "w") as devnull:
+              subprocess.check_call(["avconv", "-i", src, '-vsync', '1', '-r', '1', '-an', '-y', out], stdout=devnull, stderr=devnull)
+              # avconv -i videofile.mp4 -vsync 1 -r 1 -an -y 'videofolder/videoframe%d.jpg'
+            logger.info('Successfully extracted thumbnail from {:} to {:}'.format(src, out))
+            return True
+        except subprocess.CalledProcessError:
+            # this will retry the job
+            #raise RuntimeError('Error transcoding {:} to {:}. Error code: {:}'.format(src, out, result))
+            return False
 
     def run(self, src_filepath, out_dir, video_id):
         "main entry point to fingerprint, transcode, upload to s3, and delete source dir"
 
         hls_filepath = self.get_video_filepath(out_dir, 'm3u8')
+        thumb_filepath = self.get_video_filepath(out_dir, 'jpg')
 
         self.fingerprint(src_filepath, video_id)
         self.transcode_to_hls(src_filepath, hls_filepath)
+        self.extract_thumbnail(src_filepath, thumb_filepath)
 
         self.upload_to_s3(out_dir)
         self.delete_source(out_dir)

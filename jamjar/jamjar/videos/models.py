@@ -10,12 +10,14 @@ import logging, uuid, os
 
 class Video(BaseModel):
 
+    user = models.ForeignKey('users.User', related_name='videos')
     name = models.CharField(max_length=128)
     uploaded = models.BooleanField(default=False)
     concert = models.ForeignKey('concerts.Concert', related_name='concert')
     tmp_src = models.CharField(max_length=128)              # where it lives on disk before upload to s3
-    web_src = models.CharField(max_length=128, default="")  # s3 path, for streaming to web
-    hls_src = models.CharField(max_length=128, default="")  # s3 path, for streaming to ios
+    web_src = models.URLField(max_length=128, default="")  # s3 path, for streaming to web
+    hls_src = models.URLField(max_length=128, default="")  # s3 path, for streaming to ios
+    thumb_src = models.URLField(max_length=128, default="")
     length = models.FloatField()
     file_size = models.FloatField()
     is_private = models.BooleanField(default=False)
@@ -62,11 +64,13 @@ class Video(BaseModel):
         tmp_src = self.do_upload(input_fh, video_filepath)
         hls_src = self.make_s3_path(video_uid, 'm3u8')
         web_src = self.make_s3_path(video_uid, 'mp4')
+        thumb_src = self.make_s3_path(video_uid, 'jpg')
 
         return {
             'tmp_src' : tmp_src,
             'hls_src' : hls_src,
             'web_src' : web_src,
+            'thumb_src': thumb_src,
             'video_dir' : video_dir
         }
 

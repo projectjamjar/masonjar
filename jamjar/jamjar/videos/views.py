@@ -58,9 +58,13 @@ class VideoList(BaseView):
         request.data['tmp_src'] = video_paths['tmp_src']
         request.data['hls_src'] = video_paths['hls_src']
         request.data['web_src'] = video_paths['web_src']
+        request.data['thumb_src'] = video_paths['thumb_src']
 
         # Validate the rest of the request
-        self.serializer = self.get_serializer(data=request.data)
+        context = {
+            'user_id': request.token.user_id
+        }
+        self.serializer = self.get_serializer(data=request.data, context=context)
 
         if not self.serializer.is_valid():
             return self.error_response(self.serializer.errors, 400)
