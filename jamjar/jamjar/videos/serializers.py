@@ -8,8 +8,7 @@ class VideoSerializer(serializers.ModelSerializer):
         fields = ('id', 'name', 'tmp_src', 'web_src', 'hls_src', 'concert')
 
     def validate(self, data):
-        import ipdb; ipdb.set_trace()
-        data['user_id'] = self.context.get('user_id')
+        data['user_id'] = self.context.get('request').token.user_id
         return data
 
 class EdgeSerializer(serializers.ModelSerializer):
