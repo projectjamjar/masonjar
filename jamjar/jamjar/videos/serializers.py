@@ -2,6 +2,8 @@ from rest_framework import serializers
 from jamjar.videos.models import Video, Edge
 from jamjar.concerts.serializers import ConcertSerializer
 
+import os
+
 class VideoSerializer(serializers.ModelSerializer):
     class Meta:
         model = Video
@@ -9,6 +11,23 @@ class VideoSerializer(serializers.ModelSerializer):
 
     def validate(self, data):
         data['user_id'] = self.context.get('request').token.user_id
+        input_fh = self.context.get('request').FILES.get('file')
+
+        if not input_fh:
+            raise serializers.ValidationError('No file given')
+
+        if not input_fh.name:
+            raise serializers.ValidationError('File unnamed?')
+
+        extension = os.path.splitext(self.filename)[1].lower()
+
+        if extension not in ['mp4']:
+            raise serializers.ValidationError('Unacceptable file type')
+
+        # Create the filename and size with the file
+        data['original_filename'] = input_fh.name
+        data['file_size'] = input_fh.size
+        data['file'] = input_fh
         return data
 
 class EdgeSerializer(serializers.ModelSerializer):
