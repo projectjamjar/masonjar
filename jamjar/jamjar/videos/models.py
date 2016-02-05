@@ -57,7 +57,7 @@ class Video(BaseModel):
         return video_path
 
     def make_s3_path(self, filename, extension):
-        return settings.S3_URL.format(self.uuid, filename)
+        return settings.S3_URL.format(self.uuid, filename, extension)
 
     def process_upload(self, input_fh):
         """

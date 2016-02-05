@@ -85,7 +85,7 @@ class VideoTranscoder(object):
 
         if matched_videos is not None:
             for match in matched_videos:
-                Edge.objects.create(video1=self.video,video2_id=match['video_id'],offset=match['offset_seconds'].confidence=match['confidence'])
+                Edge.objects.create(video1=self.video,video2_id=match['video_id'],offset=match['offset_seconds'],confidence=match['confidence'])
 
         # Add this videos fingerprints to the Lilo DB
         data = lilo.fingerprint_song()

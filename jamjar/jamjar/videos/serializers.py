@@ -13,6 +13,7 @@ class VideoSerializer(serializers.ModelSerializer):
         data['user_id'] = self.context.get('request').token.user_id
         input_fh = self.context.get('request').FILES.get('file')
 
+        import ipdb; ipdb.set_trace()
         if not input_fh:
             raise serializers.ValidationError('No file given')
 
@@ -21,8 +22,8 @@ class VideoSerializer(serializers.ModelSerializer):
 
         extension = os.path.splitext(self.filename)[1].lower()
 
-        if extension not in ['mp4']:
-            raise serializers.ValidationError('Unacceptable file type')
+        if extension not in ['mp4','avi','mov']:
+            raise serializers.ValidationError('Unacceptable file type: {}'.format(extension))
 
         # Create the filename and size with the file
         data['original_filename'] = input_fh.name

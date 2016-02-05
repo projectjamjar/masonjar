@@ -13,7 +13,7 @@ TMP_VIDEOS_PATH = '/opt/code/masonjar/videos'
 API_BASE_URL = 'http://api.localhost.dev:5001'
 SITE_BASE_URL = 'http://dashboard.localhost.dev:5000/#'
 
-S3_URL = 'https://s3.amazonaws.com/jamjar-videos/dev/{}/video.{}'
+S3_URL = 'https://s3.amazonaws.com/jamjar-videos/dev/{}/{}.{}'
 
 # GMaps API Key
 GMAPS_API_KEY = 'AIzaSyB3ay9JpvAc9SLQKkkuJpYKqCCAH0cVUk0'
