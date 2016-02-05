@@ -65,11 +65,10 @@ class VideoTranscoder(object):
         local_dir = self.video.get_video_dir()
 
         for filename in os.listdir(local_dir):
-            # TODO : regex here
-            extension = os.path.splitext(self.video.original_filename)[1].lower()
+            extension = os.path.splitext(filename)[1].lower()
             if extension in ['.mp4','.hls','.ts','.m3u8','.jpg']:
                 disk_path = os.path.join(local_dir, filename)
-                s3_path = os.path.join(s3_dir, filename)
+                s3_path = os.path.join(settings.JAMJAR_ENV, str(self.video.uuid), filename)
                 self.do_upload_to_s3(s3_path, disk_path)
 
     def delete_source(self):
