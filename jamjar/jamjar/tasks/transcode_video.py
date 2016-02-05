@@ -24,9 +24,9 @@ class VideoTranscoder(object):
         if extension != '.mp4':
             try:
                 with open(os.devnull, "w") as devnull:
-                    if extension == 'mov':
-                        subprocess.check_call(["avconv", "-i", src, '-c:v', 'libx264', '-c:a', 'copy' '-f', 'mp4', out], stdout=devnull, stderr=devnull)
-                    elif extension == 'avi':
+                    if extension == '.mov':
+                        subprocess.check_call(["avconv", "-i", src, '-c:v', 'libx264', '-c:a', 'copy', '-f', 'mp4', out], stdout=devnull, stderr=devnull)
+                    elif extension == '.avi':
                         subprocess.check_call(["avconv", "-i", src, '-c:v', 'libx264', '-crf', '20', '-b:a', '128k', '-strict', 'experimental', '-f', 'mp4', out], stdout=devnull, stderr=devnull)
                     else:
                         subprocess.check_call(["avconv", "-i", src, '-c:v', 'libx264', '-c:a', 'copy', '-f', 'mp4', out], stdout=devnull, stderr=devnull)
@@ -49,7 +49,7 @@ class VideoTranscoder(object):
 
         try:
             with open(os.devnull, "w") as devnull:
-              subprocess.check_call(["avconv", "-i", src, '-start_number', '0', '-hls_list_size', '0', '-hls_time', '10', '-f', 'hls', out], stdout=devnull, stderr=devnull)
+              subprocess.check_call(['avconv', '-i', src, '-start_number', '0', '-hls_list_size', '0', '-hls_time', '10', '-f', 'hls', out], stdout=devnull, stderr=devnull)
             logger.info('Successfully transcoded {:} to {:}'.format(src, out))
             return True
         except subprocess.CalledProcessError:
@@ -67,12 +67,12 @@ class VideoTranscoder(object):
         for filename in os.listdir(local_dir):
             # TODO : regex here
             extension = os.path.splitext(self.video.original_filename)[1].lower()
-            if extension in ['mp4','hls','ts','m3u8','jpg']:
+            if extension in ['.mp4','.hls','.ts','.m3u8','.jpg']:
                 disk_path = os.path.join(local_dir, filename)
                 s3_path = os.path.join(s3_dir, filename)
                 self.do_upload_to_s3(s3_path, disk_path)
 
-    def delete_source(self, src_dir):
+    def delete_source(self):
         "deletes the source DIRECTORY on disk after uploading to s3"
         video_dir = self.video.get_video_dir()
         shutil.rmtree(video_dir)
@@ -85,12 +85,15 @@ class VideoTranscoder(object):
 
         if matched_videos is not None:
             for match in matched_videos:
-                Edge.objects.create(video1=self.video,video2_id=match['video_id'],offset=match['offset_seconds'],confidence=match['confidence'])
+                Edge.objects.create(video1_id=self.video.id,video2_id=match['video_id'],offset=match['offset_seconds'],confidence=match['confidence'])
 
         # Add this videos fingerprints to the Lilo DB
         data = lilo.fingerprint_song()
 
-        return data["song_length"]
+        if not data:
+            raise RuntimeError('Video already fingerprinted: {} - {}'.format(self.video.name, self.video.uuid))
+
+        return data.get('song_length')
 
     def extract_thumbnail(self, video_length):
         """
@@ -110,7 +113,7 @@ class VideoTranscoder(object):
             with open(os.devnull, "w") as devnull:
                 thumbnail_time = video_length/2.0
                 logger.info("Here")
-                subprocess.check_call(["avconv", "-i", src, '-vsync', '1', '-r', '1', '-an', '-t', '1', '-ss', thumbnail_time, '-y', out], stdout=devnull, stderr=devnull)
+                subprocess.check_call(['avconv', '-i', src, '-vsync', '1', '-r', '1', '-an', '-t', '1', '-ss', str(thumbnail_time), '-y', out], stdout=devnull, stderr=devnull)
                 # avconv -i videofile.mp4 -vsync 1 -r 1 -an -y 'videofolder/videoframe%d.jpg'
                 logger.info('Successfully extracted thumbnail from {:} to {:}'.format(src, out))
             return True
@@ -122,28 +125,28 @@ class VideoTranscoder(object):
     def run(self, video_id):
         "main entry point to fingerprint, transcode, upload to s3, and delete source dir"
 
-        try:
-            # Get the video by ID
-            self.video = Video.objects.get(pk=video_id)
+        # Get the video by ID
+        self.video = Video.objects.get(pk=video_id)
 
-            # Transcode to mp4 here if needed, otherwise rename video
-            self.transcode_to_mp4()
+        # Transcode to mp4 here if needed, otherwise rename video
+        if not self.transcode_to_mp4():
+             raise RuntimeError('Could not convert video: {} - {}'.format(self.video.name, self.video.uuid))
 
-            # Fingerprint, transcode, and thumbnail the video
-            video_length = self.fingerprint()
-            self.transcode_to_hls()
-            self.extract_thumbnail(video_length)
+        # Fingerprint, transcode, and thumbnail the video
+        video_length = self.fingerprint()
+        self.transcode_to_hls()
+        self.extract_thumbnail(video_length)
 
-            # Upload the transcoded videos and thumbnail to S3
-            self.upload_to_s3()
-            self.delete_source()
+        # Upload the transcoded videos and thumbnail to S3
+        self.upload_to_s3()
+        self.delete_source()
 
-            # Update the video length and upload status
-            video.length = video_length
-            video.uploaded = True
-            video.save()
-        except:
-          raise RuntimeError("could not update video with id: {:}".format(video_id))
+        # Update the video length and upload status
+        self.video.length = video_length
+        self.video.uploaded = True
+        self.video.save()
+        # except:
+        #   raise RuntimeError("could not update video with id: {:}".format(video_id))
 
 @app.task(name='tasks.transcode_video')
 def transcode_video(video_id):

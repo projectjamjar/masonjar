@@ -46,10 +46,11 @@ class VideoList(BaseView):
         if not self.serializer.is_valid():
             return self.error_response(self.serializer.errors, 400)
 
+        video_fh = self.serializer.validated_data.pop('file')
+
         # Create the video object so we can get the UUID and paths
         video = self.serializer.save()
 
-        video_fh = self.serializer.validated_data.pop('file')
 
         # This will synchronously upload the video to a temp directory then
         # queue a job to:

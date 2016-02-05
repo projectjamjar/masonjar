@@ -22,7 +22,7 @@ class Video(BaseModel):
     file_size = models.FloatField(null=True)
     is_private = models.BooleanField(default=False)
     views = models.IntegerField(default=0)
-    artists = models.ManyToManyField('artists.Artist', related_name='videos')
+    artists = models.ManyToManyField('artists.Artist', related_name='videos',blank=True)
 
     def get_video_dir(self):
         " Get the local directory for the video (and other temp files) "
