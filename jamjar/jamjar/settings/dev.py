@@ -7,11 +7,17 @@ DEBUG = True
 SECRET_KEY = 'wlh!-90ty3!dk5i1vi_gbsi7((jg+@j%k=&cel2$jrod&6^n(y'
 
 # Paths
-VIDEOS_PATH = '/opt/code/masonjar/videos'
+TMP_VIDEOS_PATH = '/opt/code/masonjar/videos'
 
 # URLS
 API_BASE_URL = 'http://api.localhost.dev:5001'
 SITE_BASE_URL = 'http://dashboard.localhost.dev:5000/#'
+
+S3_URL = 'https://s3.amazonaws.com/jamjar-videos/dev/{}/{}.{}'
+
+# GMaps API Key
+GMAPS_API_KEY = 'AIzaSyB3ay9JpvAc9SLQKkkuJpYKqCCAH0cVUk0'
+GMAPS_CACHE_BUST = 5 # Update GMapLocations after 5 days of staleness
 
 # Host origins allowed to access the API
 CORS_ORIGIN_WHITELIST = (
