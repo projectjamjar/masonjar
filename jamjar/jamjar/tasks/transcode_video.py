@@ -3,9 +3,13 @@ from django.conf import settings
 from tasks import app
 from lilo import Lilo
 import subprocess, logging, os, shutil
-import boto3
+import boto3, datetime
 
 from jamjar.videos.models import Edge, Video
+
+# extract metadata from videos
+from hachoir_core.error import HachoirError
+import hachoir_parser, hachoir_metadata
 
 import logging; logger = logging.getLogger(__name__)
 
@@ -111,7 +115,6 @@ class VideoTranscoder(object):
         try:
             with open(os.devnull, "w") as devnull:
                 thumbnail_time = video_length/2.0
-                logger.info("Here")
                 subprocess.check_call(['avconv', '-i', src, '-vsync', '1', '-r', '1', '-an', '-t', '1', '-ss', str(thumbnail_time), '-y', out], stdout=devnull, stderr=devnull)
                 # avconv -i videofile.mp4 -vsync 1 -r 1 -an -y 'videofolder/videoframe%d.jpg'
                 logger.info('Successfully extracted thumbnail from {:} to {:}'.format(src, out))
@@ -121,11 +124,29 @@ class VideoTranscoder(object):
             #raise RuntimeError('Error transcoding {:} to {:}. Error code: {:}'.format(src, out, result))
             return False
 
+    def extract_and_set_metadata(self):
+        "pull video creation date and dimensions out of video header. This should work for mp4/mov/avi files"
+        src = self.video.tmp_src()
+
+        parser = hachoir_parser.createParser(unicode(src))
+        if not parser:
+            logger.warning("Could not parse file {}".format(src))
+            return
+
+        metadata = hachoir_metadata.extractMetadata(parser)
+
+        self.video.width  = metadata.get('width')
+        self.video.height = metadata.get('height')
+        self.video.recorded_at = metadata.get('creation_date', datetime.datetime.now())
+
     def run(self, video_id):
         "main entry point to fingerprint, transcode, upload to s3, and delete source dir"
 
         # Get the video by ID
         self.video = Video.objects.get(pk=video_id)
+
+        # do this before transcoding to get original recording date if available
+        self.extract_and_set_metadata()
 
         # Transcode to mp4 here if needed, otherwise rename video
         if not self.transcode_to_mp4():
@@ -158,3 +179,4 @@ def transcode_video(video_id):
     transcoder.run(video_id)
 
     logger.info('Done transcoding video: "{:}"'.format(video_id))
+

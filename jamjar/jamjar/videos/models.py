@@ -23,6 +23,9 @@ class Video(BaseModel):
     is_private = models.BooleanField(default=False)
     views = models.IntegerField(default=0)
     artists = models.ManyToManyField('artists.Artist', related_name='videos',blank=True)
+    width  = models.IntegerField(default=0)
+    height = models.IntegerField(default=0)
+    recorded_at = models.DateTimeField(null=True)
 
     def get_video_dir(self):
         " Get the local directory for the video (and other temp files) "
