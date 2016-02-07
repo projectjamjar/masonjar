@@ -8,23 +8,10 @@ from jamjar.videos.models import Video, Edge
 from jamjar.videos.serializers import VideoSerializer, EdgeSerializer
 
 from django.shortcuts import redirect
-from django.db.models import Q
 
 from jamjar.tasks.transcode_video import transcode_video
 
 import re
-
-class VideoStream(BaseView):
-    def get(self, request, video_uid):
-        if re.search(r'\.\.', video_uid):
-            # don't allow '..' in the video path (for security)
-            return self.error_response('Invalid uuid specified', 400)
-
-        elif re.search(r'(\.m3u8|\.mp4|\.ts)$', video_uid):
-            video_filepath = Video.get_video_dir(video_uid)
-            return self.video_response(video_filepath)
-        else:
-            return redirect('/videos/stream/{:}/video.m3u8'.format(video_uid))
 
 class VideoList(BaseView):
     parser_classes = (MultiPartParser,)
@@ -118,49 +105,4 @@ class VideoDetails(BaseView):
         # Serialize the result and return it
         self.video.delete()
         return self.success_response("Video with id {} successfully deleted.".format(id))
-
-
-class VideoGraph(BaseView):
-
-    serializer_class = EdgeSerializer
-
-    #@authenticate
-    def get(self, request, id):
-         # Attempt to get the video
-        try:
-            self.video = Video.objects.get(id=id)
-            from_video = VideoSerializer(self.video).data
-        except:
-            return self.error_response('Video does not exist or you do not have access to this video.', 404)
-
-        edges = Edge.objects.filter(Q(video1_id=self.video.id) | Q(video2_id=self.video.id)).select_related('video1', 'video2')
-
-        edges_data = []
-        """
-        TODO : document better....
-        way to understand this:
-        if offset is > 0:
-            blob.video starts edge[i].offset seconds AFTER edge[i] starts
-        if offset is < 0:
-            blob.video starts edge[i].offset seconds BEFORE edge[i] starts
-        """
-        for edge in sorted(edges, key=lambda e: -e.confidence):
-            data = self.get_serializer(edge).data
-            if data['video1']['id'] == self.video.id:
-                to_video   = data['video2']
-                offset     = data['offset']
-            else:
-                to_video   = data['video1']
-                offset     = -data['offset']
-
-            edge_data = {
-                'video'  : to_video,
-                'offset' : offset,
-                'confidence' : data['confidence']
-            }
-
-            edges_data.append(edge_data)
-
-        resp = {'video' : from_video, 'edges': edges_data}
-        return self.success_response(resp)
 

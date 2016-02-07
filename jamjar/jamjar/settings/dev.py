@@ -21,6 +21,8 @@ GMAPS_CACHE_BUST = 5 # Update GMapLocations after 5 days of staleness
 
 # Host origins allowed to access the API
 CORS_ORIGIN_WHITELIST = (
+        'localhost',
+        'localhost:5000',
         'dashboard.localhost.dev:5000',
         'dashboard.localhost.dev',
         '52.2.193.201:5000'

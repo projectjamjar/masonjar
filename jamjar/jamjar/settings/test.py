@@ -10,6 +10,7 @@ DATABASES = {
         'PASSWORD': 'jamjar',
         'HOST': 'localhost',
         'PORT': '',
+        'AUTOCOMMIT': False
     }
 }
 
