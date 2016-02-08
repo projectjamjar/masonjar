@@ -18,4 +18,4 @@ class VenueSerializer(serializers.ModelSerializer):
                   'state',
                   'state_short',
                   'country',
-                  'counry_short')
+                  'country_short')
