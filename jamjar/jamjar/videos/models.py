@@ -85,6 +85,8 @@ def delete_file(sender, instance, **kwargs):
 
     # TODO: Delete the file from S3 if it exists
 
+    # TODO: Delete the fingerprints from lilo
+
 class Edge(BaseModel):
 
     video1 = models.ForeignKey(Video, related_name='video1', db_index=True)

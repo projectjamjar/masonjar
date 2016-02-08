@@ -57,19 +57,27 @@ class VideoTranscoder(object):
             #raise RuntimeError('Error transcoding {:} to {:}. Error code: {:}'.format(src, out, result))
             return False
 
-    def do_upload_to_s3(self, s3_path, disk_path):
+    def do_upload_to_s3(self, s3_path, disk_path, content_type):
         "helper for uploading to s3 so we can easily mock this in testing"
-        self.s3.Object('jamjar-videos', s3_path).put(Body=open(disk_path, 'rb'), ACL='public-read')
+        self.s3.Object('jamjar-videos', s3_path).put(Body=open(disk_path, 'rb'), ACL='public-read',ContentType=content_type)
 
     def upload_to_s3(self):
         local_dir = self.video.get_video_dir()
+
+        content_type_map = {
+            '.jpg': 'image/jpeg',
+            '.mp4': 'video/mp4',
+            '.m3u8': 'application/x-mpegURL',
+            '.ts': 'video/MP2T'
+        }
 
         for filename in os.listdir(local_dir):
             extension = os.path.splitext(filename)[1].lower()
             if extension in ['.mp4','.hls','.ts','.m3u8','.jpg']:
                 disk_path = os.path.join(local_dir, filename)
                 s3_path = os.path.join(settings.JAMJAR_ENV, str(self.video.uuid), filename)
-                self.do_upload_to_s3(s3_path, disk_path)
+                content_type = content_type_map.get(extension,'binary/octet-stream')
+                self.do_upload_to_s3(s3_path, disk_path, content_type=content_type)
 
     def delete_source(self):
         "deletes the source DIRECTORY on disk after uploading to s3"
