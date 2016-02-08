@@ -134,3 +134,5 @@ SHELL_PLUS_PRE_IMPORTS = (
     ('jamjar.common.services', ('*')),
     'pprint'
 )
+
+THUMBNAIL_SIZES = [32,64,128,256,512,1024]

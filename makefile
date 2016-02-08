@@ -67,3 +67,7 @@ clean:
 
 empty-database: $(MANAGER)
 	python $(MANAGER) flush
+
+drop-fingerprints:
+	mysql -uroot -proot -e "drop database dejavu; drop database dejavu_test;"
+	bash database_setup.sh

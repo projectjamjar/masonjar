@@ -37,13 +37,20 @@ class Video(BaseModel):
         return os.path.join(self.get_video_dir(), self.original_filename)
 
     def hls_src(self):
-        return self.make_s3_path('video','m3u8')
+        return self.make_s3_path('video','m3u8') if self.uploaded else None
 
     def web_src(self):
-        return self.make_s3_path('video','mp4')
+        return self.make_s3_path('video','mp4') if self.uploaded else None
 
     def thumb_src(self):
-        return self.make_s3_path('thumb','jpg')
+        if self.uploaded:
+            thumbs = {}
+            for size in settings.THUMBNAIL_SIZES:
+                filename = 'thumb-{}'.format(size)
+                thumbs[size] = self.make_s3_path(filename,'jpg')
+            return thumbs
+        else:
+            return None
 
     def do_upload(self, input_fh):
         video_path = self.tmp_src()
@@ -80,6 +87,8 @@ def delete_file(sender, instance, **kwargs):
         os.remove(video_dir)
 
     # TODO: Delete the file from S3 if it exists
+
+    # TODO: Delete the fingerprints from lilo
 
 class Edge(BaseModel):
 
