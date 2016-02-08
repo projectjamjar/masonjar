@@ -107,14 +107,22 @@ class VideoTranscoder(object):
             -y output - output file
         """
         src = self.video.get_video_filepath('mp4')
-        out = self.video.get_video_filepath('jpg',filename='thumb')
+        tmp_out = self.video.get_video_filepath('jpg',filename='thumb_orig')
         try:
             with open(os.devnull, "w") as devnull:
                 thumbnail_time = video_length/2.0
-                logger.info("Here")
-                subprocess.check_call(['avconv', '-i', src, '-vsync', '1', '-r', '1', '-an', '-t', '1', '-ss', str(thumbnail_time), '-y', out], stdout=devnull, stderr=devnull)
-                # avconv -i videofile.mp4 -vsync 1 -r 1 -an -y 'videofolder/videoframe%d.jpg'
-                logger.info('Successfully extracted thumbnail from {:} to {:}'.format(src, out))
+
+                # Extract the thumbnail from the video
+                subprocess.check_call(['avconv', '-i', src, '-vsync', '1', '-r', '1', '-an', '-t', '1', '-ss', str(thumbnail_time), '-y', tmp_out], stdout=devnull, stderr=devnull)
+
+                # Resize the thumbnail to the appropriate sizes
+                for size in settings.THUMBNAIL_SIZES:
+                    thumb_filename = 'thumb-{}'.format(size)
+                    thumb_out = self.video.get_video_filepath('jpg',filename=thumb_filename)
+                    size_spec = '{0}x{0}'.format(size)
+                    subprocess.check_call(['convert', tmp_out, '-resize', size_spec, thumb_out], stdout=devnull, stderr=devnull)
+
+                logger.info('Successfully extracted and resized thumbnail from {:}'.format(src))
             return True
         except subprocess.CalledProcessError:
             # this will retry the job

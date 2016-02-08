@@ -43,7 +43,11 @@ class Video(BaseModel):
         return self.make_s3_path('video','mp4')
 
     def thumb_src(self):
-        return self.make_s3_path('thumb','jpg')
+        thumbs = {}
+        for size in settings.THUMBNAIL_SIZES:
+            filename = 'thumb-{}'.format(size)
+            thumbs[size] = self.make_s3_path(filename,'jpg')
+        return thumbs
 
     def do_upload(self, input_fh):
         video_path = self.tmp_src()
