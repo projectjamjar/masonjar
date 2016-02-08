@@ -57,19 +57,27 @@ class VideoTranscoder(object):
             #raise RuntimeError('Error transcoding {:} to {:}. Error code: {:}'.format(src, out, result))
             return False
 
-    def do_upload_to_s3(self, s3_path, disk_path):
+    def do_upload_to_s3(self, s3_path, disk_path, content_type):
         "helper for uploading to s3 so we can easily mock this in testing"
-        self.s3.Object('jamjar-videos', s3_path).put(Body=open(disk_path, 'rb'), ACL='public-read')
+        self.s3.Object('jamjar-videos', s3_path).put(Body=open(disk_path, 'rb'), ACL='public-read',ContentType=content_type)
 
     def upload_to_s3(self):
         local_dir = self.video.get_video_dir()
+
+        content_type_map = {
+            '.jpg': 'image/jpeg',
+            '.mp4': 'video/mp4',
+            '.m3u8': 'application/x-mpegURL',
+            '.ts': 'video/MP2T'
+        }
 
         for filename in os.listdir(local_dir):
             extension = os.path.splitext(filename)[1].lower()
             if extension in ['.mp4','.hls','.ts','.m3u8','.jpg']:
                 disk_path = os.path.join(local_dir, filename)
                 s3_path = os.path.join(settings.JAMJAR_ENV, str(self.video.uuid), filename)
-                self.do_upload_to_s3(s3_path, disk_path)
+                content_type = content_type_map.get(extension,'binary/octet-stream')
+                self.do_upload_to_s3(s3_path, disk_path, content_type=content_type)
 
     def delete_source(self):
         "deletes the source DIRECTORY on disk after uploading to s3"
@@ -107,14 +115,23 @@ class VideoTranscoder(object):
             -y output - output file
         """
         src = self.video.get_video_filepath('mp4')
-        out = self.video.get_video_filepath('jpg',filename='thumb')
+        tmp_out = self.video.get_video_filepath('jpg',filename='thumb_orig')
         try:
             with open(os.devnull, "w") as devnull:
                 thumbnail_time = video_length/2.0
-                logger.info("Here")
-                subprocess.check_call(['avconv', '-i', src, '-vsync', '1', '-r', '1', '-an', '-t', '1', '-ss', str(thumbnail_time), '-y', out], stdout=devnull, stderr=devnull)
-                # avconv -i videofile.mp4 -vsync 1 -r 1 -an -y 'videofolder/videoframe%d.jpg'
-                logger.info('Successfully extracted thumbnail from {:} to {:}'.format(src, out))
+
+                # Extract the thumbnail from the video
+                subprocess.check_call(['avconv', '-i', src, '-vsync', '1', '-r', '1', '-an', '-t', '1', '-ss', str(thumbnail_time), '-y', tmp_out], stdout=devnull, stderr=devnull)
+
+                # Resize the thumbnail to the appropriate sizes. Filenames will be
+                # in the format 'thumb-<size>.jpg' where the image will fit within a <size>x<size> frame
+                for size in settings.THUMBNAIL_SIZES:
+                    thumb_filename = 'thumb-{}'.format(size)
+                    thumb_out = self.video.get_video_filepath('jpg',filename=thumb_filename)
+                    size_spec = '{0}x{0}'.format(size)
+                    subprocess.check_call(['convert', tmp_out, '-resize', size_spec, thumb_out], stdout=devnull, stderr=devnull)
+
+                logger.info('Successfully extracted and resized thumbnail from {:}'.format(src))
             return True
         except subprocess.CalledProcessError:
             # this will retry the job
