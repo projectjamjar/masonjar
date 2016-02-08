@@ -3,6 +3,9 @@ from jamjar.base.models import BaseModel
 
 class Artist(BaseModel):
     name = models.CharField(max_length=150)
-    musicgraph_id = models.CharField(max_length=100, null=True)
+    spotify_id = models.CharField(max_length=100, null=True)
+    genres = models.ManyToManyField('artists.Genre',related_name='artists',blank=True)
     unofficial = models.BooleanField(default=False)
-    # created_by = models.ForeignKey('users.User',related_name='added_artists')
+
+class Genre(BaseModel):
+    name = models.CharField(max_length=100)
