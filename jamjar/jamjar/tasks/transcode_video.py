@@ -115,7 +115,8 @@ class VideoTranscoder(object):
                 # Extract the thumbnail from the video
                 subprocess.check_call(['avconv', '-i', src, '-vsync', '1', '-r', '1', '-an', '-t', '1', '-ss', str(thumbnail_time), '-y', tmp_out], stdout=devnull, stderr=devnull)
 
-                # Resize the thumbnail to the appropriate sizes
+                # Resize the thumbnail to the appropriate sizes. Filenames will be
+                # in the format 'thumb-<size>.jpg' where the image will fit within a <size>x<size> frame
                 for size in settings.THUMBNAIL_SIZES:
                     thumb_filename = 'thumb-{}'.format(size)
                     thumb_out = self.video.get_video_filepath('jpg',filename=thumb_filename)
