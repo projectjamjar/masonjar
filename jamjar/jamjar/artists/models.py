@@ -56,10 +56,10 @@ class Artist(BaseModel):
                 else:
                     return None
             except IntegrityError, e:
-                logger.warn('Integrity error caught during artist creation: {}'.format(e.value))
+                logger.warn('Integrity error caught during artist creation: {}'.format(e))
                 return None
             except spotipy.SpotifyException, e:
-                logger.warn('Spotify error caught during artist creation')
+                logger.warn('Spotify error caught during artist creation: {}'.format(e))
                 return None
 
         return artist
