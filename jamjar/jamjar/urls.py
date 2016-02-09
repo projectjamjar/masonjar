@@ -27,12 +27,13 @@ urlpatterns = patterns('',
     # Video Views
     ########################################
     url(r'^videos/$', Videos.VideoList.as_view()),
-    url(r'^videos/(?P<id>[0-9]+)$', Videos.VideoDetails.as_view()),
+    url(r'^videos/(?P<id>[0-9]+)/$', Videos.VideoDetails.as_view()),
 
     ########################################
     # Concert Views
     ########################################
-    url(r'^concerts/(?P<id>[0-9]+)/graph$', Concerts.ConcertGraph.as_view()),
+    url(r'^concerts/$', Concerts.ConcertListView.as_view()),
+    url(r'^concerts/(?P<id>[0-9]+)/graph/$', Concerts.ConcertGraph.as_view()),
 
     ########################################
     # Auth Views
