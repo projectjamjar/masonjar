@@ -2,7 +2,7 @@ from jamjar.base.views import BaseView, authenticate
 from jamjar.artists.models import Artist
 from jamjar.artists.serializers import ArtistSerializer
 
-class ArtistListView(BaseView):
+class ArtistSearchView(BaseView):
     serializer_class = ArtistSerializer
 
     """
@@ -11,7 +11,7 @@ class ArtistListView(BaseView):
         (To be used for Text Field autocompletion)
 
     Request:
-        GET /spotify/artist-search/:search_string/
+        GET /artists/search/:search_string/
 
     Response:
         A list of all Artists matching that string
@@ -19,9 +19,10 @@ class ArtistListView(BaseView):
     @authenticate
     def get(self, request, search_string):
         artists = Artist.search_artist(search_string)
-
         return self.success_response(artists)
 
+class ArtistListView(BaseView):
+    serializer_class = ArtistSerializer
 
     """
     Description:
@@ -31,8 +32,7 @@ class ArtistListView(BaseView):
     Request:
         POST /concerts/
           {
-            "venue_place_id": "ChIJPWg_kNXHxokRPXdE7nqMsI4",
-            "date": "2016-02-15"
+            "spotify_id": "0cmWgDlu9CwTgxPhf403hb"
           }
 
     Response:
@@ -61,14 +61,15 @@ class ArtistListView(BaseView):
     @authenticate
     def post(self, request):
         # Validate the request
-        self.serializer = self.get_serializer(data=self.request.data)
+        spotify_id = request.data.get('spotify_id')
+        if spotify_id == None:
+            return self.error_response("spotify_id required", 400)
 
-        if not self.serializer.is_valid():
-            return self.error_response(self.serializer.errors, 400)
+        artist = Artist.get_or_create_artist(spotify_id)
 
-        try:
-            obj = self.serializer.save()
-        except IntegrityError as e:
-            return self.error_response(str(e), 400)
+        if not artist:
+            return self.error_response("Unable to get or create an artist with this spotify_id", 400)
+
+        self.serializer = self.get_serializer(artist)
 
         return self.success_response(self.serializer.data)
