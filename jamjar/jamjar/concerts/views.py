@@ -1,3 +1,4 @@
+from django.db import IntegrityError
 from jamjar.base.views import BaseView, authenticate
 from jamjar.concerts.models import Concert
 from jamjar.concerts.serializers import ConcertSerializer

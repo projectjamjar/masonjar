@@ -1,5 +1,6 @@
-from django.db import models
+from django.db import models, IntegrityError
 from jamjar.base.models import BaseModel
+
 
 import spotipy
 
@@ -53,6 +54,8 @@ class Artist(BaseModel):
                 else:
                     return None
             except IntegrityError, e:
+                return None
+            except spotipy.SpotifyException, e:
                 return None
 
         return artist
