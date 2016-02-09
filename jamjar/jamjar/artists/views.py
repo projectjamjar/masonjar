@@ -1,43 +1,26 @@
 from jamjar.base.views import BaseView, authenticate
-from jamjar.concerts.models import Concert
-from jamjar.concerts.serializers import ConcertSerializer
+from jamjar.artists.models import Artist
+from jamjar.artists.serializers import ArtistSerializer
 
-class ConcertGraph(BaseView):
-    serializer_class = ConcertSerializer
-
-    def get(self, request, id):
-         # Attempt to get the video
-        try:
-            self.concert = Concert.objects.get(id=id)
-        except:
-            return self.error_response('Concert does not exist or you do not have access to this concert.', 404)
-
-        concert_graph = self.concert.make_graph()
-        resp = {
-            "graph": concert_graph,
-            "concert": ConcertSerializer(self.concert).data
-        }
-
-        return self.success_response(resp)
-
-class ConcertListView(BaseView):
-    serializer_class = ConcertSerializer
+class ArtistListView(BaseView):
+    serializer_class = ArtistSerializer
 
     """
     Description:
-        Get a list of all Concerts in JamJar (this could be big)
+        Given a search string for an artist, search spotify and return the results
+        (To be used for Text Field autocompletion)
+
     Request:
-        GET /concerts/
+        GET /spotify/artist-search/:search_string/
+
     Response:
-        A list of all Concerts
+        A list of all Artists matching that string
     """
     @authenticate
-    def get(self, request):
-        objects = Concert.objects.all()
+    def get(self, request, search_string):
+        artists = Artist.search_artist(search_string)
 
-        # Serialize the requests and return them
-        self.serializer = self.get_serializer(objects, many=True)
-        return self.success_response(self.serializer.data)
+        return self.success_response(artists)
 
 
     """

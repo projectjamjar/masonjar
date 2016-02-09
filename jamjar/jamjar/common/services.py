@@ -3,6 +3,9 @@ from django.utils import timezone
 import json, datetime, requests
 
 from jamjar.venues.models import Venue
+from jamjar.artists.models import Artist
+
+import spotipy
 
 # Get the logger instance
 import logging

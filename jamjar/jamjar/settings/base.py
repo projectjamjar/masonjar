@@ -35,7 +35,8 @@ DEPENDENCY_APPS = [
     'rest_auth',
 
     'corsheaders',
-    'django_nose'
+    'django_nose',
+    'spotipy'
 ]
 
 PROJECT_APPS = [
