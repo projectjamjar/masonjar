@@ -1,8 +1,10 @@
 from django.db import models, IntegrityError
 from jamjar.base.models import BaseModel
 
-
 import spotipy
+
+import logging
+logger = logging.getLogger(__name__)
 
 class Artist(BaseModel):
     name = models.CharField(max_length=150)
@@ -54,8 +56,10 @@ class Artist(BaseModel):
                 else:
                     return None
             except IntegrityError, e:
+                logger.warn('Integrity error caught during artist creation: {}'.format(e.value))
                 return None
             except spotipy.SpotifyException, e:
+                logger.warn('Spotify error caught during artist creation')
                 return None
 
         return artist
