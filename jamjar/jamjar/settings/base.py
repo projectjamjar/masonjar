@@ -35,7 +35,8 @@ DEPENDENCY_APPS = [
     'rest_auth',
 
     'corsheaders',
-    'django_nose'
+    'django_nose',
+    'spotipy'
 ]
 
 PROJECT_APPS = [
@@ -44,7 +45,8 @@ PROJECT_APPS = [
     'jamjar.authentication',
     'jamjar.tasks',
     'jamjar.concerts',
-    'jamjar.venues'
+    'jamjar.venues',
+    'jamjar.artists'
 ]
 
 
@@ -122,8 +124,55 @@ TEST_RUNNER = 'django_nose.NoseTestSuiteRunner'
 
 NOSE_ARGS = [
     '--with-coverage',
-    '--cover-package={:}'.format(",".join(PROJECT_APPS)),
-    '--cover-html'
+    '--cover-package=jamjar',
+    '--cover-html',
 ]
 
 JAMJAR_ENV = os.environ['JAMJAR_ENV']
+
+# Automatically import these modules when `make shell`
+SHELL_PLUS_PRE_IMPORTS = (
+    ('jamjar.common.services', ('*')),
+    'pprint'
+)
+
+THUMBNAIL_SIZES = [32,64,128,256,512,1024]
+
+
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'formatters': {
+        'standard': {
+            'format' : "[%(asctime)s] %(levelname)s [%(name)s:%(lineno)s] %(message)s",
+            'datefmt' : "%d/%b/%Y %H:%M:%S"
+        },
+    },
+    'handlers': {
+       'logfile': {
+            'level':'WARNING',
+            'class':'logging.handlers.RotatingFileHandler',
+            'filename': "/opt/code/masonjar/logs/server.log",
+            'maxBytes': 50000,
+            'backupCount': 2,
+            'formatter': 'standard',
+        },
+        'console':{
+            'level':'WARNING',
+            'class':'logging.StreamHandler',
+            'formatter': 'standard'
+        },
+    },
+    'loggers': {
+        'django.request': {
+            'handlers': ['console'],
+            'level': 'DEBUG',
+            'propagate': True,
+        },
+        '': {
+            'handlers': ['logfile','console'],
+            'level': 'DEBUG',
+            'propagate': True,
+        },
+    }
+}

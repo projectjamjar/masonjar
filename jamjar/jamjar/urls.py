@@ -18,6 +18,8 @@ from django.contrib import admin
 
 import jamjar.videos.views as Videos
 import jamjar.authentication.views as Auth
+import jamjar.concerts.views as Concerts
+import jamjar.artists.views as Artists
 
 
 urlpatterns = patterns('',
@@ -26,8 +28,20 @@ urlpatterns = patterns('',
     # Video Views
     ########################################
     url(r'^videos/$', Videos.VideoList.as_view()),
-    url(r'^videos/(?P<id>[0-9]+)$', Videos.VideoDetails.as_view()),
-    url(r'^videos/stream/(?P<id>.+)$', Videos.VideoStream.as_view()),
+    url(r'^videos/(?P<id>[0-9]+)/$', Videos.VideoDetails.as_view()),
+
+    ########################################
+    # Concert Views
+    ########################################
+    url(r'^concerts/$', Concerts.ConcertListView.as_view()),
+    url(r'^concerts/(?P<id>[0-9]+)/graph/$', Concerts.ConcertGraph.as_view()),
+
+    ########################################
+    # Artist Views
+    ########################################
+    url(r'^artists/search/(?P<search_string>.+)/$', Artists.ArtistSearchView.as_view()),
+    url(r'^artists/$', Artists.ArtistListView.as_view()),
+
 
     ########################################
     # Auth Views

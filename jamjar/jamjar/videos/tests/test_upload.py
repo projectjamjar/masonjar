@@ -4,6 +4,8 @@ from django.conf import settings
 
 from jamjar.videos.models import Video
 
+from django.core.files.uploadedfile import UploadedFile
+
 import os
 
 TEST_VIDEO_PATH = os.path.join(os.path.dirname(__file__), 'mark-dancing.mp4')
@@ -27,7 +29,8 @@ class UploadTestCase(TestCase):
 
     def test_video_upload(self):
 
-        input_fh = open(TEST_VIDEO_PATH, 'r')
+        # wrap this in an UploadedFile -- this is how it happens in the request!
+        input_fh = UploadedFile(file(TEST_VIDEO_PATH, 'r'))
         video_filepath = '/dev/null'
 
         res = self.video.do_upload(input_fh, video_filepath)
