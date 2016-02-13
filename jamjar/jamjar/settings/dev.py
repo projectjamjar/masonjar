@@ -19,6 +19,8 @@ S3_URL = 'https://s3.amazonaws.com/jamjar-videos/dev/{}/{}.{}'
 GMAPS_API_KEY = 'AIzaSyB3ay9JpvAc9SLQKkkuJpYKqCCAH0cVUk0'
 GMAPS_CACHE_BUST = 5 # Update GMapLocations after 5 days of staleness
 
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+
 # Host origins allowed to access the API
 CORS_ORIGIN_WHITELIST = (
         'localhost',

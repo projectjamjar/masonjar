@@ -123,10 +123,12 @@ class SignupView(BaseView):
 
         mail.attach_alternative(email_info['html'].format(activate_link=activate_link),
                                 'text/html')
-        if not settings.DEBUG:
-            mail.send()
-        else:
+
+        if settings.JAMJAR_ENV == 'dev':
             self.user.activate()
+
+        # in DEV mode, emails get logged to stdout but are not sent
+        mail.send()
 
         # TODO: Log signup here
 
