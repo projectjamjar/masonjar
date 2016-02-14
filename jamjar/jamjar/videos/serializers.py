@@ -1,6 +1,5 @@
 from rest_framework import serializers
 from jamjar.videos.models import Video, Edge
-from jamjar.concerts.serializers import ConcertSerializer
 
 import os
 

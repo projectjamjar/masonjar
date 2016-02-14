@@ -15,7 +15,7 @@ class Video(BaseModel):
     user = models.ForeignKey('users.User', related_name='videos')
     name = models.CharField(max_length=128)
     uploaded = models.BooleanField(default=False)
-    concert = models.ForeignKey('concerts.Concert', related_name='concert')
+    concert = models.ForeignKey('concerts.Concert', related_name='videos')
     uuid = models.UUIDField(default=uuid.uuid4,editable=False)
     length = models.FloatField(null=True)
     original_filename = models.CharField(max_length=256,null=True)
