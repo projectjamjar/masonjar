@@ -7,9 +7,9 @@ report_link = "{}/report/".format(settings.SITE_BASE_URL)
 
 activate_account = {
     'subject': 'JamJar Account Activation',
-    'from_email': 'JamJar Support <support@booksmart.it>',
+    'from_email': 'JamJar Support <support@projectjamjar.com>',
     'headers': {
-        'Reply-To': 'support@booksmart.it'
+        'Reply-To': 'support@projectjamjar.com'
     },
     'text': """
 Hello from JamJar!
@@ -50,14 +50,14 @@ JamJar Support
 
 activation_successful = {
     'subject': 'JamJar Account Activation Successful',
-    'from_email': 'JamJar Support <support@booksmart.it>',
+    'from_email': 'JamJar Support <support@projectjamjar.com>',
     'headers': {
-        'Reply-To': 'support@booksmart.it'
+        'Reply-To': 'support@projectjamjar.com'
     },
     'text': """
 Hello from JamJar!
 
-You've succesfully activated your booksmart account!  You can now go to:
+You've succesfully activated your jamjar account!  You can now go to:
 {{login_link}}
 to sign in and get started!
 
@@ -74,7 +74,7 @@ JamJar Support
 <p>Hello from JamJar!</p>
 
 <p>
-You've succesfully activated your booksmart account!  You can now go to:
+You've succesfully activated your jamjar account!  You can now go to:
 <a href="{{login_link}}" alt="Login link">{{login_link}}</a>
 to sign in and get started!
 </p>
@@ -93,9 +93,9 @@ JamJar Support
 
 password_reset = {
     'subject': 'JamJar Password Reset',
-    'from_email': 'JamJar Support <support@booksmart.it>',
+    'from_email': 'JamJar Support <support@projectjamjar.com>',
     'headers': {
-        'Reply-To': 'support@booksmart.it'
+        'Reply-To': 'support@projectjamjar.com'
     },
     'text': """
 Hello from JamJar!
@@ -139,9 +139,9 @@ static_reset_link = "{}/password/reset".format(settings.SITE_BASE_URL)
 
 password_reset_success = {
     'subject': 'JamJar Password Reset Successful',
-    'from_email': 'JamJar Support <support@booksmart.it>',
+    'from_email': 'JamJar Support <support@projectjamjar.com>',
     'headers': {
-        'Reply-To': 'support@booksmart.it'
+        'Reply-To': 'support@projectjamjar.com'
     },
     'text': """
 Hello from JamJar!
@@ -181,9 +181,9 @@ static_signup_link = "{}/signup/".format(settings.SITE_BASE_URL)
 
 invite = {
     'subject': 'You\'ve been invited to join JamJar!',
-    'from_email': 'JamJar Support <support@booksmart.it>',
+    'from_email': 'JamJar Support <support@projectjamjar.com>',
     'headers': {
-        'Reply-To': 'support@booksmart.it'
+        'Reply-To': 'support@projectjamjar.com'
     },
     'text': """
 Hello from JamJar!

@@ -124,11 +124,11 @@ class SignupView(BaseView):
         mail.attach_alternative(email_info['html'].format(activate_link=activate_link),
                                 'text/html')
 
-        if settings.JAMJAR_ENV == 'dev':
-            self.user.activate()
-
         # in DEV mode, emails get logged to stdout but are not sent
         mail.send()
+
+        if settings.JAMJAR_ENV == 'dev':
+            self.user.activate()
 
         # TODO: Log signup here
 
@@ -162,7 +162,6 @@ class ActivateView(BaseView):
 
         email = self.serializer.validated_data['email']
         token = self.serializer.validated_data['activation_key']
-        import ipdb; ipdb.set_trace()
         # This will fail if the user doesn't exist
         user = User.objects.get(email=email)
 
@@ -195,8 +194,7 @@ class ActivateView(BaseView):
 
         mail.attach_alternative(email_info['html'].format(login_link=login_link),
                                 'text/html')
-        if not settings.DEBUG:
-            mail.send()
+        mail.send()
 
         return self.success_response('Account activation successful.')
 
