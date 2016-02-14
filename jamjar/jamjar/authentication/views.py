@@ -124,7 +124,6 @@ class SignupView(BaseView):
         mail.attach_alternative(email_info['html'].format(activate_link=activate_link),
                                 'text/html')
 
-        # in DEV mode, emails get logged to stdout but are not sent
         mail.send()
 
         if settings.JAMJAR_ENV == 'dev':
@@ -306,8 +305,7 @@ class ResetView(BaseView):
 
         mail.attach_alternative(email_info['html'].format(reset_link=reset_link),
                                 'text/html')
-        if not settings.DEBUG:
-            mail.send()
+        mail.send()
 
         response = {
             'email': email
@@ -367,8 +365,7 @@ class ResetView(BaseView):
 
         mail.attach_alternative(email_info['html'],
                                 'text/html')
-        if not settings.DEBUG:
-            mail.send()
+        mail.send()
 
         response = {
             'email': email
@@ -497,8 +494,7 @@ class InviteUserView(BaseView):
 
         mail.attach_alternative(email_info_html,'text/html')
 
-        if not settings.DEBUG:
-            mail.send()
+        mail.send()
 
         response = {
             'email': email
