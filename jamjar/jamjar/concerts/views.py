@@ -21,6 +21,47 @@ class ConcertGraph(BaseView):
 
         return self.success_response(resp)
 
+class ConcertView(BaseView):
+    serializer_class = ConcertSerializer
+
+    """
+    Description:
+        Get a Concert by id
+    Request:
+        GET /concerts/:id/
+    Response:
+        {
+          "id": 1,
+          "date": "2016-02-04",
+          "venue": {
+            "id": 1,
+            "name": "Union Transfer",
+            "place_id": "ChIJPWg_kNXHxokRPXdE7nqMsI4",
+            "unofficial": false,
+            "formatted_address": "1026 Spring Garden St, Philadelphia, PA 19123, United States",
+            "lat": "39.96138760",
+            "lng": "-75.15532360",
+            "utc_offset": -300,
+            "website": "http://www.utphilly.com/",
+            "city": "Philadelphia",
+            "state": "Pennsylvania",
+            "state_short": "PA",
+            "country": "United States",
+            "country_short": "US"
+          }
+        }
+    """
+    @authenticate
+    def get(self, request, id):
+        try:
+            self.concert = Concert.objects.get(id=id)
+        except:
+            return self.error_response('Concert does not exist.', 404)
+
+        self.serializer = self.get_serializer(self.concert)
+        return self.success_response(self.serializer.data)
+
+
 class ConcertListView(BaseView):
     serializer_class = ConcertSerializer
 
