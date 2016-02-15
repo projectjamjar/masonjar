@@ -26,7 +26,7 @@ JamJar Support
 """.format(report_link=report_link),
     'html': """
 <a href="http://projectjamjar.com">
-    <img src="http://projectjamjar.com/assets/images/logo.png" alt="logo" width="400" height="200"/>
+    <img src="http://projectjamjar.com/assets/images/logo.jpg" alt="logo" width="400" height="200"/>
 </a>
 <p>Hello from JamJar!</p>
 
@@ -69,7 +69,7 @@ JamJar Support
 """.format(report_link=report_link),
     'html': """
 <a href="http://projectjamjar.com">
-    <img src="http://projectjamjar.com/assets/images/logo.png" alt="logo" width="400" height="200"/>
+    <img src="http://projectjamjar.com/assets/images/logo.jpg" alt="logo" width="400" height="200"/>
 </a>
 <p>Hello from JamJar!</p>
 
@@ -112,7 +112,7 @@ JamJar Support
 """.format(report_link=report_link),
     'html': """
 <a href="http://projectjamjar.com">
-    <img src="http://projectjamjar.com/assets/images/logo.png" alt="logo" width="400" height="200"/>
+    <img src="http://projectjamjar.com/assets/images/logo.jpg" alt="logo" width="400" height="200"/>
 </a>
 <p>Hello from JamJar!</p>
 
@@ -156,7 +156,7 @@ JamJar Support
 """.format(static_reset_link=static_reset_link,report_link=report_link),
     'html': """
 <a href="http://projectjamjar.com">
-    <img src="http://projectjamjar.com/assets/images/logo.png" alt="logo" width="400" height="200"/>
+    <img src="http://projectjamjar.com/assets/images/logo.jpg" alt="logo" width="400" height="200"/>
 </a>
 <p>Hello from JamJar!</p>
 
@@ -202,7 +202,7 @@ JamJar Support
 """.format(report_link=report_link),
     'html': """
 <a href="http://projectjamjar.com">
-    <img src="http://projectjamjar.com/assets/images/logo.png" alt="logo" width="400" height="200"/>
+    <img src="http://projectjamjar.com/assets/images/logo.jpg" alt="logo" width="400" height="200"/>
 </a>
 <p>Hello from JamJar!</p>
 
