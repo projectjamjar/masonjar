@@ -132,8 +132,7 @@ JAMJAR_ENV = os.environ['JAMJAR_ENV']
 
 # Automatically import these modules when `make shell`
 SHELL_PLUS_PRE_IMPORTS = (
-    ('jamjar.common.services', ('*')),
-    'pprint'
+    ('jamjar.common.services', ('*'))
 )
 
 THUMBNAIL_SIZES = [32,64,128,256,512,1024]
