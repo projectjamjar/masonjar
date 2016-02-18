@@ -11,7 +11,7 @@ https://docs.djangoproject.com/en/1.8/ref/settings/
 """
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
-import os
+import os, sys, codecs
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
@@ -35,7 +35,7 @@ DEPENDENCY_APPS = [
     'rest_auth',
 
     'corsheaders',
-    'django_nose',
+    # 'django_nose',
     'spotipy'
 ]
 
@@ -46,7 +46,8 @@ PROJECT_APPS = [
     'jamjar.tasks',
     'jamjar.concerts',
     'jamjar.venues',
-    'jamjar.artists'
+    'jamjar.artists',
+    'jamjar.common'
 ]
 
 
@@ -132,7 +133,9 @@ JAMJAR_ENV = os.environ['JAMJAR_ENV']
 
 # Automatically import these modules when `make shell`
 SHELL_PLUS_PRE_IMPORTS = (
-    ('jamjar.common.services', ('*'))
+    ('jamjar.common.services', ('*')),
+    'pprint',
+    'sys'
 )
 
 THUMBNAIL_SIZES = [32,64,128,256,512,1024]

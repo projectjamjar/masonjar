@@ -90,10 +90,16 @@ class GMapService():
         address_components = result.get('address_components',[])
 
         # Attempt to get city, state, and country, returning none if they don't exist
-        # This is really hard to do for some reason and should probably be improved
-        city = next(
-            (component.get('long_name') for component in address_components if 'locality' in component.get('types')),
-            None)
+        # We have multiple city types, so try to find them in this order
+        city = None
+        city_types = ['locality', 'postal_town', 'administrative_area_level_3','sublocality']
+        for city_type in city_types:
+            # If we haven't found a component which matches a higher priority type, keep lookin'
+            if not city:
+                city = next(
+                    (component.get('long_name') for component in address_components if city_type in component.get('types')),
+                    None)
+
         state,state_short = next(
             ((component.get('long_name'), component.get('short_name')) for component in address_components if 'administrative_area_level_1' in component.get('types')),
             (None,None))
