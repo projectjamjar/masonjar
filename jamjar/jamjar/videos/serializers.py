@@ -1,9 +1,11 @@
 from rest_framework import serializers
 from jamjar.videos.models import Video, Edge
+from jamjar.artists.serializers import ArtistSerializer
 
 import os
 
 class VideoSerializer(serializers.ModelSerializer):
+    artists = ArtistSerializer(many=True)
 
     class Meta:
         model = Video
