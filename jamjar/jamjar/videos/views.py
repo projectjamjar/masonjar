@@ -45,7 +45,11 @@ class VideoList(BaseView):
         # 2) upload the video to s3
         #
         # both of these things happen outside of the realm of this request!
-        tmp_src = video.process_upload(video_fh)
+        try:
+            tmp_src = video.process_upload(video_fh)
+        except Exception, e:
+            video.delete()
+            return self.error_response(str(e), 400)
 
         # tmp_src is where these are stored on disk pending transcode + s3 upload
         # request.data['tmp_src'] = video_paths['tmp_src']

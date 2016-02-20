@@ -6,8 +6,11 @@ from jamjar.users.serializers import UserSerializer
 import os
 
 class VideoSerializer(serializers.ModelSerializer):
-    artists = ArtistSerializer(many=True)
-    user = UserSerializer()
+    artists = ArtistSerializer(many=True, read_only=True)
+    # artist_ids = serializers.serializers.ListField(
+    #   child=serializers.CharField()
+    # )
+    user = UserSerializer(read_only=True)
 
     class Meta:
         model = Video
