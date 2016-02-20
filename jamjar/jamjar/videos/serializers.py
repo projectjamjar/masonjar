@@ -1,11 +1,13 @@
 from rest_framework import serializers
 from jamjar.videos.models import Video, Edge
 from jamjar.artists.serializers import ArtistSerializer
+from jamjar.users.serializers import UserSerializer
 
 import os
 
 class VideoSerializer(serializers.ModelSerializer):
     artists = ArtistSerializer(many=True)
+    user = UserSerializer()
 
     class Meta:
         model = Video
@@ -21,7 +23,8 @@ class VideoSerializer(serializers.ModelSerializer):
                   'web_src',
                   'hls_src',
                   'thumb_src',
-                  'concert')
+                  'concert',
+                  'user')
 
     def validate(self, data):
         data['user_id'] = self.context.get('request').token.user_id
