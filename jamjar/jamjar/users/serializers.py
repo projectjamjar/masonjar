@@ -1,12 +1,12 @@
 from rest_framework import serializers
-from django.contrib.auth import get_user_model
+from jamjar.users.models import User
 
 class UserSerializer(serializers.ModelSerializer):
     full_name = serializers.SerializerMethodField()
     first_login = serializers.SerializerMethodField()
 
     class Meta:
-        model = get_user_model()
+        model = User
         fields = ('id', 'username', 'email', 'first_name', 'last_name', 'full_name', 'first_login')
 
     def get_full_name(self, user):

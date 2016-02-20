@@ -1,8 +1,8 @@
 from django.db import models
-from django.forms.models import model_to_dict
 
 from jamjar.base.models import BaseModel
 from jamjar.videos.models import Edge
+from jamjar.videos.serializers import VideoSerializer
 
 from collections import defaultdict
 
@@ -47,7 +47,7 @@ class Concert(BaseModel):
                     raise RuntimeError("this shouldn't happen")
 
                 data = {
-                    "video" : model_to_dict(adj_video),
+                    "video" : VideoSerializer(adj_video).data,
                     "edge"  : {
                         "offset" : offset,
                         "confidence" : confidence
@@ -56,7 +56,7 @@ class Concert(BaseModel):
                 connects_to.append(data)
 
             data = {
-                "video": model_to_dict(video),
+                "video": VideoSerializer(video).data,
                 "connects_to" : connects_to
             }
             graph.append(data)
