@@ -107,7 +107,7 @@ class SignupView(BaseView):
         token_object.save()
 
         # The link to send the user which will prompt activation
-        activate_link = "{}/auth/activate/?email={}&activation_key={}".format(settings.SITE_BASE_URL,
+        activate_link = "{}/dashboard/auth/activate/?email={}&activation_key={}".format(settings.SITE_BASE_URL,
                                                                       url.quote(self.user.email),
                                                                       url.quote(token))
 
