@@ -6,6 +6,7 @@ from jamjar.concerts.serializers import ConcertSerializer
 class ConcertGraph(BaseView):
     serializer_class = ConcertSerializer
 
+    @authenticate
     def get(self, request, id):
          # Attempt to get the video
         try:
