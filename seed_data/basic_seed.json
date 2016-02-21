@@ -9,6 +9,42 @@
 },
 {
     "fields": {
+        "confidence": 62,
+        "video1": 2,
+        "video2": 1,
+        "created_at": "2016-02-20T07:50:11Z",
+        "modified_at": "2016-02-20T07:50:11Z",
+        "offset": 3.01859
+    },
+    "model": "videos.edge",
+    "pk": 1
+},
+{
+    "fields": {
+        "confidence": 1,
+        "video1": 3,
+        "video2": 1,
+        "created_at": "2016-02-20T07:50:51Z",
+        "modified_at": "2016-02-20T07:50:51Z",
+        "offset": -1.43964
+    },
+    "model": "videos.edge",
+    "pk": 2
+},
+{
+    "fields": {
+        "confidence": 355,
+        "video1": 3,
+        "video2": 2,
+        "created_at": "2016-02-20T07:50:51Z",
+        "modified_at": "2016-02-20T07:50:51Z",
+        "offset": 1.99692
+    },
+    "model": "videos.edge",
+    "pk": 3
+},
+{
+    "fields": {
         "username": "test",
         "first_name": "Test",
         "last_name": "User",
@@ -73,6 +109,153 @@
     },
     "model": "venues.venue",
     "pk": 1
+},
+{
+    "fields": {
+        "genres": [
+            1
+        ],
+        "spotify_id": "5INjqkS1o8h1imAzPqGZBb",
+        "name": "Tame Impala",
+        "created_at": "2016-02-20T07:48:47Z",
+        "modified_at": "2016-02-20T07:48:47Z",
+        "unofficial": false
+    },
+    "model": "artists.artist",
+    "pk": 1
+},
+{
+    "fields": {
+        "name": "neo-psychedelic"
+    },
+    "model": "artists.genre",
+    "pk": 1
+},
+{
+    "fields": {
+        "artist": 1,
+        "url": "https://i.scdn.co/image/237daa4588d473c1f1b18b6b3dfefc5598bf32c5",
+        "created_at": "2016-02-20T07:48:47Z",
+        "modified_at": "2016-02-20T07:48:47Z",
+        "height": 666,
+        "width": 999
+    },
+    "model": "artists.artistimage",
+    "pk": 1
+},
+{
+    "fields": {
+        "artist": 1,
+        "url": "https://i.scdn.co/image/e953b712c06d9cdd73f3f4c9a138d487165e8192",
+        "created_at": "2016-02-20T07:48:47Z",
+        "modified_at": "2016-02-20T07:48:47Z",
+        "height": 427,
+        "width": 640
+    },
+    "model": "artists.artistimage",
+    "pk": 2
+},
+{
+    "fields": {
+        "artist": 1,
+        "url": "https://i.scdn.co/image/a071c3c7c399ed7fdc0eb9d295cccf03346f5914",
+        "created_at": "2016-02-20T07:48:47Z",
+        "modified_at": "2016-02-20T07:48:47Z",
+        "height": 133,
+        "width": 200
+    },
+    "model": "artists.artistimage",
+    "pk": 3
+},
+{
+    "fields": {
+        "artist": 1,
+        "url": "https://i.scdn.co/image/f538200c33781098d164790a58867b7c7e77ba62",
+        "created_at": "2016-02-20T07:48:47Z",
+        "modified_at": "2016-02-20T07:48:47Z",
+        "height": 43,
+        "width": 64
+    },
+    "model": "artists.artistimage",
+    "pk": 4
+},
+{
+    "fields": {
+        "uploaded": true,
+        "concert": 1,
+        "views": 0,
+        "created_at": "2016-02-20T07:49:11Z",
+        "recorded_at": "1904-01-01T00:00:00Z",
+        "modified_at": "2016-02-20T07:49:28Z",
+        "uuid": "32f24967-157e-405f-9672-8eb136dc19a8",
+        "height": 736,
+        "artists": [
+            1
+        ],
+        "width": 414,
+        "length": 5.039,
+        "user": [
+            "test"
+        ],
+        "original_filename": "part1.mp4",
+        "file_size": 852544.0,
+        "is_private": false,
+        "name": "part_1"
+    },
+    "model": "videos.video",
+    "pk": 1
+},
+{
+    "fields": {
+        "uploaded": true,
+        "concert": 1,
+        "views": 0,
+        "created_at": "2016-02-20T07:50:10Z",
+        "recorded_at": "1904-01-01T00:00:00Z",
+        "modified_at": "2016-02-20T07:50:21Z",
+        "uuid": "38c281c5-c462-4509-b3ae-f699c914f006",
+        "height": 736,
+        "artists": [
+            1
+        ],
+        "width": 414,
+        "length": 5.039,
+        "user": [
+            "test"
+        ],
+        "original_filename": "part2.mp4",
+        "file_size": 1042341.0,
+        "is_private": false,
+        "name": "part_2"
+    },
+    "model": "videos.video",
+    "pk": 2
+},
+{
+    "fields": {
+        "uploaded": true,
+        "concert": 1,
+        "views": 0,
+        "created_at": "2016-02-20T07:50:50Z",
+        "recorded_at": "1904-01-01T00:00:00Z",
+        "modified_at": "2016-02-20T07:51:04Z",
+        "uuid": "af26f919-789f-48f2-9a51-a78be6e142b3",
+        "height": 736,
+        "artists": [
+            1
+        ],
+        "width": 414,
+        "length": 4.969,
+        "user": [
+            "test"
+        ],
+        "original_filename": "part3.mp4",
+        "file_size": 1043726.0,
+        "is_private": false,
+        "name": "part_3"
+    },
+    "model": "videos.video",
+    "pk": 3
 },
 {
     "fields": {
