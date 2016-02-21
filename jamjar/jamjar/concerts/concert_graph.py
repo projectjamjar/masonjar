@@ -32,10 +32,14 @@ class ConcertGraph(object):
 
         disjoint_graphs = []
         for id_set in disjoint_ids:
-            new_graph = {}
+            adjacencies = {}
             for video_id in id_set:
-                new_graph[video_id] = graph[video_id]
-            disjoint_graphs.append(new_graph)
+                adjacencies[video_id] = graph[video_id]
+            disjoint_graphs.append({
+                "adjacencies": adjacencies,
+                "count": len(adjacencies),
+                "start_id": id_set.pop() # TODO use first video_id
+            })
 
         return disjoint_graphs
 
