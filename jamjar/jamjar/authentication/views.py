@@ -131,7 +131,7 @@ class SignupView(BaseView):
 
         # TODO: Log signup here
 
-        response = { 'user': self.response_serializer(self.user).data }
+        response = { 'user': self.response_serializer(self.user,include_first_login=True).data }
         return self.success_response(response)
 
 class ActivateView(BaseView):
@@ -235,7 +235,7 @@ class LoginView(BaseView):
         # Build the response object
         response = {
             'token': self.response_token_serializer(self.token).data,
-            'user': self.response_user_serializer(self.user).data
+            'user': self.response_user_serializer(self.user,include_first_login=True).data
         }
         return self.success_response(response)
 

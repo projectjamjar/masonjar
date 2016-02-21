@@ -1,6 +1,7 @@
 from rest_framework import serializers
 from jamjar.concerts.models import Concert
 from jamjar.venues.models import Venue
+from jamjar.videos.serializers import VideoSerializer
 
 from jamjar.venues.serializers import VenueSerializer
 from jamjar.common.services import GMapService
@@ -8,13 +9,14 @@ from jamjar.common.services import GMapService
 import logging; logger = logging.getLogger(__name__)
 
 class ConcertSerializer(serializers.ModelSerializer):
-    venue = VenueSerializer(required=False)
+    venue = VenueSerializer(required=False, read_only=True)
     venue_place_id = serializers.CharField(max_length=100,write_only=True, required=False)
+    videos = VideoSerializer(many=True, read_only=True)
 
     class Meta:
         model = Concert
-        fields = ('id', 'date', 'venue_place_id', 'venue')
-        read_only_fields = ('id','venue')
+        fields = ('id', 'date', 'venue_place_id', 'venue', 'videos')
+        read_only_fields = ('id', 'venue', 'videos')
         write_only_fields = ('venue_place_id')
 
     def validate(self, data):
