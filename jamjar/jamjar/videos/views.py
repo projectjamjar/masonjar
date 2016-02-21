@@ -24,9 +24,86 @@ class VideoList(BaseView):
         serializer = self.get_serializer(videos, many=True)
         return self.success_response(serializer.data)
 
+    """
+    Description:
+        Upload a video, dawg!
+        Given a video, name, concert_id, and a list of artist spotify_ids, create and upload a video!
+
+    Request:
+        POST /artists/
+          NOTE: This is Multipart/form data!!!!
+          The following fields are expected:
+            file: The file itself
+            name: The name of the video (user-entered)
+            concert: The ID of the concert for this video
+            artists: You will have one "artists" key/value pair for every artist on this video
+                yes, you may have this key MULTIPLE TIMES)
+                This value will be the spotify_id of the tagged artist
+
+    Response:
+        The fresh video data for the video, including serialized artists and user!
+        {
+          "id": 49,
+          "name": "drewww",
+          "uploaded": false,
+          "uuid": "dfef3693-a42f-4444-b03c-8f64e46d6b02",
+          "length": null,
+          "file_size": 38391947,
+          "is_private": false,
+          "views": 0,
+          "artists": [
+            {
+              "id": 1,
+              "name": "Bonobo",
+              "spotify_id": "0cmWgDlu9CwTgxPhf403hb",
+              "genres": [
+                "chill-out",
+                "downtempo",
+                "ninja",
+                "nu jazz",
+                "trip hop"
+              ],
+              "images": [
+                {
+                  "url": "https://i.scdn.co/image/10e789fe4259875a0bb7f5a41f13a2c5815b4635",
+                  "height": 667,
+                  "width": 1000
+                },
+                {
+                  "url": "https://i.scdn.co/image/47ca8ff0c123abac4e424fa203c9bdd14685c69e",
+                  "height": 427,
+                  "width": 640
+                },
+                {
+                  "url": "https://i.scdn.co/image/1478b2e2861c22dcfa152e67581b41659ea02b47",
+                  "height": 133,
+                  "width": 200
+                },
+                {
+                  "url": "https://i.scdn.co/image/165e00daafa1ae302a549c01a7a50d59e3583fb1",
+                  "height": 43,
+                  "width": 64
+                }
+              ],
+              "unofficial": false
+            }
+          ],
+          "web_src": null,
+          "hls_src": null,
+          "thumb_src": null,
+          "concert": 1,
+          "user": {
+            "id": 1,
+            "username": "test",
+            "email": "test@user.com",
+            "first_name": "Test",
+            "last_name": "User",
+            "full_name": "Test User"
+          }
+        }
+    """
     @authenticate
     def post(self, request):
-
         # Make sure we have all of the proper attributes
         self.serializer = self.get_serializer(data=request.data)
 
@@ -45,7 +122,11 @@ class VideoList(BaseView):
         # 2) upload the video to s3
         #
         # both of these things happen outside of the realm of this request!
-        tmp_src = video.process_upload(video_fh)
+        try:
+            tmp_src = video.process_upload(video_fh)
+        except Exception, e:
+            video.delete()
+            return self.error_response(str(e), 400)
 
         # tmp_src is where these are stored on disk pending transcode + s3 upload
         # request.data['tmp_src'] = video_paths['tmp_src']

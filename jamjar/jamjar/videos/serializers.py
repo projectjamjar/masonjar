@@ -2,12 +2,16 @@ from rest_framework import serializers
 from jamjar.videos.models import Video, Edge
 from jamjar.artists.serializers import ArtistSerializer
 from jamjar.users.serializers import UserSerializer
+from jamjar.artists.models import Artist
 
 import os
 
 class VideoSerializer(serializers.ModelSerializer):
-    artists = ArtistSerializer(many=True)
-    user = UserSerializer()
+    artists = ArtistSerializer(many=True, read_only=True)
+    # artist_ids = serializers.serializers.ListField(
+    #   child=serializers.CharField()
+    # )
+    user = UserSerializer(read_only=True)
 
     class Meta:
         model = Video
@@ -27,8 +31,15 @@ class VideoSerializer(serializers.ModelSerializer):
                   'user')
 
     def validate(self, data):
-        data['user_id'] = self.context.get('request').token.user_id
+        request = self.context.get('request')
+        data['user_id'] = request.token.user_id
         input_fh = self.context.get('request').FILES.get('file')
+
+        # Get the artists from the request!
+        if request.data.get('artists'):
+            artists = request.data.getlist('artists')
+            # Get the artist objects and filter out the Nones if there are any
+            data['artist_objects'] = [artist for artist in [Artist.get_or_create_artist(artist) for artist in artists] if artist]
 
         if not input_fh:
             raise serializers.ValidationError('No file given')
@@ -46,6 +57,32 @@ class VideoSerializer(serializers.ModelSerializer):
         data['file_size'] = input_fh.size
         data['file'] = input_fh
         return data
+
+    def create(self,validated_data):
+        # Get the artists out of here beforehand
+        artists = validated_data.pop('artist_objects',[])
+
+        # Call the super's 'create'
+        video = super(VideoSerializer,self).create(validated_data)
+
+        # Assign the artists to the video
+        video.artists = artists
+
+        return video
+
+    def create(self,validated_data):
+        # Get the artists out of here beforehand
+        artists = validated_data.pop('artist_objects',None)
+
+        # Call the super's 'create'
+        video = super(VideoSerializer,self).create(validated_data)
+
+        # Assign the artists to the video if we got any
+        if artists:
+            video.artists = artists
+
+        return video
+
 
 class EdgeSerializer(serializers.ModelSerializer):
     video1 = VideoSerializer(read_only=True)
