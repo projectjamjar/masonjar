@@ -9,6 +9,13 @@ class UserSerializer(serializers.ModelSerializer):
         model = get_user_model()
         fields = ('id', 'username', 'email', 'first_name', 'last_name', 'full_name', 'first_login')
 
+    def __init__(self, *args, **kwargs):
+        self.include_first_login = kwargs.pop('include_first_login', False)
+        super(UserSerializer, self).__init__(*args, **kwargs)
+
+        if not self.include_first_login:
+            self.fields.pop('first_login')
+
     def get_full_name(self, user):
         return user.get_full_name()
 

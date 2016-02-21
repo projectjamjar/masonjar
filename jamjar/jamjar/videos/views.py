@@ -26,7 +26,6 @@ class VideoList(BaseView):
 
     @authenticate
     def post(self, request):
-
         # Make sure we have all of the proper attributes
         self.serializer = self.get_serializer(data=request.data)
 
