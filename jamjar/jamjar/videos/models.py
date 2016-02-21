@@ -6,7 +6,9 @@ from django.dispatch import receiver
 
 from django.conf import settings
 
-import logging, uuid, os
+from lilo import Lilo
+
+import logging, uuid, os, shutil
 
 import logging; logger = logging.getLogger(__name__)
 
@@ -15,7 +17,7 @@ class Video(BaseModel):
     user = models.ForeignKey('users.User', related_name='videos')
     name = models.CharField(max_length=128)
     uploaded = models.BooleanField(default=False)
-    concert = models.ForeignKey('concerts.Concert', related_name='concert')
+    concert = models.ForeignKey('concerts.Concert', related_name='videos')
     uuid = models.UUIDField(default=uuid.uuid4,editable=False)
     length = models.FloatField(null=True)
     original_filename = models.CharField(max_length=256,null=True)
@@ -64,6 +66,14 @@ class Video(BaseModel):
             for chunk in input_fh.chunks():
                 output_fh.write(chunk)
 
+        # Check to make sure that this video hasn't been uploaded already
+        lilo = Lilo(settings.LILO_CONFIG, video_path, self.id)
+        already_fingerprinted = lilo.check_if_fingerprinted()
+
+        if already_fingerprinted:
+            logger.warn('Video re-upload attempted by user {} - Video id: {}'.format(self.user_id,self.id))
+            raise Exception('This video has already been uploaded.')
+
         return video_path
 
     def make_s3_path(self, filename, extension):
@@ -87,11 +97,11 @@ def delete_file(sender, instance, **kwargs):
     # Delete the local file folder
     video_dir = instance.get_video_dir()
     if os.path.exists(video_dir):
-        os.remove(video_dir)
+        shutil.rmtree(video_dir)
 
     # TODO: Delete the file from S3 if it exists
 
-    # TODO: Delete the fingerprints from lilo
+    # TODO: Delete the fingerprints from lilo if there are any FOR THIS VIDEO ID
 
 class Edge(BaseModel):
 

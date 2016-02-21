@@ -152,7 +152,7 @@ LOGGING = {
     },
     'handlers': {
        'logfile': {
-            'level':'WARNING',
+            'level':'INFO',
             'class':'logging.handlers.RotatingFileHandler',
             'filename': "/opt/code/masonjar/logs/server.log",
             'maxBytes': 50000,
@@ -160,7 +160,7 @@ LOGGING = {
             'formatter': 'standard',
         },
         'console':{
-            'level':'WARNING',
+            'level':'INFO',
             'class':'logging.StreamHandler',
             'formatter': 'standard'
         },
@@ -171,7 +171,12 @@ LOGGING = {
             'level': 'DEBUG',
             'propagate': True,
         },
-        '': {
+        'django': {
+            'handlers': ['logfile','console'],
+            'level': 'DEBUG',
+            'propagate': True,
+        },
+        'jamjar': {
             'handlers': ['logfile','console'],
             'level': 'DEBUG',
             'propagate': True,

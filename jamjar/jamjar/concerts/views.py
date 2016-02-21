@@ -6,6 +6,7 @@ from jamjar.concerts.serializers import ConcertSerializer
 class ConcertGraph(BaseView):
     serializer_class = ConcertSerializer
 
+    @authenticate
     def get(self, request, id):
          # Attempt to get the video
         try:
@@ -53,11 +54,7 @@ class ConcertView(BaseView):
     """
     @authenticate
     def get(self, request, id):
-        try:
-            self.concert = Concert.objects.get(id=id)
-        except:
-            return self.error_response('Concert does not exist.', 404)
-
+        self.concert = self.get_object_or_404(Concert,pk=id)
         self.serializer = self.get_serializer(self.concert)
         return self.success_response(self.serializer.data)
 
