@@ -11,7 +11,7 @@ class VideoSerializer(serializers.ModelSerializer):
     # artist_ids = serializers.serializers.ListField(
     #   child=serializers.CharField()
     # )
-    user = UserSerializer(read_only=True)
+    user = UserSerializer(read_only=True, include_first_login=True)
 
     class Meta:
         model = Video
