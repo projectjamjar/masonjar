@@ -55,6 +55,7 @@ class ConcertGraph(object):
             video_adjacencies[edge.video1.id].append(edge.video2.id)
             video_adjacencies[edge.video2.id].append(edge.video1.id)
 
+
         graph = {}
         for (video_id, adjacents) in video_adjacencies.iteritems():
 
@@ -68,6 +69,9 @@ class ConcertGraph(object):
                     index = index[::-1]
                     offset = -edge_map[index].offset
                     confidence = edge_map[index].confidence
+
+                if confidence <= 5:
+                    continue
 
                 data = {
                     "video" : adj_video_id,
