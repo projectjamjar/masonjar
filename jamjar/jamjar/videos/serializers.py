@@ -28,7 +28,9 @@ class VideoSerializer(serializers.ModelSerializer):
                   'hls_src',
                   'thumb_src',
                   'concert',
-                  'user')
+                  'user',
+                  'width',
+                  'height')
 
     def validate(self, data):
         request = self.context.get('request')
