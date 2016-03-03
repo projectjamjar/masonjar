@@ -1,5 +1,7 @@
 from django.db import models
+from django.db.models import Q
 from jamjar.base.models import BaseModel
+import operator
 
 class Venue(BaseModel):
     name = models.CharField(max_length=100)
@@ -15,3 +17,18 @@ class Venue(BaseModel):
     state_short = models.CharField(max_length=10,null=True,blank=True)
     country = models.CharField(max_length=50,null=True,blank=True)
     country_short = models.CharField(max_length=10,null=True,blank=True)
+
+    @classmethod
+    def search_venues(cls, search_string):
+        q_list = []
+
+        # For each word in the search string, filter things
+        for word in search_string.split():
+            q_list.append( Q(name__icontains=word) )
+            q_list.append( Q(city__icontains=word) )
+
+        query = reduce(operator.or_,q_list)
+
+        venues = cls.objects.filter(query)
+
+        return venues

@@ -1,6 +1,5 @@
 #!/usr/bin/env python
-import os
-import sys
+import os, sys, codecs
 
 if __name__ == "__main__":
     jamjar_env = os.environ.get('JAMJAR_ENV', None)

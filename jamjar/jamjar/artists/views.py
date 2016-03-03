@@ -32,59 +32,69 @@ class ArtistListView(BaseView):
     Request:
         POST /artists/
           {
-            "spotify_id": "0cmWgDlu9CwTgxPhf403hb"
+            "spotify_ids": [
+              "0cmWgDlu9CwTgxPhf403hb"
+            ]
           }
 
     Response:
         The retrieved or created artist, with the genres and images serialized
-        {
-          "id": 1,
-          "name": "Bonobo",
-          "spotify_id": "0cmWgDlu9CwTgxPhf403hb",
-          "genres": [
-            "chill-out",
-            "downtempo",
-            "ninja",
-            "nu jazz",
-            "trip hop"
-          ],
-          "images": [
-            {
-              "url": "https://i.scdn.co/image/10e789fe4259875a0bb7f5a41f13a2c5815b4635",
-              "height": 667,
-              "width": 1000
-            },
-            {
-              "url": "https://i.scdn.co/image/47ca8ff0c123abac4e424fa203c9bdd14685c69e",
-              "height": 427,
-              "width": 640
-            },
-            {
-              "url": "https://i.scdn.co/image/1478b2e2861c22dcfa152e67581b41659ea02b47",
-              "height": 133,
-              "width": 200
-            },
-            {
-              "url": "https://i.scdn.co/image/165e00daafa1ae302a549c01a7a50d59e3583fb1",
-              "height": 43,
-              "width": 64
-            }
-          ],
-          "unofficial": false
-        }
+        [
+          {
+            "id": 1,
+            "name": "Bonobo",
+            "spotify_id": "0cmWgDlu9CwTgxPhf403hb",
+            "genres": [
+              "chill-out",
+              "downtempo",
+              "ninja",
+              "nu jazz",
+              "trip hop"
+            ],
+            "images": [
+              {
+                "url": "https://i.scdn.co/image/10e789fe4259875a0bb7f5a41f13a2c5815b4635",
+                "height": 667,
+                "width": 1000
+              },
+              {
+                "url": "https://i.scdn.co/image/47ca8ff0c123abac4e424fa203c9bdd14685c69e",
+                "height": 427,
+                "width": 640
+              },
+              {
+                "url": "https://i.scdn.co/image/1478b2e2861c22dcfa152e67581b41659ea02b47",
+                "height": 133,
+                "width": 200
+              },
+              {
+                "url": "https://i.scdn.co/image/165e00daafa1ae302a549c01a7a50d59e3583fb1",
+                "height": 43,
+                "width": 64
+              }
+            ],
+            "unofficial": false
+          },
+
+        ]
     """
     @authenticate
     def post(self, request):
         # Validate the request
-        spotify_id = request.data.get('spotify_id')
-        if spotify_id == None:
-            return self.error_response("spotify_id required", 400)
+        spotify_ids = request.data.get('spotify_ids')
+        if spotify_ids == None:
+            return self.error_response("spotify_ids required", 400)
 
-        artist = Artist.get_or_create_artist(spotify_id)
+        artists = []
 
-        if not artist:
-            return self.error_response("Unable to get or create an artist with this spotify_id", 400)
+        for spotify_id in spotify_ids:
+          artist = Artist.get_or_create_artist(spotify_id)
 
-        self.serializer = self.get_serializer(artist)
+          if not artist:
+            return self.error_response("Unable to get or create an artist with this spotify_id: {}".format(spotify_id), 400)
+          else:
+            artists.append(artist)
+
+        self.serializer = self.get_serializer(artists,many=True)
 
         return self.success_response(self.serializer.data)
