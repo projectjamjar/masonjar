@@ -69,11 +69,11 @@ empty-database: $(MANAGER)
 	python $(MANAGER) flush
 
 drop-fingerprints:
-	mysql -uroot -proot -e "drop database if exists dejavu; drop database if exists dejavu_test;"
+	bash database_reset.sh
 	bash database_setup.sh
 
 fuck:
 	yes 'yes' | python $(MANAGER) flush
-	make drop-fingerprints
+	python database_reset.py
 	make seed
 
