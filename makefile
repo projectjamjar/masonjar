@@ -4,6 +4,7 @@ IP=0.0.0.0
 PORT=5001
 
 SEED?=seed_data/basic_seed.json
+PRESENTATION_SEED?=seed_data/presentation_seed.json
 
 ###########################################
 # Install
@@ -77,3 +78,9 @@ fuck:
 	python database_reset.py
 	make seed
 
+present:
+	yes 'yes' | python $(MANAGER) flush
+	python database_reset.py
+	python $(MANAGER) loaddata $(PRESENTATION_SEED)
+	# TODO : custom seed file w/ good videos
+	# script to move presentation files to prod s3 bucket

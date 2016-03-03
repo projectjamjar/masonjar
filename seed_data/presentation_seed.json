@@ -1,0 +1,233 @@
+[
+{
+    "fields": {
+        "expire_date": "2016-02-18T22:33:24Z",
+        "session_data": "ZDRjYTY0ZGE2ODkzNzQ2MDVjMDgzOTQ3ZGIyYzkzZGRlYWFiOTFjOTp7Il9hdXRoX3VzZXJfaGFzaCI6IjA3MTUwOTJmZjBhMTRmNjU0ZTM2MTkwYmExOTM4NDk1ZDY4NWZmZjEiLCJfYXV0aF91c2VyX2JhY2tlbmQiOiJkamFuZ28uY29udHJpYi5hdXRoLmJhY2tlbmRzLk1vZGVsQmFja2VuZCIsIl9hdXRoX3VzZXJfaWQiOiIxIn0="
+    },
+    "model": "sessions.session",
+    "pk": "37sup2qhatt6rfembgcszfmfdfmov0td"
+},
+{
+    "fields": {
+        "expire_date": "2016-03-17T04:40:25Z",
+        "session_data": "ZDRjYTY0ZGE2ODkzNzQ2MDVjMDgzOTQ3ZGIyYzkzZGRlYWFiOTFjOTp7Il9hdXRoX3VzZXJfaGFzaCI6IjA3MTUwOTJmZjBhMTRmNjU0ZTM2MTkwYmExOTM4NDk1ZDY4NWZmZjEiLCJfYXV0aF91c2VyX2JhY2tlbmQiOiJkamFuZ28uY29udHJpYi5hdXRoLmJhY2tlbmRzLk1vZGVsQmFja2VuZCIsIl9hdXRoX3VzZXJfaWQiOiIxIn0="
+    },
+    "model": "sessions.session",
+    "pk": "uduxp4u95ahwtosfx5cw8fcprpu8eie2"
+},
+{
+    "fields": {
+        "username": "test",
+        "first_name": "Test",
+        "last_name": "User",
+        "is_deleted": false,
+        "is_active": true,
+        "created_at": "2016-02-04T22:33:21Z",
+        "first_login": false,
+        "modified_at": "2016-02-04T22:33:21Z",
+        "is_superuser": false,
+        "is_staff": false,
+        "last_login": "2016-03-03T04:40:25Z",
+        "groups": [],
+        "user_permissions": [],
+        "password": "pbkdf2_sha256$20000$ebRpMry1r0CY$Jqybz3J8g09jRrUJDgfNC57r4TdQDy44SGmMoCQ+JtI=",
+        "email": "test@user.com",
+        "date_joined": "2016-02-04T22:33:21Z"
+    },
+    "model": "users.user",
+    "pk": 1
+},
+{
+    "fields": {
+        "created_at": "2016-02-04T22:33:21Z",
+        "modified_at": "2016-02-04T22:33:21Z",
+        "token_type": "A",
+        "token": "494-a72e62c2b9556204da30",
+        "user": [
+            "test"
+        ],
+        "active": true
+    },
+    "model": "authentication.jamjartoken",
+    "pk": 1
+},
+{
+    "fields": {
+        "date": "2016-02-29",
+        "venue": 1,
+        "created_at": "2016-03-03T04:50:15Z",
+        "modified_at": "2016-03-03T04:50:15Z"
+    },
+    "model": "concerts.concert",
+    "pk": 1
+},
+{
+    "fields": {
+        "website": "http://philly.worldcafelive.com/",
+        "city": "Philadelphia",
+        "utc_offset": -300,
+        "country_short": "US",
+        "name": "World Cafe Live",
+        "country": "United States",
+        "created_at": "2016-03-03T04:50:15Z",
+        "place_id": "ChIJ7RhuX0_GxokRjL5qFrDINys",
+        "modified_at": "2016-03-03T04:50:15Z",
+        "unofficial": false,
+        "state": "Pennsylvania",
+        "state_short": "PA",
+        "lat": "39.95219830",
+        "lng": "-75.18517170",
+        "formatted_address": "3025 Walnut St, Philadelphia, PA 19104, United States"
+    },
+    "model": "venues.venue",
+    "pk": 1
+},
+{
+    "fields": {
+        "genres": [
+            1
+        ],
+        "spotify_id": "5INjqkS1o8h1imAzPqGZBb",
+        "name": "Tame Impala",
+        "created_at": "2016-02-20T07:48:47Z",
+        "modified_at": "2016-02-20T07:48:47Z",
+        "unofficial": false
+    },
+    "model": "artists.artist",
+    "pk": 1
+},
+{
+    "fields": {
+        "genres": [
+            2
+        ],
+        "spotify_id": "1G9G7WwrXka3Z1r7aIDjI7",
+        "name": "OutKast",
+        "created_at": "2016-03-03T04:50:28Z",
+        "modified_at": "2016-03-03T04:50:28Z",
+        "unofficial": false
+    },
+    "model": "artists.artist",
+    "pk": 2
+},
+{
+    "fields": {
+        "name": "neo-psychedelic"
+    },
+    "model": "artists.genre",
+    "pk": 1
+},
+{
+    "fields": {
+        "name": "hip hop"
+    },
+    "model": "artists.genre",
+    "pk": 2
+},
+{
+    "fields": {
+        "artist": 1,
+        "url": "https://i.scdn.co/image/237daa4588d473c1f1b18b6b3dfefc5598bf32c5",
+        "created_at": "2016-02-20T07:48:47Z",
+        "modified_at": "2016-02-20T07:48:47Z",
+        "height": 666,
+        "width": 999
+    },
+    "model": "artists.artistimage",
+    "pk": 1
+},
+{
+    "fields": {
+        "artist": 1,
+        "url": "https://i.scdn.co/image/e953b712c06d9cdd73f3f4c9a138d487165e8192",
+        "created_at": "2016-02-20T07:48:47Z",
+        "modified_at": "2016-02-20T07:48:47Z",
+        "height": 427,
+        "width": 640
+    },
+    "model": "artists.artistimage",
+    "pk": 2
+},
+{
+    "fields": {
+        "artist": 1,
+        "url": "https://i.scdn.co/image/a071c3c7c399ed7fdc0eb9d295cccf03346f5914",
+        "created_at": "2016-02-20T07:48:47Z",
+        "modified_at": "2016-02-20T07:48:47Z",
+        "height": 133,
+        "width": 200
+    },
+    "model": "artists.artistimage",
+    "pk": 3
+},
+{
+    "fields": {
+        "artist": 1,
+        "url": "https://i.scdn.co/image/f538200c33781098d164790a58867b7c7e77ba62",
+        "created_at": "2016-02-20T07:48:47Z",
+        "modified_at": "2016-02-20T07:48:47Z",
+        "height": 43,
+        "width": 64
+    },
+    "model": "artists.artistimage",
+    "pk": 4
+},
+{
+    "fields": {
+        "artist": 2,
+        "url": "https://i.scdn.co/image/cf78e460a538b48dec7ef55064cdc76042511a07",
+        "created_at": "2016-03-03T04:50:28Z",
+        "modified_at": "2016-03-03T04:50:28Z",
+        "height": 809,
+        "width": 1000
+    },
+    "model": "artists.artistimage",
+    "pk": 5
+},
+{
+    "fields": {
+        "artist": 2,
+        "url": "https://i.scdn.co/image/f695d6984ae71545fbcde883e7773bdfc908d21a",
+        "created_at": "2016-03-03T04:50:28Z",
+        "modified_at": "2016-03-03T04:50:28Z",
+        "height": 518,
+        "width": 640
+    },
+    "model": "artists.artistimage",
+    "pk": 6
+},
+{
+    "fields": {
+        "artist": 2,
+        "url": "https://i.scdn.co/image/7f7fa1fb7eaecb372322ab10d5056250aa22bca1",
+        "created_at": "2016-03-03T04:50:28Z",
+        "modified_at": "2016-03-03T04:50:28Z",
+        "height": 162,
+        "width": 200
+    },
+    "model": "artists.artistimage",
+    "pk": 7
+},
+{
+    "fields": {
+        "artist": 2,
+        "url": "https://i.scdn.co/image/b0c3d57e96e7ee2037f4bfb1af726c722bcfe006",
+        "created_at": "2016-03-03T04:50:28Z",
+        "modified_at": "2016-03-03T04:50:28Z",
+        "height": 52,
+        "width": 64
+    },
+    "model": "artists.artistimage",
+    "pk": 8
+},
+{
+    "fields": {
+        "user": [
+            "test"
+        ],
+        "created": "2016-02-04T22:33:24Z"
+    },
+    "model": "authtoken.token",
+    "pk": "1c941bd992167c12cc60440abdbefc174019bdf5"
+}
+]
