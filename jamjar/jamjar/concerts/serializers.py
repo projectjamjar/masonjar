@@ -4,7 +4,7 @@ from jamjar.venues.models import Venue
 from jamjar.videos.serializers import VideoSerializer
 
 from jamjar.venues.serializers import VenueSerializer
-from jamjar.common.services import GMapService
+from jamjar.common.services import GMapService, ServiceError
 
 import logging; logger = logging.getLogger(__name__)
 

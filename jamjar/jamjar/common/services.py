@@ -80,7 +80,7 @@ class GMapService():
         )
 
         # Our GET request
-        response = requests.get(url)
+        response = requests.get(url, verify=False) # TODO: this is bad!
         data = response.json()
 
         if data.get('status') == 'INVALID_REQUEST':

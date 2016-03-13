@@ -4,6 +4,7 @@ IP=0.0.0.0
 PORT=5001
 
 SEED?=seed_data/basic_seed.json
+PRESENTATION_SEED?=seed_data/presentation_seed.json
 
 ###########################################
 # Install
@@ -53,10 +54,16 @@ test:
 	cd jamjar && JAMJAR_ENV=test python manage.py test && cd -
 
 queue: install redis
-	cd jamjar && celery -A jamjar.tasks.tasks.app worker --loglevel=info
+	cd jamjar && celery multi start worker -A jamjar.tasks.tasks.app --logfile=../logs/queue.log --loglevel=info
 
-kill:
+kill-server:
 	pkill -f $(MANAGER)
+
+kill-queue:
+	pkill -f celery
+
+kill: kill-queue kill-server
+	echo "Server and Queue killed."
 
 
 ###########################################
@@ -68,12 +75,21 @@ clean:
 empty-database: $(MANAGER)
 	python $(MANAGER) flush
 
+# this runs in whatever your JAMJAR_ENV is set to!
 drop-fingerprints:
-	mysql -uroot -proot -e "drop database if exists dejavu; drop database if exists dejavu_test;"
+	bash database_reset.py
+
+# this only works on localhost for setting up jamjar db/user/etc
+local-database-setup:
 	bash database_setup.sh
 
 fuck:
 	yes 'yes' | python $(MANAGER) flush
-	make drop-fingerprints
+	python database_reset.py
 	make seed
 
+present:
+	yes 'yes' | python $(MANAGER) flush
+	python database_reset.py
+	python $(MANAGER) loaddata $(PRESENTATION_SEED)
+	python presentation_fingerprints.py

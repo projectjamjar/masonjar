@@ -13,7 +13,7 @@ class Concert(BaseModel):
 
     def make_graph(self):
         concert_id = self.id
-        concert_edges = Edge.objects.filter(video1__concert_id=concert_id).select_related('video1', 'video2')
+        concert_edges = Edge.objects.filter(video1__concert_id=concert_id, video2__concert_id=concert_id).select_related('video1', 'video2')
 
         g = ConcertGraph(concert_edges)
         return g.disjoint_graphs()

@@ -1,0 +1,1511 @@
+[
+{
+    "fields": {
+        "expire_date": "2016-02-18T22:33:24Z",
+        "session_data": "ZDRjYTY0ZGE2ODkzNzQ2MDVjMDgzOTQ3ZGIyYzkzZGRlYWFiOTFjOTp7Il9hdXRoX3VzZXJfaGFzaCI6IjA3MTUwOTJmZjBhMTRmNjU0ZTM2MTkwYmExOTM4NDk1ZDY4NWZmZjEiLCJfYXV0aF91c2VyX2JhY2tlbmQiOiJkamFuZ28uY29udHJpYi5hdXRoLmJhY2tlbmRzLk1vZGVsQmFja2VuZCIsIl9hdXRoX3VzZXJfaWQiOiIxIn0="
+    },
+    "model": "sessions.session",
+    "pk": "37sup2qhatt6rfembgcszfmfdfmov0td"
+},
+{
+    "fields": {
+        "expire_date": "2016-03-27T00:14:32Z",
+        "session_data": "ZDRjYTY0ZGE2ODkzNzQ2MDVjMDgzOTQ3ZGIyYzkzZGRlYWFiOTFjOTp7Il9hdXRoX3VzZXJfaGFzaCI6IjA3MTUwOTJmZjBhMTRmNjU0ZTM2MTkwYmExOTM4NDk1ZDY4NWZmZjEiLCJfYXV0aF91c2VyX2JhY2tlbmQiOiJkamFuZ28uY29udHJpYi5hdXRoLmJhY2tlbmRzLk1vZGVsQmFja2VuZCIsIl9hdXRoX3VzZXJfaWQiOiIxIn0="
+    },
+    "model": "sessions.session",
+    "pk": "ayd028zf31fn108mtkk3xim1famma6wd"
+},
+{
+    "fields": {
+        "expire_date": "2016-03-26T04:45:08Z",
+        "session_data": "ZDRjYTY0ZGE2ODkzNzQ2MDVjMDgzOTQ3ZGIyYzkzZGRlYWFiOTFjOTp7Il9hdXRoX3VzZXJfaGFzaCI6IjA3MTUwOTJmZjBhMTRmNjU0ZTM2MTkwYmExOTM4NDk1ZDY4NWZmZjEiLCJfYXV0aF91c2VyX2JhY2tlbmQiOiJkamFuZ28uY29udHJpYi5hdXRoLmJhY2tlbmRzLk1vZGVsQmFja2VuZCIsIl9hdXRoX3VzZXJfaWQiOiIxIn0="
+    },
+    "model": "sessions.session",
+    "pk": "fv9w6uwnozqe8u21ft2wd3114qgnd2bm"
+},
+{
+    "fields": {
+        "expire_date": "2016-03-26T02:38:08Z",
+        "session_data": "ZDRjYTY0ZGE2ODkzNzQ2MDVjMDgzOTQ3ZGIyYzkzZGRlYWFiOTFjOTp7Il9hdXRoX3VzZXJfaGFzaCI6IjA3MTUwOTJmZjBhMTRmNjU0ZTM2MTkwYmExOTM4NDk1ZDY4NWZmZjEiLCJfYXV0aF91c2VyX2JhY2tlbmQiOiJkamFuZ28uY29udHJpYi5hdXRoLmJhY2tlbmRzLk1vZGVsQmFja2VuZCIsIl9hdXRoX3VzZXJfaWQiOiIxIn0="
+    },
+    "model": "sessions.session",
+    "pk": "p69mh1569mxuce6gghxqczksaue0rjkt"
+},
+{
+    "fields": {
+        "expire_date": "2016-03-26T19:46:21Z",
+        "session_data": "ZDRjYTY0ZGE2ODkzNzQ2MDVjMDgzOTQ3ZGIyYzkzZGRlYWFiOTFjOTp7Il9hdXRoX3VzZXJfaGFzaCI6IjA3MTUwOTJmZjBhMTRmNjU0ZTM2MTkwYmExOTM4NDk1ZDY4NWZmZjEiLCJfYXV0aF91c2VyX2JhY2tlbmQiOiJkamFuZ28uY29udHJpYi5hdXRoLmJhY2tlbmRzLk1vZGVsQmFja2VuZCIsIl9hdXRoX3VzZXJfaWQiOiIxIn0="
+    },
+    "model": "sessions.session",
+    "pk": "ts44d80i5loh8shdlufa1z9tsfzitd73"
+},
+{
+    "fields": {
+        "expire_date": "2016-03-17T04:40:25Z",
+        "session_data": "ZDRjYTY0ZGE2ODkzNzQ2MDVjMDgzOTQ3ZGIyYzkzZGRlYWFiOTFjOTp7Il9hdXRoX3VzZXJfaGFzaCI6IjA3MTUwOTJmZjBhMTRmNjU0ZTM2MTkwYmExOTM4NDk1ZDY4NWZmZjEiLCJfYXV0aF91c2VyX2JhY2tlbmQiOiJkamFuZ28uY29udHJpYi5hdXRoLmJhY2tlbmRzLk1vZGVsQmFja2VuZCIsIl9hdXRoX3VzZXJfaWQiOiIxIn0="
+    },
+    "model": "sessions.session",
+    "pk": "uduxp4u95ahwtosfx5cw8fcprpu8eie2"
+},
+{
+    "fields": {
+        "confidence": 8,
+        "video1": 2,
+        "video2": 1,
+        "created_at": "2016-03-12T00:40:04Z",
+        "modified_at": "2016-03-12T00:40:04Z",
+        "offset": -47.74023
+    },
+    "model": "videos.edge",
+    "pk": 1
+},
+{
+    "fields": {
+        "confidence": 10,
+        "video1": 3,
+        "video2": 1,
+        "created_at": "2016-03-12T00:46:01Z",
+        "modified_at": "2016-03-12T00:46:01Z",
+        "offset": -13.65333
+    },
+    "model": "videos.edge",
+    "pk": 2
+},
+{
+    "fields": {
+        "confidence": 7,
+        "video1": 3,
+        "video2": 2,
+        "created_at": "2016-03-12T00:46:01Z",
+        "modified_at": "2016-03-12T00:46:01Z",
+        "offset": 44.35011
+    },
+    "model": "videos.edge",
+    "pk": 3
+},
+{
+    "fields": {
+        "confidence": 19,
+        "video1": 4,
+        "video2": 1,
+        "created_at": "2016-03-12T00:49:14Z",
+        "modified_at": "2016-03-12T00:49:14Z",
+        "offset": 4.17959
+    },
+    "model": "videos.edge",
+    "pk": 4
+},
+{
+    "fields": {
+        "confidence": 43,
+        "video1": 4,
+        "video2": 2,
+        "created_at": "2016-03-12T00:49:14Z",
+        "modified_at": "2016-03-12T00:49:14Z",
+        "offset": -24.61315
+    },
+    "model": "videos.edge",
+    "pk": 5
+},
+{
+    "fields": {
+        "confidence": 4,
+        "video1": 4,
+        "video2": 3,
+        "created_at": "2016-03-12T00:49:14Z",
+        "modified_at": "2016-03-12T00:49:14Z",
+        "offset": -44.81451
+    },
+    "model": "videos.edge",
+    "pk": 6
+},
+{
+    "fields": {
+        "confidence": 4,
+        "video1": 5,
+        "video2": 1,
+        "created_at": "2016-03-12T00:54:47Z",
+        "modified_at": "2016-03-12T00:54:47Z",
+        "offset": 6.68735
+    },
+    "model": "videos.edge",
+    "pk": 7
+},
+{
+    "fields": {
+        "confidence": 26,
+        "video1": 5,
+        "video2": 2,
+        "created_at": "2016-03-12T00:54:47Z",
+        "modified_at": "2016-03-12T00:54:47Z",
+        "offset": 30.41814
+    },
+    "model": "videos.edge",
+    "pk": 8
+},
+{
+    "fields": {
+        "confidence": 8,
+        "video1": 5,
+        "video2": 3,
+        "created_at": "2016-03-12T00:54:47Z",
+        "modified_at": "2016-03-12T00:54:47Z",
+        "offset": -34.08689
+    },
+    "model": "videos.edge",
+    "pk": 9
+},
+{
+    "fields": {
+        "confidence": 114,
+        "video1": 5,
+        "video2": 4,
+        "created_at": "2016-03-12T00:54:47Z",
+        "modified_at": "2016-03-12T00:54:47Z",
+        "offset": 54.98485
+    },
+    "model": "videos.edge",
+    "pk": 10
+},
+{
+    "fields": {
+        "confidence": 3,
+        "video1": 6,
+        "video2": 1,
+        "created_at": "2016-03-12T01:00:14Z",
+        "modified_at": "2016-03-12T01:00:14Z",
+        "offset": -1.34676
+    },
+    "model": "videos.edge",
+    "pk": 11
+},
+{
+    "fields": {
+        "confidence": 5,
+        "video1": 6,
+        "video2": 2,
+        "created_at": "2016-03-12T01:00:14Z",
+        "modified_at": "2016-03-12T01:00:14Z",
+        "offset": 19.41188
+    },
+    "model": "videos.edge",
+    "pk": 12
+},
+{
+    "fields": {
+        "confidence": 3,
+        "video1": 6,
+        "video2": 3,
+        "created_at": "2016-03-12T01:00:14Z",
+        "modified_at": "2016-03-12T01:00:14Z",
+        "offset": 22.05896
+    },
+    "model": "videos.edge",
+    "pk": 13
+},
+{
+    "fields": {
+        "confidence": 7,
+        "video1": 6,
+        "video2": 4,
+        "created_at": "2016-03-12T01:00:14Z",
+        "modified_at": "2016-03-12T01:00:14Z",
+        "offset": -18.25088
+    },
+    "model": "videos.edge",
+    "pk": 14
+},
+{
+    "fields": {
+        "confidence": 102,
+        "video1": 6,
+        "video2": 5,
+        "created_at": "2016-03-12T01:00:14Z",
+        "modified_at": "2016-03-12T01:00:14Z",
+        "offset": 54.98485
+    },
+    "model": "videos.edge",
+    "pk": 15
+},
+{
+    "fields": {
+        "confidence": 28,
+        "video1": 7,
+        "video2": 1,
+        "created_at": "2016-03-12T01:03:51Z",
+        "modified_at": "2016-03-12T01:03:51Z",
+        "offset": -3.76163
+    },
+    "model": "videos.edge",
+    "pk": 16
+},
+{
+    "fields": {
+        "confidence": 26,
+        "video1": 7,
+        "video2": 2,
+        "created_at": "2016-03-12T01:03:51Z",
+        "modified_at": "2016-03-12T01:03:51Z",
+        "offset": -32.50794
+    },
+    "model": "videos.edge",
+    "pk": 17
+},
+{
+    "fields": {
+        "confidence": 6,
+        "video1": 7,
+        "video2": 3,
+        "created_at": "2016-03-12T01:03:51Z",
+        "modified_at": "2016-03-12T01:03:51Z",
+        "offset": 21.1766
+    },
+    "model": "videos.edge",
+    "pk": 18
+},
+{
+    "fields": {
+        "confidence": 57,
+        "video1": 7,
+        "video2": 4,
+        "created_at": "2016-03-12T01:03:51Z",
+        "modified_at": "2016-03-12T01:03:51Z",
+        "offset": -7.89478
+    },
+    "model": "videos.edge",
+    "pk": 19
+},
+{
+    "fields": {
+        "confidence": 10,
+        "video1": 7,
+        "video2": 5,
+        "created_at": "2016-03-12T01:03:51Z",
+        "modified_at": "2016-03-12T01:03:51Z",
+        "offset": 11.33134
+    },
+    "model": "videos.edge",
+    "pk": 20
+},
+{
+    "fields": {
+        "confidence": 6,
+        "video1": 7,
+        "video2": 6,
+        "created_at": "2016-03-12T01:03:51Z",
+        "modified_at": "2016-03-12T01:03:51Z",
+        "offset": -2.41488
+    },
+    "model": "videos.edge",
+    "pk": 21
+},
+{
+    "fields": {
+        "confidence": 4,
+        "video1": 8,
+        "video2": 1,
+        "created_at": "2016-03-12T01:08:30Z",
+        "modified_at": "2016-03-12T01:08:30Z",
+        "offset": -46.25415
+    },
+    "model": "videos.edge",
+    "pk": 22
+},
+{
+    "fields": {
+        "confidence": 39,
+        "video1": 8,
+        "video2": 2,
+        "created_at": "2016-03-12T01:08:30Z",
+        "modified_at": "2016-03-12T01:08:30Z",
+        "offset": 22.47692
+    },
+    "model": "videos.edge",
+    "pk": 23
+},
+{
+    "fields": {
+        "confidence": 17,
+        "video1": 8,
+        "video2": 3,
+        "created_at": "2016-03-12T01:08:30Z",
+        "modified_at": "2016-03-12T01:08:30Z",
+        "offset": -41.98168
+    },
+    "model": "videos.edge",
+    "pk": 24
+},
+{
+    "fields": {
+        "confidence": 29,
+        "video1": 8,
+        "video2": 4,
+        "created_at": "2016-03-12T01:08:30Z",
+        "modified_at": "2016-03-12T01:08:30Z",
+        "offset": 47.09007
+    },
+    "model": "videos.edge",
+    "pk": 25
+},
+{
+    "fields": {
+        "confidence": 54,
+        "video1": 8,
+        "video2": 5,
+        "created_at": "2016-03-12T01:08:30Z",
+        "modified_at": "2016-03-12T01:08:30Z",
+        "offset": -7.94122
+    },
+    "model": "videos.edge",
+    "pk": 26
+},
+{
+    "fields": {
+        "confidence": 7,
+        "video1": 8,
+        "video2": 6,
+        "created_at": "2016-03-12T01:08:30Z",
+        "modified_at": "2016-03-12T01:08:30Z",
+        "offset": -8.17342
+    },
+    "model": "videos.edge",
+    "pk": 27
+},
+{
+    "fields": {
+        "confidence": 69,
+        "video1": 8,
+        "video2": 7,
+        "created_at": "2016-03-12T01:08:30Z",
+        "modified_at": "2016-03-12T01:08:30Z",
+        "offset": 54.98485
+    },
+    "model": "videos.edge",
+    "pk": 28
+},
+{
+    "fields": {
+        "confidence": 3,
+        "video1": 9,
+        "video2": 1,
+        "created_at": "2016-03-12T02:06:50Z",
+        "modified_at": "2016-03-12T02:06:50Z",
+        "offset": -19.73696
+    },
+    "model": "videos.edge",
+    "pk": 29
+},
+{
+    "fields": {
+        "confidence": 4,
+        "video1": 9,
+        "video2": 2,
+        "created_at": "2016-03-12T02:06:50Z",
+        "modified_at": "2016-03-12T02:06:50Z",
+        "offset": 15.23229
+    },
+    "model": "videos.edge",
+    "pk": 30
+},
+{
+    "fields": {
+        "confidence": 20,
+        "video1": 9,
+        "video2": 3,
+        "created_at": "2016-03-12T02:06:50Z",
+        "modified_at": "2016-03-12T02:06:50Z",
+        "offset": 11.14558
+    },
+    "model": "videos.edge",
+    "pk": 31
+},
+{
+    "fields": {
+        "confidence": 4,
+        "video1": 9,
+        "video2": 4,
+        "created_at": "2016-03-12T02:06:50Z",
+        "modified_at": "2016-03-12T02:06:50Z",
+        "offset": 26.33143
+    },
+    "model": "videos.edge",
+    "pk": 32
+},
+{
+    "fields": {
+        "confidence": 24,
+        "video1": 9,
+        "video2": 5,
+        "created_at": "2016-03-12T02:06:50Z",
+        "modified_at": "2016-03-12T02:06:50Z",
+        "offset": 47.09007
+    },
+    "model": "videos.edge",
+    "pk": 33
+},
+{
+    "fields": {
+        "confidence": 6,
+        "video1": 9,
+        "video2": 6,
+        "created_at": "2016-03-12T02:06:50Z",
+        "modified_at": "2016-03-12T02:06:50Z",
+        "offset": -7.89478
+    },
+    "model": "videos.edge",
+    "pk": 34
+},
+{
+    "fields": {
+        "confidence": 11,
+        "video1": 9,
+        "video2": 7,
+        "created_at": "2016-03-12T02:06:50Z",
+        "modified_at": "2016-03-12T02:06:50Z",
+        "offset": -3.99383
+    },
+    "model": "videos.edge",
+    "pk": 35
+},
+{
+    "fields": {
+        "confidence": 91,
+        "video1": 9,
+        "video2": 8,
+        "created_at": "2016-03-12T02:06:50Z",
+        "modified_at": "2016-03-12T02:06:50Z",
+        "offset": 54.98485
+    },
+    "model": "videos.edge",
+    "pk": 36
+},
+{
+    "fields": {
+        "confidence": 24,
+        "video1": 10,
+        "video2": 1,
+        "created_at": "2016-03-12T02:11:33Z",
+        "modified_at": "2016-03-12T02:11:33Z",
+        "offset": 4.36535
+    },
+    "model": "videos.edge",
+    "pk": 37
+},
+{
+    "fields": {
+        "confidence": 63,
+        "video1": 10,
+        "video2": 2,
+        "created_at": "2016-03-12T02:11:33Z",
+        "modified_at": "2016-03-12T02:11:33Z",
+        "offset": -24.42739
+    },
+    "model": "videos.edge",
+    "pk": 38
+},
+{
+    "fields": {
+        "confidence": 8,
+        "video1": 10,
+        "video2": 3,
+        "created_at": "2016-03-12T02:11:33Z",
+        "modified_at": "2016-03-12T02:11:33Z",
+        "offset": -29.25714
+    },
+    "model": "videos.edge",
+    "pk": 39
+},
+{
+    "fields": {
+        "confidence": 292,
+        "video1": 10,
+        "video2": 4,
+        "created_at": "2016-03-12T02:11:33Z",
+        "modified_at": "2016-03-12T02:11:33Z",
+        "offset": 0.18576
+    },
+    "model": "videos.edge",
+    "pk": 40
+},
+{
+    "fields": {
+        "confidence": 18,
+        "video1": 10,
+        "video2": 5,
+        "created_at": "2016-03-12T02:11:33Z",
+        "modified_at": "2016-03-12T02:11:33Z",
+        "offset": -54.79909
+    },
+    "model": "videos.edge",
+    "pk": 41
+},
+{
+    "fields": {
+        "confidence": 10,
+        "video1": 10,
+        "video2": 6,
+        "created_at": "2016-03-12T02:11:33Z",
+        "modified_at": "2016-03-12T02:11:33Z",
+        "offset": -17.55429
+    },
+    "model": "videos.edge",
+    "pk": 42
+},
+{
+    "fields": {
+        "confidence": 169,
+        "video1": 10,
+        "video2": 7,
+        "created_at": "2016-03-12T02:11:33Z",
+        "modified_at": "2016-03-12T02:11:33Z",
+        "offset": 8.08054
+    },
+    "model": "videos.edge",
+    "pk": 43
+},
+{
+    "fields": {
+        "confidence": 79,
+        "video1": 10,
+        "video2": 8,
+        "created_at": "2016-03-12T02:11:33Z",
+        "modified_at": "2016-03-12T02:11:33Z",
+        "offset": -46.90431
+    },
+    "model": "videos.edge",
+    "pk": 44
+},
+{
+    "fields": {
+        "confidence": 9,
+        "video1": 10,
+        "video2": 9,
+        "created_at": "2016-03-12T02:11:33Z",
+        "modified_at": "2016-03-12T02:11:33Z",
+        "offset": 12.12082
+    },
+    "model": "videos.edge",
+    "pk": 45
+},
+{
+    "fields": {
+        "confidence": 5,
+        "video1": 11,
+        "video2": 1,
+        "created_at": "2016-03-12T02:21:06Z",
+        "modified_at": "2016-03-12T02:21:06Z",
+        "offset": -31.39338
+    },
+    "model": "videos.edge",
+    "pk": 46
+},
+{
+    "fields": {
+        "confidence": 29,
+        "video1": 11,
+        "video2": 2,
+        "created_at": "2016-03-12T02:21:06Z",
+        "modified_at": "2016-03-12T02:21:06Z",
+        "offset": 30.55746
+    },
+    "model": "videos.edge",
+    "pk": 47
+},
+{
+    "fields": {
+        "confidence": 14,
+        "video1": 11,
+        "video2": 3,
+        "created_at": "2016-03-12T02:21:06Z",
+        "modified_at": "2016-03-12T02:21:06Z",
+        "offset": -33.90113
+    },
+    "model": "videos.edge",
+    "pk": 48
+},
+{
+    "fields": {
+        "confidence": 13,
+        "video1": 11,
+        "video2": 4,
+        "created_at": "2016-03-12T02:21:06Z",
+        "modified_at": "2016-03-12T02:21:06Z",
+        "offset": -10.8205
+    },
+    "model": "videos.edge",
+    "pk": 49
+},
+{
+    "fields": {
+        "confidence": 287,
+        "video1": 11,
+        "video2": 5,
+        "created_at": "2016-03-12T02:21:06Z",
+        "modified_at": "2016-03-12T02:21:06Z",
+        "offset": 0.18576
+    },
+    "model": "videos.edge",
+    "pk": 50
+},
+{
+    "fields": {
+        "confidence": 9,
+        "video1": 11,
+        "video2": 6,
+        "created_at": "2016-03-12T02:21:06Z",
+        "modified_at": "2016-03-12T02:21:06Z",
+        "offset": -29.30358
+    },
+    "model": "videos.edge",
+    "pk": 51
+},
+{
+    "fields": {
+        "confidence": 17,
+        "video1": 11,
+        "video2": 7,
+        "created_at": "2016-03-12T02:21:06Z",
+        "modified_at": "2016-03-12T02:21:06Z",
+        "offset": 5.34059
+    },
+    "model": "videos.edge",
+    "pk": 52
+},
+{
+    "fields": {
+        "confidence": 102,
+        "video1": 11,
+        "video2": 8,
+        "created_at": "2016-03-12T02:21:06Z",
+        "modified_at": "2016-03-12T02:21:06Z",
+        "offset": 8.08054
+    },
+    "model": "videos.edge",
+    "pk": 53
+},
+{
+    "fields": {
+        "confidence": 26,
+        "video1": 11,
+        "video2": 9,
+        "created_at": "2016-03-12T02:21:06Z",
+        "modified_at": "2016-03-12T02:21:06Z",
+        "offset": -46.90431
+    },
+    "model": "videos.edge",
+    "pk": 54
+},
+{
+    "fields": {
+        "confidence": 282,
+        "video1": 11,
+        "video2": 10,
+        "created_at": "2016-03-12T02:21:06Z",
+        "modified_at": "2016-03-12T02:21:06Z",
+        "offset": 54.98485
+    },
+    "model": "videos.edge",
+    "pk": 55
+},
+{
+    "fields": {
+        "confidence": 7,
+        "video1": 12,
+        "video2": 1,
+        "created_at": "2016-03-12T02:33:14Z",
+        "modified_at": "2016-03-12T02:33:14Z",
+        "offset": -15.41805
+    },
+    "model": "videos.edge",
+    "pk": 56
+},
+{
+    "fields": {
+        "confidence": 5,
+        "video1": 12,
+        "video2": 2,
+        "created_at": "2016-03-12T02:33:14Z",
+        "modified_at": "2016-03-12T02:33:14Z",
+        "offset": 1.8576
+    },
+    "model": "videos.edge",
+    "pk": 57
+},
+{
+    "fields": {
+        "confidence": 5,
+        "video1": 12,
+        "video2": 3,
+        "created_at": "2016-03-12T02:33:14Z",
+        "modified_at": "2016-03-12T02:33:14Z",
+        "offset": 19.27256
+    },
+    "model": "videos.edge",
+    "pk": 58
+},
+{
+    "fields": {
+        "confidence": 8,
+        "video1": 12,
+        "video2": 4,
+        "created_at": "2016-03-12T02:33:14Z",
+        "modified_at": "2016-03-12T02:33:14Z",
+        "offset": -2.322
+    },
+    "model": "videos.edge",
+    "pk": 59
+},
+{
+    "fields": {
+        "confidence": 13,
+        "video1": 12,
+        "video2": 5,
+        "created_at": "2016-03-12T02:33:14Z",
+        "modified_at": "2016-03-12T02:33:14Z",
+        "offset": 34.17977
+    },
+    "model": "videos.edge",
+    "pk": 60
+},
+{
+    "fields": {
+        "confidence": 97,
+        "video1": 12,
+        "video2": 6,
+        "created_at": "2016-03-12T02:33:14Z",
+        "modified_at": "2016-03-12T02:33:14Z",
+        "offset": 0.18576
+    },
+    "model": "videos.edge",
+    "pk": 61
+},
+{
+    "fields": {
+        "confidence": 10,
+        "video1": 12,
+        "video2": 7,
+        "created_at": "2016-03-12T02:33:14Z",
+        "modified_at": "2016-03-12T02:33:14Z",
+        "offset": -2.64707
+    },
+    "model": "videos.edge",
+    "pk": 62
+},
+{
+    "fields": {
+        "confidence": 12,
+        "video1": 12,
+        "video2": 8,
+        "created_at": "2016-03-12T02:33:14Z",
+        "modified_at": "2016-03-12T02:33:14Z",
+        "offset": 15.83601
+    },
+    "model": "videos.edge",
+    "pk": 63
+},
+{
+    "fields": {
+        "confidence": 30,
+        "video1": 12,
+        "video2": 9,
+        "created_at": "2016-03-12T02:33:14Z",
+        "modified_at": "2016-03-12T02:33:14Z",
+        "offset": 8.08054
+    },
+    "model": "videos.edge",
+    "pk": 64
+},
+{
+    "fields": {
+        "confidence": 11,
+        "video1": 12,
+        "video2": 10,
+        "created_at": "2016-03-12T02:33:14Z",
+        "modified_at": "2016-03-12T02:33:14Z",
+        "offset": 29.72154
+    },
+    "model": "videos.edge",
+    "pk": 65
+},
+{
+    "fields": {
+        "confidence": 289,
+        "video1": 12,
+        "video2": 11,
+        "created_at": "2016-03-12T02:33:14Z",
+        "modified_at": "2016-03-12T02:33:14Z",
+        "offset": 54.98485
+    },
+    "model": "videos.edge",
+    "pk": 66
+},
+{
+    "fields": {
+        "confidence": 21,
+        "video1": 14,
+        "video2": 13,
+        "created_at": "2016-03-12T00:49:14Z",
+        "modified_at": "2016-03-12T00:49:14Z",
+        "offset": 4.17959
+    },
+    "model": "videos.edge",
+    "pk": 67
+},
+{
+    "fields": {
+        "confidence": 4,
+        "video1": 15,
+        "video2": 13,
+        "created_at": "2016-03-12T00:54:47Z",
+        "modified_at": "2016-03-12T00:54:47Z",
+        "offset": 6.68735
+    },
+    "model": "videos.edge",
+    "pk": 68
+},
+{
+    "fields": {
+        "confidence": 54,
+        "video1": 16,
+        "video2": 15,
+        "created_at": "2016-03-12T01:08:30Z",
+        "modified_at": "2016-03-12T01:08:30Z",
+        "offset": -7.94122
+    },
+    "model": "videos.edge",
+    "pk": 70
+},
+{
+    "fields": {
+        "username": "test",
+        "first_name": "Test",
+        "last_name": "User",
+        "is_deleted": false,
+        "is_active": true,
+        "created_at": "2016-02-04T22:33:21Z",
+        "first_login": false,
+        "modified_at": "2016-02-04T22:33:21Z",
+        "is_superuser": false,
+        "is_staff": false,
+        "last_login": "2016-03-13T00:14:32Z",
+        "groups": [],
+        "user_permissions": [],
+        "password": "pbkdf2_sha256$20000$ebRpMry1r0CY$Jqybz3J8g09jRrUJDgfNC57r4TdQDy44SGmMoCQ+JtI=",
+        "email": "test@user.com",
+        "date_joined": "2016-02-04T22:33:21Z"
+    },
+    "model": "users.user",
+    "pk": 1
+},
+{
+    "fields": {
+        "created_at": "2016-02-04T22:33:21Z",
+        "modified_at": "2016-02-04T22:33:21Z",
+        "token_type": "A",
+        "token": "494-a72e62c2b9556204da30",
+        "user": [
+            "test"
+        ],
+        "active": true
+    },
+    "model": "authentication.jamjartoken",
+    "pk": 1
+},
+{
+    "fields": {
+        "date": "2016-02-28",
+        "venue": 1,
+        "created_at": "2016-03-03T04:50:15Z",
+        "modified_at": "2016-03-03T04:50:15Z"
+    },
+    "model": "concerts.concert",
+    "pk": 1
+},
+{
+    "fields": {
+        "date": "2016-02-29",
+        "venue": 1,
+        "created_at": "2016-03-03T04:50:15Z",
+        "modified_at": "2016-03-03T04:50:15Z"
+    },
+    "model": "concerts.concert",
+    "pk": 2
+},
+{
+    "fields": {
+        "website": "http://philly.worldcafelive.com/",
+        "city": "Philadelphia",
+        "utc_offset": -300,
+        "country_short": "US",
+        "name": "World Cafe Live",
+        "country": "United States",
+        "created_at": "2016-03-03T04:50:15Z",
+        "place_id": "ChIJ7RhuX0_GxokRjL5qFrDINys",
+        "modified_at": "2016-03-03T04:50:15Z",
+        "unofficial": false,
+        "state": "Pennsylvania",
+        "state_short": "PA",
+        "lat": "39.95219830",
+        "lng": "-75.18517170",
+        "formatted_address": "3025 Walnut St, Philadelphia, PA 19104, United States"
+    },
+    "model": "venues.venue",
+    "pk": 1
+},
+{
+    "fields": {
+        "genres": [
+            1
+        ],
+        "spotify_id": "5INjqkS1o8h1imAzPqGZBb",
+        "name": "Tame Impala",
+        "created_at": "2016-02-20T07:48:47Z",
+        "modified_at": "2016-02-20T07:48:47Z",
+        "unofficial": false
+    },
+    "model": "artists.artist",
+    "pk": 1
+},
+{
+    "fields": {
+        "genres": [
+            2
+        ],
+        "spotify_id": "1G9G7WwrXka3Z1r7aIDjI7",
+        "name": "OutKast",
+        "created_at": "2016-03-03T04:50:28Z",
+        "modified_at": "2016-03-03T04:50:28Z",
+        "unofficial": false
+    },
+    "model": "artists.artist",
+    "pk": 2
+},
+{
+    "fields": {
+        "name": "neo-psychedelic"
+    },
+    "model": "artists.genre",
+    "pk": 1
+},
+{
+    "fields": {
+        "name": "hip hop"
+    },
+    "model": "artists.genre",
+    "pk": 2
+},
+{
+    "fields": {
+        "artist": 1,
+        "url": "https://i.scdn.co/image/237daa4588d473c1f1b18b6b3dfefc5598bf32c5",
+        "created_at": "2016-02-20T07:48:47Z",
+        "modified_at": "2016-02-20T07:48:47Z",
+        "height": 666,
+        "width": 999
+    },
+    "model": "artists.artistimage",
+    "pk": 1
+},
+{
+    "fields": {
+        "artist": 1,
+        "url": "https://i.scdn.co/image/e953b712c06d9cdd73f3f4c9a138d487165e8192",
+        "created_at": "2016-02-20T07:48:47Z",
+        "modified_at": "2016-02-20T07:48:47Z",
+        "height": 427,
+        "width": 640
+    },
+    "model": "artists.artistimage",
+    "pk": 2
+},
+{
+    "fields": {
+        "artist": 1,
+        "url": "https://i.scdn.co/image/a071c3c7c399ed7fdc0eb9d295cccf03346f5914",
+        "created_at": "2016-02-20T07:48:47Z",
+        "modified_at": "2016-02-20T07:48:47Z",
+        "height": 133,
+        "width": 200
+    },
+    "model": "artists.artistimage",
+    "pk": 3
+},
+{
+    "fields": {
+        "artist": 1,
+        "url": "https://i.scdn.co/image/f538200c33781098d164790a58867b7c7e77ba62",
+        "created_at": "2016-02-20T07:48:47Z",
+        "modified_at": "2016-02-20T07:48:47Z",
+        "height": 43,
+        "width": 64
+    },
+    "model": "artists.artistimage",
+    "pk": 4
+},
+{
+    "fields": {
+        "artist": 2,
+        "url": "https://i.scdn.co/image/cf78e460a538b48dec7ef55064cdc76042511a07",
+        "created_at": "2016-03-03T04:50:28Z",
+        "modified_at": "2016-03-03T04:50:28Z",
+        "height": 809,
+        "width": 1000
+    },
+    "model": "artists.artistimage",
+    "pk": 5
+},
+{
+    "fields": {
+        "artist": 2,
+        "url": "https://i.scdn.co/image/f695d6984ae71545fbcde883e7773bdfc908d21a",
+        "created_at": "2016-03-03T04:50:28Z",
+        "modified_at": "2016-03-03T04:50:28Z",
+        "height": 518,
+        "width": 640
+    },
+    "model": "artists.artistimage",
+    "pk": 6
+},
+{
+    "fields": {
+        "artist": 2,
+        "url": "https://i.scdn.co/image/7f7fa1fb7eaecb372322ab10d5056250aa22bca1",
+        "created_at": "2016-03-03T04:50:28Z",
+        "modified_at": "2016-03-03T04:50:28Z",
+        "height": 162,
+        "width": 200
+    },
+    "model": "artists.artistimage",
+    "pk": 7
+},
+{
+    "fields": {
+        "artist": 2,
+        "url": "https://i.scdn.co/image/b0c3d57e96e7ee2037f4bfb1af726c722bcfe006",
+        "created_at": "2016-03-03T04:50:28Z",
+        "modified_at": "2016-03-03T04:50:28Z",
+        "height": 52,
+        "width": 64
+    },
+    "model": "artists.artistimage",
+    "pk": 8
+},
+{
+    "fields": {
+        "uploaded": true,
+        "concert": 1,
+        "views": 0,
+        "created_at": "2016-03-12T00:35:51Z",
+        "recorded_at": "1904-01-01T00:00:00Z",
+        "modified_at": "2016-03-12T00:39:30Z",
+        "uuid": "46324b43-01f3-460c-8da9-dab840b1153b",
+        "height": 1080,
+        "artists": [
+            2
+        ],
+        "width": 1920,
+        "length": 24.567,
+        "user": [
+            "test"
+        ],
+        "original_filename": "20160229_105847.mp4.0.mp4",
+        "file_size": 52282131.0,
+        "is_private": false,
+        "name": "split_mono/20160229_105847.mp4.0.mp4"
+    },
+    "model": "videos.video",
+    "pk": 1
+},
+{
+    "fields": {
+        "uploaded": true,
+        "concert": 1,
+        "views": 0,
+        "created_at": "2016-03-12T00:36:08Z",
+        "recorded_at": "1904-01-01T00:00:00Z",
+        "modified_at": "2016-03-12T00:45:46Z",
+        "uuid": "adcd57d2-25b2-434a-9f82-c573c5d8fae7",
+        "height": 1080,
+        "artists": [
+            2
+        ],
+        "width": 1920,
+        "length": 58.584,
+        "user": [
+            "test"
+        ],
+        "original_filename": "20160229_105916.mp4.0.mp4",
+        "file_size": 125082742.0,
+        "is_private": false,
+        "name": "split_mono/20160229_105916.mp4.0.mp4"
+    },
+    "model": "videos.video",
+    "pk": 2
+},
+{
+    "fields": {
+        "uploaded": true,
+        "concert": 1,
+        "views": 0,
+        "created_at": "2016-03-12T00:36:26Z",
+        "recorded_at": "1904-01-01T00:00:00Z",
+        "modified_at": "2016-03-12T00:48:58Z",
+        "uuid": "6b37adc6-b788-4218-9935-b1c2506b1c58",
+        "height": 1080,
+        "artists": [
+            2
+        ],
+        "width": 1920,
+        "length": 31.022,
+        "user": [
+            "test"
+        ],
+        "original_filename": "20160229_110021.mp4.0.mp4",
+        "file_size": 66043060.0,
+        "is_private": false,
+        "name": "split_mono/20160229_110021.mp4.0.mp4"
+    },
+    "model": "videos.video",
+    "pk": 3
+},
+{
+    "fields": {
+        "uploaded": true,
+        "concert": 1,
+        "views": 0,
+        "created_at": "2016-03-12T00:36:47Z",
+        "recorded_at": "1904-01-01T00:00:00Z",
+        "modified_at": "2016-03-12T00:54:30Z",
+        "uuid": "573450c4-daf7-4e08-9bed-6f9874f0d9bf",
+        "height": 1080,
+        "artists": [
+            2
+        ],
+        "width": 1920,
+        "length": 60.024,
+        "user": [
+            "test"
+        ],
+        "original_filename": "IMG_1506.mov.0.mp4",
+        "file_size": 129975936.0,
+        "is_private": false,
+        "name": "split_mono/IMG_1506.mov.0.mp4"
+    },
+    "model": "videos.video",
+    "pk": 4
+},
+{
+    "fields": {
+        "uploaded": true,
+        "concert": 1,
+        "views": 0,
+        "created_at": "2016-03-12T00:37:12Z",
+        "recorded_at": "1904-01-01T00:00:00Z",
+        "modified_at": "2016-03-12T01:00:06Z",
+        "uuid": "70065b49-e94b-421d-a443-861ba8466042",
+        "height": 1080,
+        "artists": [
+            2
+        ],
+        "width": 1920,
+        "length": 60.024,
+        "user": [
+            "test"
+        ],
+        "original_filename": "IMG_1506.mov.1.mp4",
+        "file_size": 130236083.0,
+        "is_private": false,
+        "name": "split_mono/IMG_1506.mov.1.mp4"
+    },
+    "model": "videos.video",
+    "pk": 5
+},
+{
+    "fields": {
+        "uploaded": true,
+        "concert": 1,
+        "views": 0,
+        "created_at": "2016-03-12T00:37:30Z",
+        "recorded_at": "1904-01-01T00:00:00Z",
+        "modified_at": "2016-03-12T01:03:32Z",
+        "uuid": "645321a8-c72d-4890-bb38-336ebc943477",
+        "height": 1080,
+        "artists": [
+            2
+        ],
+        "width": 1920,
+        "length": 31.811,
+        "user": [
+            "test"
+        ],
+        "original_filename": "IMG_1506.mov.2.mp4",
+        "file_size": 72215148.0,
+        "is_private": false,
+        "name": "split_mono/IMG_1506.mov.2.mp4"
+    },
+    "model": "videos.video",
+    "pk": 6
+},
+{
+    "fields": {
+        "uploaded": true,
+        "concert": 1,
+        "views": 0,
+        "created_at": "2016-03-12T00:37:46Z",
+        "recorded_at": "1904-01-01T00:00:00Z",
+        "modified_at": "2016-03-12T01:08:16Z",
+        "uuid": "a93403ee-b5af-4646-9f3c-603d68607679",
+        "height": 1080,
+        "artists": [
+            2
+        ],
+        "width": 1920,
+        "length": 60.024,
+        "user": [
+            "test"
+        ],
+        "original_filename": "IMG_2900.m4v.0.mp4",
+        "file_size": 79768229.0,
+        "is_private": false,
+        "name": "split_mono/IMG_2900.m4v.0.mp4"
+    },
+    "model": "videos.video",
+    "pk": 7
+},
+{
+    "fields": {
+        "uploaded": true,
+        "concert": 1,
+        "views": 0,
+        "created_at": "2016-03-12T00:37:59Z",
+        "recorded_at": "1904-01-01T00:00:00Z",
+        "modified_at": "2016-03-12T02:06:43Z",
+        "uuid": "b31229ba-ac12-4acd-9f0f-28198ab2c9bc",
+        "height": 1080,
+        "artists": [
+            2
+        ],
+        "width": 1920,
+        "length": 60.024,
+        "user": [
+            "test"
+        ],
+        "original_filename": "IMG_2900.m4v.1.mp4",
+        "file_size": 78898203.0,
+        "is_private": false,
+        "name": "split_mono/IMG_2900.m4v.1.mp4"
+    },
+    "model": "videos.video",
+    "pk": 8
+},
+{
+    "fields": {
+        "uploaded": true,
+        "concert": 1,
+        "views": 0,
+        "created_at": "2016-03-12T00:38:13Z",
+        "recorded_at": "1904-01-01T00:00:00Z",
+        "modified_at": "2016-03-12T02:10:58Z",
+        "uuid": "a22fe23c-d8f6-43da-bae7-a0deac40c443",
+        "height": 1080,
+        "artists": [
+            2
+        ],
+        "width": 1920,
+        "length": 31.672,
+        "user": [
+            "test"
+        ],
+        "original_filename": "IMG_2900.m4v.2.mp4",
+        "file_size": 43075621.0,
+        "is_private": false,
+        "name": "split_mono/IMG_2900.m4v.2.mp4"
+    },
+    "model": "videos.video",
+    "pk": 9
+},
+{
+    "fields": {
+        "uploaded": true,
+        "concert": 1,
+        "views": 0,
+        "created_at": "2016-03-12T00:38:39Z",
+        "recorded_at": "1904-01-01T00:00:00Z",
+        "modified_at": "2016-03-12T02:20:15Z",
+        "uuid": "26fbae43-46fe-45fa-aa93-cea87e3c296e",
+        "height": 1080,
+        "artists": [
+            2
+        ],
+        "width": 1920,
+        "length": 60.024,
+        "user": [
+            "test"
+        ],
+        "original_filename": "MVI_4188.mp4.0.mp4",
+        "file_size": 181094614.0,
+        "is_private": false,
+        "name": "split_mono/MVI_4188.mp4.0.mp4"
+    },
+    "model": "videos.video",
+    "pk": 10
+},
+{
+    "fields": {
+        "uploaded": true,
+        "concert": 1,
+        "views": 0,
+        "created_at": "2016-03-12T00:38:57Z",
+        "recorded_at": "1904-01-01T00:00:00Z",
+        "modified_at": "2016-03-12T02:33:02Z",
+        "uuid": "e724f3be-1728-4515-9f3e-6d43d512f232",
+        "height": 1080,
+        "artists": [
+            2
+        ],
+        "width": 1920,
+        "length": 60.024,
+        "user": [
+            "test"
+        ],
+        "original_filename": "MVI_4188.mp4.1.mp4",
+        "file_size": 182429181.0,
+        "is_private": false,
+        "name": "split_mono/MVI_4188.mp4.1.mp4"
+    },
+    "model": "videos.video",
+    "pk": 11
+},
+{
+    "fields": {
+        "uploaded": true,
+        "concert": 1,
+        "views": 0,
+        "created_at": "2016-03-12T00:39:07Z",
+        "recorded_at": "1904-01-01T00:00:00Z",
+        "modified_at": "2016-03-12T02:36:36Z",
+        "uuid": "298c28c6-9983-4673-8a0e-4666e418437f",
+        "height": 1080,
+        "artists": [
+            2
+        ],
+        "width": 1920,
+        "length": 23.986,
+        "user": [
+            "test"
+        ],
+        "original_filename": "MVI_4188.mp4.2.mp4",
+        "file_size": 73545693.0,
+        "is_private": false,
+        "name": "split_mono/MVI_4188.mp4.2.mp4"
+    },
+    "model": "videos.video",
+    "pk": 12
+},
+{
+    "fields": {
+        "uploaded": true,
+        "concert": 2,
+        "views": 0,
+        "created_at": "2016-03-12T00:35:51Z",
+        "recorded_at": "1904-01-01T00:00:00Z",
+        "modified_at": "2016-03-12T00:39:30Z",
+        "uuid": "46324b43-01f3-460c-8da9-dab840b1153b",
+        "height": 1080,
+        "artists": [],
+        "width": 1920,
+        "length": 24.567,
+        "user": [
+            "test"
+        ],
+        "original_filename": "20160229_105847.mp4.0.mp4",
+        "file_size": 52282131.0,
+        "is_private": false,
+        "name": "split_mono/20160229_105847.mp4.0.mp4"
+    },
+    "model": "videos.video",
+    "pk": 13
+},
+{
+    "fields": {
+        "uploaded": true,
+        "concert": 2,
+        "views": 0,
+        "created_at": "2016-03-12T00:36:47Z",
+        "recorded_at": "1904-01-01T00:00:00Z",
+        "modified_at": "2016-03-12T00:54:30Z",
+        "uuid": "573450c4-daf7-4e08-9bed-6f9874f0d9bf",
+        "height": 1080,
+        "artists": [],
+        "width": 1920,
+        "length": 60.024,
+        "user": [
+            "test"
+        ],
+        "original_filename": "IMG_1506.mov.0.mp4",
+        "file_size": 129975936.0,
+        "is_private": false,
+        "name": "split_mono/IMG_1506.mov.0.mp4"
+    },
+    "model": "videos.video",
+    "pk": 14
+},
+{
+    "fields": {
+        "uploaded": true,
+        "concert": 2,
+        "views": 0,
+        "created_at": "2016-03-12T00:37:12Z",
+        "recorded_at": "1904-01-01T00:00:00Z",
+        "modified_at": "2016-03-12T01:00:06Z",
+        "uuid": "70065b49-e94b-421d-a443-861ba8466042",
+        "height": 1080,
+        "artists": [],
+        "width": 1920,
+        "length": 60.024,
+        "user": [
+            "test"
+        ],
+        "original_filename": "IMG_1506.mov.1.mp4",
+        "file_size": 130236083.0,
+        "is_private": false,
+        "name": "split_mono/IMG_1506.mov.1.mp4"
+    },
+    "model": "videos.video",
+    "pk": 15
+},
+{
+    "fields": {
+        "uploaded": true,
+        "concert": 2,
+        "views": 0,
+        "created_at": "2016-03-12T00:37:59Z",
+        "recorded_at": "1904-01-01T00:00:00Z",
+        "modified_at": "2016-03-12T02:06:43Z",
+        "uuid": "b31229ba-ac12-4acd-9f0f-28198ab2c9bc",
+        "height": 1080,
+        "artists": [],
+        "width": 1920,
+        "length": 60.024,
+        "user": [
+            "test"
+        ],
+        "original_filename": "IMG_2900.m4v.1.mp4",
+        "file_size": 78898203.0,
+        "is_private": false,
+        "name": "split_mono/IMG_2900.m4v.1.mp4"
+    },
+    "model": "videos.video",
+    "pk": 16
+},
+{
+    "fields": {
+        "user": [
+            "test"
+        ],
+        "created": "2016-02-04T22:33:24Z"
+    },
+    "model": "authtoken.token",
+    "pk": "1c941bd992167c12cc60440abdbefc174019bdf5"
+}
+]

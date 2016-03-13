@@ -11,3 +11,5 @@ venv/
 secrets/
 secrets.zip
 jamjar/jamjar/settings/prod.py
+
+jamjar/worker.pid
