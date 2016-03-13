@@ -15,7 +15,7 @@ class ConcertSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Concert
-        fields = ('id', 'date', 'venue_place_id', 'venue', 'videos')
+        fields = ('id', 'date', 'venue_place_id', 'venue', 'videos', 'artists')
         read_only_fields = ('id', 'venue', 'videos')
         write_only_fields = ('venue_place_id')
 
