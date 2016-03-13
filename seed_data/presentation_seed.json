@@ -1,11 +1,27 @@
 [
 {
     "fields": {
+        "expire_date": "2016-03-27T19:52:01Z",
+        "session_data": "YTYwOGE3OThjNWNjNWZkZjA1Njg3NWQ0YTQ2MWIxNWEwYTZjNGQwNTp7Il9hdXRoX3VzZXJfaGFzaCI6IjA3MTUwOTJmZjBhMTRmNjU0ZTM2MTkwYmExOTM4NDk1ZDY4NWZmZjEiLCJfYXV0aF91c2VyX2JhY2tlbmQiOiJkamFuZ28uY29udHJpYi5hdXRoLmJhY2tlbmRzLk1vZGVsQmFja2VuZCIsIl9hdXRoX3VzZXJfaWQiOiIzIn0="
+    },
+    "model": "sessions.session",
+    "pk": "0byx9vm6kkc6cck9751u7pmgcntq9xlh"
+},
+{
+    "fields": {
         "expire_date": "2016-02-18T22:33:24Z",
         "session_data": "ZDRjYTY0ZGE2ODkzNzQ2MDVjMDgzOTQ3ZGIyYzkzZGRlYWFiOTFjOTp7Il9hdXRoX3VzZXJfaGFzaCI6IjA3MTUwOTJmZjBhMTRmNjU0ZTM2MTkwYmExOTM4NDk1ZDY4NWZmZjEiLCJfYXV0aF91c2VyX2JhY2tlbmQiOiJkamFuZ28uY29udHJpYi5hdXRoLmJhY2tlbmRzLk1vZGVsQmFja2VuZCIsIl9hdXRoX3VzZXJfaWQiOiIxIn0="
     },
     "model": "sessions.session",
     "pk": "37sup2qhatt6rfembgcszfmfdfmov0td"
+},
+{
+    "fields": {
+        "expire_date": "2016-03-27T20:34:22Z",
+        "session_data": "ZDRjYTY0ZGE2ODkzNzQ2MDVjMDgzOTQ3ZGIyYzkzZGRlYWFiOTFjOTp7Il9hdXRoX3VzZXJfaGFzaCI6IjA3MTUwOTJmZjBhMTRmNjU0ZTM2MTkwYmExOTM4NDk1ZDY4NWZmZjEiLCJfYXV0aF91c2VyX2JhY2tlbmQiOiJkamFuZ28uY29udHJpYi5hdXRoLmJhY2tlbmRzLk1vZGVsQmFja2VuZCIsIl9hdXRoX3VzZXJfaWQiOiIxIn0="
+    },
+    "model": "sessions.session",
+    "pk": "9959zgee3p9yfaoczdc53avnu0abg64x"
 },
 {
     "fields": {
@@ -46,6 +62,14 @@
     },
     "model": "sessions.session",
     "pk": "uduxp4u95ahwtosfx5cw8fcprpu8eie2"
+},
+{
+    "fields": {
+        "expire_date": "2016-03-27T19:51:27Z",
+        "session_data": "ZDRjYTY0ZGE2ODkzNzQ2MDVjMDgzOTQ3ZGIyYzkzZGRlYWFiOTFjOTp7Il9hdXRoX3VzZXJfaGFzaCI6IjA3MTUwOTJmZjBhMTRmNjU0ZTM2MTkwYmExOTM4NDk1ZDY4NWZmZjEiLCJfYXV0aF91c2VyX2JhY2tlbmQiOiJkamFuZ28uY29udHJpYi5hdXRoLmJhY2tlbmRzLk1vZGVsQmFja2VuZCIsIl9hdXRoX3VzZXJfaWQiOiIxIn0="
+    },
+    "model": "sessions.session",
+    "pk": "yzq2aeckuv4w1w89ip1hf1perjy14b4s"
 },
 {
     "fields": {
@@ -877,9 +901,53 @@
 },
 {
     "fields": {
-        "username": "test",
-        "first_name": "Test",
-        "last_name": "User",
+        "username": "ethan",
+        "first_name": "Ethan",
+        "last_name": "Riback",
+        "is_deleted": false,
+        "is_active": true,
+        "created_at": "2016-02-04T22:33:21Z",
+        "first_login": false,
+        "modified_at": "2016-02-04T22:33:21Z",
+        "is_superuser": false,
+        "is_staff": false,
+        "last_login": "2016-03-13T20:34:22Z",
+        "groups": [],
+        "user_permissions": [],
+        "password": "pbkdf2_sha256$20000$ebRpMry1r0CY$Jqybz3J8g09jRrUJDgfNC57r4TdQDy44SGmMoCQ+JtI=",
+        "email": "drewbanin+ethan@gmail.com",
+        "date_joined": "2016-02-04T22:33:21Z"
+    },
+    "model": "users.user",
+    "pk": 1
+},
+{
+    "fields": {
+        "username": "drew",
+        "first_name": "Drew",
+        "last_name": "Banin",
+        "is_deleted": false,
+        "is_active": true,
+        "created_at": "2016-02-04T22:33:21Z",
+        "first_login": false,
+        "modified_at": "2016-02-04T22:33:21Z",
+        "is_superuser": false,
+        "is_staff": false,
+        "last_login": "2016-03-13T19:52:01Z",
+        "groups": [],
+        "user_permissions": [],
+        "password": "pbkdf2_sha256$20000$ebRpMry1r0CY$Jqybz3J8g09jRrUJDgfNC57r4TdQDy44SGmMoCQ+JtI=",
+        "email": "drewbanin+drew@gmail.com",
+        "date_joined": "2016-02-04T22:33:21Z"
+    },
+    "model": "users.user",
+    "pk": 2
+},
+{
+    "fields": {
+        "username": "mark",
+        "first_name": "Mark",
+        "last_name": "Koh",
         "is_deleted": false,
         "is_active": true,
         "created_at": "2016-02-04T22:33:21Z",
@@ -891,11 +959,55 @@
         "groups": [],
         "user_permissions": [],
         "password": "pbkdf2_sha256$20000$ebRpMry1r0CY$Jqybz3J8g09jRrUJDgfNC57r4TdQDy44SGmMoCQ+JtI=",
-        "email": "test@user.com",
+        "email": "drewbanin+mark@gmail.com",
         "date_joined": "2016-02-04T22:33:21Z"
     },
     "model": "users.user",
-    "pk": 1
+    "pk": 3
+},
+{
+    "fields": {
+        "username": "jess",
+        "first_name": "Jess",
+        "last_name": "Eng",
+        "is_deleted": false,
+        "is_active": true,
+        "created_at": "2016-02-04T22:33:21Z",
+        "first_login": false,
+        "modified_at": "2016-02-04T22:33:21Z",
+        "is_superuser": false,
+        "is_staff": false,
+        "last_login": "2016-03-13T00:14:32Z",
+        "groups": [],
+        "user_permissions": [],
+        "password": "pbkdf2_sha256$20000$ebRpMry1r0CY$Jqybz3J8g09jRrUJDgfNC57r4TdQDy44SGmMoCQ+JtI=",
+        "email": "drewbanin+jess@gmail.com",
+        "date_joined": "2016-02-04T22:33:21Z"
+    },
+    "model": "users.user",
+    "pk": 4
+},
+{
+    "fields": {
+        "username": "sanjana",
+        "first_name": "Sanjana",
+        "last_name": "Raj",
+        "is_deleted": false,
+        "is_active": true,
+        "created_at": "2016-02-04T22:33:21Z",
+        "first_login": false,
+        "modified_at": "2016-02-04T22:33:21Z",
+        "is_superuser": false,
+        "is_staff": false,
+        "last_login": "2016-03-13T00:14:32Z",
+        "groups": [],
+        "user_permissions": [],
+        "password": "pbkdf2_sha256$20000$ebRpMry1r0CY$Jqybz3J8g09jRrUJDgfNC57r4TdQDy44SGmMoCQ+JtI=",
+        "email": "drewbanin+sanjana@gmail.com",
+        "date_joined": "2016-02-04T22:33:21Z"
+    },
+    "model": "users.user",
+    "pk": 5
 },
 {
     "fields": {
@@ -904,7 +1016,7 @@
         "token_type": "A",
         "token": "494-a72e62c2b9556204da30",
         "user": [
-            "test"
+            "ethan"
         ],
         "active": true
     },
@@ -1106,7 +1218,7 @@
         "width": 1920,
         "length": 24.567,
         "user": [
-            "test"
+            "ethan"
         ],
         "original_filename": "20160229_105847.mp4.0.mp4",
         "file_size": 52282131.0,
@@ -1132,7 +1244,7 @@
         "width": 1920,
         "length": 58.584,
         "user": [
-            "test"
+            "ethan"
         ],
         "original_filename": "20160229_105916.mp4.0.mp4",
         "file_size": 125082742.0,
@@ -1158,7 +1270,7 @@
         "width": 1920,
         "length": 31.022,
         "user": [
-            "test"
+            "ethan"
         ],
         "original_filename": "20160229_110021.mp4.0.mp4",
         "file_size": 66043060.0,
@@ -1184,7 +1296,7 @@
         "width": 1920,
         "length": 60.024,
         "user": [
-            "test"
+            "ethan"
         ],
         "original_filename": "IMG_1506.mov.0.mp4",
         "file_size": 129975936.0,
@@ -1210,7 +1322,7 @@
         "width": 1920,
         "length": 60.024,
         "user": [
-            "test"
+            "ethan"
         ],
         "original_filename": "IMG_1506.mov.1.mp4",
         "file_size": 130236083.0,
@@ -1236,7 +1348,7 @@
         "width": 1920,
         "length": 31.811,
         "user": [
-            "test"
+            "ethan"
         ],
         "original_filename": "IMG_1506.mov.2.mp4",
         "file_size": 72215148.0,
@@ -1262,7 +1374,7 @@
         "width": 1920,
         "length": 60.024,
         "user": [
-            "test"
+            "ethan"
         ],
         "original_filename": "IMG_2900.m4v.0.mp4",
         "file_size": 79768229.0,
@@ -1288,7 +1400,7 @@
         "width": 1920,
         "length": 60.024,
         "user": [
-            "test"
+            "ethan"
         ],
         "original_filename": "IMG_2900.m4v.1.mp4",
         "file_size": 78898203.0,
@@ -1314,7 +1426,7 @@
         "width": 1920,
         "length": 31.672,
         "user": [
-            "test"
+            "ethan"
         ],
         "original_filename": "IMG_2900.m4v.2.mp4",
         "file_size": 43075621.0,
@@ -1340,7 +1452,7 @@
         "width": 1920,
         "length": 60.024,
         "user": [
-            "test"
+            "ethan"
         ],
         "original_filename": "MVI_4188.mp4.0.mp4",
         "file_size": 181094614.0,
@@ -1366,7 +1478,7 @@
         "width": 1920,
         "length": 60.024,
         "user": [
-            "test"
+            "ethan"
         ],
         "original_filename": "MVI_4188.mp4.1.mp4",
         "file_size": 182429181.0,
@@ -1392,7 +1504,7 @@
         "width": 1920,
         "length": 23.986,
         "user": [
-            "test"
+            "ethan"
         ],
         "original_filename": "MVI_4188.mp4.2.mp4",
         "file_size": 73545693.0,
@@ -1412,16 +1524,18 @@
         "modified_at": "2016-03-12T00:39:30Z",
         "uuid": "46324b43-01f3-460c-8da9-dab840b1153b",
         "height": 1080,
-        "artists": [],
+        "artists": [
+            2
+        ],
         "width": 1920,
         "length": 24.567,
         "user": [
-            "test"
+            "drew"
         ],
         "original_filename": "20160229_105847.mp4.0.mp4",
         "file_size": 52282131.0,
         "is_private": false,
-        "name": "split_mono/20160229_105847.mp4.0.mp4"
+        "name": "DEMO VIDEO 1"
     },
     "model": "videos.video",
     "pk": 13
@@ -1436,16 +1550,18 @@
         "modified_at": "2016-03-12T00:54:30Z",
         "uuid": "573450c4-daf7-4e08-9bed-6f9874f0d9bf",
         "height": 1080,
-        "artists": [],
+        "artists": [
+            2
+        ],
         "width": 1920,
         "length": 60.024,
         "user": [
-            "test"
+            "mark"
         ],
         "original_filename": "IMG_1506.mov.0.mp4",
         "file_size": 129975936.0,
         "is_private": false,
-        "name": "split_mono/IMG_1506.mov.0.mp4"
+        "name": "DEMO VIDEO 2"
     },
     "model": "videos.video",
     "pk": 14
@@ -1460,16 +1576,18 @@
         "modified_at": "2016-03-12T01:00:06Z",
         "uuid": "70065b49-e94b-421d-a443-861ba8466042",
         "height": 1080,
-        "artists": [],
+        "artists": [
+            2
+        ],
         "width": 1920,
         "length": 60.024,
         "user": [
-            "test"
+            "jess"
         ],
         "original_filename": "IMG_1506.mov.1.mp4",
         "file_size": 130236083.0,
         "is_private": false,
-        "name": "split_mono/IMG_1506.mov.1.mp4"
+        "name": "DEMO VIDEO 3"
     },
     "model": "videos.video",
     "pk": 15
@@ -1484,16 +1602,18 @@
         "modified_at": "2016-03-12T02:06:43Z",
         "uuid": "b31229ba-ac12-4acd-9f0f-28198ab2c9bc",
         "height": 1080,
-        "artists": [],
+        "artists": [
+            2
+        ],
         "width": 1920,
         "length": 60.024,
         "user": [
-            "test"
+            "sanjana"
         ],
         "original_filename": "IMG_2900.m4v.1.mp4",
         "file_size": 78898203.0,
         "is_private": false,
-        "name": "split_mono/IMG_2900.m4v.1.mp4"
+        "name": "DEMO VIDEO 4"
     },
     "model": "videos.video",
     "pk": 16
@@ -1501,7 +1621,7 @@
 {
     "fields": {
         "user": [
-            "test"
+            "ethan"
         ],
         "created": "2016-02-04T22:33:24Z"
     },
