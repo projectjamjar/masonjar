@@ -38,7 +38,7 @@ class ConcertGraph(object):
             disjoint_graphs.append({
                 "adjacencies": adjacencies,
                 "count": len(adjacencies),
-                "start_id": id_set.pop() # TODO use first video_id
+                "start_id": sorted(id_set)[0]
             })
 
         return disjoint_graphs
