@@ -69,8 +69,12 @@ clean:
 empty-database: $(MANAGER)
 	python $(MANAGER) flush
 
+# this runs in whatever your JAMJAR_ENV is set to!
 drop-fingerprints:
-	bash database_reset.sh
+	bash database_reset.py
+
+# this only works on localhost for setting up jamjar db/user/etc
+local-database-setup:
 	bash database_setup.sh
 
 fuck:
@@ -83,4 +87,3 @@ present:
 	python database_reset.py
 	python $(MANAGER) loaddata $(PRESENTATION_SEED)
 	python presentation_fingerprints.py
-	# script to move presentation files to prod s3 bucket
