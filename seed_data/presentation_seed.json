@@ -865,18 +865,6 @@
 },
 {
     "fields": {
-        "confidence": 114,
-        "video1": 15,
-        "video2": 14,
-        "created_at": "2016-03-12T00:54:47Z",
-        "modified_at": "2016-03-12T00:54:47Z",
-        "offset": 54.98485
-    },
-    "model": "videos.edge",
-    "pk": 69
-},
-{
-    "fields": {
         "confidence": 54,
         "video1": 16,
         "video2": 15,
