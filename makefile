@@ -80,7 +80,7 @@ fuck:
 
 present:
 	yes 'yes' | python $(MANAGER) flush
-	python database_reset.py
+	#python database_reset.py
 	python $(MANAGER) loaddata $(PRESENTATION_SEED)
-	# TODO : custom seed file w/ good videos
+	python presentation_fingerprints.py
 	# script to move presentation files to prod s3 bucket
