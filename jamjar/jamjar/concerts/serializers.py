@@ -19,6 +19,17 @@ class ConcertSerializer(serializers.ModelSerializer):
         read_only_fields = ('id', 'venue', 'videos')
         write_only_fields = ('venue_place_id')
 
+    def __init__(self, *args, **kwargs):
+        # Pull out expand_concert (defaults to True)
+        self.expand_videos = kwargs.pop('expand_videos', True)
+
+        # Call super's init
+        super(ConcertSerializer, self).__init__(*args, **kwargs)
+
+        # If we don't want to expand videos, remove `videos` from the fields
+        if not self.expand_videos:
+            self.fields.pop('videos',None)
+
     def validate(self, data):
 
         venue_place_id = data.get('venue_place_id')
