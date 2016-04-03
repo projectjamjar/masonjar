@@ -32,6 +32,9 @@ MODEL_SERIALIZERS = {
     User: UserSerializer,
 }
 
+# limit to 10 results per model
+MODEL_RESULT_LIMIT = 10
+
 class SearchResults(BaseView):
 
     """
@@ -179,15 +182,13 @@ class SearchResults(BaseView):
             return None
 
         # how does this work LOL
-        query = reduce(
-            operator.__or__,
-            (reduce(
-                operator.__or__,
-                (Q(**{"%s__icontains" % field_name: token}) for field_name in search_fields)
-            ) for token in tokens),
-        )
 
-        return query
+        token_matches = []
+        for token in tokens:
+            token_match = (Q(**{"%s__icontains" % field_name: token}) for field_name in search_fields)
+            token_matches.append(reduce(operator.__or__, token_match))
+
+        return reduce(operator.__or__, token_matches)
 
 
     def perform_search(self, query_string, model, fields):
@@ -202,6 +203,5 @@ class SearchResults(BaseView):
 
         entry_query = self.build_query(query_string, fields)
 
-        return queryset.filter(entry_query).distinct()
-
+        return queryset.filter(entry_query).distinct()[:MODEL_RESULT_LIMIT]
 
