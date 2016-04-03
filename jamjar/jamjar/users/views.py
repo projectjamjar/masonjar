@@ -11,14 +11,61 @@ class UserProfileView(BaseView):
 
     """
     Description:
-        Given a date and a venue_place_id, get or create a concert for that combonation
-        NOTE: The Date must be in ISO 8601 date format - 'YYYY-mm-dd' (2016-02-15)
+        Given a username (so that we can use the username in the client urls)
+        return the user, their videos, and the concerts for those videos
 
     Request:
         GET /users/:username/
 
     Response:
         The user profile of the specified user
+        {
+          "user": {
+            "id": 3,
+            "username": "mark",
+            "email": "drewbanin+mark@gmail.com",
+            "first_name": "Mark",
+            "last_name": "Koh",
+            "full_name": "Mark Koh"
+          },
+          "videos": [
+            {
+              "id": 14,
+              "name": "DEMO VIDEO 2",
+              "uploaded": true,
+              "uuid": "573450c4-daf7-4e08-9bed-6f9874f0d9bf",
+              ....
+            }
+          ],
+          "concerts": [
+            {
+              "id": 2,
+              "date": "2016-02-29",
+              "venue": {
+                "id": 1,
+                "name": "World Cafe Live",
+                "place_id": "ChIJ7RhuX0_GxokRjL5qFrDINys",
+                ...
+              },
+              "artists": [
+                {
+                  "id": 2,
+                  "name": "OutKast",
+                  "spotify_id": "1G9G7WwrXka3Z1r7aIDjI7",
+                  "genres": [
+                    "hip hop"
+                  ],
+                  "images": [
+                    {
+                        ...
+                    }
+                  ],
+                  "unofficial": false
+                }
+              ]
+            }
+          ]
+        }
     """
 
     @authenticate
@@ -28,8 +75,7 @@ class UserProfileView(BaseView):
         videos = user.videos.all()
 
         # Get a set of all concert ids which the user contributed to
-        concert_ids = set(videos.values_list('concert_id',flat=True))
-        concerts = Concert.objects.filter(id__in=concert_ids)
+        concerts = Concert.objects.filter(videos__user_id=user.id)
 
         user_serializer = UserSerializer(user)
         video_serializer = VideoSerializer(videos, many=True)
