@@ -21,9 +21,15 @@ import jamjar.authentication.views as Auth
 import jamjar.concerts.views as Concerts
 import jamjar.artists.views as Artists
 import jamjar.venues.views as Venues
+import jamjar.search.views as Search
 
 
 urlpatterns = patterns('',
+
+    ########################################
+    # Search Views
+    ########################################
+    url(r'^search/$', Search.SearchResults.as_view()),
 
     ########################################
     # Video Views
