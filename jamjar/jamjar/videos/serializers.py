@@ -8,9 +8,6 @@ import os
 
 class VideoSerializer(serializers.ModelSerializer):
     artists = ArtistSerializer(many=True, read_only=True)
-    # artist_ids = serializers.serializers.ListField(
-    #   child=serializers.CharField()
-    # )
     user = UserSerializer(read_only=True, include_first_login=True)
 
     class Meta:

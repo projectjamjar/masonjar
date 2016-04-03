@@ -12,10 +12,11 @@ class ConcertSerializer(serializers.ModelSerializer):
     venue = VenueSerializer(required=False, read_only=True)
     venue_place_id = serializers.CharField(max_length=100,write_only=True, required=False)
     videos = VideoSerializer(many=True, read_only=True)
+    thumbs = serializers.SerializerMethodField()
 
     class Meta:
         model = Concert
-        fields = ('id', 'date', 'venue_place_id', 'venue', 'videos', 'artists')
+        fields = ('id', 'date', 'venue_place_id', 'venue', 'videos', 'artists','thumbs')
         read_only_fields = ('id', 'venue', 'videos')
         write_only_fields = ('venue_place_id')
 
@@ -70,4 +71,11 @@ class ConcertSerializer(serializers.ModelSerializer):
 
         return concert
 
-    # def update(self, instance, validated_data):
+    def get_thumbs(self,obj):
+        """
+        Return the thumbnails from the first 3 videos in the concert (or all
+        videos if there's < 3)
+        """
+        first_videos = obj.videos.all()[:3]
+        thumbs = [video.thumb_src() for video in first_videos]
+        return thumbs

@@ -55,7 +55,7 @@ class ConcertView(BaseView):
     @authenticate
     def get(self, request, id):
         self.concert = self.get_object_or_404(Concert,pk=id)
-        self.serializer = self.get_serializer(self.concert)
+        self.serializer = self.get_serializer(self.concert,expand_videos=False)
         return self.success_response(self.serializer.data)
 
 
