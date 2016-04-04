@@ -144,7 +144,7 @@ class SearchResults(BaseView):
         query_string = request.GET.get("q", "").strip()
 
         if not query_string:
-            return self.error_response({"error": "Search query is empty"}, 500)
+            return self.error_response("Search query is empty", 400)
 
         results = self.search(query_string)
         return self.success_response(results)
