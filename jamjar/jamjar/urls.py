@@ -22,6 +22,7 @@ import jamjar.concerts.views as Concerts
 import jamjar.artists.views as Artists
 import jamjar.venues.views as Venues
 import jamjar.search.views as Search
+import jamjar.users.views as Users
 
 
 urlpatterns = patterns('',
@@ -54,6 +55,11 @@ urlpatterns = patterns('',
     # Venue Views
     ########################################
     url(r'^venues/search/(?P<search_string>.+)/$', Venues.VenueSearchView.as_view()),
+
+    ########################################
+    # User Views
+    ########################################
+    url(r'^users/(?P<username>.+)/$', Users.UserProfileView.as_view()),
 
     ########################################
     # Auth Views

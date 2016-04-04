@@ -7,8 +7,6 @@ from jamjar.base.views import BaseView, authenticate
 from jamjar.videos.models import Video, Edge
 from jamjar.videos.serializers import VideoSerializer, EdgeSerializer
 
-from django.shortcuts import redirect
-
 from jamjar.tasks.transcode_video import transcode_video
 
 import re
@@ -30,7 +28,7 @@ class VideoList(BaseView):
         Given a video, name, concert_id, and a list of artist spotify_ids, create and upload a video!
 
     Request:
-        POST /artists/
+        POST /videos/
           NOTE: This is Multipart/form data!!!!
           The following fields are expected:
             file: The file itself
@@ -143,14 +141,12 @@ class VideoList(BaseView):
 class VideoDetails(BaseView):
 
     serializer_class = VideoSerializer
+    model = Video
 
     @authenticate
     def get(self, request, id):
-         # Attempt to get the video
-        try:
-            self.video = Video.objects.get(id=id)
-        except:
-            return self.error_response('Video does not exist or you do not have access to this video.', 404)
+        # Attempt to get the video
+        self.video = self.get_object_or_404(self.model, id=id)
 
         # Serialize the result and return it
         self.serializer = self.get_serializer(self.video)
@@ -159,10 +155,7 @@ class VideoDetails(BaseView):
     @authenticate
     def put(self, request, id):
         # Attempt to get the video
-        try:
-            self.video = Video.objects.get(id=id)
-        except:
-            return self.error_response('Video does not exist or you do not have access to this video.', 404)
+        self.video = self.get_object_or_404(self.model, id=id)
 
         # Initialize the serializer with our data
         self.serializer = self.get_serializer(self.video, data=request.data)
@@ -177,11 +170,8 @@ class VideoDetails(BaseView):
 
     @authenticate
     def delete(self, request, id):
-         # Attempt to get the video
-        try:
-            self.video = Video.objects.get(id=id)
-        except:
-            return self.error_response('Video does not exist or you do not have access to this video.', 404)
+        # Attempt to get the video
+        self.video = self.get_object_or_404(self.model, id=id)
 
         # Serialize the result and return it
         self.video.delete()
