@@ -15,23 +15,36 @@ class ConcertSerializer(serializers.ModelSerializer):
     videos = VideoSerializer(many=True, read_only=True)
     thumbs = serializers.SerializerMethodField()
     artists = serializers.SerializerMethodField()
+    graph = serializers.SerializerMethodField()
 
     class Meta:
         model = Concert
-        fields = ('id', 'date', 'venue_place_id', 'venue', 'videos', 'artists','thumbs')
+        fields = ('id',
+            'date',
+            'venue_place_id',
+            'venue',
+            'videos',
+            'artists',
+            'thumbs',
+            'graph'
+        )
         read_only_fields = ('id', 'venue', 'videos')
         write_only_fields = ('venue_place_id')
 
     def __init__(self, *args, **kwargs):
-        # Pull out expand_concert (defaults to True)
-        self.expand_videos = kwargs.pop('expand_videos', True)
+        # Pull out expand_videos (defaults to False)
+        self.expand_videos = kwargs.pop('expand_videos', False)
+        self.include_graph = kwargs.pop('include_graph', False)
 
         # Call super's init
         super(ConcertSerializer, self).__init__(*args, **kwargs)
 
         # If we don't want to expand videos, remove `videos` from the fields
         if not self.expand_videos:
-            self.fields.pop('videos',None)
+            self.fields.pop('videos', None)
+
+        if not self.include_graph:
+            self.fields.pop('graph', None)
 
     def validate(self, data):
 
@@ -86,3 +99,6 @@ class ConcertSerializer(serializers.ModelSerializer):
     def get_artists(self, obj):
         artists = Artist.objects.filter(videos__concert_id=obj.id).distinct()
         return ArtistSerializer(artists, many=True).data
+
+    def get_graph(self, obj):
+        return obj.make_graph()

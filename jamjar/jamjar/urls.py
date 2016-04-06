@@ -43,7 +43,6 @@ urlpatterns = patterns('',
     ########################################
     url(r'^concerts/$', Concerts.ConcertListView.as_view()),
     url(r'^concerts/(?P<id>[0-9]+)/$', Concerts.ConcertDetailView.as_view()),
-    url(r'^concerts/(?P<id>[0-9]+)/graph/$', Concerts.ConcertGraph.as_view()),
 
     ########################################
     # Artist Views

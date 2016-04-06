@@ -5,25 +5,6 @@ from jamjar.concerts.serializers import ConcertSerializer
 
 import datetime
 
-class ConcertGraph(BaseView):
-    serializer_class = ConcertSerializer
-
-    @authenticate
-    def get(self, request, id):
-         # Attempt to get the video
-        try:
-            self.concert = Concert.objects.get(id=id)
-        except:
-            return self.error_response('Concert does not exist or you do not have access to this concert.', 404)
-
-        concert_graph = self.concert.make_graph()
-        resp = {
-            "graph": concert_graph,
-            "concert": ConcertSerializer(self.concert).data
-        }
-
-        return self.success_response(resp)
-
 class ConcertListView(BaseView):
     serializer_class = ConcertSerializer
 
@@ -71,7 +52,7 @@ class ConcertListView(BaseView):
             queryset = queryset.filter(videos__artists__id__in=artist_filters)
 
         # Serialize the requests and return them
-        self.serializer = self.get_serializer(queryset, many=True, expand_videos=False)
+        self.serializer = self.get_serializer(queryset, many=True)
         return self.success_response(self.serializer.data)
 
 
@@ -157,6 +138,6 @@ class ConcertDetailView(BaseView):
     """
     @authenticate
     def get(self, request, id):
-        self.concert = self.get_object_or_404(Concert,pk=id)
-        self.serializer = self.get_serializer(self.concert)
+        self.concert = self.get_object_or_404(Concert, pk=id)
+        self.serializer = self.get_serializer(self.concert, expand_videos=True, include_graph=True)
         return self.success_response(self.serializer.data)
