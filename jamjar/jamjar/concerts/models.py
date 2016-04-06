@@ -2,7 +2,6 @@ from django.db import models
 
 from jamjar.base.models import BaseModel
 from jamjar.videos.models import Edge
-from jamjar.artists.serializers import ArtistSerializer
 
 from concert_graph import ConcertGraph
 
@@ -17,14 +16,3 @@ class Concert(BaseModel):
 
         g = ConcertGraph(concert_edges)
         return g.disjoint_graphs()
-
-    def artists(self):
-        found_artists = []
-        seen_ids = set()
-
-        for video in self.videos.all():
-            for artist in video.artists.all():
-                if artist.id not in seen_ids:
-                  found_artists.append(artist)
-                  seen_ids.add(artist.id)
-        return ArtistSerializer(found_artists, many=True).data

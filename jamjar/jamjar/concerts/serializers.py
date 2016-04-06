@@ -2,7 +2,8 @@ from rest_framework import serializers
 from jamjar.concerts.models import Concert
 from jamjar.venues.models import Venue
 from jamjar.videos.serializers import VideoSerializer
-
+from jamjar.artists.models import Artist
+from jamjar.artists.serializers import ArtistSerializer
 from jamjar.venues.serializers import VenueSerializer
 from jamjar.common.services import GMapService, ServiceError
 
@@ -13,6 +14,7 @@ class ConcertSerializer(serializers.ModelSerializer):
     venue_place_id = serializers.CharField(max_length=100,write_only=True, required=False)
     videos = VideoSerializer(many=True, read_only=True)
     thumbs = serializers.SerializerMethodField()
+    artists = serializers.SerializerMethodField()
 
     class Meta:
         model = Concert
@@ -71,7 +73,7 @@ class ConcertSerializer(serializers.ModelSerializer):
 
         return concert
 
-    def get_thumbs(self,obj):
+    def get_thumbs(self, obj):
         """
         Return the thumbnails from the first 3 videos in the concert (or all
         videos if there's <= 3)
@@ -80,3 +82,7 @@ class ConcertSerializer(serializers.ModelSerializer):
         # import ipdb; ipdb.set_trace()
         thumbs = [video.thumb_src() for video in first_videos if video.thumb_src() is not None]
         return thumbs
+
+    def get_artists(self, obj):
+        artists = Artist.objects.filter(videos__concert_id=obj.id).distinct()
+        return ArtistSerializer(artists, many=True).data

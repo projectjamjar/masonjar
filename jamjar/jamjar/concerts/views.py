@@ -39,27 +39,29 @@ class ConcertListView(BaseView):
         These filters are accepted as query parameters in the GET URL, and are ANDed together.
 
     Request:
-        GET /concerts/?venues=15+24+13&dates=2016-03-28&genres=1+3+6
+        GET /concerts/?venues=15+24+13&dates=2016-03-28&genres=1+3+6&artists=15+22
 
     Response:
         A list of all Concerts
     """
     @authenticate
     def get(self, request):
+        # Our initial queryset is ALL concerts (this could be a lot)!
         queryset = Concert.objects.all()
 
         # Get all the possible filters and split them, making sure we get an
         # empty list if the parameter wasn't passed
-        venue_filters = filter(None,request.GET.get("venues", "").split("+"))
-        date_filters = filter(None,request.GET.get("dates", "").split("+"))
-        genre_filters = filter(None,request.GET.get("genres", "").split("+"))
-        artist_filters = filter(None,request.GET.get("artists", "").split("+"))
+        venue_filters = filter(None, request.GET.get('venues', '').split('+'))
+        date_filters = filter(None, request.GET.get('dates', '').split('+'))
+        genre_filters = filter(None, request.GET.get('genres', '').split('+'))
+        artist_filters = filter(None, request.GET.get('artists', '').split('+'))
 
         if venue_filters:
             queryset = queryset.filter(venue_id__in=venue_filters)
 
         if date_filters:
-            parsed_dates = [datetime.datetime.strptime("2016-03-28","%Y-%m-%d").date() for date in date_filters]
+            # Parse out the dates from this jawn
+            parsed_dates = [datetime.datetime.strptime(date, '%Y-%m-%d').date() for date in date_filters]
             queryset = queryset.filter(date__in=parsed_dates)
 
         if genre_filters:
