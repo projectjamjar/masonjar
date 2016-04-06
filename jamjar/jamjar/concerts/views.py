@@ -22,43 +22,6 @@ class ConcertGraph(BaseView):
 
         return self.success_response(resp)
 
-class ConcertView(BaseView):
-    serializer_class = ConcertSerializer
-
-    """
-    Description:
-        Get a Concert by id
-    Request:
-        GET /concerts/:id/
-    Response:
-        {
-          "id": 1,
-          "date": "2016-02-04",
-          "venue": {
-            "id": 1,
-            "name": "Union Transfer",
-            "place_id": "ChIJPWg_kNXHxokRPXdE7nqMsI4",
-            "unofficial": false,
-            "formatted_address": "1026 Spring Garden St, Philadelphia, PA 19123, United States",
-            "lat": "39.96138760",
-            "lng": "-75.15532360",
-            "utc_offset": -300,
-            "website": "http://www.utphilly.com/",
-            "city": "Philadelphia",
-            "state": "Pennsylvania",
-            "state_short": "PA",
-            "country": "United States",
-            "country_short": "US"
-          }
-        }
-    """
-    @authenticate
-    def get(self, request, id):
-        self.concert = self.get_object_or_404(Concert,pk=id)
-        self.serializer = self.get_serializer(self.concert,expand_videos=False)
-        return self.success_response(self.serializer.data)
-
-
 class ConcertListView(BaseView):
     serializer_class = ConcertSerializer
 
@@ -75,7 +38,7 @@ class ConcertListView(BaseView):
         objects = Concert.objects.all()
 
         # Serialize the requests and return them
-        self.serializer = self.get_serializer(objects, many=True)
+        self.serializer = self.get_serializer(objects, many=True, expand_videos=False)
         return self.success_response(self.serializer.data)
 
 
@@ -127,4 +90,40 @@ class ConcertListView(BaseView):
         except IntegrityError as e:
             return self.error_response(str(e), 400)
 
+        return self.success_response(self.serializer.data)
+
+class ConcertDetailView(BaseView):
+    serializer_class = ConcertSerializer
+
+    """
+    Description:
+        Get a Concert by id
+    Request:
+        GET /concerts/:id/
+    Response:
+        {
+          "id": 1,
+          "date": "2016-02-04",
+          "venue": {
+            "id": 1,
+            "name": "Union Transfer",
+            "place_id": "ChIJPWg_kNXHxokRPXdE7nqMsI4",
+            "unofficial": false,
+            "formatted_address": "1026 Spring Garden St, Philadelphia, PA 19123, United States",
+            "lat": "39.96138760",
+            "lng": "-75.15532360",
+            "utc_offset": -300,
+            "website": "http://www.utphilly.com/",
+            "city": "Philadelphia",
+            "state": "Pennsylvania",
+            "state_short": "PA",
+            "country": "United States",
+            "country_short": "US"
+          }
+        }
+    """
+    @authenticate
+    def get(self, request, id):
+        self.concert = self.get_object_or_404(Concert,pk=id)
+        self.serializer = self.get_serializer(self.concert)
         return self.success_response(self.serializer.data)

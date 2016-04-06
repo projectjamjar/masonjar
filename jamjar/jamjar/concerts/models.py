@@ -2,7 +2,6 @@ from django.db import models
 
 from jamjar.base.models import BaseModel
 from jamjar.videos.models import Edge
-from jamjar.videos.serializers import VideoSerializer
 from jamjar.artists.serializers import ArtistSerializer
 
 from concert_graph import ConcertGraph

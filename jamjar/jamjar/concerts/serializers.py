@@ -74,8 +74,9 @@ class ConcertSerializer(serializers.ModelSerializer):
     def get_thumbs(self,obj):
         """
         Return the thumbnails from the first 3 videos in the concert (or all
-        videos if there's < 3)
+        videos if there's <= 3)
         """
         first_videos = obj.videos.all()[:3]
-        thumbs = [video.thumb_src() for video in first_videos]
+        # import ipdb; ipdb.set_trace()
+        thumbs = [video.thumb_src() for video in first_videos if video.thumb_src() is not None]
         return thumbs
