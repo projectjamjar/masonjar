@@ -4,6 +4,7 @@ from jamjar.users.serializers import UserSerializer
 from jamjar.concerts.models import Concert
 from jamjar.concerts.serializers import ConcertSerializer
 from jamjar.videos.serializers import VideoSerializer
+from jamjar.videos.models import Video
 
 class UserProfileView(BaseView):
     serializer_class = UserSerializer
@@ -72,7 +73,11 @@ class UserProfileView(BaseView):
     def get(self, request, username):
         user = self.get_object_or_404(self.model, username=username)
 
-        videos = user.videos.all()
+        logged_in_user = request.token.user_id
+        if logged_in_user == user.id:
+            videos = Video.public_and_private_objects.filter(user_id=user.id)
+        else:
+            videos = user.videos.all()
 
         # Get a set of all concert ids which the user contributed to
         concerts = Concert.objects.filter(videos__user_id=user.id)

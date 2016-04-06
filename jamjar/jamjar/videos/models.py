@@ -12,6 +12,11 @@ import logging, uuid, os, shutil
 
 import logging; logger = logging.getLogger(__name__)
 
+
+class PublicVideoManager(models.Manager):
+    def get_queryset(self):
+        return super(PublicVideoManager, self).get_queryset().filter(is_private=False)
+
 class Video(BaseModel):
 
     user = models.ForeignKey('users.User', related_name='videos')
@@ -28,6 +33,9 @@ class Video(BaseModel):
     width  = models.IntegerField(default=0)
     height = models.IntegerField(default=0)
     recorded_at = models.DateTimeField(null=True)
+
+    objects = PublicVideoManager()
+    public_and_private_objects = models.Manager()
 
     def get_video_dir(self):
         " Get the local directory for the video (and other temp files) "
@@ -103,12 +111,18 @@ def delete_file(sender, instance, **kwargs):
 
     # TODO: Delete the fingerprints from lilo if there are any FOR THIS VIDEO ID
 
+class PublicEdgeManager(models.Manager):
+    def get_queryset(self):
+        return super(PublicEdgeManager, self).get_queryset().filter(video1__is_private=False, video2__is_private=False)
+
 class Edge(BaseModel):
 
     video1 = models.ForeignKey(Video, related_name='video1', db_index=True)
     video2 = models.ForeignKey(Video, related_name='video2', db_index=True)
     offset     = models.FloatField()
     confidence = models.IntegerField()
+
+    objects = PublicEdgeManager()
 
     @classmethod
     def new(cls, video1_id, video2_id, offset, confidence):
