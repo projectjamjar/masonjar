@@ -3,6 +3,8 @@ from jamjar.base.views import BaseView, authenticate
 from jamjar.concerts.models import Concert
 from jamjar.concerts.serializers import ConcertSerializer
 
+import datetime
+
 class ConcertGraph(BaseView):
     serializer_class = ConcertSerializer
 
@@ -27,18 +29,47 @@ class ConcertListView(BaseView):
 
     """
     Description:
-        Get a list of all Concerts in JamJar (this could be big)
+        Get a list of all Concerts in JamJar filtered by the following attributes:
+        - venues (id)
+        - dates (YYYY-MM-DD format)
+        - genres (id?)
+        - artists (spotify-id?)
+
+        You may pass multiple of each filter, separated with a "+".
+        These filters are accepted as query parameters in the GET URL, and are ANDed together.
+
     Request:
-        GET /concerts/
+        GET /concerts/?venues=15+24+13&dates=2016-03-28&genres=1+3+6
+
     Response:
         A list of all Concerts
     """
     @authenticate
     def get(self, request):
-        objects = Concert.objects.all()
+        queryset = Concert.objects.all()
+
+        # Get all the possible filters and split them, making sure we get an
+        # empty list if the parameter wasn't passed
+        venue_filters = filter(None,request.GET.get("venues", "").split("+"))
+        date_filters = filter(None,request.GET.get("dates", "").split("+"))
+        genre_filters = filter(None,request.GET.get("genres", "").split("+"))
+        artist_filters = filter(None,request.GET.get("artists", "").split("+"))
+
+        if venue_filters:
+            queryset = queryset.filter(venue_id__in=venue_filters)
+
+        if date_filters:
+            parsed_dates = [datetime.datetime.strptime("2016-03-28","%Y-%m-%d").date() for date in date_filters]
+            queryset = queryset.filter(date__in=parsed_dates)
+
+        if genre_filters:
+            queryset = queryset.filter(videos__artists__genres__in=genre_filters)
+
+        if artist_filters:
+            queryset = queryset.filter(videos__artists__id__in=artist_filters)
 
         # Serialize the requests and return them
-        self.serializer = self.get_serializer(objects, many=True, expand_videos=False)
+        self.serializer = self.get_serializer(queryset, many=True, expand_videos=False)
         return self.success_response(self.serializer.data)
 
 
