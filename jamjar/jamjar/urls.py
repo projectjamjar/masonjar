@@ -49,6 +49,7 @@ urlpatterns = patterns('',
     ########################################
     url(r'^artists/search/(?P<search_string>.+)/$', Artists.ArtistSearchView.as_view()),
     url(r'^artists/$', Artists.ArtistListView.as_view()),
+    url(r'^genres/$', Artists.GenreView.as_view()),
 
     ########################################
     # Venue Views

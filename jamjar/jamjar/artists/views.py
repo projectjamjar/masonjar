@@ -1,6 +1,6 @@
 from jamjar.base.views import BaseView, authenticate
-from jamjar.artists.models import Artist
-from jamjar.artists.serializers import ArtistSerializer
+from jamjar.artists.models import Artist, Genre
+from jamjar.artists.serializers import ArtistSerializer, GenreSerializer
 
 class ArtistSearchView(BaseView):
     serializer_class = ArtistSerializer
@@ -98,3 +98,23 @@ class ArtistListView(BaseView):
         self.serializer = self.get_serializer(artists,many=True)
 
         return self.success_response(self.serializer.data)
+
+class GenreView(BaseView):
+    serializer_class = GenreSerializer
+
+    """
+    Description:
+        Given a search string for an artist, search spotify and return the results
+        (To be used for Text Field autocompletion)
+
+    Request:
+        GET /artists/search/:search_string/
+
+    Response:
+        A list of all Artists matching that string
+    """
+    @authenticate
+    def get(self, request):
+        genres = Genre.objects.all()
+        self.serialzier = self.get_serializer(genres, many=True)
+        return self.success_response(self.serialzier.data)

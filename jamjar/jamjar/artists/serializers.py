@@ -11,6 +11,7 @@ class ArtistImageSerializer(serializers.ModelSerializer):
 class GenreSerializer(serializers.ModelSerializer):
     class Meta:
         model = Genre
+        fields = ('id','name')
 
 class ArtistSerializer(serializers.ModelSerializer):
     genres = serializers.SerializerMethodField()
