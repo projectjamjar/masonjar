@@ -3,79 +3,56 @@ from jamjar.base.views import BaseView, authenticate
 from jamjar.concerts.models import Concert
 from jamjar.concerts.serializers import ConcertSerializer
 
-class ConcertGraph(BaseView):
-    serializer_class = ConcertSerializer
-
-    @authenticate
-    def get(self, request, id):
-         # Attempt to get the video
-        try:
-            self.concert = Concert.objects.get(id=id)
-        except:
-            return self.error_response('Concert does not exist or you do not have access to this concert.', 404)
-
-        concert_graph = self.concert.make_graph()
-        resp = {
-            "graph": concert_graph,
-            "concert": ConcertSerializer(self.concert).data
-        }
-
-        return self.success_response(resp)
-
-class ConcertView(BaseView):
-    serializer_class = ConcertSerializer
-
-    """
-    Description:
-        Get a Concert by id
-    Request:
-        GET /concerts/:id/
-    Response:
-        {
-          "id": 1,
-          "date": "2016-02-04",
-          "venue": {
-            "id": 1,
-            "name": "Union Transfer",
-            "place_id": "ChIJPWg_kNXHxokRPXdE7nqMsI4",
-            "unofficial": false,
-            "formatted_address": "1026 Spring Garden St, Philadelphia, PA 19123, United States",
-            "lat": "39.96138760",
-            "lng": "-75.15532360",
-            "utc_offset": -300,
-            "website": "http://www.utphilly.com/",
-            "city": "Philadelphia",
-            "state": "Pennsylvania",
-            "state_short": "PA",
-            "country": "United States",
-            "country_short": "US"
-          }
-        }
-    """
-    @authenticate
-    def get(self, request, id):
-        self.concert = self.get_object_or_404(Concert,pk=id)
-        self.serializer = self.get_serializer(self.concert)
-        return self.success_response(self.serializer.data)
-
+import datetime
 
 class ConcertListView(BaseView):
     serializer_class = ConcertSerializer
 
     """
     Description:
-        Get a list of all Concerts in JamJar (this could be big)
+        Get a list of all Concerts in JamJar filtered by the following attributes:
+        - venues (id)
+        - dates (YYYY-MM-DD format)
+        - genres (id?)
+        - artists (spotify-id?)
+
+        You may pass multiple of each filter, separated with a "+".
+        These filters are accepted as query parameters in the GET URL, and are ANDed together.
+
     Request:
-        GET /concerts/
+        GET /concerts/?venues=15+24+13&dates=2016-03-28&genres=1+3+6&artists=15+22
+
     Response:
         A list of all Concerts
     """
     @authenticate
     def get(self, request):
-        objects = Concert.objects.all()
+        # Our initial queryset is ALL concerts (this could be a lot)!
+        queryset = Concert.objects.all()
+
+        # Get all the possible filters and split them, making sure we get an
+        # empty list if the parameter wasn't passed
+        venue_filters = filter(None, request.GET.get('venues', '').split('+'))
+        date_filters = filter(None, request.GET.get('dates', '').split('+'))
+        genre_filters = filter(None, request.GET.get('genres', '').split('+'))
+        artist_filters = filter(None, request.GET.get('artists', '').split('+'))
+
+        if venue_filters:
+            queryset = queryset.filter(venue_id__in=venue_filters)
+
+        if date_filters:
+            # Parse out the dates from this jawn
+            parsed_dates = [datetime.datetime.strptime(date, '%Y-%m-%d').date() for date in date_filters]
+            queryset = queryset.filter(date__in=parsed_dates)
+
+        if genre_filters:
+            queryset = queryset.filter(videos__artists__genres__in=genre_filters)
+
+        if artist_filters:
+            queryset = queryset.filter(videos__artists__id__in=artist_filters)
 
         # Serialize the requests and return them
-        self.serializer = self.get_serializer(objects, many=True)
+        self.serializer = self.get_serializer(queryset, many=True)
         return self.success_response(self.serializer.data)
 
 
@@ -127,4 +104,40 @@ class ConcertListView(BaseView):
         except IntegrityError as e:
             return self.error_response(str(e), 400)
 
+        return self.success_response(self.serializer.data)
+
+class ConcertDetailView(BaseView):
+    serializer_class = ConcertSerializer
+
+    """
+    Description:
+        Get a Concert by id
+    Request:
+        GET /concerts/:id/
+    Response:
+        {
+          "id": 1,
+          "date": "2016-02-04",
+          "venue": {
+            "id": 1,
+            "name": "Union Transfer",
+            "place_id": "ChIJPWg_kNXHxokRPXdE7nqMsI4",
+            "unofficial": false,
+            "formatted_address": "1026 Spring Garden St, Philadelphia, PA 19123, United States",
+            "lat": "39.96138760",
+            "lng": "-75.15532360",
+            "utc_offset": -300,
+            "website": "http://www.utphilly.com/",
+            "city": "Philadelphia",
+            "state": "Pennsylvania",
+            "state_short": "PA",
+            "country": "United States",
+            "country_short": "US"
+          }
+        }
+    """
+    @authenticate
+    def get(self, request, id):
+        self.concert = self.get_object_or_404(Concert, pk=id)
+        self.serializer = self.get_serializer(self.concert, expand_videos=True, include_graph=True)
         return self.success_response(self.serializer.data)

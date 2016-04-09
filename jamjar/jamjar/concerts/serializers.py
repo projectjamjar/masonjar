@@ -2,7 +2,8 @@ from rest_framework import serializers
 from jamjar.concerts.models import Concert
 from jamjar.venues.models import Venue
 from jamjar.videos.serializers import VideoSerializer
-
+from jamjar.artists.models import Artist
+from jamjar.artists.serializers import ArtistSerializer
 from jamjar.venues.serializers import VenueSerializer
 from jamjar.common.services import GMapService, ServiceError
 
@@ -12,23 +13,38 @@ class ConcertSerializer(serializers.ModelSerializer):
     venue = VenueSerializer(required=False, read_only=True)
     venue_place_id = serializers.CharField(max_length=100,write_only=True, required=False)
     videos = VideoSerializer(many=True, read_only=True)
+    thumbs = serializers.SerializerMethodField()
+    artists = serializers.SerializerMethodField()
+    graph = serializers.SerializerMethodField()
 
     class Meta:
         model = Concert
-        fields = ('id', 'date', 'venue_place_id', 'venue', 'videos', 'artists')
+        fields = ('id',
+            'date',
+            'venue_place_id',
+            'venue',
+            'videos',
+            'artists',
+            'thumbs',
+            'graph'
+        )
         read_only_fields = ('id', 'venue', 'videos')
         write_only_fields = ('venue_place_id')
 
     def __init__(self, *args, **kwargs):
-        # Pull out expand_concert (defaults to True)
-        self.expand_videos = kwargs.pop('expand_videos', True)
+        # Pull out expand_videos (defaults to False)
+        self.expand_videos = kwargs.pop('expand_videos', False)
+        self.include_graph = kwargs.pop('include_graph', False)
 
         # Call super's init
         super(ConcertSerializer, self).__init__(*args, **kwargs)
 
         # If we don't want to expand videos, remove `videos` from the fields
         if not self.expand_videos:
-            self.fields.pop('videos',None)
+            self.fields.pop('videos', None)
+
+        if not self.include_graph:
+            self.fields.pop('graph', None)
 
     def validate(self, data):
 
@@ -70,4 +86,19 @@ class ConcertSerializer(serializers.ModelSerializer):
 
         return concert
 
-    # def update(self, instance, validated_data):
+    def get_thumbs(self, obj):
+        """
+        Return the thumbnails from the first 3 videos in the concert (or all
+        videos if there's <= 3)
+        """
+        first_videos = obj.videos.all()[:3]
+        # import ipdb; ipdb.set_trace()
+        thumbs = [video.thumb_src() for video in first_videos if video.thumb_src() is not None]
+        return thumbs
+
+    def get_artists(self, obj):
+        artists = Artist.objects.filter(videos__concert_id=obj.id).distinct()
+        return ArtistSerializer(artists, many=True).data
+
+    def get_graph(self, obj):
+        return obj.make_graph()
