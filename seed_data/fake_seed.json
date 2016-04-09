@@ -1,0 +1,6241 @@
+[
+{
+    "fields": {
+        "expire_date": "2016-04-20T23:35:50Z",
+        "session_data": "ZDA5ZTZiNjY1MGRhN2Q1NjBkNGM0ZDA4NDA1Mzg1MGFkNWU4MDI1OTp7Il9hdXRoX3VzZXJfaGFzaCI6IjA3MTUwOTJmZjBhMTRmNjU0ZTM2MTkwYmExOTM4NDk1ZDY4NWZmZjEiLCJfYXV0aF91c2VyX2JhY2tlbmQiOiJkamFuZ28uY29udHJpYi5hdXRoLmJhY2tlbmRzLk1vZGVsQmFja2VuZCIsIl9hdXRoX3VzZXJfaWQiOiIyIn0="
+    },
+    "model": "sessions.session",
+    "pk": "2zmo4c9lk2sbzlgythiyvj3rhyc17oco"
+},
+{
+    "fields": {
+        "confidence": 106,
+        "video1": 13,
+        "video2": 124,
+        "created_at": "2016-04-06T23:34:15Z",
+        "modified_at": "2016-04-06T23:34:15Z",
+        "offset": -17.0
+    },
+    "model": "videos.edge",
+    "pk": 1
+},
+{
+    "fields": {
+        "confidence": 58,
+        "video1": 181,
+        "video2": 30,
+        "created_at": "2016-04-06T23:34:15Z",
+        "modified_at": "2016-04-06T23:34:15Z",
+        "offset": 95.0
+    },
+    "model": "videos.edge",
+    "pk": 2
+},
+{
+    "fields": {
+        "confidence": 76,
+        "video1": 68,
+        "video2": 48,
+        "created_at": "2016-04-06T23:34:15Z",
+        "modified_at": "2016-04-06T23:34:15Z",
+        "offset": -102.0
+    },
+    "model": "videos.edge",
+    "pk": 3
+},
+{
+    "fields": {
+        "confidence": 123,
+        "video1": 94,
+        "video2": 134,
+        "created_at": "2016-04-06T23:34:15Z",
+        "modified_at": "2016-04-06T23:34:15Z",
+        "offset": -50.0
+    },
+    "model": "videos.edge",
+    "pk": 4
+},
+{
+    "fields": {
+        "confidence": 3,
+        "video1": 31,
+        "video2": 137,
+        "created_at": "2016-04-06T23:34:15Z",
+        "modified_at": "2016-04-06T23:34:15Z",
+        "offset": -57.0
+    },
+    "model": "videos.edge",
+    "pk": 5
+},
+{
+    "fields": {
+        "confidence": 56,
+        "video1": 176,
+        "video2": 129,
+        "created_at": "2016-04-06T23:34:15Z",
+        "modified_at": "2016-04-06T23:34:15Z",
+        "offset": 23.0
+    },
+    "model": "videos.edge",
+    "pk": 6
+},
+{
+    "fields": {
+        "confidence": 9,
+        "video1": 97,
+        "video2": 152,
+        "created_at": "2016-04-06T23:34:15Z",
+        "modified_at": "2016-04-06T23:34:15Z",
+        "offset": 126.0
+    },
+    "model": "videos.edge",
+    "pk": 7
+},
+{
+    "fields": {
+        "confidence": 0,
+        "video1": 6,
+        "video2": 129,
+        "created_at": "2016-04-06T23:34:16Z",
+        "modified_at": "2016-04-06T23:34:16Z",
+        "offset": 45.0
+    },
+    "model": "videos.edge",
+    "pk": 8
+},
+{
+    "fields": {
+        "confidence": 36,
+        "video1": 19,
+        "video2": 185,
+        "created_at": "2016-04-06T23:34:16Z",
+        "modified_at": "2016-04-06T23:34:16Z",
+        "offset": 80.0
+    },
+    "model": "videos.edge",
+    "pk": 9
+},
+{
+    "fields": {
+        "confidence": 94,
+        "video1": 127,
+        "video2": 184,
+        "created_at": "2016-04-06T23:34:16Z",
+        "modified_at": "2016-04-06T23:34:16Z",
+        "offset": 111.0
+    },
+    "model": "videos.edge",
+    "pk": 10
+},
+{
+    "fields": {
+        "confidence": 20,
+        "video1": 190,
+        "video2": 11,
+        "created_at": "2016-04-06T23:34:16Z",
+        "modified_at": "2016-04-06T23:34:16Z",
+        "offset": 95.0
+    },
+    "model": "videos.edge",
+    "pk": 11
+},
+{
+    "fields": {
+        "confidence": 103,
+        "video1": 97,
+        "video2": 139,
+        "created_at": "2016-04-06T23:34:16Z",
+        "modified_at": "2016-04-06T23:34:16Z",
+        "offset": 84.0
+    },
+    "model": "videos.edge",
+    "pk": 12
+},
+{
+    "fields": {
+        "confidence": 93,
+        "video1": 118,
+        "video2": 193,
+        "created_at": "2016-04-06T23:34:16Z",
+        "modified_at": "2016-04-06T23:34:16Z",
+        "offset": -44.0
+    },
+    "model": "videos.edge",
+    "pk": 13
+},
+{
+    "fields": {
+        "confidence": 96,
+        "video1": 124,
+        "video2": 122,
+        "created_at": "2016-04-06T23:34:16Z",
+        "modified_at": "2016-04-06T23:34:16Z",
+        "offset": -83.0
+    },
+    "model": "videos.edge",
+    "pk": 14
+},
+{
+    "fields": {
+        "confidence": 102,
+        "video1": 68,
+        "video2": 119,
+        "created_at": "2016-04-06T23:34:16Z",
+        "modified_at": "2016-04-06T23:34:16Z",
+        "offset": -89.0
+    },
+    "model": "videos.edge",
+    "pk": 15
+},
+{
+    "fields": {
+        "confidence": 13,
+        "video1": 15,
+        "video2": 189,
+        "created_at": "2016-04-06T23:34:16Z",
+        "modified_at": "2016-04-06T23:34:16Z",
+        "offset": 111.0
+    },
+    "model": "videos.edge",
+    "pk": 16
+},
+{
+    "fields": {
+        "confidence": 64,
+        "video1": 84,
+        "video2": 137,
+        "created_at": "2016-04-06T23:34:16Z",
+        "modified_at": "2016-04-06T23:34:16Z",
+        "offset": -26.0
+    },
+    "model": "videos.edge",
+    "pk": 17
+},
+{
+    "fields": {
+        "confidence": 114,
+        "video1": 75,
+        "video2": 193,
+        "created_at": "2016-04-06T23:34:16Z",
+        "modified_at": "2016-04-06T23:34:16Z",
+        "offset": 113.0
+    },
+    "model": "videos.edge",
+    "pk": 18
+},
+{
+    "fields": {
+        "confidence": 109,
+        "video1": 49,
+        "video2": 90,
+        "created_at": "2016-04-06T23:34:16Z",
+        "modified_at": "2016-04-06T23:34:16Z",
+        "offset": -93.0
+    },
+    "model": "videos.edge",
+    "pk": 19
+},
+{
+    "fields": {
+        "confidence": 68,
+        "video1": 146,
+        "video2": 94,
+        "created_at": "2016-04-06T23:34:16Z",
+        "modified_at": "2016-04-06T23:34:16Z",
+        "offset": -51.0
+    },
+    "model": "videos.edge",
+    "pk": 20
+},
+{
+    "fields": {
+        "confidence": 62,
+        "video1": 103,
+        "video2": 43,
+        "created_at": "2016-04-06T23:34:16Z",
+        "modified_at": "2016-04-06T23:34:16Z",
+        "offset": 6.0
+    },
+    "model": "videos.edge",
+    "pk": 21
+},
+{
+    "fields": {
+        "confidence": 75,
+        "video1": 128,
+        "video2": 160,
+        "created_at": "2016-04-06T23:34:16Z",
+        "modified_at": "2016-04-06T23:34:16Z",
+        "offset": 32.0
+    },
+    "model": "videos.edge",
+    "pk": 22
+},
+{
+    "fields": {
+        "confidence": 65,
+        "video1": 119,
+        "video2": 13,
+        "created_at": "2016-04-06T23:34:16Z",
+        "modified_at": "2016-04-06T23:34:16Z",
+        "offset": -107.0
+    },
+    "model": "videos.edge",
+    "pk": 23
+},
+{
+    "fields": {
+        "confidence": 126,
+        "video1": 94,
+        "video2": 200,
+        "created_at": "2016-04-06T23:34:16Z",
+        "modified_at": "2016-04-06T23:34:16Z",
+        "offset": 20.0
+    },
+    "model": "videos.edge",
+    "pk": 24
+},
+{
+    "fields": {
+        "confidence": 125,
+        "video1": 187,
+        "video2": 37,
+        "created_at": "2016-04-06T23:34:16Z",
+        "modified_at": "2016-04-06T23:34:16Z",
+        "offset": 83.0
+    },
+    "model": "videos.edge",
+    "pk": 25
+},
+{
+    "fields": {
+        "confidence": 53,
+        "video1": 119,
+        "video2": 99,
+        "created_at": "2016-04-06T23:34:17Z",
+        "modified_at": "2016-04-06T23:34:17Z",
+        "offset": -49.0
+    },
+    "model": "videos.edge",
+    "pk": 26
+},
+{
+    "fields": {
+        "confidence": 90,
+        "video1": 49,
+        "video2": 112,
+        "created_at": "2016-04-06T23:34:17Z",
+        "modified_at": "2016-04-06T23:34:17Z",
+        "offset": -21.0
+    },
+    "model": "videos.edge",
+    "pk": 27
+},
+{
+    "fields": {
+        "confidence": 86,
+        "video1": 61,
+        "video2": 142,
+        "created_at": "2016-04-06T23:34:17Z",
+        "modified_at": "2016-04-06T23:34:17Z",
+        "offset": 4.0
+    },
+    "model": "videos.edge",
+    "pk": 28
+},
+{
+    "fields": {
+        "confidence": 115,
+        "video1": 103,
+        "video2": 174,
+        "created_at": "2016-04-06T23:34:17Z",
+        "modified_at": "2016-04-06T23:34:17Z",
+        "offset": -95.0
+    },
+    "model": "videos.edge",
+    "pk": 29
+},
+{
+    "fields": {
+        "confidence": 81,
+        "video1": 142,
+        "video2": 200,
+        "created_at": "2016-04-06T23:34:17Z",
+        "modified_at": "2016-04-06T23:34:17Z",
+        "offset": 23.0
+    },
+    "model": "videos.edge",
+    "pk": 30
+},
+{
+    "fields": {
+        "confidence": 20,
+        "video1": 46,
+        "video2": 193,
+        "created_at": "2016-04-06T23:34:17Z",
+        "modified_at": "2016-04-06T23:34:17Z",
+        "offset": -97.0
+    },
+    "model": "videos.edge",
+    "pk": 31
+},
+{
+    "fields": {
+        "confidence": 124,
+        "video1": 100,
+        "video2": 190,
+        "created_at": "2016-04-06T23:34:17Z",
+        "modified_at": "2016-04-06T23:34:17Z",
+        "offset": -8.0
+    },
+    "model": "videos.edge",
+    "pk": 32
+},
+{
+    "fields": {
+        "confidence": 126,
+        "video1": 160,
+        "video2": 19,
+        "created_at": "2016-04-06T23:34:17Z",
+        "modified_at": "2016-04-06T23:34:17Z",
+        "offset": 52.0
+    },
+    "model": "videos.edge",
+    "pk": 33
+},
+{
+    "fields": {
+        "confidence": 1,
+        "video1": 60,
+        "video2": 97,
+        "created_at": "2016-04-06T23:34:17Z",
+        "modified_at": "2016-04-06T23:34:17Z",
+        "offset": 93.0
+    },
+    "model": "videos.edge",
+    "pk": 34
+},
+{
+    "fields": {
+        "confidence": 14,
+        "video1": 193,
+        "video2": 137,
+        "created_at": "2016-04-06T23:34:17Z",
+        "modified_at": "2016-04-06T23:34:17Z",
+        "offset": 55.0
+    },
+    "model": "videos.edge",
+    "pk": 35
+},
+{
+    "fields": {
+        "confidence": 123,
+        "video1": 158,
+        "video2": 174,
+        "created_at": "2016-04-06T23:34:17Z",
+        "modified_at": "2016-04-06T23:34:17Z",
+        "offset": -126.0
+    },
+    "model": "videos.edge",
+    "pk": 36
+},
+{
+    "fields": {
+        "confidence": 96,
+        "video1": 128,
+        "video2": 75,
+        "created_at": "2016-04-06T23:34:17Z",
+        "modified_at": "2016-04-06T23:34:17Z",
+        "offset": -111.0
+    },
+    "model": "videos.edge",
+    "pk": 37
+},
+{
+    "fields": {
+        "confidence": 49,
+        "video1": 37,
+        "video2": 7,
+        "created_at": "2016-04-06T23:34:17Z",
+        "modified_at": "2016-04-06T23:34:17Z",
+        "offset": 60.0
+    },
+    "model": "videos.edge",
+    "pk": 38
+},
+{
+    "fields": {
+        "confidence": 24,
+        "video1": 109,
+        "video2": 124,
+        "created_at": "2016-04-06T23:34:17Z",
+        "modified_at": "2016-04-06T23:34:17Z",
+        "offset": 25.0
+    },
+    "model": "videos.edge",
+    "pk": 39
+},
+{
+    "fields": {
+        "confidence": 88,
+        "video1": 166,
+        "video2": 154,
+        "created_at": "2016-04-06T23:34:17Z",
+        "modified_at": "2016-04-06T23:34:17Z",
+        "offset": -77.0
+    },
+    "model": "videos.edge",
+    "pk": 40
+},
+{
+    "fields": {
+        "confidence": 86,
+        "video1": 94,
+        "video2": 8,
+        "created_at": "2016-04-06T23:34:17Z",
+        "modified_at": "2016-04-06T23:34:17Z",
+        "offset": -41.0
+    },
+    "model": "videos.edge",
+    "pk": 41
+},
+{
+    "fields": {
+        "confidence": 127,
+        "video1": 127,
+        "video2": 94,
+        "created_at": "2016-04-06T23:34:17Z",
+        "modified_at": "2016-04-06T23:34:17Z",
+        "offset": 99.0
+    },
+    "model": "videos.edge",
+    "pk": 42
+},
+{
+    "fields": {
+        "confidence": 28,
+        "video1": 27,
+        "video2": 60,
+        "created_at": "2016-04-06T23:34:17Z",
+        "modified_at": "2016-04-06T23:34:17Z",
+        "offset": 60.0
+    },
+    "model": "videos.edge",
+    "pk": 43
+},
+{
+    "fields": {
+        "confidence": 72,
+        "video1": 85,
+        "video2": 68,
+        "created_at": "2016-04-06T23:34:17Z",
+        "modified_at": "2016-04-06T23:34:17Z",
+        "offset": 127.0
+    },
+    "model": "videos.edge",
+    "pk": 44
+},
+{
+    "fields": {
+        "confidence": 49,
+        "video1": 28,
+        "video2": 43,
+        "created_at": "2016-04-06T23:34:17Z",
+        "modified_at": "2016-04-06T23:34:17Z",
+        "offset": 40.0
+    },
+    "model": "videos.edge",
+    "pk": 45
+},
+{
+    "fields": {
+        "confidence": 1,
+        "video1": 104,
+        "video2": 83,
+        "created_at": "2016-04-06T23:34:17Z",
+        "modified_at": "2016-04-06T23:34:17Z",
+        "offset": 20.0
+    },
+    "model": "videos.edge",
+    "pk": 46
+},
+{
+    "fields": {
+        "confidence": 14,
+        "video1": 102,
+        "video2": 90,
+        "created_at": "2016-04-06T23:34:17Z",
+        "modified_at": "2016-04-06T23:34:17Z",
+        "offset": 30.0
+    },
+    "model": "videos.edge",
+    "pk": 47
+},
+{
+    "fields": {
+        "confidence": 58,
+        "video1": 94,
+        "video2": 142,
+        "created_at": "2016-04-06T23:34:17Z",
+        "modified_at": "2016-04-06T23:34:17Z",
+        "offset": 37.0
+    },
+    "model": "videos.edge",
+    "pk": 48
+},
+{
+    "fields": {
+        "confidence": 81,
+        "video1": 15,
+        "video2": 146,
+        "created_at": "2016-04-06T23:34:17Z",
+        "modified_at": "2016-04-06T23:34:17Z",
+        "offset": 116.0
+    },
+    "model": "videos.edge",
+    "pk": 49
+},
+{
+    "fields": {
+        "confidence": 71,
+        "video1": 142,
+        "video2": 166,
+        "created_at": "2016-04-06T23:34:17Z",
+        "modified_at": "2016-04-06T23:34:17Z",
+        "offset": 57.0
+    },
+    "model": "videos.edge",
+    "pk": 50
+},
+{
+    "fields": {
+        "confidence": 68,
+        "video1": 151,
+        "video2": 10,
+        "created_at": "2016-04-06T23:34:17Z",
+        "modified_at": "2016-04-06T23:34:17Z",
+        "offset": -116.0
+    },
+    "model": "videos.edge",
+    "pk": 51
+},
+{
+    "fields": {
+        "confidence": 102,
+        "video1": 49,
+        "video2": 118,
+        "created_at": "2016-04-06T23:34:17Z",
+        "modified_at": "2016-04-06T23:34:17Z",
+        "offset": 87.0
+    },
+    "model": "videos.edge",
+    "pk": 52
+},
+{
+    "fields": {
+        "confidence": 15,
+        "video1": 146,
+        "video2": 44,
+        "created_at": "2016-04-06T23:34:17Z",
+        "modified_at": "2016-04-06T23:34:17Z",
+        "offset": 18.0
+    },
+    "model": "videos.edge",
+    "pk": 53
+},
+{
+    "fields": {
+        "confidence": 56,
+        "video1": 99,
+        "video2": 119,
+        "created_at": "2016-04-06T23:34:17Z",
+        "modified_at": "2016-04-06T23:34:17Z",
+        "offset": 85.0
+    },
+    "model": "videos.edge",
+    "pk": 54
+},
+{
+    "fields": {
+        "confidence": 85,
+        "video1": 87,
+        "video2": 44,
+        "created_at": "2016-04-06T23:34:17Z",
+        "modified_at": "2016-04-06T23:34:17Z",
+        "offset": 13.0
+    },
+    "model": "videos.edge",
+    "pk": 55
+},
+{
+    "fields": {
+        "confidence": 64,
+        "video1": 44,
+        "video2": 36,
+        "created_at": "2016-04-06T23:34:17Z",
+        "modified_at": "2016-04-06T23:34:17Z",
+        "offset": -88.0
+    },
+    "model": "videos.edge",
+    "pk": 56
+},
+{
+    "fields": {
+        "confidence": 1,
+        "video1": 4,
+        "video2": 185,
+        "created_at": "2016-04-06T23:34:17Z",
+        "modified_at": "2016-04-06T23:34:17Z",
+        "offset": 92.0
+    },
+    "model": "videos.edge",
+    "pk": 57
+},
+{
+    "fields": {
+        "confidence": 16,
+        "video1": 84,
+        "video2": 47,
+        "created_at": "2016-04-06T23:34:17Z",
+        "modified_at": "2016-04-06T23:34:17Z",
+        "offset": -31.0
+    },
+    "model": "videos.edge",
+    "pk": 58
+},
+{
+    "fields": {
+        "confidence": 23,
+        "video1": 7,
+        "video2": 61,
+        "created_at": "2016-04-06T23:34:17Z",
+        "modified_at": "2016-04-06T23:34:17Z",
+        "offset": 122.0
+    },
+    "model": "videos.edge",
+    "pk": 59
+},
+{
+    "fields": {
+        "confidence": 57,
+        "video1": 102,
+        "video2": 12,
+        "created_at": "2016-04-06T23:34:18Z",
+        "modified_at": "2016-04-06T23:34:18Z",
+        "offset": -11.0
+    },
+    "model": "videos.edge",
+    "pk": 60
+},
+{
+    "fields": {
+        "confidence": 76,
+        "video1": 71,
+        "video2": 30,
+        "created_at": "2016-04-06T23:34:18Z",
+        "modified_at": "2016-04-06T23:34:18Z",
+        "offset": 41.0
+    },
+    "model": "videos.edge",
+    "pk": 61
+},
+{
+    "fields": {
+        "confidence": 84,
+        "video1": 183,
+        "video2": 6,
+        "created_at": "2016-04-06T23:34:18Z",
+        "modified_at": "2016-04-06T23:34:18Z",
+        "offset": 4.0
+    },
+    "model": "videos.edge",
+    "pk": 62
+},
+{
+    "fields": {
+        "confidence": 2,
+        "video1": 36,
+        "video2": 100,
+        "created_at": "2016-04-06T23:34:18Z",
+        "modified_at": "2016-04-06T23:34:18Z",
+        "offset": 105.0
+    },
+    "model": "videos.edge",
+    "pk": 63
+},
+{
+    "fields": {
+        "confidence": 101,
+        "video1": 29,
+        "video2": 139,
+        "created_at": "2016-04-06T23:34:18Z",
+        "modified_at": "2016-04-06T23:34:18Z",
+        "offset": 69.0
+    },
+    "model": "videos.edge",
+    "pk": 64
+},
+{
+    "fields": {
+        "confidence": 85,
+        "video1": 104,
+        "video2": 143,
+        "created_at": "2016-04-06T23:34:18Z",
+        "modified_at": "2016-04-06T23:34:18Z",
+        "offset": -99.0
+    },
+    "model": "videos.edge",
+    "pk": 65
+},
+{
+    "fields": {
+        "confidence": 25,
+        "video1": 200,
+        "video2": 112,
+        "created_at": "2016-04-06T23:34:18Z",
+        "modified_at": "2016-04-06T23:34:18Z",
+        "offset": 119.0
+    },
+    "model": "videos.edge",
+    "pk": 66
+},
+{
+    "fields": {
+        "confidence": 29,
+        "video1": 31,
+        "video2": 152,
+        "created_at": "2016-04-06T23:34:18Z",
+        "modified_at": "2016-04-06T23:34:18Z",
+        "offset": -110.0
+    },
+    "model": "videos.edge",
+    "pk": 67
+},
+{
+    "fields": {
+        "confidence": 18,
+        "video1": 68,
+        "video2": 103,
+        "created_at": "2016-04-06T23:34:18Z",
+        "modified_at": "2016-04-06T23:34:18Z",
+        "offset": -43.0
+    },
+    "model": "videos.edge",
+    "pk": 68
+},
+{
+    "fields": {
+        "confidence": 13,
+        "video1": 12,
+        "video2": 130,
+        "created_at": "2016-04-06T23:34:18Z",
+        "modified_at": "2016-04-06T23:34:18Z",
+        "offset": -31.0
+    },
+    "model": "videos.edge",
+    "pk": 69
+},
+{
+    "fields": {
+        "confidence": 96,
+        "video1": 43,
+        "video2": 71,
+        "created_at": "2016-04-06T23:34:18Z",
+        "modified_at": "2016-04-06T23:34:18Z",
+        "offset": 62.0
+    },
+    "model": "videos.edge",
+    "pk": 70
+},
+{
+    "fields": {
+        "confidence": 92,
+        "video1": 188,
+        "video2": 65,
+        "created_at": "2016-04-06T23:34:18Z",
+        "modified_at": "2016-04-06T23:34:18Z",
+        "offset": 24.0
+    },
+    "model": "videos.edge",
+    "pk": 71
+},
+{
+    "fields": {
+        "confidence": 119,
+        "video1": 188,
+        "video2": 12,
+        "created_at": "2016-04-06T23:34:18Z",
+        "modified_at": "2016-04-06T23:34:18Z",
+        "offset": -114.0
+    },
+    "model": "videos.edge",
+    "pk": 72
+},
+{
+    "fields": {
+        "confidence": 38,
+        "video1": 74,
+        "video2": 147,
+        "created_at": "2016-04-06T23:34:18Z",
+        "modified_at": "2016-04-06T23:34:18Z",
+        "offset": -87.0
+    },
+    "model": "videos.edge",
+    "pk": 73
+},
+{
+    "fields": {
+        "confidence": 8,
+        "video1": 100,
+        "video2": 146,
+        "created_at": "2016-04-06T23:34:18Z",
+        "modified_at": "2016-04-06T23:34:18Z",
+        "offset": 104.0
+    },
+    "model": "videos.edge",
+    "pk": 74
+},
+{
+    "fields": {
+        "confidence": 24,
+        "video1": 41,
+        "video2": 49,
+        "created_at": "2016-04-06T23:34:18Z",
+        "modified_at": "2016-04-06T23:34:18Z",
+        "offset": -120.0
+    },
+    "model": "videos.edge",
+    "pk": 75
+},
+{
+    "fields": {
+        "confidence": 40,
+        "video1": 174,
+        "video2": 41,
+        "created_at": "2016-04-06T23:34:18Z",
+        "modified_at": "2016-04-06T23:34:18Z",
+        "offset": -56.0
+    },
+    "model": "videos.edge",
+    "pk": 76
+},
+{
+    "fields": {
+        "confidence": 92,
+        "video1": 100,
+        "video2": 32,
+        "created_at": "2016-04-06T23:34:18Z",
+        "modified_at": "2016-04-06T23:34:18Z",
+        "offset": 126.0
+    },
+    "model": "videos.edge",
+    "pk": 77
+},
+{
+    "fields": {
+        "confidence": 117,
+        "video1": 181,
+        "video2": 63,
+        "created_at": "2016-04-06T23:34:18Z",
+        "modified_at": "2016-04-06T23:34:18Z",
+        "offset": 3.0
+    },
+    "model": "videos.edge",
+    "pk": 78
+},
+{
+    "fields": {
+        "confidence": 29,
+        "video1": 97,
+        "video2": 18,
+        "created_at": "2016-04-06T23:34:18Z",
+        "modified_at": "2016-04-06T23:34:18Z",
+        "offset": 16.0
+    },
+    "model": "videos.edge",
+    "pk": 79
+},
+{
+    "fields": {
+        "confidence": 64,
+        "video1": 143,
+        "video2": 112,
+        "created_at": "2016-04-06T23:34:18Z",
+        "modified_at": "2016-04-06T23:34:18Z",
+        "offset": 8.0
+    },
+    "model": "videos.edge",
+    "pk": 80
+},
+{
+    "fields": {
+        "confidence": 95,
+        "video1": 151,
+        "video2": 94,
+        "created_at": "2016-04-06T23:34:18Z",
+        "modified_at": "2016-04-06T23:34:18Z",
+        "offset": 99.0
+    },
+    "model": "videos.edge",
+    "pk": 81
+},
+{
+    "fields": {
+        "confidence": 72,
+        "video1": 109,
+        "video2": 166,
+        "created_at": "2016-04-06T23:34:18Z",
+        "modified_at": "2016-04-06T23:34:18Z",
+        "offset": -49.0
+    },
+    "model": "videos.edge",
+    "pk": 82
+},
+{
+    "fields": {
+        "confidence": 28,
+        "video1": 84,
+        "video2": 76,
+        "created_at": "2016-04-06T23:34:18Z",
+        "modified_at": "2016-04-06T23:34:18Z",
+        "offset": 41.0
+    },
+    "model": "videos.edge",
+    "pk": 83
+},
+{
+    "fields": {
+        "confidence": 92,
+        "video1": 146,
+        "video2": 109,
+        "created_at": "2016-04-06T23:34:18Z",
+        "modified_at": "2016-04-06T23:34:18Z",
+        "offset": 13.0
+    },
+    "model": "videos.edge",
+    "pk": 84
+},
+{
+    "fields": {
+        "confidence": 21,
+        "video1": 56,
+        "video2": 44,
+        "created_at": "2016-04-06T23:34:18Z",
+        "modified_at": "2016-04-06T23:34:18Z",
+        "offset": -56.0
+    },
+    "model": "videos.edge",
+    "pk": 85
+},
+{
+    "fields": {
+        "confidence": 65,
+        "video1": 29,
+        "video2": 65,
+        "created_at": "2016-04-06T23:34:18Z",
+        "modified_at": "2016-04-06T23:34:18Z",
+        "offset": 117.0
+    },
+    "model": "videos.edge",
+    "pk": 86
+},
+{
+    "fields": {
+        "confidence": 41,
+        "video1": 29,
+        "video2": 188,
+        "created_at": "2016-04-06T23:34:18Z",
+        "modified_at": "2016-04-06T23:34:18Z",
+        "offset": 118.0
+    },
+    "model": "videos.edge",
+    "pk": 87
+},
+{
+    "fields": {
+        "confidence": 18,
+        "video1": 159,
+        "video2": 170,
+        "created_at": "2016-04-06T23:34:18Z",
+        "modified_at": "2016-04-06T23:34:18Z",
+        "offset": -119.0
+    },
+    "model": "videos.edge",
+    "pk": 88
+},
+{
+    "fields": {
+        "confidence": 57,
+        "video1": 102,
+        "video2": 57,
+        "created_at": "2016-04-06T23:34:18Z",
+        "modified_at": "2016-04-06T23:34:18Z",
+        "offset": 77.0
+    },
+    "model": "videos.edge",
+    "pk": 89
+},
+{
+    "fields": {
+        "confidence": 54,
+        "video1": 97,
+        "video2": 44,
+        "created_at": "2016-04-06T23:34:18Z",
+        "modified_at": "2016-04-06T23:34:18Z",
+        "offset": 13.0
+    },
+    "model": "videos.edge",
+    "pk": 90
+},
+{
+    "fields": {
+        "confidence": 34,
+        "video1": 139,
+        "video2": 154,
+        "created_at": "2016-04-06T23:34:18Z",
+        "modified_at": "2016-04-06T23:34:18Z",
+        "offset": 86.0
+    },
+    "model": "videos.edge",
+    "pk": 91
+},
+{
+    "fields": {
+        "confidence": 74,
+        "video1": 136,
+        "video2": 72,
+        "created_at": "2016-04-06T23:34:18Z",
+        "modified_at": "2016-04-06T23:34:18Z",
+        "offset": 19.0
+    },
+    "model": "videos.edge",
+    "pk": 92
+},
+{
+    "fields": {
+        "confidence": 40,
+        "video1": 100,
+        "video2": 4,
+        "created_at": "2016-04-06T23:34:18Z",
+        "modified_at": "2016-04-06T23:34:18Z",
+        "offset": 8.0
+    },
+    "model": "videos.edge",
+    "pk": 93
+},
+{
+    "fields": {
+        "confidence": 78,
+        "video1": 40,
+        "video2": 74,
+        "created_at": "2016-04-06T23:34:18Z",
+        "modified_at": "2016-04-06T23:34:18Z",
+        "offset": 2.0
+    },
+    "model": "videos.edge",
+    "pk": 94
+},
+{
+    "fields": {
+        "confidence": 14,
+        "video1": 74,
+        "video2": 105,
+        "created_at": "2016-04-06T23:34:18Z",
+        "modified_at": "2016-04-06T23:34:18Z",
+        "offset": 6.0
+    },
+    "model": "videos.edge",
+    "pk": 95
+},
+{
+    "fields": {
+        "confidence": 68,
+        "video1": 63,
+        "video2": 97,
+        "created_at": "2016-04-06T23:34:19Z",
+        "modified_at": "2016-04-06T23:34:19Z",
+        "offset": 104.0
+    },
+    "model": "videos.edge",
+    "pk": 96
+},
+{
+    "fields": {
+        "confidence": 67,
+        "video1": 40,
+        "video2": 29,
+        "created_at": "2016-04-06T23:34:19Z",
+        "modified_at": "2016-04-06T23:34:19Z",
+        "offset": -83.0
+    },
+    "model": "videos.edge",
+    "pk": 97
+},
+{
+    "fields": {
+        "confidence": 32,
+        "video1": 71,
+        "video2": 160,
+        "created_at": "2016-04-06T23:34:19Z",
+        "modified_at": "2016-04-06T23:34:19Z",
+        "offset": -70.0
+    },
+    "model": "videos.edge",
+    "pk": 98
+},
+{
+    "fields": {
+        "confidence": 47,
+        "video1": 10,
+        "video2": 104,
+        "created_at": "2016-04-06T23:34:19Z",
+        "modified_at": "2016-04-06T23:34:19Z",
+        "offset": -102.0
+    },
+    "model": "videos.edge",
+    "pk": 99
+},
+{
+    "fields": {
+        "confidence": 4,
+        "video1": 27,
+        "video2": 98,
+        "created_at": "2016-04-06T23:34:19Z",
+        "modified_at": "2016-04-06T23:34:19Z",
+        "offset": 64.0
+    },
+    "model": "videos.edge",
+    "pk": 100
+},
+{
+    "fields": {
+        "confidence": 36,
+        "video1": 8,
+        "video2": 18,
+        "created_at": "2016-04-06T23:34:19Z",
+        "modified_at": "2016-04-06T23:34:19Z",
+        "offset": 2.0
+    },
+    "model": "videos.edge",
+    "pk": 101
+},
+{
+    "fields": {
+        "confidence": 23,
+        "video1": 6,
+        "video2": 143,
+        "created_at": "2016-04-06T23:34:19Z",
+        "modified_at": "2016-04-06T23:34:19Z",
+        "offset": -81.0
+    },
+    "model": "videos.edge",
+    "pk": 102
+},
+{
+    "fields": {
+        "confidence": 20,
+        "video1": 157,
+        "video2": 12,
+        "created_at": "2016-04-06T23:34:19Z",
+        "modified_at": "2016-04-06T23:34:19Z",
+        "offset": 60.0
+    },
+    "model": "videos.edge",
+    "pk": 103
+},
+{
+    "fields": {
+        "confidence": 11,
+        "video1": 65,
+        "video2": 60,
+        "created_at": "2016-04-06T23:34:19Z",
+        "modified_at": "2016-04-06T23:34:19Z",
+        "offset": -39.0
+    },
+    "model": "videos.edge",
+    "pk": 104
+},
+{
+    "fields": {
+        "confidence": 88,
+        "video1": 72,
+        "video2": 159,
+        "created_at": "2016-04-06T23:34:19Z",
+        "modified_at": "2016-04-06T23:34:19Z",
+        "offset": -41.0
+    },
+    "model": "videos.edge",
+    "pk": 105
+},
+{
+    "fields": {
+        "confidence": 81,
+        "video1": 119,
+        "video2": 151,
+        "created_at": "2016-04-06T23:34:19Z",
+        "modified_at": "2016-04-06T23:34:19Z",
+        "offset": -74.0
+    },
+    "model": "videos.edge",
+    "pk": 106
+},
+{
+    "fields": {
+        "confidence": 62,
+        "video1": 18,
+        "video2": 132,
+        "created_at": "2016-04-06T23:34:19Z",
+        "modified_at": "2016-04-06T23:34:19Z",
+        "offset": -50.0
+    },
+    "model": "videos.edge",
+    "pk": 107
+},
+{
+    "fields": {
+        "confidence": 65,
+        "video1": 69,
+        "video2": 143,
+        "created_at": "2016-04-06T23:34:19Z",
+        "modified_at": "2016-04-06T23:34:19Z",
+        "offset": 72.0
+    },
+    "model": "videos.edge",
+    "pk": 108
+},
+{
+    "fields": {
+        "confidence": 31,
+        "video1": 151,
+        "video2": 136,
+        "created_at": "2016-04-06T23:34:19Z",
+        "modified_at": "2016-04-06T23:34:19Z",
+        "offset": 75.0
+    },
+    "model": "videos.edge",
+    "pk": 109
+},
+{
+    "fields": {
+        "confidence": 75,
+        "video1": 48,
+        "video2": 151,
+        "created_at": "2016-04-06T23:34:19Z",
+        "modified_at": "2016-04-06T23:34:19Z",
+        "offset": -103.0
+    },
+    "model": "videos.edge",
+    "pk": 110
+},
+{
+    "fields": {
+        "confidence": 109,
+        "video1": 7,
+        "video2": 69,
+        "created_at": "2016-04-06T23:34:19Z",
+        "modified_at": "2016-04-06T23:34:19Z",
+        "offset": -25.0
+    },
+    "model": "videos.edge",
+    "pk": 111
+},
+{
+    "fields": {
+        "confidence": 43,
+        "video1": 30,
+        "video2": 185,
+        "created_at": "2016-04-06T23:34:19Z",
+        "modified_at": "2016-04-06T23:34:19Z",
+        "offset": -70.0
+    },
+    "model": "videos.edge",
+    "pk": 112
+},
+{
+    "fields": {
+        "confidence": 34,
+        "video1": 69,
+        "video2": 36,
+        "created_at": "2016-04-06T23:34:19Z",
+        "modified_at": "2016-04-06T23:34:19Z",
+        "offset": -98.0
+    },
+    "model": "videos.edge",
+    "pk": 113
+},
+{
+    "fields": {
+        "confidence": 109,
+        "video1": 67,
+        "video2": 135,
+        "created_at": "2016-04-06T23:34:19Z",
+        "modified_at": "2016-04-06T23:34:19Z",
+        "offset": -14.0
+    },
+    "model": "videos.edge",
+    "pk": 114
+},
+{
+    "fields": {
+        "confidence": 79,
+        "video1": 137,
+        "video2": 32,
+        "created_at": "2016-04-06T23:34:19Z",
+        "modified_at": "2016-04-06T23:34:19Z",
+        "offset": 88.0
+    },
+    "model": "videos.edge",
+    "pk": 115
+},
+{
+    "fields": {
+        "confidence": 20,
+        "video1": 193,
+        "video2": 19,
+        "created_at": "2016-04-06T23:34:19Z",
+        "modified_at": "2016-04-06T23:34:19Z",
+        "offset": 32.0
+    },
+    "model": "videos.edge",
+    "pk": 116
+},
+{
+    "fields": {
+        "confidence": 125,
+        "video1": 71,
+        "video2": 37,
+        "created_at": "2016-04-06T23:34:19Z",
+        "modified_at": "2016-04-06T23:34:19Z",
+        "offset": -11.0
+    },
+    "model": "videos.edge",
+    "pk": 117
+},
+{
+    "fields": {
+        "confidence": 48,
+        "video1": 71,
+        "video2": 190,
+        "created_at": "2016-04-06T23:34:19Z",
+        "modified_at": "2016-04-06T23:34:19Z",
+        "offset": 81.0
+    },
+    "model": "videos.edge",
+    "pk": 118
+},
+{
+    "fields": {
+        "confidence": 105,
+        "video1": 107,
+        "video2": 31,
+        "created_at": "2016-04-06T23:34:19Z",
+        "modified_at": "2016-04-06T23:34:19Z",
+        "offset": 107.0
+    },
+    "model": "videos.edge",
+    "pk": 119
+},
+{
+    "fields": {
+        "confidence": 6,
+        "video1": 176,
+        "video2": 43,
+        "created_at": "2016-04-06T23:34:19Z",
+        "modified_at": "2016-04-06T23:34:19Z",
+        "offset": 102.0
+    },
+    "model": "videos.edge",
+    "pk": 120
+},
+{
+    "fields": {
+        "confidence": 111,
+        "video1": 56,
+        "video2": 10,
+        "created_at": "2016-04-06T23:34:19Z",
+        "modified_at": "2016-04-06T23:34:19Z",
+        "offset": 36.0
+    },
+    "model": "videos.edge",
+    "pk": 121
+},
+{
+    "fields": {
+        "confidence": 27,
+        "video1": 70,
+        "video2": 84,
+        "created_at": "2016-04-06T23:34:19Z",
+        "modified_at": "2016-04-06T23:34:19Z",
+        "offset": -47.0
+    },
+    "model": "videos.edge",
+    "pk": 122
+},
+{
+    "fields": {
+        "confidence": 3,
+        "video1": 63,
+        "video2": 109,
+        "created_at": "2016-04-06T23:34:19Z",
+        "modified_at": "2016-04-06T23:34:19Z",
+        "offset": -109.0
+    },
+    "model": "videos.edge",
+    "pk": 123
+},
+{
+    "fields": {
+        "confidence": 69,
+        "video1": 112,
+        "video2": 46,
+        "created_at": "2016-04-06T23:34:19Z",
+        "modified_at": "2016-04-06T23:34:19Z",
+        "offset": -57.0
+    },
+    "model": "videos.edge",
+    "pk": 124
+},
+{
+    "fields": {
+        "confidence": 20,
+        "video1": 136,
+        "video2": 63,
+        "created_at": "2016-04-06T23:34:19Z",
+        "modified_at": "2016-04-06T23:34:19Z",
+        "offset": -92.0
+    },
+    "model": "videos.edge",
+    "pk": 125
+},
+{
+    "fields": {
+        "confidence": 72,
+        "video1": 32,
+        "video2": 129,
+        "created_at": "2016-04-06T23:34:20Z",
+        "modified_at": "2016-04-06T23:34:20Z",
+        "offset": 55.0
+    },
+    "model": "videos.edge",
+    "pk": 126
+},
+{
+    "fields": {
+        "confidence": 56,
+        "video1": 109,
+        "video2": 190,
+        "created_at": "2016-04-06T23:34:20Z",
+        "modified_at": "2016-04-06T23:34:20Z",
+        "offset": 59.0
+    },
+    "model": "videos.edge",
+    "pk": 127
+},
+{
+    "fields": {
+        "confidence": 45,
+        "video1": 85,
+        "video2": 60,
+        "created_at": "2016-04-06T23:34:20Z",
+        "modified_at": "2016-04-06T23:34:20Z",
+        "offset": 32.0
+    },
+    "model": "videos.edge",
+    "pk": 128
+},
+{
+    "fields": {
+        "confidence": 39,
+        "video1": 69,
+        "video2": 190,
+        "created_at": "2016-04-06T23:34:20Z",
+        "modified_at": "2016-04-06T23:34:20Z",
+        "offset": -12.0
+    },
+    "model": "videos.edge",
+    "pk": 129
+},
+{
+    "fields": {
+        "confidence": 24,
+        "video1": 57,
+        "video2": 193,
+        "created_at": "2016-04-06T23:34:20Z",
+        "modified_at": "2016-04-06T23:34:20Z",
+        "offset": 84.0
+    },
+    "model": "videos.edge",
+    "pk": 130
+},
+{
+    "fields": {
+        "confidence": 20,
+        "video1": 188,
+        "video2": 107,
+        "created_at": "2016-04-06T23:34:20Z",
+        "modified_at": "2016-04-06T23:34:20Z",
+        "offset": -2.0
+    },
+    "model": "videos.edge",
+    "pk": 131
+},
+{
+    "fields": {
+        "confidence": 113,
+        "video1": 7,
+        "video2": 98,
+        "created_at": "2016-04-06T23:34:20Z",
+        "modified_at": "2016-04-06T23:34:20Z",
+        "offset": -71.0
+    },
+    "model": "videos.edge",
+    "pk": 132
+},
+{
+    "fields": {
+        "confidence": 9,
+        "video1": 107,
+        "video2": 152,
+        "created_at": "2016-04-06T23:34:20Z",
+        "modified_at": "2016-04-06T23:34:20Z",
+        "offset": -115.0
+    },
+    "model": "videos.edge",
+    "pk": 133
+},
+{
+    "fields": {
+        "confidence": 109,
+        "video1": 83,
+        "video2": 104,
+        "created_at": "2016-04-06T23:34:20Z",
+        "modified_at": "2016-04-06T23:34:20Z",
+        "offset": -47.0
+    },
+    "model": "videos.edge",
+    "pk": 134
+},
+{
+    "fields": {
+        "confidence": 1,
+        "video1": 127,
+        "video2": 97,
+        "created_at": "2016-04-06T23:34:20Z",
+        "modified_at": "2016-04-06T23:34:20Z",
+        "offset": -113.0
+    },
+    "model": "videos.edge",
+    "pk": 135
+},
+{
+    "fields": {
+        "confidence": 68,
+        "video1": 7,
+        "video2": 132,
+        "created_at": "2016-04-06T23:34:20Z",
+        "modified_at": "2016-04-06T23:34:20Z",
+        "offset": -108.0
+    },
+    "model": "videos.edge",
+    "pk": 136
+},
+{
+    "fields": {
+        "confidence": 77,
+        "video1": 6,
+        "video2": 152,
+        "created_at": "2016-04-06T23:34:20Z",
+        "modified_at": "2016-04-06T23:34:20Z",
+        "offset": 67.0
+    },
+    "model": "videos.edge",
+    "pk": 137
+},
+{
+    "fields": {
+        "confidence": 42,
+        "video1": 60,
+        "video2": 128,
+        "created_at": "2016-04-06T23:34:20Z",
+        "modified_at": "2016-04-06T23:34:20Z",
+        "offset": 1.0
+    },
+    "model": "videos.edge",
+    "pk": 138
+},
+{
+    "fields": {
+        "confidence": 86,
+        "video1": 174,
+        "video2": 127,
+        "created_at": "2016-04-06T23:34:20Z",
+        "modified_at": "2016-04-06T23:34:20Z",
+        "offset": -73.0
+    },
+    "model": "videos.edge",
+    "pk": 139
+},
+{
+    "fields": {
+        "confidence": 119,
+        "video1": 41,
+        "video2": 130,
+        "created_at": "2016-04-06T23:34:20Z",
+        "modified_at": "2016-04-06T23:34:20Z",
+        "offset": 6.0
+    },
+    "model": "videos.edge",
+    "pk": 140
+},
+{
+    "fields": {
+        "confidence": 32,
+        "video1": 16,
+        "video2": 6,
+        "created_at": "2016-04-06T23:34:20Z",
+        "modified_at": "2016-04-06T23:34:20Z",
+        "offset": -66.0
+    },
+    "model": "videos.edge",
+    "pk": 141
+},
+{
+    "fields": {
+        "confidence": 41,
+        "video1": 61,
+        "video2": 48,
+        "created_at": "2016-04-06T23:34:20Z",
+        "modified_at": "2016-04-06T23:34:20Z",
+        "offset": -42.0
+    },
+    "model": "videos.edge",
+    "pk": 142
+},
+{
+    "fields": {
+        "confidence": 55,
+        "video1": 34,
+        "video2": 105,
+        "created_at": "2016-04-06T23:34:20Z",
+        "modified_at": "2016-04-06T23:34:20Z",
+        "offset": 28.0
+    },
+    "model": "videos.edge",
+    "pk": 143
+},
+{
+    "fields": {
+        "confidence": 97,
+        "video1": 37,
+        "video2": 128,
+        "created_at": "2016-04-06T23:34:20Z",
+        "modified_at": "2016-04-06T23:34:20Z",
+        "offset": 107.0
+    },
+    "model": "videos.edge",
+    "pk": 144
+},
+{
+    "fields": {
+        "confidence": 60,
+        "video1": 5,
+        "video2": 61,
+        "created_at": "2016-04-06T23:34:20Z",
+        "modified_at": "2016-04-06T23:34:20Z",
+        "offset": 114.0
+    },
+    "model": "videos.edge",
+    "pk": 145
+},
+{
+    "fields": {
+        "confidence": 45,
+        "video1": 12,
+        "video2": 84,
+        "created_at": "2016-04-06T23:34:20Z",
+        "modified_at": "2016-04-06T23:34:20Z",
+        "offset": -51.0
+    },
+    "model": "videos.edge",
+    "pk": 146
+},
+{
+    "fields": {
+        "confidence": 90,
+        "video1": 30,
+        "video2": 190,
+        "created_at": "2016-04-06T23:34:20Z",
+        "modified_at": "2016-04-06T23:34:20Z",
+        "offset": -21.0
+    },
+    "model": "videos.edge",
+    "pk": 147
+},
+{
+    "fields": {
+        "confidence": 66,
+        "video1": 185,
+        "video2": 94,
+        "created_at": "2016-04-06T23:34:20Z",
+        "modified_at": "2016-04-06T23:34:20Z",
+        "offset": -55.0
+    },
+    "model": "videos.edge",
+    "pk": 148
+},
+{
+    "fields": {
+        "confidence": 81,
+        "video1": 5,
+        "video2": 142,
+        "created_at": "2016-04-06T23:34:20Z",
+        "modified_at": "2016-04-06T23:34:20Z",
+        "offset": 40.0
+    },
+    "model": "videos.edge",
+    "pk": 149
+},
+{
+    "fields": {
+        "confidence": 110,
+        "video1": 13,
+        "video2": 97,
+        "created_at": "2016-04-06T23:34:20Z",
+        "modified_at": "2016-04-06T23:34:20Z",
+        "offset": -10.0
+    },
+    "model": "videos.edge",
+    "pk": 150
+},
+{
+    "fields": {
+        "confidence": 25,
+        "video1": 147,
+        "video2": 200,
+        "created_at": "2016-04-06T23:34:20Z",
+        "modified_at": "2016-04-06T23:34:20Z",
+        "offset": 35.0
+    },
+    "model": "videos.edge",
+    "pk": 151
+},
+{
+    "fields": {
+        "confidence": 66,
+        "video1": 5,
+        "video2": 136,
+        "created_at": "2016-04-06T23:34:20Z",
+        "modified_at": "2016-04-06T23:34:20Z",
+        "offset": -41.0
+    },
+    "model": "videos.edge",
+    "pk": 152
+},
+{
+    "fields": {
+        "confidence": 47,
+        "video1": 132,
+        "video2": 13,
+        "created_at": "2016-04-06T23:34:20Z",
+        "modified_at": "2016-04-06T23:34:20Z",
+        "offset": -97.0
+    },
+    "model": "videos.edge",
+    "pk": 153
+},
+{
+    "fields": {
+        "confidence": 100,
+        "video1": 128,
+        "video2": 103,
+        "created_at": "2016-04-06T23:34:20Z",
+        "modified_at": "2016-04-06T23:34:20Z",
+        "offset": 49.0
+    },
+    "model": "videos.edge",
+    "pk": 154
+},
+{
+    "fields": {
+        "confidence": 120,
+        "video1": 41,
+        "video2": 128,
+        "created_at": "2016-04-06T23:34:20Z",
+        "modified_at": "2016-04-06T23:34:20Z",
+        "offset": 31.0
+    },
+    "model": "videos.edge",
+    "pk": 155
+},
+{
+    "fields": {
+        "confidence": 113,
+        "video1": 75,
+        "video2": 159,
+        "created_at": "2016-04-06T23:34:20Z",
+        "modified_at": "2016-04-06T23:34:20Z",
+        "offset": 91.0
+    },
+    "model": "videos.edge",
+    "pk": 156
+},
+{
+    "fields": {
+        "confidence": 113,
+        "video1": 85,
+        "video2": 63,
+        "created_at": "2016-04-06T23:34:21Z",
+        "modified_at": "2016-04-06T23:34:21Z",
+        "offset": 12.0
+    },
+    "model": "videos.edge",
+    "pk": 157
+},
+{
+    "fields": {
+        "confidence": 23,
+        "video1": 181,
+        "video2": 103,
+        "created_at": "2016-04-06T23:34:21Z",
+        "modified_at": "2016-04-06T23:34:21Z",
+        "offset": -67.0
+    },
+    "model": "videos.edge",
+    "pk": 158
+},
+{
+    "fields": {
+        "confidence": 30,
+        "video1": 185,
+        "video2": 94,
+        "created_at": "2016-04-06T23:34:21Z",
+        "modified_at": "2016-04-06T23:34:21Z",
+        "offset": 75.0
+    },
+    "model": "videos.edge",
+    "pk": 159
+},
+{
+    "fields": {
+        "confidence": 95,
+        "video1": 188,
+        "video2": 143,
+        "created_at": "2016-04-06T23:34:21Z",
+        "modified_at": "2016-04-06T23:34:21Z",
+        "offset": 14.0
+    },
+    "model": "videos.edge",
+    "pk": 160
+},
+{
+    "fields": {
+        "confidence": 52,
+        "video1": 152,
+        "video2": 109,
+        "created_at": "2016-04-06T23:34:21Z",
+        "modified_at": "2016-04-06T23:34:21Z",
+        "offset": -51.0
+    },
+    "model": "videos.edge",
+    "pk": 161
+},
+{
+    "fields": {
+        "confidence": 11,
+        "video1": 71,
+        "video2": 7,
+        "created_at": "2016-04-06T23:34:21Z",
+        "modified_at": "2016-04-06T23:34:21Z",
+        "offset": -83.0
+    },
+    "model": "videos.edge",
+    "pk": 162
+},
+{
+    "fields": {
+        "confidence": 76,
+        "video1": 170,
+        "video2": 134,
+        "created_at": "2016-04-06T23:34:21Z",
+        "modified_at": "2016-04-06T23:34:21Z",
+        "offset": 101.0
+    },
+    "model": "videos.edge",
+    "pk": 163
+},
+{
+    "fields": {
+        "confidence": 60,
+        "video1": 102,
+        "video2": 49,
+        "created_at": "2016-04-06T23:34:21Z",
+        "modified_at": "2016-04-06T23:34:21Z",
+        "offset": 118.0
+    },
+    "model": "videos.edge",
+    "pk": 164
+},
+{
+    "fields": {
+        "confidence": 17,
+        "video1": 18,
+        "video2": 31,
+        "created_at": "2016-04-06T23:34:21Z",
+        "modified_at": "2016-04-06T23:34:21Z",
+        "offset": 22.0
+    },
+    "model": "videos.edge",
+    "pk": 165
+},
+{
+    "fields": {
+        "confidence": 83,
+        "video1": 193,
+        "video2": 49,
+        "created_at": "2016-04-06T23:34:21Z",
+        "modified_at": "2016-04-06T23:34:21Z",
+        "offset": -75.0
+    },
+    "model": "videos.edge",
+    "pk": 166
+},
+{
+    "fields": {
+        "confidence": 7,
+        "video1": 136,
+        "video2": 183,
+        "created_at": "2016-04-06T23:34:21Z",
+        "modified_at": "2016-04-06T23:34:21Z",
+        "offset": -3.0
+    },
+    "model": "videos.edge",
+    "pk": 167
+},
+{
+    "fields": {
+        "confidence": 19,
+        "video1": 16,
+        "video2": 189,
+        "created_at": "2016-04-06T23:34:21Z",
+        "modified_at": "2016-04-06T23:34:21Z",
+        "offset": 66.0
+    },
+    "model": "videos.edge",
+    "pk": 168
+},
+{
+    "fields": {
+        "confidence": 105,
+        "video1": 189,
+        "video2": 11,
+        "created_at": "2016-04-06T23:34:21Z",
+        "modified_at": "2016-04-06T23:34:21Z",
+        "offset": -122.0
+    },
+    "model": "videos.edge",
+    "pk": 169
+},
+{
+    "fields": {
+        "confidence": 49,
+        "video1": 61,
+        "video2": 176,
+        "created_at": "2016-04-06T23:34:21Z",
+        "modified_at": "2016-04-06T23:34:21Z",
+        "offset": -106.0
+    },
+    "model": "videos.edge",
+    "pk": 170
+},
+{
+    "fields": {
+        "confidence": 11,
+        "video1": 189,
+        "video2": 72,
+        "created_at": "2016-04-06T23:34:21Z",
+        "modified_at": "2016-04-06T23:34:21Z",
+        "offset": 42.0
+    },
+    "model": "videos.edge",
+    "pk": 171
+},
+{
+    "fields": {
+        "confidence": 44,
+        "video1": 85,
+        "video2": 15,
+        "created_at": "2016-04-06T23:34:21Z",
+        "modified_at": "2016-04-06T23:34:21Z",
+        "offset": 65.0
+    },
+    "model": "videos.edge",
+    "pk": 172
+},
+{
+    "fields": {
+        "confidence": 95,
+        "video1": 102,
+        "video2": 67,
+        "created_at": "2016-04-06T23:34:21Z",
+        "modified_at": "2016-04-06T23:34:21Z",
+        "offset": 24.0
+    },
+    "model": "videos.edge",
+    "pk": 173
+},
+{
+    "fields": {
+        "confidence": 118,
+        "video1": 6,
+        "video2": 7,
+        "created_at": "2016-04-06T23:34:21Z",
+        "modified_at": "2016-04-06T23:34:21Z",
+        "offset": -84.0
+    },
+    "model": "videos.edge",
+    "pk": 174
+},
+{
+    "fields": {
+        "confidence": 126,
+        "video1": 160,
+        "video2": 4,
+        "created_at": "2016-04-06T23:34:21Z",
+        "modified_at": "2016-04-06T23:34:21Z",
+        "offset": 118.0
+    },
+    "model": "videos.edge",
+    "pk": 175
+},
+{
+    "fields": {
+        "confidence": 118,
+        "video1": 29,
+        "video2": 118,
+        "created_at": "2016-04-06T23:34:21Z",
+        "modified_at": "2016-04-06T23:34:21Z",
+        "offset": 34.0
+    },
+    "model": "videos.edge",
+    "pk": 176
+},
+{
+    "fields": {
+        "confidence": 111,
+        "video1": 11,
+        "video2": 48,
+        "created_at": "2016-04-06T23:34:21Z",
+        "modified_at": "2016-04-06T23:34:21Z",
+        "offset": 72.0
+    },
+    "model": "videos.edge",
+    "pk": 177
+},
+{
+    "fields": {
+        "confidence": 46,
+        "video1": 19,
+        "video2": 68,
+        "created_at": "2016-04-06T23:34:21Z",
+        "modified_at": "2016-04-06T23:34:21Z",
+        "offset": 75.0
+    },
+    "model": "videos.edge",
+    "pk": 178
+},
+{
+    "fields": {
+        "confidence": 111,
+        "video1": 127,
+        "video2": 159,
+        "created_at": "2016-04-06T23:34:21Z",
+        "modified_at": "2016-04-06T23:34:21Z",
+        "offset": 117.0
+    },
+    "model": "videos.edge",
+    "pk": 179
+},
+{
+    "fields": {
+        "confidence": 65,
+        "video1": 118,
+        "video2": 36,
+        "created_at": "2016-04-06T23:34:21Z",
+        "modified_at": "2016-04-06T23:34:21Z",
+        "offset": -39.0
+    },
+    "model": "videos.edge",
+    "pk": 180
+},
+{
+    "fields": {
+        "confidence": 103,
+        "video1": 130,
+        "video2": 15,
+        "created_at": "2016-04-06T23:34:21Z",
+        "modified_at": "2016-04-06T23:34:21Z",
+        "offset": 66.0
+    },
+    "model": "videos.edge",
+    "pk": 181
+},
+{
+    "fields": {
+        "confidence": 23,
+        "video1": 174,
+        "video2": 69,
+        "created_at": "2016-04-06T23:34:21Z",
+        "modified_at": "2016-04-06T23:34:21Z",
+        "offset": -125.0
+    },
+    "model": "videos.edge",
+    "pk": 182
+},
+{
+    "fields": {
+        "confidence": 100,
+        "video1": 190,
+        "video2": 63,
+        "created_at": "2016-04-06T23:34:21Z",
+        "modified_at": "2016-04-06T23:34:21Z",
+        "offset": 16.0
+    },
+    "model": "videos.edge",
+    "pk": 183
+},
+{
+    "fields": {
+        "confidence": 66,
+        "video1": 193,
+        "video2": 200,
+        "created_at": "2016-04-06T23:34:21Z",
+        "modified_at": "2016-04-06T23:34:21Z",
+        "offset": -126.0
+    },
+    "model": "videos.edge",
+    "pk": 184
+},
+{
+    "fields": {
+        "confidence": 22,
+        "video1": 49,
+        "video2": 189,
+        "created_at": "2016-04-06T23:34:21Z",
+        "modified_at": "2016-04-06T23:34:21Z",
+        "offset": 6.0
+    },
+    "model": "videos.edge",
+    "pk": 185
+},
+{
+    "fields": {
+        "confidence": 35,
+        "video1": 83,
+        "video2": 76,
+        "created_at": "2016-04-06T23:34:21Z",
+        "modified_at": "2016-04-06T23:34:21Z",
+        "offset": -101.0
+    },
+    "model": "videos.edge",
+    "pk": 186
+},
+{
+    "fields": {
+        "confidence": 62,
+        "video1": 118,
+        "video2": 127,
+        "created_at": "2016-04-06T23:34:21Z",
+        "modified_at": "2016-04-06T23:34:21Z",
+        "offset": 52.0
+    },
+    "model": "videos.edge",
+    "pk": 187
+},
+{
+    "fields": {
+        "confidence": 37,
+        "video1": 99,
+        "video2": 183,
+        "created_at": "2016-04-06T23:34:21Z",
+        "modified_at": "2016-04-06T23:34:21Z",
+        "offset": -54.0
+    },
+    "model": "videos.edge",
+    "pk": 188
+},
+{
+    "fields": {
+        "confidence": 99,
+        "video1": 124,
+        "video2": 41,
+        "created_at": "2016-04-06T23:34:22Z",
+        "modified_at": "2016-04-06T23:34:22Z",
+        "offset": -102.0
+    },
+    "model": "videos.edge",
+    "pk": 189
+},
+{
+    "fields": {
+        "confidence": 8,
+        "video1": 20,
+        "video2": 60,
+        "created_at": "2016-04-06T23:34:22Z",
+        "modified_at": "2016-04-06T23:34:22Z",
+        "offset": -5.0
+    },
+    "model": "videos.edge",
+    "pk": 190
+},
+{
+    "fields": {
+        "confidence": 107,
+        "video1": 69,
+        "video2": 36,
+        "created_at": "2016-04-06T23:34:22Z",
+        "modified_at": "2016-04-06T23:34:22Z",
+        "offset": 21.0
+    },
+    "model": "videos.edge",
+    "pk": 191
+},
+{
+    "fields": {
+        "confidence": 79,
+        "video1": 159,
+        "video2": 8,
+        "created_at": "2016-04-06T23:34:22Z",
+        "modified_at": "2016-04-06T23:34:22Z",
+        "offset": -82.0
+    },
+    "model": "videos.edge",
+    "pk": 192
+},
+{
+    "fields": {
+        "confidence": 69,
+        "video1": 49,
+        "video2": 184,
+        "created_at": "2016-04-06T23:34:22Z",
+        "modified_at": "2016-04-06T23:34:22Z",
+        "offset": 72.0
+    },
+    "model": "videos.edge",
+    "pk": 193
+},
+{
+    "fields": {
+        "confidence": 30,
+        "video1": 157,
+        "video2": 85,
+        "created_at": "2016-04-06T23:34:22Z",
+        "modified_at": "2016-04-06T23:34:22Z",
+        "offset": -52.0
+    },
+    "model": "videos.edge",
+    "pk": 194
+},
+{
+    "fields": {
+        "confidence": 17,
+        "video1": 29,
+        "video2": 90,
+        "created_at": "2016-04-06T23:34:22Z",
+        "modified_at": "2016-04-06T23:34:22Z",
+        "offset": 91.0
+    },
+    "model": "videos.edge",
+    "pk": 195
+},
+{
+    "fields": {
+        "confidence": 69,
+        "video1": 143,
+        "video2": 103,
+        "created_at": "2016-04-06T23:34:22Z",
+        "modified_at": "2016-04-06T23:34:22Z",
+        "offset": 34.0
+    },
+    "model": "videos.edge",
+    "pk": 196
+},
+{
+    "fields": {
+        "confidence": 88,
+        "video1": 105,
+        "video2": 176,
+        "created_at": "2016-04-06T23:34:22Z",
+        "modified_at": "2016-04-06T23:34:22Z",
+        "offset": -39.0
+    },
+    "model": "videos.edge",
+    "pk": 197
+},
+{
+    "fields": {
+        "confidence": 70,
+        "video1": 72,
+        "video2": 85,
+        "created_at": "2016-04-06T23:34:22Z",
+        "modified_at": "2016-04-06T23:34:22Z",
+        "offset": -124.0
+    },
+    "model": "videos.edge",
+    "pk": 198
+},
+{
+    "fields": {
+        "confidence": 90,
+        "video1": 67,
+        "video2": 5,
+        "created_at": "2016-04-06T23:34:22Z",
+        "modified_at": "2016-04-06T23:34:22Z",
+        "offset": -100.0
+    },
+    "model": "videos.edge",
+    "pk": 199
+},
+{
+    "fields": {
+        "confidence": 36,
+        "video1": 128,
+        "video2": 187,
+        "created_at": "2016-04-06T23:34:22Z",
+        "modified_at": "2016-04-06T23:34:22Z",
+        "offset": 121.0
+    },
+    "model": "videos.edge",
+    "pk": 200
+},
+{
+    "fields": {
+        "username": "ethan",
+        "first_name": "Ethan",
+        "last_name": "Riback",
+        "is_deleted": false,
+        "is_active": true,
+        "created_at": "2016-04-06T23:34:01Z",
+        "first_login": false,
+        "modified_at": "2016-04-06T23:34:01Z",
+        "is_superuser": false,
+        "is_staff": false,
+        "last_login": "2016-03-13T20:34:22Z",
+        "groups": [],
+        "user_permissions": [
+            [
+                "delete_logentry",
+                "admin",
+                "logentry"
+            ],
+            [
+                "add_edge",
+                "videos",
+                "edge"
+            ],
+            [
+                "add_videovote",
+                "videos",
+                "videovote"
+            ]
+        ],
+        "password": "pbkdf2_sha256$20000$ebRpMry1r0CY$Jqybz3J8g09jRrUJDgfNC57r4TdQDy44SGmMoCQ+JtI=",
+        "email": "drewbanin+ethan@gmail.com",
+        "date_joined": "2016-02-04T22:33:21Z"
+    },
+    "model": "users.user",
+    "pk": 1
+},
+{
+    "fields": {
+        "username": "drew",
+        "first_name": "Drew",
+        "last_name": "Banin",
+        "is_deleted": false,
+        "is_active": true,
+        "created_at": "2016-04-06T23:34:01Z",
+        "first_login": false,
+        "modified_at": "2016-04-06T23:34:01Z",
+        "is_superuser": false,
+        "is_staff": false,
+        "last_login": "2016-04-06T23:35:50Z",
+        "groups": [],
+        "user_permissions": [
+            [
+                "add_userinvite",
+                "authentication",
+                "userinvite"
+            ],
+            [
+                "delete_concert",
+                "concerts",
+                "concert"
+            ],
+            [
+                "add_session",
+                "sessions",
+                "session"
+            ],
+            [
+                "change_session",
+                "sessions",
+                "session"
+            ],
+            [
+                "delete_playlistorder",
+                "videos",
+                "playlistorder"
+            ]
+        ],
+        "password": "pbkdf2_sha256$20000$ebRpMry1r0CY$Jqybz3J8g09jRrUJDgfNC57r4TdQDy44SGmMoCQ+JtI=",
+        "email": "drewbanin+drew@gmail.com",
+        "date_joined": "2016-02-04T22:33:21Z"
+    },
+    "model": "users.user",
+    "pk": 2
+},
+{
+    "fields": {
+        "username": "mark",
+        "first_name": "Mark",
+        "last_name": "Koh",
+        "is_deleted": false,
+        "is_active": true,
+        "created_at": "2016-04-06T23:34:01Z",
+        "first_login": false,
+        "modified_at": "2016-04-06T23:34:01Z",
+        "is_superuser": false,
+        "is_staff": false,
+        "last_login": "2016-03-13T00:14:32Z",
+        "groups": [],
+        "user_permissions": [
+            [
+                "delete_logentry",
+                "admin",
+                "logentry"
+            ],
+            [
+                "delete_genre",
+                "artists",
+                "genre"
+            ],
+            [
+                "add_token",
+                "authtoken",
+                "token"
+            ],
+            [
+                "change_edge",
+                "videos",
+                "edge"
+            ]
+        ],
+        "password": "pbkdf2_sha256$20000$ebRpMry1r0CY$Jqybz3J8g09jRrUJDgfNC57r4TdQDy44SGmMoCQ+JtI=",
+        "email": "drewbanin+mark@gmail.com",
+        "date_joined": "2016-02-04T22:33:21Z"
+    },
+    "model": "users.user",
+    "pk": 3
+},
+{
+    "fields": {
+        "username": "jess",
+        "first_name": "Jess",
+        "last_name": "Eng",
+        "is_deleted": false,
+        "is_active": true,
+        "created_at": "2016-04-06T23:34:01Z",
+        "first_login": false,
+        "modified_at": "2016-04-06T23:34:01Z",
+        "is_superuser": false,
+        "is_staff": false,
+        "last_login": "2016-03-13T00:14:32Z",
+        "groups": [],
+        "user_permissions": [
+            [
+                "add_permission",
+                "auth",
+                "permission"
+            ],
+            [
+                "add_userinvite",
+                "authentication",
+                "userinvite"
+            ],
+            [
+                "delete_videovote",
+                "videos",
+                "videovote"
+            ]
+        ],
+        "password": "pbkdf2_sha256$20000$ebRpMry1r0CY$Jqybz3J8g09jRrUJDgfNC57r4TdQDy44SGmMoCQ+JtI=",
+        "email": "drewbanin+jess@gmail.com",
+        "date_joined": "2016-02-04T22:33:21Z"
+    },
+    "model": "users.user",
+    "pk": 4
+},
+{
+    "fields": {
+        "username": "sanjana",
+        "first_name": "Sanjana",
+        "last_name": "Raj",
+        "is_deleted": false,
+        "is_active": true,
+        "created_at": "2016-04-06T23:34:01Z",
+        "first_login": false,
+        "modified_at": "2016-04-06T23:34:01Z",
+        "is_superuser": false,
+        "is_staff": false,
+        "last_login": "2016-03-13T00:14:32Z",
+        "groups": [],
+        "user_permissions": [
+            [
+                "change_artistimage",
+                "artists",
+                "artistimage"
+            ],
+            [
+                "change_group",
+                "auth",
+                "group"
+            ],
+            [
+                "change_permission",
+                "auth",
+                "permission"
+            ],
+            [
+                "delete_userinvite",
+                "authentication",
+                "userinvite"
+            ],
+            [
+                "delete_user",
+                "users",
+                "user"
+            ]
+        ],
+        "password": "pbkdf2_sha256$20000$ebRpMry1r0CY$Jqybz3J8g09jRrUJDgfNC57r4TdQDy44SGmMoCQ+JtI=",
+        "email": "drewbanin+sanjana@gmail.com",
+        "date_joined": "2016-02-04T22:33:21Z"
+    },
+    "model": "users.user",
+    "pk": 5
+},
+{
+    "fields": {
+        "date": "2016-04-01",
+        "venue": 2,
+        "created_at": "2016-04-06T23:34:01Z",
+        "modified_at": "2016-04-06T23:34:01Z"
+    },
+    "model": "concerts.concert",
+    "pk": 1
+},
+{
+    "fields": {
+        "date": "2016-04-03",
+        "venue": 1,
+        "created_at": "2016-04-06T23:34:01Z",
+        "modified_at": "2016-04-06T23:34:01Z"
+    },
+    "model": "concerts.concert",
+    "pk": 2
+},
+{
+    "fields": {
+        "date": "2016-04-01",
+        "venue": 1,
+        "created_at": "2016-04-06T23:34:01Z",
+        "modified_at": "2016-04-06T23:34:01Z"
+    },
+    "model": "concerts.concert",
+    "pk": 3
+},
+{
+    "fields": {
+        "date": "2016-04-05",
+        "venue": 2,
+        "created_at": "2016-04-06T23:34:01Z",
+        "modified_at": "2016-04-06T23:34:01Z"
+    },
+    "model": "concerts.concert",
+    "pk": 4
+},
+{
+    "fields": {
+        "date": "2016-04-01",
+        "venue": 1,
+        "created_at": "2016-04-06T23:34:01Z",
+        "modified_at": "2016-04-06T23:34:01Z"
+    },
+    "model": "concerts.concert",
+    "pk": 5
+},
+{
+    "fields": {
+        "date": "2016-04-07",
+        "venue": 1,
+        "created_at": "2016-04-06T23:34:01Z",
+        "modified_at": "2016-04-06T23:34:01Z"
+    },
+    "model": "concerts.concert",
+    "pk": 6
+},
+{
+    "fields": {
+        "date": "2016-04-10",
+        "venue": 3,
+        "created_at": "2016-04-06T23:34:01Z",
+        "modified_at": "2016-04-06T23:34:01Z"
+    },
+    "model": "concerts.concert",
+    "pk": 7
+},
+{
+    "fields": {
+        "website": "http://ll.sf",
+        "city": "Philadelphia",
+        "utc_offset": -300,
+        "country_short": "US",
+        "name": "Union Transfer",
+        "country": "United States",
+        "created_at": "2016-04-06T23:34:01Z",
+        "place_id": "ChIJPWg_kNXHxokRPXdE7nqMsI4",
+        "modified_at": "2016-04-06T23:34:01Z",
+        "unofficial": false,
+        "state": "Pennsylvania",
+        "state_short": "PA",
+        "lat": "6985.12097111",
+        "lng": "852.80266047",
+        "formatted_address": "1026 Spring Garden St, Philadelphia, PA 19123, United States"
+    },
+    "model": "venues.venue",
+    "pk": 1
+},
+{
+    "fields": {
+        "website": "http://vnq.isj",
+        "city": "Philadelphia",
+        "utc_offset": -300,
+        "country_short": "US",
+        "name": "Mann Center",
+        "country": "United States",
+        "created_at": "2016-04-06T23:34:01Z",
+        "place_id": "ChIJPWg_kNXHxokRPXdE7nqMsI4",
+        "modified_at": "2016-04-06T23:34:01Z",
+        "unofficial": false,
+        "state": "Pennsylvania",
+        "state_short": "PA",
+        "lat": "-5384.69353347",
+        "lng": "5689.13614218",
+        "formatted_address": "1026 Spring Garden St, Philadelphia, PA 19123, United States"
+    },
+    "model": "venues.venue",
+    "pk": 2
+},
+{
+    "fields": {
+        "website": "http://c.qv",
+        "city": "Philadelphia",
+        "utc_offset": -300,
+        "country_short": "US",
+        "name": "Theater of the Living Arts",
+        "country": "United States",
+        "created_at": "2016-04-06T23:34:01Z",
+        "place_id": "ChIJPWg_kNXHxokRPXdE7nqMsI4",
+        "modified_at": "2016-04-06T23:34:01Z",
+        "unofficial": false,
+        "state": "Pennsylvania",
+        "state_short": "PA",
+        "lat": "-9535.77285601",
+        "lng": "260.80316576",
+        "formatted_address": "1026 Spring Garden St, Philadelphia, PA 19123, United States"
+    },
+    "model": "venues.venue",
+    "pk": 3
+},
+{
+    "fields": {
+        "genres": [
+            1,
+            4
+        ],
+        "spotify_id": "5INjqkS1o8h1imAzPqGZBb",
+        "name": "50 Cent",
+        "created_at": "2016-04-06T23:34:01Z",
+        "modified_at": "2016-04-06T23:34:01Z",
+        "unofficial": false
+    },
+    "model": "artists.artist",
+    "pk": 1
+},
+{
+    "fields": {
+        "genres": [
+            1,
+            3,
+            4,
+            6,
+            7
+        ],
+        "spotify_id": "1G9G7WwrXka3Z1r7aIDjI7",
+        "name": "Animal Collective",
+        "created_at": "2016-04-06T23:34:01Z",
+        "modified_at": "2016-04-06T23:34:01Z",
+        "unofficial": false
+    },
+    "model": "artists.artist",
+    "pk": 2
+},
+{
+    "fields": {
+        "genres": [
+            3,
+            7,
+            8
+        ],
+        "spotify_id": "1G9G7WwrXka3Z1r7aIDjI7",
+        "name": "Blood Orange",
+        "created_at": "2016-04-06T23:34:01Z",
+        "modified_at": "2016-04-06T23:34:01Z",
+        "unofficial": false
+    },
+    "model": "artists.artist",
+    "pk": 3
+},
+{
+    "fields": {
+        "genres": [
+            1,
+            6,
+            7,
+            8,
+            9
+        ],
+        "spotify_id": "5INjqkS1o8h1imAzPqGZBb",
+        "name": "LCD Soundsystem",
+        "created_at": "2016-04-06T23:34:01Z",
+        "modified_at": "2016-04-06T23:34:01Z",
+        "unofficial": false
+    },
+    "model": "artists.artist",
+    "pk": 4
+},
+{
+    "fields": {
+        "genres": [
+            5
+        ],
+        "spotify_id": "5INjqkS1o8h1imAzPqGZBb",
+        "name": "Kurt Vile",
+        "created_at": "2016-04-06T23:34:02Z",
+        "modified_at": "2016-04-06T23:34:02Z",
+        "unofficial": false
+    },
+    "model": "artists.artist",
+    "pk": 5
+},
+{
+    "fields": {
+        "genres": [
+            3,
+            4
+        ],
+        "spotify_id": "1G9G7WwrXka3Z1r7aIDjI7",
+        "name": "Amy Winehouse",
+        "created_at": "2016-04-06T23:34:02Z",
+        "modified_at": "2016-04-06T23:34:02Z",
+        "unofficial": false
+    },
+    "model": "artists.artist",
+    "pk": 6
+},
+{
+    "fields": {
+        "genres": [
+            3,
+            5,
+            6,
+            8,
+            9
+        ],
+        "spotify_id": "1G9G7WwrXka3Z1r7aIDjI7",
+        "name": "Jamie XX",
+        "created_at": "2016-04-06T23:34:02Z",
+        "modified_at": "2016-04-06T23:34:02Z",
+        "unofficial": false
+    },
+    "model": "artists.artist",
+    "pk": 7
+},
+{
+    "fields": {
+        "genres": [
+            5,
+            9
+        ],
+        "spotify_id": "1G9G7WwrXka3Z1r7aIDjI7",
+        "name": "Beck",
+        "created_at": "2016-04-06T23:34:02Z",
+        "modified_at": "2016-04-06T23:34:02Z",
+        "unofficial": false
+    },
+    "model": "artists.artist",
+    "pk": 8
+},
+{
+    "fields": {
+        "genres": [
+            1,
+            2,
+            3,
+            4,
+            7
+        ],
+        "spotify_id": "1G9G7WwrXka3Z1r7aIDjI7",
+        "name": "Discovery",
+        "created_at": "2016-04-06T23:34:02Z",
+        "modified_at": "2016-04-06T23:34:02Z",
+        "unofficial": false
+    },
+    "model": "artists.artist",
+    "pk": 9
+},
+{
+    "fields": {
+        "genres": [
+            1,
+            2,
+            5,
+            6,
+            9
+        ],
+        "spotify_id": "5INjqkS1o8h1imAzPqGZBb",
+        "name": "Cherub",
+        "created_at": "2016-04-06T23:34:02Z",
+        "modified_at": "2016-04-06T23:34:02Z",
+        "unofficial": false
+    },
+    "model": "artists.artist",
+    "pk": 10
+},
+{
+    "fields": {
+        "genres": [
+            1,
+            2,
+            5,
+            6,
+            7
+        ],
+        "spotify_id": "1G9G7WwrXka3Z1r7aIDjI7",
+        "name": "Kanye West",
+        "created_at": "2016-04-06T23:34:02Z",
+        "modified_at": "2016-04-06T23:34:02Z",
+        "unofficial": false
+    },
+    "model": "artists.artist",
+    "pk": 11
+},
+{
+    "fields": {
+        "name": "punk"
+    },
+    "model": "artists.genre",
+    "pk": 1
+},
+{
+    "fields": {
+        "name": "disco"
+    },
+    "model": "artists.genre",
+    "pk": 2
+},
+{
+    "fields": {
+        "name": "rap"
+    },
+    "model": "artists.genre",
+    "pk": 3
+},
+{
+    "fields": {
+        "name": "funk"
+    },
+    "model": "artists.genre",
+    "pk": 4
+},
+{
+    "fields": {
+        "name": "drunk"
+    },
+    "model": "artists.genre",
+    "pk": 5
+},
+{
+    "fields": {
+        "name": "dance"
+    },
+    "model": "artists.genre",
+    "pk": 6
+},
+{
+    "fields": {
+        "name": "k-pop"
+    },
+    "model": "artists.genre",
+    "pk": 7
+},
+{
+    "fields": {
+        "name": "pop"
+    },
+    "model": "artists.genre",
+    "pk": 8
+},
+{
+    "fields": {
+        "name": "top 40"
+    },
+    "model": "artists.genre",
+    "pk": 9
+},
+{
+    "fields": {
+        "artist": 1,
+        "url": "https://i.scdn.co/image/237daa4588d473c1f1b18b6b3dfefc5598bf32c5",
+        "created_at": "2016-04-06T23:34:01Z",
+        "modified_at": "2016-04-06T23:34:01Z",
+        "height": 666,
+        "width": 999
+    },
+    "model": "artists.artistimage",
+    "pk": 1
+},
+{
+    "fields": {
+        "artist": 1,
+        "url": "https://i.scdn.co/image/e953b712c06d9cdd73f3f4c9a138d487165e8192",
+        "created_at": "2016-04-06T23:34:01Z",
+        "modified_at": "2016-04-06T23:34:01Z",
+        "height": 427,
+        "width": 640
+    },
+    "model": "artists.artistimage",
+    "pk": 2
+},
+{
+    "fields": {
+        "artist": 1,
+        "url": "https://i.scdn.co/image/a071c3c7c399ed7fdc0eb9d295cccf03346f5914",
+        "created_at": "2016-04-06T23:34:01Z",
+        "modified_at": "2016-04-06T23:34:01Z",
+        "height": 133,
+        "width": 200
+    },
+    "model": "artists.artistimage",
+    "pk": 3
+},
+{
+    "fields": {
+        "artist": 1,
+        "url": "https://i.scdn.co/image/f538200c33781098d164790a58867b7c7e77ba62",
+        "created_at": "2016-04-06T23:34:01Z",
+        "modified_at": "2016-04-06T23:34:01Z",
+        "height": 43,
+        "width": 64
+    },
+    "model": "artists.artistimage",
+    "pk": 4
+},
+{
+    "fields": {
+        "artist": 2,
+        "url": "https://i.scdn.co/image/237daa4588d473c1f1b18b6b3dfefc5598bf32c5",
+        "created_at": "2016-04-06T23:34:01Z",
+        "modified_at": "2016-04-06T23:34:01Z",
+        "height": 666,
+        "width": 999
+    },
+    "model": "artists.artistimage",
+    "pk": 5
+},
+{
+    "fields": {
+        "artist": 2,
+        "url": "https://i.scdn.co/image/e953b712c06d9cdd73f3f4c9a138d487165e8192",
+        "created_at": "2016-04-06T23:34:01Z",
+        "modified_at": "2016-04-06T23:34:01Z",
+        "height": 427,
+        "width": 640
+    },
+    "model": "artists.artistimage",
+    "pk": 6
+},
+{
+    "fields": {
+        "artist": 2,
+        "url": "https://i.scdn.co/image/a071c3c7c399ed7fdc0eb9d295cccf03346f5914",
+        "created_at": "2016-04-06T23:34:01Z",
+        "modified_at": "2016-04-06T23:34:01Z",
+        "height": 133,
+        "width": 200
+    },
+    "model": "artists.artistimage",
+    "pk": 7
+},
+{
+    "fields": {
+        "artist": 2,
+        "url": "https://i.scdn.co/image/f538200c33781098d164790a58867b7c7e77ba62",
+        "created_at": "2016-04-06T23:34:01Z",
+        "modified_at": "2016-04-06T23:34:01Z",
+        "height": 43,
+        "width": 64
+    },
+    "model": "artists.artistimage",
+    "pk": 8
+},
+{
+    "fields": {
+        "artist": 3,
+        "url": "https://i.scdn.co/image/237daa4588d473c1f1b18b6b3dfefc5598bf32c5",
+        "created_at": "2016-04-06T23:34:01Z",
+        "modified_at": "2016-04-06T23:34:01Z",
+        "height": 666,
+        "width": 999
+    },
+    "model": "artists.artistimage",
+    "pk": 9
+},
+{
+    "fields": {
+        "artist": 3,
+        "url": "https://i.scdn.co/image/e953b712c06d9cdd73f3f4c9a138d487165e8192",
+        "created_at": "2016-04-06T23:34:01Z",
+        "modified_at": "2016-04-06T23:34:01Z",
+        "height": 427,
+        "width": 640
+    },
+    "model": "artists.artistimage",
+    "pk": 10
+},
+{
+    "fields": {
+        "artist": 3,
+        "url": "https://i.scdn.co/image/a071c3c7c399ed7fdc0eb9d295cccf03346f5914",
+        "created_at": "2016-04-06T23:34:01Z",
+        "modified_at": "2016-04-06T23:34:01Z",
+        "height": 133,
+        "width": 200
+    },
+    "model": "artists.artistimage",
+    "pk": 11
+},
+{
+    "fields": {
+        "artist": 3,
+        "url": "https://i.scdn.co/image/f538200c33781098d164790a58867b7c7e77ba62",
+        "created_at": "2016-04-06T23:34:01Z",
+        "modified_at": "2016-04-06T23:34:01Z",
+        "height": 43,
+        "width": 64
+    },
+    "model": "artists.artistimage",
+    "pk": 12
+},
+{
+    "fields": {
+        "artist": 4,
+        "url": "https://i.scdn.co/image/237daa4588d473c1f1b18b6b3dfefc5598bf32c5",
+        "created_at": "2016-04-06T23:34:02Z",
+        "modified_at": "2016-04-06T23:34:02Z",
+        "height": 666,
+        "width": 999
+    },
+    "model": "artists.artistimage",
+    "pk": 13
+},
+{
+    "fields": {
+        "artist": 4,
+        "url": "https://i.scdn.co/image/e953b712c06d9cdd73f3f4c9a138d487165e8192",
+        "created_at": "2016-04-06T23:34:02Z",
+        "modified_at": "2016-04-06T23:34:02Z",
+        "height": 427,
+        "width": 640
+    },
+    "model": "artists.artistimage",
+    "pk": 14
+},
+{
+    "fields": {
+        "artist": 4,
+        "url": "https://i.scdn.co/image/a071c3c7c399ed7fdc0eb9d295cccf03346f5914",
+        "created_at": "2016-04-06T23:34:02Z",
+        "modified_at": "2016-04-06T23:34:02Z",
+        "height": 133,
+        "width": 200
+    },
+    "model": "artists.artistimage",
+    "pk": 15
+},
+{
+    "fields": {
+        "artist": 4,
+        "url": "https://i.scdn.co/image/f538200c33781098d164790a58867b7c7e77ba62",
+        "created_at": "2016-04-06T23:34:02Z",
+        "modified_at": "2016-04-06T23:34:02Z",
+        "height": 43,
+        "width": 64
+    },
+    "model": "artists.artistimage",
+    "pk": 16
+},
+{
+    "fields": {
+        "artist": 5,
+        "url": "https://i.scdn.co/image/237daa4588d473c1f1b18b6b3dfefc5598bf32c5",
+        "created_at": "2016-04-06T23:34:02Z",
+        "modified_at": "2016-04-06T23:34:02Z",
+        "height": 666,
+        "width": 999
+    },
+    "model": "artists.artistimage",
+    "pk": 17
+},
+{
+    "fields": {
+        "artist": 5,
+        "url": "https://i.scdn.co/image/e953b712c06d9cdd73f3f4c9a138d487165e8192",
+        "created_at": "2016-04-06T23:34:02Z",
+        "modified_at": "2016-04-06T23:34:02Z",
+        "height": 427,
+        "width": 640
+    },
+    "model": "artists.artistimage",
+    "pk": 18
+},
+{
+    "fields": {
+        "artist": 5,
+        "url": "https://i.scdn.co/image/a071c3c7c399ed7fdc0eb9d295cccf03346f5914",
+        "created_at": "2016-04-06T23:34:02Z",
+        "modified_at": "2016-04-06T23:34:02Z",
+        "height": 133,
+        "width": 200
+    },
+    "model": "artists.artistimage",
+    "pk": 19
+},
+{
+    "fields": {
+        "artist": 5,
+        "url": "https://i.scdn.co/image/f538200c33781098d164790a58867b7c7e77ba62",
+        "created_at": "2016-04-06T23:34:02Z",
+        "modified_at": "2016-04-06T23:34:02Z",
+        "height": 43,
+        "width": 64
+    },
+    "model": "artists.artistimage",
+    "pk": 20
+},
+{
+    "fields": {
+        "artist": 6,
+        "url": "https://i.scdn.co/image/237daa4588d473c1f1b18b6b3dfefc5598bf32c5",
+        "created_at": "2016-04-06T23:34:02Z",
+        "modified_at": "2016-04-06T23:34:02Z",
+        "height": 666,
+        "width": 999
+    },
+    "model": "artists.artistimage",
+    "pk": 21
+},
+{
+    "fields": {
+        "artist": 6,
+        "url": "https://i.scdn.co/image/e953b712c06d9cdd73f3f4c9a138d487165e8192",
+        "created_at": "2016-04-06T23:34:02Z",
+        "modified_at": "2016-04-06T23:34:02Z",
+        "height": 427,
+        "width": 640
+    },
+    "model": "artists.artistimage",
+    "pk": 22
+},
+{
+    "fields": {
+        "artist": 6,
+        "url": "https://i.scdn.co/image/a071c3c7c399ed7fdc0eb9d295cccf03346f5914",
+        "created_at": "2016-04-06T23:34:02Z",
+        "modified_at": "2016-04-06T23:34:02Z",
+        "height": 133,
+        "width": 200
+    },
+    "model": "artists.artistimage",
+    "pk": 23
+},
+{
+    "fields": {
+        "artist": 6,
+        "url": "https://i.scdn.co/image/f538200c33781098d164790a58867b7c7e77ba62",
+        "created_at": "2016-04-06T23:34:02Z",
+        "modified_at": "2016-04-06T23:34:02Z",
+        "height": 43,
+        "width": 64
+    },
+    "model": "artists.artistimage",
+    "pk": 24
+},
+{
+    "fields": {
+        "artist": 7,
+        "url": "https://i.scdn.co/image/237daa4588d473c1f1b18b6b3dfefc5598bf32c5",
+        "created_at": "2016-04-06T23:34:02Z",
+        "modified_at": "2016-04-06T23:34:02Z",
+        "height": 666,
+        "width": 999
+    },
+    "model": "artists.artistimage",
+    "pk": 25
+},
+{
+    "fields": {
+        "artist": 7,
+        "url": "https://i.scdn.co/image/e953b712c06d9cdd73f3f4c9a138d487165e8192",
+        "created_at": "2016-04-06T23:34:02Z",
+        "modified_at": "2016-04-06T23:34:02Z",
+        "height": 427,
+        "width": 640
+    },
+    "model": "artists.artistimage",
+    "pk": 26
+},
+{
+    "fields": {
+        "artist": 7,
+        "url": "https://i.scdn.co/image/a071c3c7c399ed7fdc0eb9d295cccf03346f5914",
+        "created_at": "2016-04-06T23:34:02Z",
+        "modified_at": "2016-04-06T23:34:02Z",
+        "height": 133,
+        "width": 200
+    },
+    "model": "artists.artistimage",
+    "pk": 27
+},
+{
+    "fields": {
+        "artist": 7,
+        "url": "https://i.scdn.co/image/f538200c33781098d164790a58867b7c7e77ba62",
+        "created_at": "2016-04-06T23:34:02Z",
+        "modified_at": "2016-04-06T23:34:02Z",
+        "height": 43,
+        "width": 64
+    },
+    "model": "artists.artistimage",
+    "pk": 28
+},
+{
+    "fields": {
+        "artist": 8,
+        "url": "https://i.scdn.co/image/237daa4588d473c1f1b18b6b3dfefc5598bf32c5",
+        "created_at": "2016-04-06T23:34:02Z",
+        "modified_at": "2016-04-06T23:34:02Z",
+        "height": 666,
+        "width": 999
+    },
+    "model": "artists.artistimage",
+    "pk": 29
+},
+{
+    "fields": {
+        "artist": 8,
+        "url": "https://i.scdn.co/image/e953b712c06d9cdd73f3f4c9a138d487165e8192",
+        "created_at": "2016-04-06T23:34:02Z",
+        "modified_at": "2016-04-06T23:34:02Z",
+        "height": 427,
+        "width": 640
+    },
+    "model": "artists.artistimage",
+    "pk": 30
+},
+{
+    "fields": {
+        "artist": 8,
+        "url": "https://i.scdn.co/image/a071c3c7c399ed7fdc0eb9d295cccf03346f5914",
+        "created_at": "2016-04-06T23:34:02Z",
+        "modified_at": "2016-04-06T23:34:02Z",
+        "height": 133,
+        "width": 200
+    },
+    "model": "artists.artistimage",
+    "pk": 31
+},
+{
+    "fields": {
+        "artist": 8,
+        "url": "https://i.scdn.co/image/f538200c33781098d164790a58867b7c7e77ba62",
+        "created_at": "2016-04-06T23:34:02Z",
+        "modified_at": "2016-04-06T23:34:02Z",
+        "height": 43,
+        "width": 64
+    },
+    "model": "artists.artistimage",
+    "pk": 32
+},
+{
+    "fields": {
+        "artist": 9,
+        "url": "https://i.scdn.co/image/237daa4588d473c1f1b18b6b3dfefc5598bf32c5",
+        "created_at": "2016-04-06T23:34:02Z",
+        "modified_at": "2016-04-06T23:34:02Z",
+        "height": 666,
+        "width": 999
+    },
+    "model": "artists.artistimage",
+    "pk": 33
+},
+{
+    "fields": {
+        "artist": 9,
+        "url": "https://i.scdn.co/image/e953b712c06d9cdd73f3f4c9a138d487165e8192",
+        "created_at": "2016-04-06T23:34:02Z",
+        "modified_at": "2016-04-06T23:34:02Z",
+        "height": 427,
+        "width": 640
+    },
+    "model": "artists.artistimage",
+    "pk": 34
+},
+{
+    "fields": {
+        "artist": 9,
+        "url": "https://i.scdn.co/image/a071c3c7c399ed7fdc0eb9d295cccf03346f5914",
+        "created_at": "2016-04-06T23:34:02Z",
+        "modified_at": "2016-04-06T23:34:02Z",
+        "height": 133,
+        "width": 200
+    },
+    "model": "artists.artistimage",
+    "pk": 35
+},
+{
+    "fields": {
+        "artist": 9,
+        "url": "https://i.scdn.co/image/f538200c33781098d164790a58867b7c7e77ba62",
+        "created_at": "2016-04-06T23:34:02Z",
+        "modified_at": "2016-04-06T23:34:02Z",
+        "height": 43,
+        "width": 64
+    },
+    "model": "artists.artistimage",
+    "pk": 36
+},
+{
+    "fields": {
+        "artist": 10,
+        "url": "https://i.scdn.co/image/237daa4588d473c1f1b18b6b3dfefc5598bf32c5",
+        "created_at": "2016-04-06T23:34:02Z",
+        "modified_at": "2016-04-06T23:34:02Z",
+        "height": 666,
+        "width": 999
+    },
+    "model": "artists.artistimage",
+    "pk": 37
+},
+{
+    "fields": {
+        "artist": 10,
+        "url": "https://i.scdn.co/image/e953b712c06d9cdd73f3f4c9a138d487165e8192",
+        "created_at": "2016-04-06T23:34:02Z",
+        "modified_at": "2016-04-06T23:34:02Z",
+        "height": 427,
+        "width": 640
+    },
+    "model": "artists.artistimage",
+    "pk": 38
+},
+{
+    "fields": {
+        "artist": 10,
+        "url": "https://i.scdn.co/image/a071c3c7c399ed7fdc0eb9d295cccf03346f5914",
+        "created_at": "2016-04-06T23:34:02Z",
+        "modified_at": "2016-04-06T23:34:02Z",
+        "height": 133,
+        "width": 200
+    },
+    "model": "artists.artistimage",
+    "pk": 39
+},
+{
+    "fields": {
+        "artist": 10,
+        "url": "https://i.scdn.co/image/f538200c33781098d164790a58867b7c7e77ba62",
+        "created_at": "2016-04-06T23:34:02Z",
+        "modified_at": "2016-04-06T23:34:02Z",
+        "height": 43,
+        "width": 64
+    },
+    "model": "artists.artistimage",
+    "pk": 40
+},
+{
+    "fields": {
+        "artist": 11,
+        "url": "https://i.scdn.co/image/237daa4588d473c1f1b18b6b3dfefc5598bf32c5",
+        "created_at": "2016-04-06T23:34:02Z",
+        "modified_at": "2016-04-06T23:34:02Z",
+        "height": 666,
+        "width": 999
+    },
+    "model": "artists.artistimage",
+    "pk": 41
+},
+{
+    "fields": {
+        "artist": 11,
+        "url": "https://i.scdn.co/image/e953b712c06d9cdd73f3f4c9a138d487165e8192",
+        "created_at": "2016-04-06T23:34:02Z",
+        "modified_at": "2016-04-06T23:34:02Z",
+        "height": 427,
+        "width": 640
+    },
+    "model": "artists.artistimage",
+    "pk": 42
+},
+{
+    "fields": {
+        "artist": 11,
+        "url": "https://i.scdn.co/image/a071c3c7c399ed7fdc0eb9d295cccf03346f5914",
+        "created_at": "2016-04-06T23:34:02Z",
+        "modified_at": "2016-04-06T23:34:02Z",
+        "height": 133,
+        "width": 200
+    },
+    "model": "artists.artistimage",
+    "pk": 43
+},
+{
+    "fields": {
+        "artist": 11,
+        "url": "https://i.scdn.co/image/f538200c33781098d164790a58867b7c7e77ba62",
+        "created_at": "2016-04-06T23:34:02Z",
+        "modified_at": "2016-04-06T23:34:02Z",
+        "height": 43,
+        "width": 64
+    },
+    "model": "artists.artistimage",
+    "pk": 44
+},
+{
+    "fields": {
+        "uploaded": true,
+        "concert": 2,
+        "views": 61,
+        "created_at": "2016-04-06T23:34:02Z",
+        "recorded_at": "2014-03-22T12:28:29Z",
+        "modified_at": "2016-04-06T23:34:02Z",
+        "uuid": "46324b43-01f3-460c-8da9-dab840b1153b",
+        "height": 1080,
+        "artists": [
+            6,
+            8
+        ],
+        "width": 1920,
+        "length": 26567.0,
+        "user": [
+            "mark"
+        ],
+        "original_filename": "HdcrEQSuNFqillABoFVcTpOflvEOild",
+        "file_size": 82182.0,
+        "is_private": false,
+        "name": "Delectus quia itaque assumenda doloribus laborum repudiandae reprehenderit ea quasi obcaecati, commodi nesciunt iste, tenetur ea"
+    },
+    "model": "videos.video",
+    "pk": 4
+},
+{
+    "fields": {
+        "uploaded": true,
+        "concert": 4,
+        "views": 83,
+        "created_at": "2016-04-06T23:34:03Z",
+        "recorded_at": "2012-01-21T08:55:16Z",
+        "modified_at": "2016-04-06T23:34:03Z",
+        "uuid": "298c28c6-9983-4673-8a0e-4666e418437f",
+        "height": 1080,
+        "artists": [
+            8
+        ],
+        "width": 1920,
+        "length": 45116.0,
+        "user": [
+            "drew"
+        ],
+        "original_filename": "GaZPZSGQBtuclUhUWSTJxrdvHzCaWJlLRHLHOAAKFATkEIsMdkRG SZWG jKAunnuHImdyBaEzbosojNFKz v",
+        "file_size": 12727.0,
+        "is_private": false,
+        "name": "Dolore non nemo dolores quidem hi"
+    },
+    "model": "videos.video",
+    "pk": 5
+},
+{
+    "fields": {
+        "uploaded": true,
+        "concert": 2,
+        "views": 23,
+        "created_at": "2016-04-06T23:34:03Z",
+        "recorded_at": "2012-06-02T22:50:08Z",
+        "modified_at": "2016-04-06T23:34:03Z",
+        "uuid": "26fbae43-46fe-45fa-aa93-cea87e3c296e",
+        "height": 1080,
+        "artists": [
+            1,
+            6
+        ],
+        "width": 1920,
+        "length": 74014.0,
+        "user": [
+            "ethan"
+        ],
+        "original_filename": "EmYSRXUZmojLWJvlRgTdsAP",
+        "file_size": 5100.0,
+        "is_private": false,
+        "name": "Dicta reiciendis quis repellat, tenetur iure tempore aperiam voluptates excepturi natus ea impedit, totam aperiam placeat conseq"
+    },
+    "model": "videos.video",
+    "pk": 6
+},
+{
+    "fields": {
+        "uploaded": true,
+        "concert": 4,
+        "views": 45,
+        "created_at": "2016-04-06T23:34:03Z",
+        "recorded_at": "2016-04-16T01:02:23Z",
+        "modified_at": "2016-04-06T23:34:03Z",
+        "uuid": "298c28c6-9983-4673-8a0e-4666e418437f",
+        "height": 1080,
+        "artists": [
+            10
+        ],
+        "width": 1920,
+        "length": 37322.0,
+        "user": [
+            "mark"
+        ],
+        "original_filename": "dsaPIqcAZtqnzeYmREZtU",
+        "file_size": 30014.0,
+        "is_private": false,
+        "name": "Tempora et quas quos delectus alias enim"
+    },
+    "model": "videos.video",
+    "pk": 7
+},
+{
+    "fields": {
+        "uploaded": true,
+        "concert": 1,
+        "views": 68,
+        "created_at": "2016-04-06T23:34:03Z",
+        "recorded_at": "2014-09-10T11:35:21Z",
+        "modified_at": "2016-04-06T23:34:03Z",
+        "uuid": "26fbae43-46fe-45fa-aa93-cea87e3c296e",
+        "height": 1080,
+        "artists": [
+            9,
+            11
+        ],
+        "width": 1920,
+        "length": 5.0,
+        "user": [
+            "sanjana"
+        ],
+        "original_filename": "LwAWUOokmQfXQvNvClPHsUtujiedTWUyyvyYfsoHHXJcqQTAwSAvY YCGslScWRiB",
+        "file_size": 46769.0,
+        "is_private": false,
+        "name": "Tenetur perspiciatis quod corrupti recusandae quaerat inci"
+    },
+    "model": "videos.video",
+    "pk": 8
+},
+{
+    "fields": {
+        "uploaded": true,
+        "concert": 4,
+        "views": 90,
+        "created_at": "2016-04-06T23:34:03Z",
+        "recorded_at": "2016-12-18T21:17:25Z",
+        "modified_at": "2016-04-06T23:34:03Z",
+        "uuid": "46324b43-01f3-460c-8da9-dab840b1153b",
+        "height": 1080,
+        "artists": [
+            9
+        ],
+        "width": 1920,
+        "length": 23502.0,
+        "user": [
+            "ethan"
+        ],
+        "original_filename": "ZoNLZhiOREIpxHlPKaNzccWmXcnrxEWIkeRnywuJPlgAnmZxbKDurrDlEeOjGpQsjzCz",
+        "file_size": 93730.0,
+        "is_private": false,
+        "name": "Libero volupta"
+    },
+    "model": "videos.video",
+    "pk": 10
+},
+{
+    "fields": {
+        "uploaded": true,
+        "concert": 2,
+        "views": 46,
+        "created_at": "2016-04-06T23:34:03Z",
+        "recorded_at": "2014-04-24T20:19:27Z",
+        "modified_at": "2016-04-06T23:34:03Z",
+        "uuid": "46324b43-01f3-460c-8da9-dab840b1153b",
+        "height": 1080,
+        "artists": [
+            4
+        ],
+        "width": 1920,
+        "length": 38693.0,
+        "user": [
+            "jess"
+        ],
+        "original_filename": "egLmmuUXEjf QLEvYojRpYYGVGtdHhYZOwmvwGyMsQCcnyhhGWQVaXVRKSsUSIEqZrcxtYhElCpJIplup",
+        "file_size": 52702.0,
+        "is_private": false,
+        "name": "Culpa amet sapiente iure possimus adipisci officia, magni"
+    },
+    "model": "videos.video",
+    "pk": 11
+},
+{
+    "fields": {
+        "uploaded": true,
+        "concert": 6,
+        "views": 15,
+        "created_at": "2016-04-06T23:34:03Z",
+        "recorded_at": "2014-04-17T21:09:50Z",
+        "modified_at": "2016-04-06T23:34:03Z",
+        "uuid": "46324b43-01f3-460c-8da9-dab840b1153b",
+        "height": 1080,
+        "artists": [
+            5
+        ],
+        "width": 1920,
+        "length": 87508.0,
+        "user": [
+            "sanjana"
+        ],
+        "original_filename": "duekDFsvnDmvHZbkQTcJBWvdhyQYyeFsLmNUXsrflQNjZcKPhNgIuaTMoLPAYQBEtCmjRKZqTxFGsrbTxCUtJRWpIxhiBRTqitvGQNxLAJRPrhGLdYfbNsZFVPj",
+        "file_size": 36384.0,
+        "is_private": false,
+        "name": "Ab quam adipisci ullam numquam totam necessitatibus inventore fugit, dolore i"
+    },
+    "model": "videos.video",
+    "pk": 12
+},
+{
+    "fields": {
+        "uploaded": true,
+        "concert": 5,
+        "views": 65,
+        "created_at": "2016-04-06T23:34:03Z",
+        "recorded_at": "2011-12-07T18:05:54Z",
+        "modified_at": "2016-04-06T23:34:03Z",
+        "uuid": "26fbae43-46fe-45fa-aa93-cea87e3c296e",
+        "height": 1080,
+        "artists": [
+            6,
+            11
+        ],
+        "width": 1920,
+        "length": 53533.0,
+        "user": [
+            "mark"
+        ],
+        "original_filename": "tWGuuMwNDtQvXCoRJWgUztLeOi",
+        "file_size": 9309.0,
+        "is_private": false,
+        "name": "Dolor sit sint autem numquam voluptatem aliquam, harum consequuntur amet quos accusantium possimus commodi nobis nisi, veniam"
+    },
+    "model": "videos.video",
+    "pk": 13
+},
+{
+    "fields": {
+        "uploaded": true,
+        "concert": 2,
+        "views": 32,
+        "created_at": "2016-04-06T23:34:03Z",
+        "recorded_at": "2012-06-18T18:50:27Z",
+        "modified_at": "2016-04-06T23:34:03Z",
+        "uuid": "26fbae43-46fe-45fa-aa93-cea87e3c296e",
+        "height": 1080,
+        "artists": [
+            7
+        ],
+        "width": 1920,
+        "length": 27812.0,
+        "user": [
+            "ethan"
+        ],
+        "original_filename": "HlfFWNFVTeioudCwOc",
+        "file_size": 16955.0,
+        "is_private": false,
+        "name": "Quia beatae iste quae saepe iure ipsa magni est, repudiandae consequatur nulla eum tempore inventore libero rem cor"
+    },
+    "model": "videos.video",
+    "pk": 15
+},
+{
+    "fields": {
+        "uploaded": true,
+        "concert": 7,
+        "views": 46,
+        "created_at": "2016-04-06T23:34:03Z",
+        "recorded_at": "2016-08-01T08:23:22Z",
+        "modified_at": "2016-04-06T23:34:03Z",
+        "uuid": "46324b43-01f3-460c-8da9-dab840b1153b",
+        "height": 1080,
+        "artists": [
+            11
+        ],
+        "width": 1920,
+        "length": 99869.0,
+        "user": [
+            "drew"
+        ],
+        "original_filename": "UiWBmtyuHypMRPDyinSlCLfysZeBu qfqDLiMg RXqeeDccwMuELkkEVAvomCxNyQTMfRtoxpVvqx vqCAlLhG aHmrCtZQzAY JmPSqifxIIgyoLRQQVBRelJLZjRCpaO",
+        "file_size": 4911.0,
+        "is_private": false,
+        "name": "Fugiat mollitia dolor quasi et iure iste blanditiis sequi adipisci, facilis maiores quisquam saepe in, explicabo accusanti"
+    },
+    "model": "videos.video",
+    "pk": 16
+},
+{
+    "fields": {
+        "uploaded": true,
+        "concert": 1,
+        "views": 42,
+        "created_at": "2016-04-06T23:34:03Z",
+        "recorded_at": "2011-07-17T09:31:32Z",
+        "modified_at": "2016-04-06T23:34:03Z",
+        "uuid": "298c28c6-9983-4673-8a0e-4666e418437f",
+        "height": 1080,
+        "artists": [
+            4,
+            9
+        ],
+        "width": 1920,
+        "length": 66506.0,
+        "user": [
+            "ethan"
+        ],
+        "original_filename": "AECbuXnZgknICeVOjFlNDZwHnRIXZfDBkVJQFvFZnACZJeZlwHFVZZqJISmETQ Gw lwskBLVTiNvPWnkkClciYLnfrEfqWw",
+        "file_size": 58424.0,
+        "is_private": false,
+        "name": "Id ea harum ne"
+    },
+    "model": "videos.video",
+    "pk": 18
+},
+{
+    "fields": {
+        "uploaded": true,
+        "concert": 1,
+        "views": 70,
+        "created_at": "2016-04-06T23:34:03Z",
+        "recorded_at": "2015-07-13T08:35:40Z",
+        "modified_at": "2016-04-06T23:34:03Z",
+        "uuid": "298c28c6-9983-4673-8a0e-4666e418437f",
+        "height": 1080,
+        "artists": [
+            1
+        ],
+        "width": 1920,
+        "length": 16365.0,
+        "user": [
+            "sanjana"
+        ],
+        "original_filename": "uOHLwQlyVvjRhFCku LJhB Bixl FtmlWrxc upjIoBZETiFIc",
+        "file_size": 14146.0,
+        "is_private": false,
+        "name": "Repellendus sed consectetur unde ad ipsam quo facer"
+    },
+    "model": "videos.video",
+    "pk": 19
+},
+{
+    "fields": {
+        "uploaded": true,
+        "concert": 6,
+        "views": 93,
+        "created_at": "2016-04-06T23:34:03Z",
+        "recorded_at": "2013-04-11T01:09:42Z",
+        "modified_at": "2016-04-06T23:34:03Z",
+        "uuid": "26fbae43-46fe-45fa-aa93-cea87e3c296e",
+        "height": 1080,
+        "artists": [
+            10
+        ],
+        "width": 1920,
+        "length": 41834.0,
+        "user": [
+            "drew"
+        ],
+        "original_filename": "czjfWBJfhTOfAACrxIWVtoPwxCYIGlihSIhiQqmnSRtBUetBibnziYUqLkxp S",
+        "file_size": 63246.0,
+        "is_private": false,
+        "name": "Maxime quisquam eaque tenetur ut temporibus nisi laboriosam cumque suscipit iusto, assumenda maiores quo numquam in"
+    },
+    "model": "videos.video",
+    "pk": 20
+},
+{
+    "fields": {
+        "uploaded": true,
+        "concert": 3,
+        "views": 58,
+        "created_at": "2016-04-06T23:34:04Z",
+        "recorded_at": "2015-04-02T17:46:09Z",
+        "modified_at": "2016-04-06T23:34:04Z",
+        "uuid": "46324b43-01f3-460c-8da9-dab840b1153b",
+        "height": 1080,
+        "artists": [
+            1
+        ],
+        "width": 1920,
+        "length": 1833.0,
+        "user": [
+            "jess"
+        ],
+        "original_filename": "AHXJYn PHtzhSKoCJOfOhPWifDjrGtpScuVfNzftZLywEgNsmMJAlbVisgUHMzjvTh oMEW dGREHvpQzhrOTqZPNpPt",
+        "file_size": 13740.0,
+        "is_private": false,
+        "name": "Numquam totam amet,"
+    },
+    "model": "videos.video",
+    "pk": 27
+},
+{
+    "fields": {
+        "uploaded": true,
+        "concert": 5,
+        "views": 12,
+        "created_at": "2016-04-06T23:34:04Z",
+        "recorded_at": "2014-09-17T15:43:44Z",
+        "modified_at": "2016-04-06T23:34:04Z",
+        "uuid": "46324b43-01f3-460c-8da9-dab840b1153b",
+        "height": 1080,
+        "artists": [
+            1,
+            7
+        ],
+        "width": 1920,
+        "length": 48.0,
+        "user": [
+            "ethan"
+        ],
+        "original_filename": "yqqArPDPncnZjLQmIbaowlIWLAtijbkyFqTHvHlyXpRljzTFTvCspLIq ypcZZoQxFmqXZiEwsURbiqrX",
+        "file_size": 57154.0,
+        "is_private": false,
+        "name": "Doloremque fugiat fuga eos reprehenderit inventore necessitatibus in animi quas odio, incidunt sequi molestiae aperiam l"
+    },
+    "model": "videos.video",
+    "pk": 28
+},
+{
+    "fields": {
+        "uploaded": true,
+        "concert": 2,
+        "views": 94,
+        "created_at": "2016-04-06T23:34:04Z",
+        "recorded_at": "2012-06-09T04:13:54Z",
+        "modified_at": "2016-04-06T23:34:04Z",
+        "uuid": "298c28c6-9983-4673-8a0e-4666e418437f",
+        "height": 1080,
+        "artists": [
+            1
+        ],
+        "width": 1920,
+        "length": 37069.0,
+        "user": [
+            "ethan"
+        ],
+        "original_filename": " vfuyPWjS WxBVEMQbxXuQLjHKBwYqZUKnqkijJyAEPAzrDVCMjkezIxJrpIOH WIFiUXgXqBBfEJXTisSaYWEJc gYRqJFzOdadAgwusfqNDTYGSvV",
+        "file_size": 2475.0,
+        "is_private": false,
+        "name": "Quasi architecto autem cum necessitatibus l"
+    },
+    "model": "videos.video",
+    "pk": 29
+},
+{
+    "fields": {
+        "uploaded": true,
+        "concert": 2,
+        "views": 67,
+        "created_at": "2016-04-06T23:34:04Z",
+        "recorded_at": "2015-10-09T17:56:53Z",
+        "modified_at": "2016-04-06T23:34:04Z",
+        "uuid": "26fbae43-46fe-45fa-aa93-cea87e3c296e",
+        "height": 1080,
+        "artists": [
+            1,
+            10
+        ],
+        "width": 1920,
+        "length": 8693.0,
+        "user": [
+            "drew"
+        ],
+        "original_filename": "QnJbjeVStcZlUmtikQqFublwipHDaXQvSyPZgxTnXdGduFzajFEaWGLJULHfDsWgqquGyUDIoriEqhzlvciPAqXzZWLjAOvLRgK",
+        "file_size": 65980.0,
+        "is_private": false,
+        "name": "Commodi modi quasi, error porro nam nihil, repudiandae labor"
+    },
+    "model": "videos.video",
+    "pk": 30
+},
+{
+    "fields": {
+        "uploaded": true,
+        "concert": 7,
+        "views": 85,
+        "created_at": "2016-04-06T23:34:04Z",
+        "recorded_at": "2016-07-10T08:52:07Z",
+        "modified_at": "2016-04-06T23:34:04Z",
+        "uuid": "26fbae43-46fe-45fa-aa93-cea87e3c296e",
+        "height": 1080,
+        "artists": [
+            2
+        ],
+        "width": 1920,
+        "length": 22045.0,
+        "user": [
+            "drew"
+        ],
+        "original_filename": "thCUaOYpuL ZZ wsvYaKZPTYVrsUf ecIBmOxagyWrEIambyiDKId ikbtgn",
+        "file_size": 24686.0,
+        "is_private": false,
+        "name": "Molestias quisquam illum obcaecati nam distinctio magni quibusdam, vol"
+    },
+    "model": "videos.video",
+    "pk": 31
+},
+{
+    "fields": {
+        "uploaded": true,
+        "concert": 6,
+        "views": 6,
+        "created_at": "2016-04-06T23:34:04Z",
+        "recorded_at": "2014-09-30T11:55:26Z",
+        "modified_at": "2016-04-06T23:34:04Z",
+        "uuid": "298c28c6-9983-4673-8a0e-4666e418437f",
+        "height": 1080,
+        "artists": [
+            7
+        ],
+        "width": 1920,
+        "length": 95885.0,
+        "user": [
+            "drew"
+        ],
+        "original_filename": "RMyywJhcEGYmCMYUFzuCxUmHUCnbhnYXtLYnDrcoFysnHxYnAMQDhdtEgeuYDXRDURbByGdcGLHnpIQTokHypIDldGclmIJVVEKoEkvoxOSWrLhBXJwkSDIcittlYRbRVgWP",
+        "file_size": 54978.0,
+        "is_private": false,
+        "name": "Sequi perferendis iste laudantium to"
+    },
+    "model": "videos.video",
+    "pk": 32
+},
+{
+    "fields": {
+        "uploaded": true,
+        "concert": 2,
+        "views": 41,
+        "created_at": "2016-04-06T23:34:05Z",
+        "recorded_at": "2011-09-22T15:56:39Z",
+        "modified_at": "2016-04-06T23:34:05Z",
+        "uuid": "46324b43-01f3-460c-8da9-dab840b1153b",
+        "height": 1080,
+        "artists": [
+            3,
+            7
+        ],
+        "width": 1920,
+        "length": 3456.0,
+        "user": [
+            "ethan"
+        ],
+        "original_filename": "WPyTfdJJnqLudbUdPQxwZgWBlGkIHJWtLbBMzwEPozUdksCMcgYSnLyqZKmvsjGFDNMQGNgwLqlmdcOgNAdyuCObbOnePXwLbtnVYciS NOfFcjeTIUKOGcpbEmfiFBdY",
+        "file_size": 2552.0,
+        "is_private": false,
+        "name": "Sed quidem saepe nobis ut quos quisquam id culpa magnam, nisi quos voluptatibus accusamus quide"
+    },
+    "model": "videos.video",
+    "pk": 34
+},
+{
+    "fields": {
+        "uploaded": true,
+        "concert": 1,
+        "views": 36,
+        "created_at": "2016-04-06T23:34:05Z",
+        "recorded_at": "2011-12-26T07:57:14Z",
+        "modified_at": "2016-04-06T23:34:05Z",
+        "uuid": "46324b43-01f3-460c-8da9-dab840b1153b",
+        "height": 1080,
+        "artists": [
+            8
+        ],
+        "width": 1920,
+        "length": 67070.0,
+        "user": [
+            "drew"
+        ],
+        "original_filename": "T iAYXWqtAZHaYNUahbfUowEilvjalXLvezyDIrMsuJGORuRUHqCxqe Kc",
+        "file_size": 19664.0,
+        "is_private": false,
+        "name": "Id quod nam iusto, recusandae te"
+    },
+    "model": "videos.video",
+    "pk": 36
+},
+{
+    "fields": {
+        "uploaded": true,
+        "concert": 3,
+        "views": 67,
+        "created_at": "2016-04-06T23:34:05Z",
+        "recorded_at": "2012-04-07T13:16:14Z",
+        "modified_at": "2016-04-06T23:34:05Z",
+        "uuid": "46324b43-01f3-460c-8da9-dab840b1153b",
+        "height": 1080,
+        "artists": [
+            6,
+            10
+        ],
+        "width": 1920,
+        "length": 71228.0,
+        "user": [
+            "mark"
+        ],
+        "original_filename": "imfekkEYXzNOxqAlIpdCUzYN voqwKJdyghNWVJXcRLfWUmplVfuoDzkMigBRG",
+        "file_size": 23907.0,
+        "is_private": false,
+        "name": "Eaque eveniet magnam modi, velit"
+    },
+    "model": "videos.video",
+    "pk": 37
+},
+{
+    "fields": {
+        "uploaded": true,
+        "concert": 5,
+        "views": 93,
+        "created_at": "2016-04-06T23:34:05Z",
+        "recorded_at": "2014-06-07T07:09:00Z",
+        "modified_at": "2016-04-06T23:34:05Z",
+        "uuid": "298c28c6-9983-4673-8a0e-4666e418437f",
+        "height": 1080,
+        "artists": [
+            7
+        ],
+        "width": 1920,
+        "length": 21160.0,
+        "user": [
+            "jess"
+        ],
+        "original_filename": "ktBZyvlWkixuQovSNkXbVhwCcQxigVwQKUIsoFmjEHhzksmhSpcGyiukKpXqkT ZGoYoSVXoNzNkZpv KYomhK",
+        "file_size": 40109.0,
+        "is_private": false,
+        "name": "Temporibus doloribus nesciunt eaque sequi mollitia deleniti obcaecati omnis repudiandae, pariatur nisi v"
+    },
+    "model": "videos.video",
+    "pk": 40
+},
+{
+    "fields": {
+        "uploaded": true,
+        "concert": 6,
+        "views": 108,
+        "created_at": "2016-04-06T23:34:05Z",
+        "recorded_at": "2014-03-20T20:46:59Z",
+        "modified_at": "2016-04-06T23:34:05Z",
+        "uuid": "298c28c6-9983-4673-8a0e-4666e418437f",
+        "height": 1080,
+        "artists": [
+            9
+        ],
+        "width": 1920,
+        "length": 95739.0,
+        "user": [
+            "mark"
+        ],
+        "original_filename": "l BCRCrjjWYRmmMnahtCUUlYe BnG drpXkBIzaehsZYoObdqfJzpoVdBttxbbSCmjxMAyTmmHDnntTXTkSDSNavhEPgEgTkAiNzq pOJEqQcugS",
+        "file_size": 56057.0,
+        "is_private": false,
+        "name": "Sint deserunt ducimus reprehenderit nobis quam? Non ut amet debitis eos officiis autem necessitatib"
+    },
+    "model": "videos.video",
+    "pk": 41
+},
+{
+    "fields": {
+        "uploaded": true,
+        "concert": 2,
+        "views": 120,
+        "created_at": "2016-04-06T23:34:05Z",
+        "recorded_at": "2011-09-15T07:41:28Z",
+        "modified_at": "2016-04-06T23:34:05Z",
+        "uuid": "46324b43-01f3-460c-8da9-dab840b1153b",
+        "height": 1080,
+        "artists": [
+            2,
+            9
+        ],
+        "width": 1920,
+        "length": 45486.0,
+        "user": [
+            "mark"
+        ],
+        "original_filename": "DxclAOODfkRXTWVbvCzEMLLBdGbIEYaHxIKiOOgfAyWFlkiEcNlMCmyTLTWdvOBRBUqualLtnhsjeTmiPXDdRhtLhm",
+        "file_size": 36360.0,
+        "is_private": false,
+        "name": "Incidunt odit repellendus, quibusdam voluptas reprehenderit culpa suscipit, delectus neque praesentium quod quas"
+    },
+    "model": "videos.video",
+    "pk": 43
+},
+{
+    "fields": {
+        "uploaded": true,
+        "concert": 3,
+        "views": 24,
+        "created_at": "2016-04-06T23:34:06Z",
+        "recorded_at": "2015-08-02T13:20:53Z",
+        "modified_at": "2016-04-06T23:34:06Z",
+        "uuid": "26fbae43-46fe-45fa-aa93-cea87e3c296e",
+        "height": 1080,
+        "artists": [
+            5
+        ],
+        "width": 1920,
+        "length": 57916.0,
+        "user": [
+            "ethan"
+        ],
+        "original_filename": "uLgYWlJZgXTwugkZtCUBrPoxcNOVRKJOS XdukrIZUvDKFlOBY",
+        "file_size": 29719.0,
+        "is_private": false,
+        "name": "Ea soluta consequatur cum debiti"
+    },
+    "model": "videos.video",
+    "pk": 44
+},
+{
+    "fields": {
+        "uploaded": true,
+        "concert": 1,
+        "views": 79,
+        "created_at": "2016-04-06T23:34:06Z",
+        "recorded_at": "2015-06-16T10:55:25Z",
+        "modified_at": "2016-04-06T23:34:06Z",
+        "uuid": "46324b43-01f3-460c-8da9-dab840b1153b",
+        "height": 1080,
+        "artists": [
+            3,
+            4
+        ],
+        "width": 1920,
+        "length": 91939.0,
+        "user": [
+            "ethan"
+        ],
+        "original_filename": "EhXtcMvICLsMlcrtDEYUwMPvlxzJNExINGxhvRINRLnHjgbWYnYCreNF",
+        "file_size": 4550.0,
+        "is_private": false,
+        "name": "Ipsa molestiae doloribus aspernatur tempore saepe adipisci illo non, dolores ipsum odit natus ad hic qui atque excepturi, quibus"
+    },
+    "model": "videos.video",
+    "pk": 46
+},
+{
+    "fields": {
+        "uploaded": true,
+        "concert": 4,
+        "views": 74,
+        "created_at": "2016-04-06T23:34:06Z",
+        "recorded_at": "2011-07-23T06:21:41Z",
+        "modified_at": "2016-04-06T23:34:06Z",
+        "uuid": "26fbae43-46fe-45fa-aa93-cea87e3c296e",
+        "height": 1080,
+        "artists": [
+            4,
+            9
+        ],
+        "width": 1920,
+        "length": 75797.0,
+        "user": [
+            "jess"
+        ],
+        "original_filename": "NJwNmtDiMBGPmIQjcYawNIBtjByWzJZlNZemVkAgoBXtlqyak lvEFmC",
+        "file_size": 98465.0,
+        "is_private": false,
+        "name": "Animi aperiam c"
+    },
+    "model": "videos.video",
+    "pk": 47
+},
+{
+    "fields": {
+        "uploaded": true,
+        "concert": 3,
+        "views": 68,
+        "created_at": "2016-04-06T23:34:06Z",
+        "recorded_at": "2015-12-23T08:42:12Z",
+        "modified_at": "2016-04-06T23:34:06Z",
+        "uuid": "46324b43-01f3-460c-8da9-dab840b1153b",
+        "height": 1080,
+        "artists": [
+            3,
+            6
+        ],
+        "width": 1920,
+        "length": 87671.0,
+        "user": [
+            "mark"
+        ],
+        "original_filename": "ZQyOvZhMuDxzMXcozSuBOqEYbaxQJrG HdoAyqdarBbFROgwXsNHpIHDDCldfrbXmHhO",
+        "file_size": 93628.0,
+        "is_private": false,
+        "name": "Labore consequunt"
+    },
+    "model": "videos.video",
+    "pk": 48
+},
+{
+    "fields": {
+        "uploaded": true,
+        "concert": 4,
+        "views": 81,
+        "created_at": "2016-04-06T23:34:06Z",
+        "recorded_at": "2012-11-27T10:57:30Z",
+        "modified_at": "2016-04-06T23:34:06Z",
+        "uuid": "298c28c6-9983-4673-8a0e-4666e418437f",
+        "height": 1080,
+        "artists": [
+            1,
+            7
+        ],
+        "width": 1920,
+        "length": 65740.0,
+        "user": [
+            "jess"
+        ],
+        "original_filename": "wbtuClxRRklOFqTxgGGgXipwyNi aIQAsZFFJcvPfSHnkNBSROWuVDvktNGLyqDSHkm",
+        "file_size": 92137.0,
+        "is_private": false,
+        "name": "Voluptatum deserunt amet optio possimus officia. Dolorem sed aut ad odit vitae maiores commodi saepe voluptatum,"
+    },
+    "model": "videos.video",
+    "pk": 49
+},
+{
+    "fields": {
+        "uploaded": true,
+        "concert": 2,
+        "views": 18,
+        "created_at": "2016-04-06T23:34:06Z",
+        "recorded_at": "2015-10-24T22:22:51Z",
+        "modified_at": "2016-04-06T23:34:06Z",
+        "uuid": "46324b43-01f3-460c-8da9-dab840b1153b",
+        "height": 1080,
+        "artists": [
+            11
+        ],
+        "width": 1920,
+        "length": 15177.0,
+        "user": [
+            "drew"
+        ],
+        "original_filename": "qwfVznwmHUNEQyvigZVoERbVMfWJtolnPRremwoFlPYHdxCSXkdWrRrFJYaRCfexZxTeanUcwQyGaJcORfCEdnvSPgQzOhNNnMAffObR",
+        "file_size": 54608.0,
+        "is_private": false,
+        "name": "Obcaecati accusamus dolore libero a"
+    },
+    "model": "videos.video",
+    "pk": 56
+},
+{
+    "fields": {
+        "uploaded": true,
+        "concert": 7,
+        "views": 119,
+        "created_at": "2016-04-06T23:34:06Z",
+        "recorded_at": "2015-05-17T20:26:38Z",
+        "modified_at": "2016-04-06T23:34:06Z",
+        "uuid": "298c28c6-9983-4673-8a0e-4666e418437f",
+        "height": 1080,
+        "artists": [
+            5,
+            11
+        ],
+        "width": 1920,
+        "length": 28810.0,
+        "user": [
+            "sanjana"
+        ],
+        "original_filename": "XXIFH BfFoKHNkrLyHfuk",
+        "file_size": 52089.0,
+        "is_private": false,
+        "name": "Temporibus dolore beatae neque praesentium ducimus, ut modi corrupti hic, totam dolorem laboriosam pariatur? Ullam sa"
+    },
+    "model": "videos.video",
+    "pk": 57
+},
+{
+    "fields": {
+        "uploaded": true,
+        "concert": 4,
+        "views": 64,
+        "created_at": "2016-04-06T23:34:06Z",
+        "recorded_at": "2012-10-18T15:27:38Z",
+        "modified_at": "2016-04-06T23:34:06Z",
+        "uuid": "298c28c6-9983-4673-8a0e-4666e418437f",
+        "height": 1080,
+        "artists": [
+            8,
+            10
+        ],
+        "width": 1920,
+        "length": 74912.0,
+        "user": [
+            "ethan"
+        ],
+        "original_filename": "dLgE",
+        "file_size": 78059.0,
+        "is_private": false,
+        "name": "Animi earum architecto ratione sit facilis aut dignissimos necessitatibus impedit, pariatur modi molestiae atque bla"
+    },
+    "model": "videos.video",
+    "pk": 60
+},
+{
+    "fields": {
+        "uploaded": true,
+        "concert": 5,
+        "views": 125,
+        "created_at": "2016-04-06T23:34:07Z",
+        "recorded_at": "2015-07-24T08:03:36Z",
+        "modified_at": "2016-04-06T23:34:07Z",
+        "uuid": "46324b43-01f3-460c-8da9-dab840b1153b",
+        "height": 1080,
+        "artists": [
+            11
+        ],
+        "width": 1920,
+        "length": 52994.0,
+        "user": [
+            "sanjana"
+        ],
+        "original_filename": "eiOIQuoqewdvSwvNKFFsMzLmBSXXZvxUxhMHcHLoGaAuAO",
+        "file_size": 36237.0,
+        "is_private": false,
+        "name": "In eius maiores nostrum quae"
+    },
+    "model": "videos.video",
+    "pk": 61
+},
+{
+    "fields": {
+        "uploaded": true,
+        "concert": 5,
+        "views": 92,
+        "created_at": "2016-04-06T23:34:07Z",
+        "recorded_at": "2012-10-22T18:19:45Z",
+        "modified_at": "2016-04-06T23:34:07Z",
+        "uuid": "26fbae43-46fe-45fa-aa93-cea87e3c296e",
+        "height": 1080,
+        "artists": [
+            4,
+            7
+        ],
+        "width": 1920,
+        "length": 70352.0,
+        "user": [
+            "mark"
+        ],
+        "original_filename": "oSASWjtPsGaYAbJINsDJrQJlVptvBejazkCCBKIKUzTlVCPtaHuq gRtyGgYhCsvIL",
+        "file_size": 40516.0,
+        "is_private": false,
+        "name": "Dolore ut vero nihil vo"
+    },
+    "model": "videos.video",
+    "pk": 63
+},
+{
+    "fields": {
+        "uploaded": true,
+        "concert": 1,
+        "views": 8,
+        "created_at": "2016-04-06T23:34:07Z",
+        "recorded_at": "2017-02-18T17:04:57Z",
+        "modified_at": "2016-04-06T23:34:07Z",
+        "uuid": "298c28c6-9983-4673-8a0e-4666e418437f",
+        "height": 1080,
+        "artists": [
+            3,
+            6
+        ],
+        "width": 1920,
+        "length": 37081.0,
+        "user": [
+            "drew"
+        ],
+        "original_filename": "oIQhCplLb mXNxGbJsmkcuhTARZdlL",
+        "file_size": 2095.0,
+        "is_private": false,
+        "name": "Eligendi iste consequatur itaque nesciunt laudantium impedit quasi, rem ea architecto, quia doloremque saepe laborum? H"
+    },
+    "model": "videos.video",
+    "pk": 65
+},
+{
+    "fields": {
+        "uploaded": true,
+        "concert": 4,
+        "views": 77,
+        "created_at": "2016-04-06T23:34:07Z",
+        "recorded_at": "2014-01-12T21:15:55Z",
+        "modified_at": "2016-04-06T23:34:07Z",
+        "uuid": "46324b43-01f3-460c-8da9-dab840b1153b",
+        "height": 1080,
+        "artists": [
+            4
+        ],
+        "width": 1920,
+        "length": 88838.0,
+        "user": [
+            "jess"
+        ],
+        "original_filename": "ROeKVXhXctzolOxmmDWpLErL",
+        "file_size": 57049.0,
+        "is_private": false,
+        "name": "Officia veniam aliquid quis, debitis possimus mollitia nihil magni ex dolore iste, non soluta totam"
+    },
+    "model": "videos.video",
+    "pk": 67
+},
+{
+    "fields": {
+        "uploaded": true,
+        "concert": 5,
+        "views": 96,
+        "created_at": "2016-04-06T23:34:07Z",
+        "recorded_at": "2012-09-16T05:27:59Z",
+        "modified_at": "2016-04-06T23:34:07Z",
+        "uuid": "26fbae43-46fe-45fa-aa93-cea87e3c296e",
+        "height": 1080,
+        "artists": [
+            1,
+            9
+        ],
+        "width": 1920,
+        "length": 30819.0,
+        "user": [
+            "ethan"
+        ],
+        "original_filename": "cXTFDuCFDw LUCfHEBIFYntHfDAyVFrOQjR ZdbvruHgNUnfuD GEHr kAhoJOwMQvDfyjIKmHPA YpnpnUDwdqfoSZkWqKeqhuoEqWxfWsxHMLEtjB",
+        "file_size": 3111.0,
+        "is_private": false,
+        "name": "Laudantium animi est sunt at odit quaerat error quo atque ipsa adipisci, sequi quam"
+    },
+    "model": "videos.video",
+    "pk": 68
+},
+{
+    "fields": {
+        "uploaded": true,
+        "concert": 2,
+        "views": 26,
+        "created_at": "2016-04-06T23:34:07Z",
+        "recorded_at": "2013-08-08T12:15:34Z",
+        "modified_at": "2016-04-06T23:34:07Z",
+        "uuid": "298c28c6-9983-4673-8a0e-4666e418437f",
+        "height": 1080,
+        "artists": [
+            4
+        ],
+        "width": 1920,
+        "length": 31288.0,
+        "user": [
+            "ethan"
+        ],
+        "original_filename": "qwOCCabgsPJkOVdpTTufxS JiZdXYvQWFUwstYrFXIMwipKRLCyPWxPNXmpVIfUIRqMhgdKNmxhmCsfAMAWcypHRSugu fzDSOOEHoaiqeF zaARgQJZHYoWrowgnmrhtzbu",
+        "file_size": 9631.0,
+        "is_private": false,
+        "name": "Non perspiciatis itaque ullam sunt saepe laudantium officiis corpo"
+    },
+    "model": "videos.video",
+    "pk": 69
+},
+{
+    "fields": {
+        "uploaded": true,
+        "concert": 2,
+        "views": 1,
+        "created_at": "2016-04-06T23:34:07Z",
+        "recorded_at": "2012-01-13T08:24:40Z",
+        "modified_at": "2016-04-06T23:34:07Z",
+        "uuid": "298c28c6-9983-4673-8a0e-4666e418437f",
+        "height": 1080,
+        "artists": [
+            1,
+            6
+        ],
+        "width": 1920,
+        "length": 17538.0,
+        "user": [
+            "sanjana"
+        ],
+        "original_filename": "CjEGirKCeYghUdpTWeZJqWXkV rNVjLHOxBtusqkOabhi xHsUivLgGjdbJqdkXzgnZzSxYgHvMHBuWk",
+        "file_size": 23485.0,
+        "is_private": false,
+        "name": "Vero explicabo ullam hic. Quos voluptatibus sint facere, quo u"
+    },
+    "model": "videos.video",
+    "pk": 70
+},
+{
+    "fields": {
+        "uploaded": true,
+        "concert": 5,
+        "views": 77,
+        "created_at": "2016-04-06T23:34:07Z",
+        "recorded_at": "2015-11-21T20:20:21Z",
+        "modified_at": "2016-04-06T23:34:07Z",
+        "uuid": "46324b43-01f3-460c-8da9-dab840b1153b",
+        "height": 1080,
+        "artists": [
+            1,
+            5
+        ],
+        "width": 1920,
+        "length": 6721.0,
+        "user": [
+            "drew"
+        ],
+        "original_filename": "QCeOsiTYaBKGDegORHgpzyTkxZEXYySurRwwRPtQH CwHjOSGUncniPVeYesyaNAcSVIhTXMECpYVdNEGcvdVqTBYvcbcUphXVQpqKSfhmwMyzAzbeaMHkniC",
+        "file_size": 37819.0,
+        "is_private": false,
+        "name": "Et atque perspiciatis facere aperiam minus, quas est quam repellendus ad distinctio itaque voluptates impedit culpa id ipsa, dol"
+    },
+    "model": "videos.video",
+    "pk": 71
+},
+{
+    "fields": {
+        "uploaded": true,
+        "concert": 6,
+        "views": 26,
+        "created_at": "2016-04-06T23:34:08Z",
+        "recorded_at": "2012-12-28T11:06:46Z",
+        "modified_at": "2016-04-06T23:34:08Z",
+        "uuid": "26fbae43-46fe-45fa-aa93-cea87e3c296e",
+        "height": 1080,
+        "artists": [
+            8
+        ],
+        "width": 1920,
+        "length": 62104.0,
+        "user": [
+            "jess"
+        ],
+        "original_filename": "hVVCoBByODsEwusHfZsqbfSHlJZrMzbCiffAPAJuEJbtTteKtLScPDxkbmbOvCbYsxUApmmQFwTPaqPUjyPMdGgqPTsjuHzADGAvGSrCKFFheCe",
+        "file_size": 4310.0,
+        "is_private": false,
+        "name": "Provident corrupti pariatur aut id velit laudantium incidunt ea nobis excepturi laborum? Possimus nostrum to"
+    },
+    "model": "videos.video",
+    "pk": 72
+},
+{
+    "fields": {
+        "uploaded": true,
+        "concert": 5,
+        "views": 86,
+        "created_at": "2016-04-06T23:34:08Z",
+        "recorded_at": "2013-04-10T21:52:02Z",
+        "modified_at": "2016-04-06T23:34:08Z",
+        "uuid": "298c28c6-9983-4673-8a0e-4666e418437f",
+        "height": 1080,
+        "artists": [
+            1,
+            11
+        ],
+        "width": 1920,
+        "length": 63163.0,
+        "user": [
+            "sanjana"
+        ],
+        "original_filename": "LwEHlzhxiBpopRlAKNtdekiMOmEvesCinTiCDzWKsPNpRuu",
+        "file_size": 82543.0,
+        "is_private": false,
+        "name": "Minima ex vitae doloribus excepturi nam temporibus. Aut cupidi"
+    },
+    "model": "videos.video",
+    "pk": 74
+},
+{
+    "fields": {
+        "uploaded": true,
+        "concert": 7,
+        "views": 118,
+        "created_at": "2016-04-06T23:34:08Z",
+        "recorded_at": "2013-03-09T01:30:18Z",
+        "modified_at": "2016-04-06T23:34:08Z",
+        "uuid": "46324b43-01f3-460c-8da9-dab840b1153b",
+        "height": 1080,
+        "artists": [
+            10
+        ],
+        "width": 1920,
+        "length": 98940.0,
+        "user": [
+            "mark"
+        ],
+        "original_filename": "HOLQzJmCqveiFaoAiGG CMf",
+        "file_size": 66679.0,
+        "is_private": false,
+        "name": "Veniam voluptatibus eos labor"
+    },
+    "model": "videos.video",
+    "pk": 75
+},
+{
+    "fields": {
+        "uploaded": true,
+        "concert": 2,
+        "views": 110,
+        "created_at": "2016-04-06T23:34:08Z",
+        "recorded_at": "2015-07-08T20:35:33Z",
+        "modified_at": "2016-04-06T23:34:08Z",
+        "uuid": "46324b43-01f3-460c-8da9-dab840b1153b",
+        "height": 1080,
+        "artists": [
+            6
+        ],
+        "width": 1920,
+        "length": 80564.0,
+        "user": [
+            "ethan"
+        ],
+        "original_filename": "oiuBpNfIMGVkpIXDsCivEREwqsfpYZcQJfobklHfqQAaiuKVTQAURJhvyJQLmaIVXSnpW iOBmiCaxgoytHfPvshDB",
+        "file_size": 52717.0,
+        "is_private": false,
+        "name": "Enim numquam et ex impedit, ipsa inventore cupiditate exc"
+    },
+    "model": "videos.video",
+    "pk": 76
+},
+{
+    "fields": {
+        "uploaded": true,
+        "concert": 5,
+        "views": 39,
+        "created_at": "2016-04-06T23:34:08Z",
+        "recorded_at": "2011-04-21T00:13:45Z",
+        "modified_at": "2016-04-06T23:34:08Z",
+        "uuid": "298c28c6-9983-4673-8a0e-4666e418437f",
+        "height": 1080,
+        "artists": [
+            9
+        ],
+        "width": 1920,
+        "length": 30766.0,
+        "user": [
+            "drew"
+        ],
+        "original_filename": "wkqrblqKiTbFRBqIniqqiZjZcbzSIDVgb VMEVjopJRxXqbcrOsjVDkaOVClDwRZ",
+        "file_size": 85716.0,
+        "is_private": false,
+        "name": "Soluta accusamus facilis, at numquam molestiae nisi quidem maxime, laborum ex odio, voluptatibus eligendi similique et, omnis"
+    },
+    "model": "videos.video",
+    "pk": 83
+},
+{
+    "fields": {
+        "uploaded": true,
+        "concert": 5,
+        "views": 124,
+        "created_at": "2016-04-06T23:34:08Z",
+        "recorded_at": "2013-07-17T02:38:57Z",
+        "modified_at": "2016-04-06T23:34:08Z",
+        "uuid": "26fbae43-46fe-45fa-aa93-cea87e3c296e",
+        "height": 1080,
+        "artists": [
+            3,
+            6
+        ],
+        "width": 1920,
+        "length": 52157.0,
+        "user": [
+            "mark"
+        ],
+        "original_filename": "UQXUPQTbymQUKPaGYklcfFuRwAIMVEaBWuZplqefLrzoDUgiztvIgaFvznasvwqDEMrODIROOXrSSIxLZxAXGVBDMme PZRtMBHjnTJRyTD BwxZeywPxnOWHiz",
+        "file_size": 23112.0,
+        "is_private": false,
+        "name": "Ab deleniti beat"
+    },
+    "model": "videos.video",
+    "pk": 84
+},
+{
+    "fields": {
+        "uploaded": true,
+        "concert": 2,
+        "views": 7,
+        "created_at": "2016-04-06T23:34:08Z",
+        "recorded_at": "2011-05-21T06:47:28Z",
+        "modified_at": "2016-04-06T23:34:08Z",
+        "uuid": "26fbae43-46fe-45fa-aa93-cea87e3c296e",
+        "height": 1080,
+        "artists": [
+            11
+        ],
+        "width": 1920,
+        "length": 48734.0,
+        "user": [
+            "drew"
+        ],
+        "original_filename": "UfAykPmdOqERhRdLWswUrONDVrjAwOyRFDQOLWju",
+        "file_size": 29613.0,
+        "is_private": false,
+        "name": "Sint odio mollitia deserunt. Excepturi culpa nulla similique aperiam, nihil temporibus am"
+    },
+    "model": "videos.video",
+    "pk": 85
+},
+{
+    "fields": {
+        "uploaded": true,
+        "concert": 7,
+        "views": 61,
+        "created_at": "2016-04-06T23:34:08Z",
+        "recorded_at": "2016-12-27T02:39:12Z",
+        "modified_at": "2016-04-06T23:34:08Z",
+        "uuid": "26fbae43-46fe-45fa-aa93-cea87e3c296e",
+        "height": 1080,
+        "artists": [
+            8
+        ],
+        "width": 1920,
+        "length": 62776.0,
+        "user": [
+            "ethan"
+        ],
+        "original_filename": "V AgbInEadsbjWQZnKoofYygRvhYBVIyfJhyULYFdLbYla",
+        "file_size": 28526.0,
+        "is_private": false,
+        "name": "Blanditiis incidunt deserunt at molestias culpa ducimus? Molestias est incidunt corporis hic maiores nam enim temporibus reicien"
+    },
+    "model": "videos.video",
+    "pk": 87
+},
+{
+    "fields": {
+        "uploaded": true,
+        "concert": 7,
+        "views": 122,
+        "created_at": "2016-04-06T23:34:09Z",
+        "recorded_at": "2013-03-28T18:18:31Z",
+        "modified_at": "2016-04-06T23:34:09Z",
+        "uuid": "298c28c6-9983-4673-8a0e-4666e418437f",
+        "height": 1080,
+        "artists": [
+            10
+        ],
+        "width": 1920,
+        "length": 10943.0,
+        "user": [
+            "drew"
+        ],
+        "original_filename": "PuZZRDOdQFvidryBrKdKJYCewOsptetsKxpHcNxgkkYrUJLQeLzRVawmaSPDiDDoYQXT PnU FjxPaSKyFVwRTmFtajzWexKVJMNIkhGxsxBvcWqzAfXAb",
+        "file_size": 46905.0,
+        "is_private": false,
+        "name": "Cupiditate vel corrupti eligendi iste laborum eum recusandae necess"
+    },
+    "model": "videos.video",
+    "pk": 90
+},
+{
+    "fields": {
+        "uploaded": true,
+        "concert": 3,
+        "views": 26,
+        "created_at": "2016-04-06T23:34:09Z",
+        "recorded_at": "2011-06-22T03:12:08Z",
+        "modified_at": "2016-04-06T23:34:09Z",
+        "uuid": "298c28c6-9983-4673-8a0e-4666e418437f",
+        "height": 1080,
+        "artists": [
+            4,
+            5
+        ],
+        "width": 1920,
+        "length": 35686.0,
+        "user": [
+            "sanjana"
+        ],
+        "original_filename": "joHlV EsVptgVKOzcNlitRJwYimvsTIsPhHVJAviZjEZXckujOoXGjqr fPHy",
+        "file_size": 6333.0,
+        "is_private": false,
+        "name": "Recusandae explicabo volupta"
+    },
+    "model": "videos.video",
+    "pk": 94
+},
+{
+    "fields": {
+        "uploaded": true,
+        "concert": 3,
+        "views": 5,
+        "created_at": "2016-04-06T23:34:09Z",
+        "recorded_at": "2017-04-02T11:34:26Z",
+        "modified_at": "2016-04-06T23:34:09Z",
+        "uuid": "298c28c6-9983-4673-8a0e-4666e418437f",
+        "height": 1080,
+        "artists": [
+            11
+        ],
+        "width": 1920,
+        "length": 1187.0,
+        "user": [
+            "sanjana"
+        ],
+        "original_filename": "SoxpbOQuEApYkSfoWKaBgAZVpi qTmkhYVCIEddHcqOprEQwFjobzbeDnX",
+        "file_size": 88637.0,
+        "is_private": false,
+        "name": "Architecto et minus, quaerat dicta assumenda possimus commodi, optio deserun"
+    },
+    "model": "videos.video",
+    "pk": 97
+},
+{
+    "fields": {
+        "uploaded": true,
+        "concert": 1,
+        "views": 41,
+        "created_at": "2016-04-06T23:34:09Z",
+        "recorded_at": "2013-04-20T23:40:44Z",
+        "modified_at": "2016-04-06T23:34:09Z",
+        "uuid": "46324b43-01f3-460c-8da9-dab840b1153b",
+        "height": 1080,
+        "artists": [
+            5
+        ],
+        "width": 1920,
+        "length": 70694.0,
+        "user": [
+            "jess"
+        ],
+        "original_filename": "CGjNPfqyxJpi gxcVMXFqRVgyHpEwLQRlNhmngiTcotDqdDHkQIOMKggPVzAZPOpiSfrEB tuucBFIoNnXFUYxhztUltcUxaehDkwfadvfbmWYVfTjrcGRjwFEBCi",
+        "file_size": 13162.0,
+        "is_private": false,
+        "name": "Aperiam quidem eligendi voluptates dignissimos vero voluptatum impedit v"
+    },
+    "model": "videos.video",
+    "pk": 98
+},
+{
+    "fields": {
+        "uploaded": true,
+        "concert": 1,
+        "views": 110,
+        "created_at": "2016-04-06T23:34:09Z",
+        "recorded_at": "2012-10-13T06:00:14Z",
+        "modified_at": "2016-04-06T23:34:09Z",
+        "uuid": "46324b43-01f3-460c-8da9-dab840b1153b",
+        "height": 1080,
+        "artists": [
+            4,
+            5
+        ],
+        "width": 1920,
+        "length": 43535.0,
+        "user": [
+            "ethan"
+        ],
+        "original_filename": "wFxaqCMPMCKXhtHbVgyxAgGhp kvQwuWSJldli",
+        "file_size": 67198.0,
+        "is_private": false,
+        "name": "Dolorum accusamus animi temporibus ratione dignissimos nihil illum molestias recusandae at, dignissimos officiis ab nam, c"
+    },
+    "model": "videos.video",
+    "pk": 99
+},
+{
+    "fields": {
+        "uploaded": true,
+        "concert": 5,
+        "views": 70,
+        "created_at": "2016-04-06T23:34:09Z",
+        "recorded_at": "2016-02-27T08:37:12Z",
+        "modified_at": "2016-04-06T23:34:09Z",
+        "uuid": "298c28c6-9983-4673-8a0e-4666e418437f",
+        "height": 1080,
+        "artists": [
+            10
+        ],
+        "width": 1920,
+        "length": 2426.0,
+        "user": [
+            "jess"
+        ],
+        "original_filename": "gkwgvPtrsBjsmlbHTuVDltOhDMeUtzfWebRHG",
+        "file_size": 16921.0,
+        "is_private": false,
+        "name": "Quod quibusdam nobis accusamus rerum voluptatem est quo sint fu"
+    },
+    "model": "videos.video",
+    "pk": 100
+},
+{
+    "fields": {
+        "uploaded": true,
+        "concert": 7,
+        "views": 24,
+        "created_at": "2016-04-06T23:34:10Z",
+        "recorded_at": "2011-05-15T00:29:03Z",
+        "modified_at": "2016-04-06T23:34:10Z",
+        "uuid": "26fbae43-46fe-45fa-aa93-cea87e3c296e",
+        "height": 1080,
+        "artists": [
+            6
+        ],
+        "width": 1920,
+        "length": 50897.0,
+        "user": [
+            "drew"
+        ],
+        "original_filename": "EAlOPPJTuepxlFTxKnDtlmUcIaXiZhgT yYLGPZsVarFpdKWCdqiTzUXSAmHCgQbMQXOFvYBaSDZWUsPwxWMlqOpOIxnJfgFlbquMMxZxQjAhewEbnheSRioxBqrCvoDiLQBwvUxvHS",
+        "file_size": 30596.0,
+        "is_private": false,
+        "name": "Magni laudantium nobis sapiente nostrum odio dolorem earum facere optio aliquam aspernatur."
+    },
+    "model": "videos.video",
+    "pk": 102
+},
+{
+    "fields": {
+        "uploaded": true,
+        "concert": 4,
+        "views": 126,
+        "created_at": "2016-04-06T23:34:10Z",
+        "recorded_at": "2012-09-18T17:16:40Z",
+        "modified_at": "2016-04-06T23:34:10Z",
+        "uuid": "26fbae43-46fe-45fa-aa93-cea87e3c296e",
+        "height": 1080,
+        "artists": [
+            1
+        ],
+        "width": 1920,
+        "length": 30944.0,
+        "user": [
+            "ethan"
+        ],
+        "original_filename": "bTPAIoKfZDZtCIcQXAOMihlObRPuqbXUqSwdTDoFGHqnbVnKwEgAjXJsizrlmCaMYyZacbdeEdYwRGxDszylvkuvxeHUHqBbGtiIhj rUVwSHvKuRnD",
+        "file_size": 44112.0,
+        "is_private": false,
+        "name": "Voluptates magnam quisquam fuga assumenda quaerat ipsam aspernatur dignissimos, voluptatem impedit quod velit non officiis sequi"
+    },
+    "model": "videos.video",
+    "pk": 103
+},
+{
+    "fields": {
+        "uploaded": true,
+        "concert": 3,
+        "views": 87,
+        "created_at": "2016-04-06T23:34:10Z",
+        "recorded_at": "2013-11-05T01:45:46Z",
+        "modified_at": "2016-04-06T23:34:10Z",
+        "uuid": "46324b43-01f3-460c-8da9-dab840b1153b",
+        "height": 1080,
+        "artists": [
+            3,
+            8
+        ],
+        "width": 1920,
+        "length": 41056.0,
+        "user": [
+            "drew"
+        ],
+        "original_filename": " PaMGqMLGU HoukXWeQoPMH ZTZIRCShvgElbipyNqOqMLCUlPFMpik",
+        "file_size": 53837.0,
+        "is_private": false,
+        "name": "Exercitationem voluptates"
+    },
+    "model": "videos.video",
+    "pk": 104
+},
+{
+    "fields": {
+        "uploaded": true,
+        "concert": 6,
+        "views": 99,
+        "created_at": "2016-04-06T23:34:10Z",
+        "recorded_at": "2012-09-20T08:10:12Z",
+        "modified_at": "2016-04-06T23:34:10Z",
+        "uuid": "26fbae43-46fe-45fa-aa93-cea87e3c296e",
+        "height": 1080,
+        "artists": [
+            10
+        ],
+        "width": 1920,
+        "length": 68684.0,
+        "user": [
+            "drew"
+        ],
+        "original_filename": "LOUsOjGCJHyhEwPUaRMAHdEyQdooBEIcbMsNjQcbHsQpPvcqGQtHhQiaxZjGee",
+        "file_size": 17601.0,
+        "is_private": false,
+        "name": "Totam recusandae tenetur eos voluptas eveniet, excepturi hic consequuntur"
+    },
+    "model": "videos.video",
+    "pk": 105
+},
+{
+    "fields": {
+        "uploaded": true,
+        "concert": 6,
+        "views": 85,
+        "created_at": "2016-04-06T23:34:10Z",
+        "recorded_at": "2013-09-11T07:00:19Z",
+        "modified_at": "2016-04-06T23:34:10Z",
+        "uuid": "298c28c6-9983-4673-8a0e-4666e418437f",
+        "height": 1080,
+        "artists": [
+            2,
+            5
+        ],
+        "width": 1920,
+        "length": 49486.0,
+        "user": [
+            "drew"
+        ],
+        "original_filename": "AvrnONCJzoSzFhdoIlOjtDPiHAIn rkFIgctqRnmwFnMUBTYxibsbRvPcAaqLMHXckOA",
+        "file_size": 9455.0,
+        "is_private": false,
+        "name": "Vel delectus quidem odio quis ipsa quisquam, id non imped"
+    },
+    "model": "videos.video",
+    "pk": 107
+},
+{
+    "fields": {
+        "uploaded": true,
+        "concert": 5,
+        "views": 122,
+        "created_at": "2016-04-06T23:34:10Z",
+        "recorded_at": "2012-03-28T22:47:02Z",
+        "modified_at": "2016-04-06T23:34:10Z",
+        "uuid": "26fbae43-46fe-45fa-aa93-cea87e3c296e",
+        "height": 1080,
+        "artists": [
+            8
+        ],
+        "width": 1920,
+        "length": 15725.0,
+        "user": [
+            "ethan"
+        ],
+        "original_filename": "BjvcxhYSoUjtPsubDzldkMkXfeOiXdJMUmQzoTnZ CBnTkloJRGQOqHqAlXtXplrBsCmpCCepgzvynSKqyfSfzpSr ndUnRkM WdDgcZrwKsZwj PTYYXxsi DNDMp",
+        "file_size": 33555.0,
+        "is_private": false,
+        "name": "Ullam quis hic iure alias laborum enim at aliquid voluptates ad, sunt beatae rem, sint voluptatum atque? A"
+    },
+    "model": "videos.video",
+    "pk": 109
+},
+{
+    "fields": {
+        "uploaded": true,
+        "concert": 2,
+        "views": 36,
+        "created_at": "2016-04-06T23:34:10Z",
+        "recorded_at": "2014-04-09T03:48:04Z",
+        "modified_at": "2016-04-06T23:34:10Z",
+        "uuid": "298c28c6-9983-4673-8a0e-4666e418437f",
+        "height": 1080,
+        "artists": [
+            2
+        ],
+        "width": 1920,
+        "length": 32420.0,
+        "user": [
+            "ethan"
+        ],
+        "original_filename": "TWxqZZJTPUWwvxQqECQbrgOhKUbNhAVCAZGDoEZVEJySiiUzwvQtjtknIMpSGIPIHncVHtFwEzssMRWieLLId qlpqncrydOyea IhXFsch ckMZngXrGPDyMWmsoM",
+        "file_size": 9111.0,
+        "is_private": false,
+        "name": "Id molestias sint maxime nisi, aperiam laboriosam"
+    },
+    "model": "videos.video",
+    "pk": 112
+},
+{
+    "fields": {
+        "uploaded": true,
+        "concert": 1,
+        "views": 86,
+        "created_at": "2016-04-06T23:34:10Z",
+        "recorded_at": "2011-09-10T03:29:24Z",
+        "modified_at": "2016-04-06T23:34:10Z",
+        "uuid": "26fbae43-46fe-45fa-aa93-cea87e3c296e",
+        "height": 1080,
+        "artists": [
+            9
+        ],
+        "width": 1920,
+        "length": 67762.0,
+        "user": [
+            "mark"
+        ],
+        "original_filename": "LcHNZcBZjujmDKnPiCoYHScDEBIRegSnKASydRwJIlQkbccuaUT",
+        "file_size": 56466.0,
+        "is_private": false,
+        "name": "Sunt dicta voluptate officia sit, eius nemo amet impedit vitae, dolorum atque optio ratione rem similique ea debitis eligendi er"
+    },
+    "model": "videos.video",
+    "pk": 118
+},
+{
+    "fields": {
+        "uploaded": true,
+        "concert": 7,
+        "views": 60,
+        "created_at": "2016-04-06T23:34:11Z",
+        "recorded_at": "2015-02-19T04:12:46Z",
+        "modified_at": "2016-04-06T23:34:11Z",
+        "uuid": "46324b43-01f3-460c-8da9-dab840b1153b",
+        "height": 1080,
+        "artists": [
+            1
+        ],
+        "width": 1920,
+        "length": 23822.0,
+        "user": [
+            "drew"
+        ],
+        "original_filename": "YMNtNEVLVnxRgHpmVDmtsMdC JhVaofanJBfEzWqaXUcnhnHTeHtzyGLWWUFSuRNECFNuwXnOfp IvgqaXMJ",
+        "file_size": 59473.0,
+        "is_private": false,
+        "name": "Nam possimus dolores assumenda necessitatibus quis repu"
+    },
+    "model": "videos.video",
+    "pk": 119
+},
+{
+    "fields": {
+        "uploaded": true,
+        "concert": 5,
+        "views": 97,
+        "created_at": "2016-04-06T23:34:11Z",
+        "recorded_at": "2012-10-26T14:33:43Z",
+        "modified_at": "2016-04-06T23:34:11Z",
+        "uuid": "298c28c6-9983-4673-8a0e-4666e418437f",
+        "height": 1080,
+        "artists": [
+            6
+        ],
+        "width": 1920,
+        "length": 16818.0,
+        "user": [
+            "ethan"
+        ],
+        "original_filename": "pExdzRzBnQqeTJbvxzoAKAJpJzLREPsGFSVaMWWOvmUdDHktcqvqWWFDGw",
+        "file_size": 66955.0,
+        "is_private": false,
+        "name": "Veritatis veniam aut et, pariatur maiores soluta magnam, nemo ab veritatis sequi id dolore voluptatum perfere"
+    },
+    "model": "videos.video",
+    "pk": 122
+},
+{
+    "fields": {
+        "uploaded": true,
+        "concert": 6,
+        "views": 35,
+        "created_at": "2016-04-06T23:34:11Z",
+        "recorded_at": "2011-10-16T19:53:58Z",
+        "modified_at": "2016-04-06T23:34:11Z",
+        "uuid": "46324b43-01f3-460c-8da9-dab840b1153b",
+        "height": 1080,
+        "artists": [
+            4,
+            6
+        ],
+        "width": 1920,
+        "length": 54066.0,
+        "user": [
+            "jess"
+        ],
+        "original_filename": "tFogsNzS hTtLOtPupcYttiCeyeAOdYIHOUiFKgvkrXnOzXAkoZNNPHnTre",
+        "file_size": 16545.0,
+        "is_private": false,
+        "name": "Autem magni consequuntur iure? Debitis place"
+    },
+    "model": "videos.video",
+    "pk": 124
+},
+{
+    "fields": {
+        "uploaded": true,
+        "concert": 2,
+        "views": 59,
+        "created_at": "2016-04-06T23:34:11Z",
+        "recorded_at": "2016-03-20T22:20:16Z",
+        "modified_at": "2016-04-06T23:34:11Z",
+        "uuid": "26fbae43-46fe-45fa-aa93-cea87e3c296e",
+        "height": 1080,
+        "artists": [
+            1
+        ],
+        "width": 1920,
+        "length": 71450.0,
+        "user": [
+            "mark"
+        ],
+        "original_filename": "NBfQjaRjULX GLcLkwCsZ",
+        "file_size": 60197.0,
+        "is_private": false,
+        "name": "Voluptatibus corrupti pe"
+    },
+    "model": "videos.video",
+    "pk": 127
+},
+{
+    "fields": {
+        "uploaded": true,
+        "concert": 7,
+        "views": 111,
+        "created_at": "2016-04-06T23:34:11Z",
+        "recorded_at": "2014-02-16T02:41:34Z",
+        "modified_at": "2016-04-06T23:34:11Z",
+        "uuid": "46324b43-01f3-460c-8da9-dab840b1153b",
+        "height": 1080,
+        "artists": [
+            1
+        ],
+        "width": 1920,
+        "length": 73108.0,
+        "user": [
+            "jess"
+        ],
+        "original_filename": "Fwl",
+        "file_size": 18316.0,
+        "is_private": false,
+        "name": "Iste ipsum enim totam quod itaque reprehenderit est, voluptatem perspiciatis suscipit rem ex in asperiores est praesentium, erro"
+    },
+    "model": "videos.video",
+    "pk": 128
+},
+{
+    "fields": {
+        "uploaded": true,
+        "concert": 3,
+        "views": 10,
+        "created_at": "2016-04-06T23:34:11Z",
+        "recorded_at": "2016-03-05T03:19:30Z",
+        "modified_at": "2016-04-06T23:34:11Z",
+        "uuid": "26fbae43-46fe-45fa-aa93-cea87e3c296e",
+        "height": 1080,
+        "artists": [
+            6,
+            9
+        ],
+        "width": 1920,
+        "length": 39813.0,
+        "user": [
+            "ethan"
+        ],
+        "original_filename": "RUijHIMSfPjE vSy gQkRdynQFhvZImUxQAxKBoTALzktXHpAeDzqnJKpEhDcj MbfzApBQSHUUccfrDT",
+        "file_size": 7581.0,
+        "is_private": false,
+        "name": "Odio illo consectetur cum magnam a"
+    },
+    "model": "videos.video",
+    "pk": 129
+},
+{
+    "fields": {
+        "uploaded": true,
+        "concert": 2,
+        "views": 13,
+        "created_at": "2016-04-06T23:34:11Z",
+        "recorded_at": "2012-09-12T18:17:07Z",
+        "modified_at": "2016-04-06T23:34:11Z",
+        "uuid": "26fbae43-46fe-45fa-aa93-cea87e3c296e",
+        "height": 1080,
+        "artists": [
+            1,
+            2
+        ],
+        "width": 1920,
+        "length": 68903.0,
+        "user": [
+            "mark"
+        ],
+        "original_filename": "MFXbuWzTLnfnSPecztphXMTfj eYmEqkrJPJlejwkIlxKOefXikYSg xMmBYoOTweqsfvxSLhqmKvEsSJrbqPeVLlIGDAPGgRtvAOrghUACB",
+        "file_size": 90172.0,
+        "is_private": false,
+        "name": "Architecto quam ipsam dolores numquam. Eni"
+    },
+    "model": "videos.video",
+    "pk": 130
+},
+{
+    "fields": {
+        "uploaded": true,
+        "concert": 6,
+        "views": 14,
+        "created_at": "2016-04-06T23:34:11Z",
+        "recorded_at": "2014-04-10T21:06:00Z",
+        "modified_at": "2016-04-06T23:34:11Z",
+        "uuid": "46324b43-01f3-460c-8da9-dab840b1153b",
+        "height": 1080,
+        "artists": [
+            1,
+            4
+        ],
+        "width": 1920,
+        "length": 46989.0,
+        "user": [
+            "sanjana"
+        ],
+        "original_filename": "lOGIPiYIODpQvmaydkfuNSwMtgpceYKpZLxXSsCsMyiOWIckCtbEvLFRMrWppFhHnkxcuPNofZIxAWElvKDbClNjkVDL",
+        "file_size": 45501.0,
+        "is_private": false,
+        "name": "Aspernatur eveniet magnam libero unde necessitatibus adipisci at eligendi corporis esse, molliti"
+    },
+    "model": "videos.video",
+    "pk": 132
+},
+{
+    "fields": {
+        "uploaded": true,
+        "concert": 6,
+        "views": 88,
+        "created_at": "2016-04-06T23:34:11Z",
+        "recorded_at": "2012-12-07T12:59:29Z",
+        "modified_at": "2016-04-06T23:34:11Z",
+        "uuid": "298c28c6-9983-4673-8a0e-4666e418437f",
+        "height": 1080,
+        "artists": [
+            7,
+            10
+        ],
+        "width": 1920,
+        "length": 26005.0,
+        "user": [
+            "ethan"
+        ],
+        "original_filename": "EslcyUigAbZBmsIRrfDjEHxLhzPNAcyZKWWugSwJeBPfZfJAEtwgbNhicmMPLastPyRSXAeHDiq",
+        "file_size": 34261.0,
+        "is_private": false,
+        "name": "Natus saepe delectus consequuntur soluta por"
+    },
+    "model": "videos.video",
+    "pk": 134
+},
+{
+    "fields": {
+        "uploaded": true,
+        "concert": 3,
+        "views": 105,
+        "created_at": "2016-04-06T23:34:11Z",
+        "recorded_at": "2012-09-06T04:48:18Z",
+        "modified_at": "2016-04-06T23:34:11Z",
+        "uuid": "298c28c6-9983-4673-8a0e-4666e418437f",
+        "height": 1080,
+        "artists": [
+            2,
+            11
+        ],
+        "width": 1920,
+        "length": 11793.0,
+        "user": [
+            "drew"
+        ],
+        "original_filename": "lUbRPppThGtS",
+        "file_size": 73739.0,
+        "is_private": false,
+        "name": "Quia enim quod"
+    },
+    "model": "videos.video",
+    "pk": 135
+},
+{
+    "fields": {
+        "uploaded": true,
+        "concert": 3,
+        "views": 119,
+        "created_at": "2016-04-06T23:34:11Z",
+        "recorded_at": "2013-07-05T07:25:17Z",
+        "modified_at": "2016-04-06T23:34:11Z",
+        "uuid": "46324b43-01f3-460c-8da9-dab840b1153b",
+        "height": 1080,
+        "artists": [
+            9
+        ],
+        "width": 1920,
+        "length": 35604.0,
+        "user": [
+            "sanjana"
+        ],
+        "original_filename": "xbWteppekdsoCFkOEJHnYlSPLBm JQU LROSCrpsmYCCIJjkVXNpQoYbTbunrRfCWT lnbRoPVyrZvOXpOwmivBRg",
+        "file_size": 75162.0,
+        "is_private": false,
+        "name": "Adipisci pariatur quaerat sapiente reiciendis"
+    },
+    "model": "videos.video",
+    "pk": 136
+},
+{
+    "fields": {
+        "uploaded": true,
+        "concert": 5,
+        "views": 71,
+        "created_at": "2016-04-06T23:34:11Z",
+        "recorded_at": "2013-02-25T08:42:33Z",
+        "modified_at": "2016-04-06T23:34:11Z",
+        "uuid": "298c28c6-9983-4673-8a0e-4666e418437f",
+        "height": 1080,
+        "artists": [
+            1,
+            10
+        ],
+        "width": 1920,
+        "length": 40070.0,
+        "user": [
+            "ethan"
+        ],
+        "original_filename": "JxAYRsRxXDU DWMwCtSmhIQvcpdfzLa Nj LqRUuDyYYHzeNgJjSECeGtwtcOPQZAbGxJUGErFfYOgmJSoDCrWAUBRAGGPXUAmkIyrD",
+        "file_size": 25102.0,
+        "is_private": false,
+        "name": "Tempore libero accusantium quod impedit"
+    },
+    "model": "videos.video",
+    "pk": 137
+},
+{
+    "fields": {
+        "uploaded": true,
+        "concert": 5,
+        "views": 117,
+        "created_at": "2016-04-06T23:34:12Z",
+        "recorded_at": "2012-04-21T01:09:56Z",
+        "modified_at": "2016-04-06T23:34:12Z",
+        "uuid": "26fbae43-46fe-45fa-aa93-cea87e3c296e",
+        "height": 1080,
+        "artists": [
+            11
+        ],
+        "width": 1920,
+        "length": 39820.0,
+        "user": [
+            "drew"
+        ],
+        "original_filename": "uRlhWSApXAkqFeZCsrstNpAyHcffgaJGgHRMKeiHNtumUWtoGRhwDpSOipojzsBwqGDypwjPQqbqHVyTeAbhzQgBYpEzDUzwv faZaONlMuAqABYklFmAmXvS AHBj",
+        "file_size": 64866.0,
+        "is_private": false,
+        "name": "Mollitia sunt molestias saepe fuga esse aliquid omn"
+    },
+    "model": "videos.video",
+    "pk": 139
+},
+{
+    "fields": {
+        "uploaded": true,
+        "concert": 5,
+        "views": 39,
+        "created_at": "2016-04-06T23:34:12Z",
+        "recorded_at": "2012-07-27T15:42:27Z",
+        "modified_at": "2016-04-06T23:34:12Z",
+        "uuid": "46324b43-01f3-460c-8da9-dab840b1153b",
+        "height": 1080,
+        "artists": [
+            6,
+            7
+        ],
+        "width": 1920,
+        "length": 82005.0,
+        "user": [
+            "mark"
+        ],
+        "original_filename": "sSAxGQBHMcvswRshnip l bPMsgjvJDDdnnHZjEDUtxsjeippR",
+        "file_size": 73273.0,
+        "is_private": false,
+        "name": "Blanditiis voluptatem beatae, placeat dolor"
+    },
+    "model": "videos.video",
+    "pk": 142
+},
+{
+    "fields": {
+        "uploaded": true,
+        "concert": 7,
+        "views": 51,
+        "created_at": "2016-04-06T23:34:12Z",
+        "recorded_at": "2013-07-29T16:21:35Z",
+        "modified_at": "2016-04-06T23:34:12Z",
+        "uuid": "46324b43-01f3-460c-8da9-dab840b1153b",
+        "height": 1080,
+        "artists": [
+            7
+        ],
+        "width": 1920,
+        "length": 40974.0,
+        "user": [
+            "ethan"
+        ],
+        "original_filename": "bzlFf UneEIDMjiPKwgvbjuYxLQngwAYccxRYj srgSrJp",
+        "file_size": 68676.0,
+        "is_private": false,
+        "name": "Doloremque itaque odio veniam non rem libero, architecto optio odio quis mollitia dicta sit ipsa modi, eligendi asper"
+    },
+    "model": "videos.video",
+    "pk": 143
+},
+{
+    "fields": {
+        "uploaded": true,
+        "concert": 1,
+        "views": 88,
+        "created_at": "2016-04-06T23:34:12Z",
+        "recorded_at": "2011-07-13T08:56:44Z",
+        "modified_at": "2016-04-06T23:34:12Z",
+        "uuid": "26fbae43-46fe-45fa-aa93-cea87e3c296e",
+        "height": 1080,
+        "artists": [
+            9
+        ],
+        "width": 1920,
+        "length": 32522.0,
+        "user": [
+            "jess"
+        ],
+        "original_filename": "JVvkTXsVOoBQxpulCteGqBqNHoWXUKfXNcnIYiwWMxSfQAlhmJiYcOUwsUSHOkkJrSRzgRFxsExcQcAyPWRZVEa",
+        "file_size": 60143.0,
+        "is_private": false,
+        "name": "Est beatae dolorum aperiam sequi perferendis eos quibusdam nisi veniam possimus, porro corrupti accusamus natus provident praese"
+    },
+    "model": "videos.video",
+    "pk": 146
+},
+{
+    "fields": {
+        "uploaded": true,
+        "concert": 7,
+        "views": 58,
+        "created_at": "2016-04-06T23:34:12Z",
+        "recorded_at": "2015-09-17T21:54:23Z",
+        "modified_at": "2016-04-06T23:34:12Z",
+        "uuid": "298c28c6-9983-4673-8a0e-4666e418437f",
+        "height": 1080,
+        "artists": [
+            4,
+            11
+        ],
+        "width": 1920,
+        "length": 79384.0,
+        "user": [
+            "ethan"
+        ],
+        "original_filename": "gOfgTMsWYivQDRkkTRExNOysdGqUUHuCYTPKldRieKhAPGNCBPaTLjNyhnlUJGNfeKhmuitaaSxYtfVBiRKoJFonsYRwWfDsRMLjxCxXfEzBYPXRHCfPPsRYHBunYfy",
+        "file_size": 70701.0,
+        "is_private": false,
+        "name": "Unde aliquid eligendi quis doloribus null"
+    },
+    "model": "videos.video",
+    "pk": 147
+},
+{
+    "fields": {
+        "uploaded": true,
+        "concert": 3,
+        "views": 82,
+        "created_at": "2016-04-06T23:34:12Z",
+        "recorded_at": "2014-04-16T07:15:11Z",
+        "modified_at": "2016-04-06T23:34:12Z",
+        "uuid": "298c28c6-9983-4673-8a0e-4666e418437f",
+        "height": 1080,
+        "artists": [
+            6
+        ],
+        "width": 1920,
+        "length": 99672.0,
+        "user": [
+            "ethan"
+        ],
+        "original_filename": "BNmYPrw iQRIq ajRIaesFzxgvtynvymOCrdKbXEYqNAtOAUDuqmGhyjOcABtnBhNkjUreEwQLjshiMTwGPRBjwghzMAmOZplnWacGWPyqATfkdFNmJNEBGyDBvlrnvh",
+        "file_size": 89939.0,
+        "is_private": false,
+        "name": "Accusamus consequuntur quam, voluptate accusantium neque error? Culpa id qui voluptate sit libero cupiditate itaq"
+    },
+    "model": "videos.video",
+    "pk": 151
+},
+{
+    "fields": {
+        "uploaded": true,
+        "concert": 7,
+        "views": 58,
+        "created_at": "2016-04-06T23:34:12Z",
+        "recorded_at": "2016-12-16T10:35:37Z",
+        "modified_at": "2016-04-06T23:34:12Z",
+        "uuid": "298c28c6-9983-4673-8a0e-4666e418437f",
+        "height": 1080,
+        "artists": [
+            10
+        ],
+        "width": 1920,
+        "length": 57168.0,
+        "user": [
+            "mark"
+        ],
+        "original_filename": "HApKFjtZgSY ukbqwxHZiqLmcSZB vODuHuXdfCigBl",
+        "file_size": 96654.0,
+        "is_private": false,
+        "name": "Facere ipsam voluptatum vel suscipit voluptas vitae labore"
+    },
+    "model": "videos.video",
+    "pk": 152
+},
+{
+    "fields": {
+        "uploaded": true,
+        "concert": 3,
+        "views": 107,
+        "created_at": "2016-04-06T23:34:12Z",
+        "recorded_at": "2015-04-14T08:09:24Z",
+        "modified_at": "2016-04-06T23:34:12Z",
+        "uuid": "46324b43-01f3-460c-8da9-dab840b1153b",
+        "height": 1080,
+        "artists": [
+            2,
+            4
+        ],
+        "width": 1920,
+        "length": 11692.0,
+        "user": [
+            "sanjana"
+        ],
+        "original_filename": "BmNCRofwrHZTQEEHaRfyCAKcpytpLqRFGniioDhMGAwKanEyRzOKZwXHnmgqNXqJgYGHwiPRYkOYjMtunggoJkskrl mqVPwZfGD",
+        "file_size": 77028.0,
+        "is_private": false,
+        "name": "Harum unde culpa praesentium, sequi animi minima alias quas, tempora qui maiore"
+    },
+    "model": "videos.video",
+    "pk": 154
+},
+{
+    "fields": {
+        "uploaded": true,
+        "concert": 5,
+        "views": 72,
+        "created_at": "2016-04-06T23:34:13Z",
+        "recorded_at": "2016-02-23T06:06:40Z",
+        "modified_at": "2016-04-06T23:34:13Z",
+        "uuid": "46324b43-01f3-460c-8da9-dab840b1153b",
+        "height": 1080,
+        "artists": [
+            4
+        ],
+        "width": 1920,
+        "length": 38830.0,
+        "user": [
+            "ethan"
+        ],
+        "original_filename": "sGtZyj",
+        "file_size": 50274.0,
+        "is_private": false,
+        "name": "Magnam deserunt dol"
+    },
+    "model": "videos.video",
+    "pk": 157
+},
+{
+    "fields": {
+        "uploaded": true,
+        "concert": 3,
+        "views": 110,
+        "created_at": "2016-04-06T23:34:13Z",
+        "recorded_at": "2016-11-23T03:54:42Z",
+        "modified_at": "2016-04-06T23:34:13Z",
+        "uuid": "46324b43-01f3-460c-8da9-dab840b1153b",
+        "height": 1080,
+        "artists": [
+            11
+        ],
+        "width": 1920,
+        "length": 23727.0,
+        "user": [
+            "sanjana"
+        ],
+        "original_filename": "sBaHAKKrRMsTSpgyjIZIUQNfcFcCamX",
+        "file_size": 71397.0,
+        "is_private": false,
+        "name": "Eveniet blanditiis fugit in rerum, accusamus tem"
+    },
+    "model": "videos.video",
+    "pk": 158
+},
+{
+    "fields": {
+        "uploaded": true,
+        "concert": 3,
+        "views": 105,
+        "created_at": "2016-04-06T23:34:13Z",
+        "recorded_at": "2014-08-07T09:15:17Z",
+        "modified_at": "2016-04-06T23:34:13Z",
+        "uuid": "298c28c6-9983-4673-8a0e-4666e418437f",
+        "height": 1080,
+        "artists": [
+            4,
+            10
+        ],
+        "width": 1920,
+        "length": 88410.0,
+        "user": [
+            "jess"
+        ],
+        "original_filename": "WeGeSHIBlzgyVPVpOtjNMAhHycNfXQPlpvatBDPhOUccBkeKse",
+        "file_size": 67931.0,
+        "is_private": false,
+        "name": "Nostrum repellendu"
+    },
+    "model": "videos.video",
+    "pk": 159
+},
+{
+    "fields": {
+        "uploaded": true,
+        "concert": 5,
+        "views": 53,
+        "created_at": "2016-04-06T23:34:13Z",
+        "recorded_at": "2015-12-29T23:58:27Z",
+        "modified_at": "2016-04-06T23:34:13Z",
+        "uuid": "26fbae43-46fe-45fa-aa93-cea87e3c296e",
+        "height": 1080,
+        "artists": [
+            3,
+            6
+        ],
+        "width": 1920,
+        "length": 3028.0,
+        "user": [
+            "sanjana"
+        ],
+        "original_filename": "HSfYrwyEyacTdYqnGTShW",
+        "file_size": 10541.0,
+        "is_private": false,
+        "name": "Iusto nihil ullam doloremque, iure pa"
+    },
+    "model": "videos.video",
+    "pk": 160
+},
+{
+    "fields": {
+        "uploaded": true,
+        "concert": 5,
+        "views": 79,
+        "created_at": "2016-04-06T23:34:13Z",
+        "recorded_at": "2011-11-14T15:58:18Z",
+        "modified_at": "2016-04-06T23:34:13Z",
+        "uuid": "298c28c6-9983-4673-8a0e-4666e418437f",
+        "height": 1080,
+        "artists": [
+            7
+        ],
+        "width": 1920,
+        "length": 1946.0,
+        "user": [
+            "ethan"
+        ],
+        "original_filename": "LOrJxUPbTiEddpLumoErTIcuVQCpCYRSOVmrXfHvdTBbbgJpVvVVEqaYBEigZJCNWhYVjZBdmhdsQUddUeCfjdeF eFqjyPQFFEZCSg",
+        "file_size": 71399.0,
+        "is_private": false,
+        "name": "Vel voluptatibus facilis sunt corrupti vero sint dolor"
+    },
+    "model": "videos.video",
+    "pk": 166
+},
+{
+    "fields": {
+        "uploaded": true,
+        "concert": 5,
+        "views": 61,
+        "created_at": "2016-04-06T23:34:13Z",
+        "recorded_at": "2016-04-10T23:24:49Z",
+        "modified_at": "2016-04-06T23:34:13Z",
+        "uuid": "26fbae43-46fe-45fa-aa93-cea87e3c296e",
+        "height": 1080,
+        "artists": [
+            10
+        ],
+        "width": 1920,
+        "length": 67915.0,
+        "user": [
+            "sanjana"
+        ],
+        "original_filename": "DEvKBDRuQVZEreCqCYSAoNksJNtNEtsPm isL FxYNjsoAQBDSapMLNEyykptlRDHVPGHjIKdbBDXIbZxJoGWKtwlCKzPFLNXKNgTmovbyKCiSiFLnZx",
+        "file_size": 79858.0,
+        "is_private": false,
+        "name": "Dolor maxime ipsa temporibus vitae fugit ea quidem enim non repellat, iusto impedit dicta molestiae mollitia quisquam ut"
+    },
+    "model": "videos.video",
+    "pk": 170
+},
+{
+    "fields": {
+        "uploaded": true,
+        "concert": 2,
+        "views": 62,
+        "created_at": "2016-04-06T23:34:14Z",
+        "recorded_at": "2012-06-27T01:32:45Z",
+        "modified_at": "2016-04-06T23:34:14Z",
+        "uuid": "26fbae43-46fe-45fa-aa93-cea87e3c296e",
+        "height": 1080,
+        "artists": [
+            6,
+            11
+        ],
+        "width": 1920,
+        "length": 92084.0,
+        "user": [
+            "mark"
+        ],
+        "original_filename": "hkJDFXPiz syTQwjTCffOVjIhrmhNCpPIBHzIKLyCbghN",
+        "file_size": 7003.0,
+        "is_private": false,
+        "name": "Explicabo vero praesentium minus, perspiciatis a provident asperiores repudiandae. Omnis quam voluptate assumenda mol"
+    },
+    "model": "videos.video",
+    "pk": 174
+},
+{
+    "fields": {
+        "uploaded": true,
+        "concert": 2,
+        "views": 23,
+        "created_at": "2016-04-06T23:34:14Z",
+        "recorded_at": "2015-07-24T18:15:46Z",
+        "modified_at": "2016-04-06T23:34:14Z",
+        "uuid": "298c28c6-9983-4673-8a0e-4666e418437f",
+        "height": 1080,
+        "artists": [
+            3,
+            9
+        ],
+        "width": 1920,
+        "length": 87985.0,
+        "user": [
+            "sanjana"
+        ],
+        "original_filename": "XHXQF YXGXBdXNmAKYSmSTbVXIyvEsALz QWEiAjotFcFeWgdLPtyOeITonTyLDWwWHdHBLQePWQJJOJzaIazKmAkL cmWrMdLaEQZKAPxbVHFVNLTNyTymktviiruQ",
+        "file_size": 42808.0,
+        "is_private": false,
+        "name": "Dolorem fugit saepe assumenda nemo at asperiores corrupti deleniti obcaecati, ducimus"
+    },
+    "model": "videos.video",
+    "pk": 176
+},
+{
+    "fields": {
+        "uploaded": true,
+        "concert": 1,
+        "views": 7,
+        "created_at": "2016-04-06T23:34:14Z",
+        "recorded_at": "2015-05-26T15:32:57Z",
+        "modified_at": "2016-04-06T23:34:14Z",
+        "uuid": "298c28c6-9983-4673-8a0e-4666e418437f",
+        "height": 1080,
+        "artists": [
+            1,
+            9
+        ],
+        "width": 1920,
+        "length": 46115.0,
+        "user": [
+            "ethan"
+        ],
+        "original_filename": "JxZaCwi dakjlmhhqFzBkprlogykhufkV ddfRJihMCsqKfEQgcNhYKdiqwjJKqR",
+        "file_size": 40854.0,
+        "is_private": false,
+        "name": "Quo dolorum veniam, repellat maxime alias tenetur temporibu"
+    },
+    "model": "videos.video",
+    "pk": 181
+},
+{
+    "fields": {
+        "uploaded": true,
+        "concert": 6,
+        "views": 88,
+        "created_at": "2016-04-06T23:34:14Z",
+        "recorded_at": "2013-07-21T16:48:05Z",
+        "modified_at": "2016-04-06T23:34:14Z",
+        "uuid": "26fbae43-46fe-45fa-aa93-cea87e3c296e",
+        "height": 1080,
+        "artists": [
+            10
+        ],
+        "width": 1920,
+        "length": 74215.0,
+        "user": [
+            "mark"
+        ],
+        "original_filename": "BCReqlOlSiyHDdtVg sEZxTggaXmVsXIndAkGEGWows mRrq oosausqq TPdazkYvfBIkNKTShrayAVPCcBIrvqptTTflfiaNoQTUDthKIfiGHrKVtnsWVVlPWcNNhMv XXTzHMBCg",
+        "file_size": 53205.0,
+        "is_private": false,
+        "name": "Illo a laboriosam ex blanditiis dolorem voluptas, nam a dolore totam sequi eligendi omnis alias ratione minima, odio volu"
+    },
+    "model": "videos.video",
+    "pk": 183
+},
+{
+    "fields": {
+        "uploaded": true,
+        "concert": 4,
+        "views": 102,
+        "created_at": "2016-04-06T23:34:14Z",
+        "recorded_at": "2015-02-22T01:56:54Z",
+        "modified_at": "2016-04-06T23:34:14Z",
+        "uuid": "298c28c6-9983-4673-8a0e-4666e418437f",
+        "height": 1080,
+        "artists": [
+            4,
+            5
+        ],
+        "width": 1920,
+        "length": 96417.0,
+        "user": [
+            "ethan"
+        ],
+        "original_filename": "JriCHxmDMasjRGWGBeUjBMnThbxRLOHSpHwvOFvPXfzJO",
+        "file_size": 11500.0,
+        "is_private": false,
+        "name": "Ipsa aspernatur fugit ab voluptatibus nam alias, veritatis adipisci non beatae exercitationem hic cumque neque nobi"
+    },
+    "model": "videos.video",
+    "pk": 184
+},
+{
+    "fields": {
+        "uploaded": true,
+        "concert": 3,
+        "views": 101,
+        "created_at": "2016-04-06T23:34:14Z",
+        "recorded_at": "2012-02-24T04:21:13Z",
+        "modified_at": "2016-04-06T23:34:14Z",
+        "uuid": "26fbae43-46fe-45fa-aa93-cea87e3c296e",
+        "height": 1080,
+        "artists": [
+            1,
+            9
+        ],
+        "width": 1920,
+        "length": 41179.0,
+        "user": [
+            "ethan"
+        ],
+        "original_filename": "hNTDUYflLeJCQmzCvHuNLRVUxkOAYIBdnzWATFSQEQDPrqdJrxtTFWcgpaWtxjCVMZynTROUDeGGTlOKxMtJkMgNTCUrjhwWlPfJvm",
+        "file_size": 66350.0,
+        "is_private": false,
+        "name": "Eos minima incidunt dignissimos facere dolorum hic voluptates cu"
+    },
+    "model": "videos.video",
+    "pk": 185
+},
+{
+    "fields": {
+        "uploaded": true,
+        "concert": 3,
+        "views": 63,
+        "created_at": "2016-04-06T23:34:14Z",
+        "recorded_at": "2015-06-14T07:15:09Z",
+        "modified_at": "2016-04-06T23:34:14Z",
+        "uuid": "46324b43-01f3-460c-8da9-dab840b1153b",
+        "height": 1080,
+        "artists": [
+            3
+        ],
+        "width": 1920,
+        "length": 41.0,
+        "user": [
+            "sanjana"
+        ],
+        "original_filename": "CmjMkUqxDWZeFsFpuYeYSQpRSMJjVKmZSMHuMwxsmzEWKtdUngGQjuLwuOZbkjehinVyOIDVCanjRjuaTnjSLzimsFHzadJDEdESWfAO",
+        "file_size": 20364.0,
+        "is_private": false,
+        "name": "Ut aliquid incidunt reiciendis nostrum"
+    },
+    "model": "videos.video",
+    "pk": 187
+},
+{
+    "fields": {
+        "uploaded": true,
+        "concert": 7,
+        "views": 25,
+        "created_at": "2016-04-06T23:34:14Z",
+        "recorded_at": "2015-05-01T14:26:59Z",
+        "modified_at": "2016-04-06T23:34:14Z",
+        "uuid": "26fbae43-46fe-45fa-aa93-cea87e3c296e",
+        "height": 1080,
+        "artists": [
+            4,
+            7
+        ],
+        "width": 1920,
+        "length": 75458.0,
+        "user": [
+            "ethan"
+        ],
+        "original_filename": "dKpVGSdtvZzmLMzkcdtVYZHZPAdGJDOywbKKLUVOaHFFeAgFAAAoqrmYfx",
+        "file_size": 72132.0,
+        "is_private": false,
+        "name": "Omnis fugiat natus modi molestias fuga minima dicta cumque velit saepe quisqu"
+    },
+    "model": "videos.video",
+    "pk": 188
+},
+{
+    "fields": {
+        "uploaded": true,
+        "concert": 6,
+        "views": 72,
+        "created_at": "2016-04-06T23:34:14Z",
+        "recorded_at": "2011-06-19T00:08:28Z",
+        "modified_at": "2016-04-06T23:34:14Z",
+        "uuid": "298c28c6-9983-4673-8a0e-4666e418437f",
+        "height": 1080,
+        "artists": [
+            2
+        ],
+        "width": 1920,
+        "length": 32520.0,
+        "user": [
+            "mark"
+        ],
+        "original_filename": "nDNpZWbyGHjKeUAjrswmwDOUyIybFKlRnexOHMWjyGtAfUVgcMocKghznSlNkKayLCyZpLNWcDjCUcM",
+        "file_size": 11185.0,
+        "is_private": false,
+        "name": "Eum nihil voluptates voluptatibus repellat sequi eveniet libero,"
+    },
+    "model": "videos.video",
+    "pk": 189
+},
+{
+    "fields": {
+        "uploaded": true,
+        "concert": 4,
+        "views": 114,
+        "created_at": "2016-04-06T23:34:14Z",
+        "recorded_at": "2015-12-05T15:50:36Z",
+        "modified_at": "2016-04-06T23:34:14Z",
+        "uuid": "46324b43-01f3-460c-8da9-dab840b1153b",
+        "height": 1080,
+        "artists": [
+            4,
+            7
+        ],
+        "width": 1920,
+        "length": 13309.0,
+        "user": [
+            "ethan"
+        ],
+        "original_filename": "tqjJkTLPNTnVmVCFwMzHOmOGRtlNNKubQJAEHceiNImfvyTzlIeln CCmggYm kgxKciM ZzGpcnRYckQneSIJftUSxG",
+        "file_size": 5157.0,
+        "is_private": false,
+        "name": "Ea explicabo dolor. Deleniti quaerat ab possimus aliquid consectetur quae"
+    },
+    "model": "videos.video",
+    "pk": 190
+},
+{
+    "fields": {
+        "uploaded": true,
+        "concert": 4,
+        "views": 51,
+        "created_at": "2016-04-06T23:34:15Z",
+        "recorded_at": "2013-11-14T04:44:40Z",
+        "modified_at": "2016-04-06T23:34:15Z",
+        "uuid": "298c28c6-9983-4673-8a0e-4666e418437f",
+        "height": 1080,
+        "artists": [
+            7
+        ],
+        "width": 1920,
+        "length": 46380.0,
+        "user": [
+            "jess"
+        ],
+        "original_filename": "PJMtRDtfaIkEcjIMOkwwskmiYsjLSFanMTVaAjMZUAcGhwaEaQGeszLOqTxFvLHanFXcxJjIYryNJQHBUYTJoTpmedYX",
+        "file_size": 62218.0,
+        "is_private": false,
+        "name": "Illo neque assumenda temporibus labore nobis molestiae ab, ipsa aut maxime deleniti, cum repellendus dignissimos sint debitis ve"
+    },
+    "model": "videos.video",
+    "pk": 193
+},
+{
+    "fields": {
+        "uploaded": true,
+        "concert": 6,
+        "views": 69,
+        "created_at": "2016-04-06T23:34:15Z",
+        "recorded_at": "2014-07-28T17:43:56Z",
+        "modified_at": "2016-04-06T23:34:15Z",
+        "uuid": "26fbae43-46fe-45fa-aa93-cea87e3c296e",
+        "height": 1080,
+        "artists": [
+            5,
+            9
+        ],
+        "width": 1920,
+        "length": 40581.0,
+        "user": [
+            "ethan"
+        ],
+        "original_filename": "WbEBj qMfYzYxuOsgcTgbPWQUmAhEwIdthdSDpXyxChLFtcGaQoEKrfCLtRmZQJt fehiFiuYgncLJAwbj hDtiwXbHrpTif",
+        "file_size": 49316.0,
+        "is_private": false,
+        "name": "Nulla corporis dolorem perferendis od"
+    },
+    "model": "videos.video",
+    "pk": 200
+},
+{
+    "fields": {
+        "user": [
+            "drew"
+        ],
+        "created": "2016-04-06T23:35:50Z"
+    },
+    "model": "authtoken.token",
+    "pk": "ae5ef0f23cafa5d30c08623221c65a7a5b8cfbc7"
+}
+]

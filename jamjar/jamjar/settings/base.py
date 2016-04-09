@@ -36,7 +36,9 @@ DEPENDENCY_APPS = [
 
     'corsheaders',
     # 'django_nose',
-    'spotipy'
+    'spotipy',
+
+    'autofixture'
 ]
 
 PROJECT_APPS = [
