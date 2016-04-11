@@ -16,6 +16,7 @@ class ConcertSerializer(serializers.ModelSerializer):
     thumbs = serializers.SerializerMethodField()
     artists = serializers.SerializerMethodField()
     graph = serializers.SerializerMethodField()
+    videos_count = serializers.SerializerMethodField()
 
     class Meta:
         model = Concert
@@ -26,7 +27,8 @@ class ConcertSerializer(serializers.ModelSerializer):
             'videos',
             'artists',
             'thumbs',
-            'graph'
+            'graph',
+            'videos_count'
         )
         read_only_fields = ('id', 'venue', 'videos')
         write_only_fields = ('venue_place_id')
@@ -102,3 +104,6 @@ class ConcertSerializer(serializers.ModelSerializer):
 
     def get_graph(self, obj):
         return obj.make_graph()
+
+    def get_videos_count(self, obj):
+        return obj.videos.count()
