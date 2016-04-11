@@ -15,6 +15,7 @@ class Artist(BaseModel):
     unofficial = models.BooleanField(default=False)
 
     class Meta:
+        # Order artists by popularity
         ordering = ['-popularity']
 
     def save_spotify_info(self, spotify_artist):
