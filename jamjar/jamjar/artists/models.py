@@ -14,6 +14,8 @@ class Artist(BaseModel):
     followers = models.IntegerField(null=True) # Number of followers on spotify
     unofficial = models.BooleanField(default=False)
 
+    class Meta:
+        ordering = ['-popularity']
 
     def save_spotify_info(self, spotify_artist):
         if spotify_artist != None:
@@ -80,6 +82,7 @@ class Artist(BaseModel):
                 if spotify_artist != None:
                     # Create an artist object
                     artist = cls()
+                    artist.spotify_id = spotify_id
                     artist.save()
 
                     # Save that sweet, sweet, spotify info

@@ -26,8 +26,7 @@ class ArtistListView(BaseView):
 
     """
     Description:
-        Given a date and a venue_place_id, get or create a concert for that combonation
-        NOTE: The Date must be in ISO 8601 date format - 'YYYY-mm-dd' (2016-02-15)
+        Given a list of artist spotify_ids, get or create the artist in the db
 
     Request:
         POST /artists/
