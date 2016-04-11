@@ -26,6 +26,39 @@ class ArtistListView(BaseView):
 
     """
     Description:
+        Get a list of all Artists in JamJar filtered by the following attributes:
+        - genre
+
+        You may pass multiple of each filter, separated with a "+".
+        These filters are accepted as query parameters in the GET URL, and are ANDed together.
+
+    Request:
+        GET /artists/?genres=1+3+6
+
+    Response:
+        A list of all Artists meeting the criteria
+    """
+    @authenticate
+    def get(self, request):
+        # Our initial queryset is ALL concerts (this could be a lot)!
+        queryset = Artist.objects.all()
+
+        # Get all the possible filters and split them, making sure we get an
+        # empty list if the parameter wasn't passed
+        # (Django turns pluses into spaces)
+        genre_filters = filter(None, request.GET.get('genres', '').split(' '))
+
+        if genre_filters:
+            queryset = queryset.filter(genres__in=genre_filters)
+
+        queryset = queryset.distinct()
+
+        # Serialize the requests and return them
+        self.serializer = self.get_serializer(queryset, many=True)
+        return self.success_response(self.serializer.data)
+
+    """
+    Description:
         Given a list of artist spotify_ids, get or create the artist in the db
 
     Request:
@@ -109,7 +142,7 @@ class GenreView(BaseView):
         (To be used for Text Field autocompletion)
 
     Request:
-        GET /artists/search/:search_string/
+        GET /genres/
 
     Response:
         A list of all Artists matching that string

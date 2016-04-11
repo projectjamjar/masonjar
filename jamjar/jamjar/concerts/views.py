@@ -32,10 +32,11 @@ class ConcertListView(BaseView):
 
         # Get all the possible filters and split them, making sure we get an
         # empty list if the parameter wasn't passed
-        venue_filters = filter(None, request.GET.get('venues', '').split('+'))
-        date_filters = filter(None, request.GET.get('dates', '').split('+'))
-        genre_filters = filter(None, request.GET.get('genres', '').split('+'))
-        artist_filters = filter(None, request.GET.get('artists', '').split('+'))
+        # (Django turns pluses into spaces)
+        venue_filters = filter(None, request.GET.get('venues', '').split(' '))
+        date_filters = filter(None, request.GET.get('dates', '').split(' '))
+        genre_filters = filter(None, request.GET.get('genres', '').split(' '))
+        artist_filters = filter(None, request.GET.get('artists', '').split(' '))
 
         if venue_filters:
             queryset = queryset.filter(venue_id__in=venue_filters)
@@ -50,6 +51,8 @@ class ConcertListView(BaseView):
 
         if artist_filters:
             queryset = queryset.filter(videos__artists__id__in=artist_filters)
+
+        queryset = queryset.distinct()
 
         # Serialize the requests and return them
         self.serializer = self.get_serializer(queryset, many=True)
