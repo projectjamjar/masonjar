@@ -72,6 +72,8 @@ class ArtistListView(BaseView):
                 "width": 64
               }
             ],
+            "popularity": 70,
+            "followers": 419757,
             "unofficial": false
           },
 
