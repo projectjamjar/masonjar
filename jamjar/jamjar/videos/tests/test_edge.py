@@ -5,6 +5,7 @@ from django.conf import settings
 from jamjar.videos.models import Video, Edge
 from jamjar.concerts.models import Concert
 from jamjar.venues.models import Venue
+from jamjar.users.models import User
 
 import os, logging
 
@@ -18,13 +19,16 @@ class EdgeTestCase(TestCase):
         self.concert = Concert(date="2016-01-01", venue=self.venue)
         self.concert.save()
 
-        self.video1 = Video(concert_id=self.concert.id, length=10.0)
+        self.user = User(username='test', email='test@test.com', first_name='Test', last_name='Test', password='pass')
+        self.user.save()
+
+        self.video1 = Video(concert_id=self.concert.id, length=10.0, user=self.user)
         self.video1.save()
 
-        self.video2 = Video(concert_id=self.concert.id, length=10.0)
+        self.video2 = Video(concert_id=self.concert.id, length=10.0, user=self.user)
         self.video2.save()
 
-        self.video3 = Video(concert_id=self.concert.id, length=10.0)
+        self.video3 = Video(concert_id=self.concert.id, length=10.0, user=self.user)
         self.video3.save()
 
         self.edge1 = Edge.new(video1_id=self.video1.id, video2_id=self.video2.id, confidence=10, offset=20.0)

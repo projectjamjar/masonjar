@@ -1,6 +1,11 @@
 from base import *
+import os
 
 SECRET_KEY = 's0rryH@xx0r$'
+
+TMP_VIDEOS_PATH = os.path.expanduser('~/videos')
+if not os.path.exists(TMP_VIDEOS_PATH):
+    os.makedirs(TMP_VIDEOS_PATH)
 
 DATABASES = {
     'default': {
