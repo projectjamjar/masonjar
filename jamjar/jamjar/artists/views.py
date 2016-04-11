@@ -138,14 +138,14 @@ class GenreView(BaseView):
 
     """
     Description:
-        Given a search string for an artist, search spotify and return the results
-        (To be used for Text Field autocompletion)
+        Return a list of all genres associated with any artists in JamJar, as
+        well as their respective ID's
 
     Request:
         GET /genres/
 
     Response:
-        A list of all Artists matching that string
+        A list of all genres in jamjar
     """
     @authenticate
     def get(self, request):
