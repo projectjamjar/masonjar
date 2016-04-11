@@ -5,6 +5,7 @@ PORT=5001
 
 SEED?=seed_data/basic_seed.json
 PRESENTATION_SEED?=seed_data/presentation_seed.json
+FAKE_SEED?=seed_data/fake_seed.json
 
 ###########################################
 # Install
@@ -83,13 +84,18 @@ drop-fingerprints:
 local-database-setup:
 	bash database_setup.sh
 
-fuck:
+base_db_reset:
 	yes 'yes' | python $(MANAGER) flush
 	python database_reset.py
+
+fuck: base_db_reset
 	make seed
 
-present:
-	yes 'yes' | python $(MANAGER) flush
-	python database_reset.py
+present: base_db_reset
 	python $(MANAGER) loaddata $(PRESENTATION_SEED)
 	python presentation_fingerprints.py
+
+fake: base_db_reset
+	#python  generate_data.py
+	python $(MANAGER) loaddata $(FAKE_SEED)
+

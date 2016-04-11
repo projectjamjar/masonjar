@@ -19,7 +19,16 @@ class ArtistSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Artist
-        fields = ('id', 'name', 'spotify_id', 'genres', 'images', 'unofficial')
+        fields = ('id',
+                  'name',
+                  'spotify_id',
+                  'genres',
+                  'images',
+                  'popularity',
+                  'followers',
+                  'unofficial'
+        )
+
 
     def get_genres(self,artist):
         return [genre.name for genre in artist.genres.all()]
