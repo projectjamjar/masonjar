@@ -1,6 +1,25 @@
 language: python
+
 python:
   - "2.7"
+
+before_install:
+  - "sudo apt-get install -qq -y apache2 python-dev python-pip python-virtualenv libmysqlclient-dev zip"
+  - "sudo apt-get install -qq -y python-numpy python-scipy python-matplotlib libportaudio-dev python-PyAudio python-MySQLdb libav-tools"
+  - "sudo apt-get install -qq -y pkg-config libblas-dev liblapack-dev libatlas-base-dev gfortran libpng-dev libfreetype6-dev imagemagick"
+  - "sudo apt-get install -qq -y portaudio19-dev"
+
 install:
-  - "pip install -r requirements.txt"
+  - "pip install -r requirements.txt &> /dev/null"
+
+before_script:
+  - echo "USE mysql;\nUPDATE user SET password=PASSWORD('root') WHERE user='root';\nFLUSH PRIVILEGES;\n" | mysql -u root
+  - './database_setup.sh'
+
 script: make test
+
+virtualenv:
+  system_site_packages: true
+
+services:
+  - mysql
