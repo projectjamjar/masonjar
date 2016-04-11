@@ -1,6 +1,15 @@
 language: python
+
 python:
   - "2.7"
+
+before_install:
+  - "sudo apt-get install -qq python-scipy"
+
 install:
   - "pip install -r requirements.txt"
+
 script: make test
+
+virtualenv:
+  system_site_packages: true
