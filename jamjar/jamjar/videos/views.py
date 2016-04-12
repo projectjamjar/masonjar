@@ -236,14 +236,16 @@ class VideoWatchView(BaseView):
            at the same time
 
     Request:
-        GET /videos/:video_id/watching/
+        POST /videos/:video_id/watching/
+        {}
+        (No data needed)
 
     Response:
         True
     """
     # Don't authenticate this
     #@authenticate
-    def get(self, request, id):
+    def post(self, request, id):
         # Attempt to update the video count
         self.model.objects.filter(id=id).update(views=F('views')+1)
         return self.success_response(True)
