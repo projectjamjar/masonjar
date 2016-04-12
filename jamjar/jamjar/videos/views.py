@@ -2,6 +2,7 @@ from rest_framework import status
 from rest_framework.generics import GenericAPIView
 from rest_framework.authtoken.models import Token
 from rest_framework.parsers import FormParser, MultiPartParser
+from django.db.models import F
 
 from jamjar.base.views import BaseView, authenticate
 from jamjar.videos.models import Video, Edge
@@ -11,7 +12,7 @@ from jamjar.tasks.transcode_video import transcode_video
 
 import re
 
-class VideoList(BaseView):
+class VideoListView(BaseView):
     parser_classes = (MultiPartParser,)
     serializer_class = VideoSerializer
 
@@ -171,7 +172,7 @@ class VideoList(BaseView):
         return self.success_response(self.serializer.data)
 
 
-class VideoDetails(BaseView):
+class VideoDetailsView(BaseView):
 
     serializer_class = VideoSerializer
     model = Video
@@ -210,3 +211,26 @@ class VideoDetails(BaseView):
         self.video.delete()
         return self.success_response("Video with id {} successfully deleted.".format(id))
 
+class VideoWatchView(BaseView):
+    model = Video
+
+    """
+    Description:
+        Given a video id, incremement that video count.  We want to make this
+        endpoint as cheap as possible, so we do some funky stuff here.
+         - We don't authenticate
+         - We use an F expression to both find and update the row in the DB
+           at the same time
+
+    Request:
+        GET /videos/:video_id/watching/
+
+    Response:
+        True
+    """
+    # Don't authenticate this
+    #@authenticate
+    def get(self, request, id):
+        # Attempt to update the video count
+        self.model.objects.filter(id=id).update(views=F('views')+1)
+        return self.success_response(True)
