@@ -37,6 +37,9 @@ class Video(BaseModel):
     objects = PublicVideoManager()
     public_and_private_objects = models.Manager()
 
+    class Meta:
+        ordering = ['-created_at',]
+
     def get_video_dir(self):
         " Get the local directory for the video (and other temp files) "
         return '{:}/{:}'.format(settings.TMP_VIDEOS_PATH, self.uuid)
