@@ -27,7 +27,7 @@ class ArtistListView(BaseView):
     """
     Description:
         Get a list of all Artists in JamJar filtered by the following attributes:
-        - genre
+        - genres
 
         You may pass multiple of each filter, separated with a "+".
         These filters are accepted as query parameters in the GET URL, and are ANDed together.
@@ -40,7 +40,7 @@ class ArtistListView(BaseView):
     """
     @authenticate
     def get(self, request):
-        # Our initial queryset is ALL concerts (this could be a lot)!
+        # Our initial queryset is ALL artists (this could be a lot)!
         queryset = Artist.objects.all()
 
         # Get all the possible filters and split them, making sure we get an

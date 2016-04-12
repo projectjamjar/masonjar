@@ -15,11 +15,44 @@ class VideoList(BaseView):
     parser_classes = (MultiPartParser,)
     serializer_class = VideoSerializer
 
+    """
+    Description:
+        Get a list of all Videos in JamJar filtered by the following attributes:
+        - genres (id)
+        - artists (id)
+        - uploaders (id)
+
+        You may pass multiple of each filter, separated with a "+".
+        These filters are accepted as query parameters in the GET URL, and are ANDed together.
+
+    Request:
+        GET /videos/?genres=1+3+6&artists=4+6
+
+    Response:
+        A list of all Videos meeting the criteria
+    """
     @authenticate
     def get(self, request):
-        videos = Video.objects.all()
+        # Get our inital queryset of ALL videos (this could be big!)
+        queryset = Video.objects.all()
 
-        serializer = self.get_serializer(videos, many=True)
+        # Get all the possible filters and split them, making sure we get an
+        # empty list if the parameter wasn't passed
+        # (Django turns pluses into spaces)
+        genre_filters = filter(None, request.GET.get('genres', '').split(' '))
+        artist_filters = filter(None, request.GET.get('artists', '').split(' '))
+        uploader_filters = filter(None, request.GET.get('uploaders', '').split(' '))
+
+        if genre_filters:
+            queryset = queryset.filter(artists__genres__in=genre_filters)
+
+        if artist_filters:
+            queryset = queryset.filter(artists__in=artist_filters)
+
+        if uploader_filters:
+            queryset = queryset.filter(user__in=uploader_filters)
+
+        serializer = self.get_serializer(queryset, many=True)
         return self.success_response(serializer.data)
 
     """
