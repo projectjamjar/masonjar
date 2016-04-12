@@ -2,6 +2,7 @@ from rest_framework import status
 from rest_framework.generics import GenericAPIView
 from rest_framework.authtoken.models import Token
 from rest_framework.parsers import FormParser, MultiPartParser
+from django.db.models import F
 
 from jamjar.base.views import BaseView, authenticate
 from jamjar.videos.models import Video, Edge
@@ -9,17 +10,63 @@ from jamjar.videos.serializers import VideoSerializer, EdgeSerializer
 
 from jamjar.tasks.transcode_video import transcode_video
 
-import re
+import re, datetime
 
-class VideoList(BaseView):
+class VideoListView(BaseView):
     parser_classes = (MultiPartParser,)
     serializer_class = VideoSerializer
 
+    """
+    Description:
+        Get a list of all Videos in JamJar filtered by the following attributes:
+        - genres (id)
+        - artists (id)
+        - uploaders (id)
+
+        A "hot" attribute can also be supplied in order to get the hot videos
+        as a mix of both view count and time (and soon votes)
+        (pass a 1 or 0)
+
+        You may pass multiple of each filter, separated with a "+".
+        These filters are accepted as query parameters in the GET URL, and are ANDed together.
+
+    Request:
+        GET /videos/?genres=1+3+6&artists=4+6&top=1
+
+    Response:
+        A list of all Videos meeting the criteria
+    """
     @authenticate
     def get(self, request):
-        videos = Video.objects.all()
+        # Get our inital queryset of ALL videos (this could be big!)
+        queryset = Video.objects.all()
 
-        serializer = self.get_serializer(videos, many=True)
+        # Get all the possible filters and split them, making sure we get an
+        # empty list if the parameter wasn't passed
+        # (Django turns pluses into spaces)
+        genre_filters = filter(None, request.GET.get('genres', '').split(' '))
+        artist_filters = filter(None, request.GET.get('artists', '').split(' '))
+        uploader_filters = filter(None, request.GET.get('uploaders', '').split(' '))
+
+        if genre_filters:
+            queryset = queryset.filter(artists__genres__in=genre_filters)
+
+        if artist_filters:
+            queryset = queryset.filter(artists__in=artist_filters)
+
+        if uploader_filters:
+            queryset = queryset.filter(user__in=uploader_filters)
+
+        hot = int(request.GET.get('hot', 0))
+
+        if hot:
+            # If "hot" is true, order by hotness
+            queryset = queryset.order_by('-created_at','-views')
+            now = datetime.datetime.now()
+            queryset = sorted(queryset, key= lambda v: v.hot(now), reverse=True)
+
+
+        serializer = self.get_serializer(queryset, many=True)
         return self.success_response(serializer.data)
 
     """
@@ -138,7 +185,7 @@ class VideoList(BaseView):
         return self.success_response(self.serializer.data)
 
 
-class VideoDetails(BaseView):
+class VideoDetailsView(BaseView):
 
     serializer_class = VideoSerializer
     model = Video
@@ -177,3 +224,28 @@ class VideoDetails(BaseView):
         self.video.delete()
         return self.success_response("Video with id {} successfully deleted.".format(id))
 
+class VideoWatchView(BaseView):
+    model = Video
+
+    """
+    Description:
+        Given a video id, incremement that video count.  We want to make this
+        endpoint as cheap as possible, so we do some funky stuff here.
+         - We don't authenticate
+         - We use an F expression to both find and update the row in the DB
+           at the same time
+
+    Request:
+        POST /videos/:video_id/watching/
+        {}
+        (No data needed)
+
+    Response:
+        True
+    """
+    # Don't authenticate this
+    #@authenticate
+    def post(self, request, id):
+        # Attempt to update the video count
+        self.model.objects.filter(id=id).update(views=F('views')+1)
+        return self.success_response(True)

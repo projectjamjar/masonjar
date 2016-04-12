@@ -15,6 +15,7 @@ class VideoSerializer(serializers.ModelSerializer):
         fields = ('id',
                   'name',
                   'uploaded',
+                  'created_at',
                   'uuid',
                   'length',
                   'file_size',
