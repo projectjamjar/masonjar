@@ -10,7 +10,7 @@ from jamjar.videos.serializers import VideoSerializer, EdgeSerializer
 
 from jamjar.tasks.transcode_video import transcode_video
 
-import re
+import re, datetime
 
 class VideoListView(BaseView):
     parser_classes = (MultiPartParser,)
@@ -23,11 +23,15 @@ class VideoListView(BaseView):
         - artists (id)
         - uploaders (id)
 
+        A "hot" attribute can also be supplied in order to get the hot videos
+        as a mix of both view count and time (and soon votes)
+        (pass a 1 or 0)
+
         You may pass multiple of each filter, separated with a "+".
         These filters are accepted as query parameters in the GET URL, and are ANDed together.
 
     Request:
-        GET /videos/?genres=1+3+6&artists=4+6
+        GET /videos/?genres=1+3+6&artists=4+6&top=1
 
     Response:
         A list of all Videos meeting the criteria
@@ -52,6 +56,15 @@ class VideoListView(BaseView):
 
         if uploader_filters:
             queryset = queryset.filter(user__in=uploader_filters)
+
+        hot = int(request.GET.get('hot', 0))
+
+        if hot:
+            # If "hot" is true, order by hotness
+            queryset = queryset.order_by('-created_at','-views')
+            now = datetime.datetime.now()
+            queryset = sorted(queryset, key= lambda v: v.hot(now), reverse=True)
+
 
         serializer = self.get_serializer(queryset, many=True)
         return self.success_response(serializer.data)

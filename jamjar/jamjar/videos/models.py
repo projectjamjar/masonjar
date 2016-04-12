@@ -6,12 +6,20 @@ from django.dispatch import receiver
 
 from django.conf import settings
 
+from datetime import datetime, timedelta
+from math import log
+
 from lilo import Lilo
 
 import logging, uuid, os, shutil
 
 import logging; logger = logging.getLogger(__name__)
 
+# These are needed for the "hotness" score)
+epoch = datetime(1970, 1, 1)
+def epoch_seconds(date):
+    td = date - epoch
+    return td.days * 86400 + td.seconds + (float(td.microseconds) / 1000000)
 
 class PublicVideoManager(models.Manager):
     def get_queryset(self):
@@ -99,6 +107,19 @@ class Video(BaseModel):
         if not os.path.exists(video_dir): os.makedirs(video_dir)
 
         return self.do_upload(input_fh)
+
+    def hot(self, date):
+        """
+        Hotness score based on reddit's "hot" algorithm
+        https://medium.com/hacking-and-gonzo/how-reddit-ranking-algorithms-work-ef111e33d0d9#.pphklly6z
+
+        Start date is based on April 12, 2016, 2:26 EST
+        """
+        s = self.views
+        order = log(max(abs(s), 1), 10)
+        sign = 1 if s > 0 else -1 if s < 0 else 0
+        seconds = epoch_seconds(date) - 1460427950
+        return round(sign * order + seconds / 45000, 7)
 
 """
 When deleting a video object, also delete the video files from the server
