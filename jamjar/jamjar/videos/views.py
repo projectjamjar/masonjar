@@ -66,7 +66,7 @@ class VideoListView(BaseView):
             queryset = sorted(queryset, key= lambda v: v.hot(now), reverse=True)
 
 
-        serializer = self.get_serializer(queryset, many=True)
+        serializer = self.get_serializer(queryset, many=True, include_concert=True)
         return self.success_response(serializer.data)
 
     """

@@ -31,6 +31,13 @@ class VideoSerializer(serializers.ModelSerializer):
                   'width',
                   'height')
 
+    def __init__(self, *args, **kwargs):
+        self.include_concert = kwargs.pop('include_concert', False)
+        super(VideoSerializer, self).__init__(*args, **kwargs)
+
+        if not self.include_concert:
+            self.fields.pop('concert')
+
     def validate(self, data):
         request = self.context.get('request')
         data['user_id'] = request.token.user_id
