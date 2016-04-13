@@ -12,6 +12,7 @@ class VideoSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Video
+        depth = 2 # traverse concert relation to get venue
         fields = ('id',
                   'name',
                   'uploaded',
@@ -29,6 +30,13 @@ class VideoSerializer(serializers.ModelSerializer):
                   'user',
                   'width',
                   'height')
+
+    def __init__(self, *args, **kwargs):
+        self.include_concert = kwargs.pop('include_concert', False)
+        super(VideoSerializer, self).__init__(*args, **kwargs)
+
+        if not self.include_concert:
+            self.fields.pop('concert')
 
     def validate(self, data):
         request = self.context.get('request')
