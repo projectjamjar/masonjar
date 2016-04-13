@@ -12,6 +12,7 @@ class VideoSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Video
+        depth = 2 # traverse concert relation to get venue
         fields = ('id',
                   'name',
                   'uploaded',
