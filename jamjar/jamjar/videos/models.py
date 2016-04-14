@@ -154,6 +154,10 @@ class Edge(BaseModel):
         edge.save()
         return edge
 
+class JamJarMap(models.Model):
+    video = models.ForeignKey(Video, related_name='jamjars')
+    start = models.ForeignKey(Video, related_name='startjars')
+
 class Playlist(BaseModel):
     user = models.ForeignKey('users.User',related_name='playlists')
     name = models.CharField(max_length=100)
