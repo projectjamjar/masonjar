@@ -83,7 +83,7 @@ class UserProfileView(BaseView):
         concerts = Concert.objects.filter(videos__user_id=user.id)
 
         user_serializer = UserSerializer(user)
-        video_serializer = VideoSerializer(videos, many=True)
+        video_serializer = VideoSerializer(videos, many=True, include_concert=True)
         concert_serializer = ConcertSerializer(concerts, many=True, expand_videos=False)
 
         response = {
