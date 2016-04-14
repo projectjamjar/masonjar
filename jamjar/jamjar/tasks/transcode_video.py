@@ -97,8 +97,13 @@ class VideoTranscoder(object):
         matched_videos = lilo.recognize_track()
 
         if matched_videos is not None:
+            # Sort the matched videos in ascending order by their offsets
+            matched_videos.sort(cmp=lambda x,y: cmp(x['offset_seconds'], y['offset_seconds']))
+
             for match in matched_videos:
                 Edge.objects.create(video1_id=self.video.id,video2_id=match['video_id'],offset=match['offset_seconds'],confidence=match['confidence'])
+
+
 
         # Add this videos fingerprints to the Lilo DB
         data = lilo.fingerprint_song()

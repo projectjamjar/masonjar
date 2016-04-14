@@ -35,6 +35,7 @@ class VideoSerializer(serializers.ModelSerializer):
         self.include_concert = kwargs.pop('include_concert', False)
         super(VideoSerializer, self).__init__(*args, **kwargs)
 
+
         if not self.include_concert:
             self.fields.pop('concert')
 
@@ -71,23 +72,11 @@ class VideoSerializer(serializers.ModelSerializer):
         artists = validated_data.pop('artist_objects',[])
 
         # Call the super's 'create'
+
         video = super(VideoSerializer,self).create(validated_data)
 
         # Assign the artists to the video
         video.artists = artists
-
-        return video
-
-    def create(self,validated_data):
-        # Get the artists out of here beforehand
-        artists = validated_data.pop('artist_objects',None)
-
-        # Call the super's 'create'
-        video = super(VideoSerializer,self).create(validated_data)
-
-        # Assign the artists to the video if we got any
-        if artists:
-            video.artists = artists
 
         return video
 
