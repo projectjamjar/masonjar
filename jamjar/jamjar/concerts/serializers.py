@@ -31,7 +31,7 @@ class ConcertSerializer(serializers.ModelSerializer):
             'videos_count'
         )
         read_only_fields = ('id', 'venue', 'videos')
-        write_only_fields = ('venue_place_id')
+        write_only_fields = ('venue_place_id',)
 
     def __init__(self, *args, **kwargs):
         # Pull out expand_videos (defaults to False)

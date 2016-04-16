@@ -64,12 +64,15 @@ class VideoSerializer(serializers.ModelSerializer):
         data['original_filename'] = input_fh.name
         data['file_size'] = input_fh.size
         data['file'] = input_fh
+
         return data
 
     def create(self,validated_data):
         # Get the artists out of here beforehand
         artists = validated_data.pop('artist_objects',[])
 
+
+        import ipdb; ipdb.set_trace()
         # Call the super's 'create'
         video = super(VideoSerializer,self).create(validated_data)
 
@@ -77,20 +80,6 @@ class VideoSerializer(serializers.ModelSerializer):
         video.artists = artists
 
         return video
-
-    def create(self,validated_data):
-        # Get the artists out of here beforehand
-        artists = validated_data.pop('artist_objects',None)
-
-        # Call the super's 'create'
-        video = super(VideoSerializer,self).create(validated_data)
-
-        # Assign the artists to the video if we got any
-        if artists:
-            video.artists = artists
-
-        return video
-
 
 class EdgeSerializer(serializers.ModelSerializer):
     video1 = VideoSerializer(read_only=True)

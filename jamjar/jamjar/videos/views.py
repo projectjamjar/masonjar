@@ -150,7 +150,7 @@ class VideoListView(BaseView):
     @authenticate
     def post(self, request):
         # Make sure we have all of the proper attributes
-        self.serializer = self.get_serializer(data=request.data)
+        self.serializer = self.get_serializer(data=request.data, include_concert=True)
 
         if not self.serializer.is_valid():
             return self.error_response(self.serializer.errors, 400)
