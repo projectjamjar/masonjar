@@ -8,6 +8,9 @@ from jamjar.base.views import BaseView, authenticate
 from jamjar.videos.models import Video, Edge
 from jamjar.videos.serializers import VideoSerializer, EdgeSerializer
 
+from jamjar.concerts.serializers import ConcertSerializer
+from jamjar.concerts.models import Concert
+
 from jamjar.tasks.transcode_video import transcode_video
 
 import re, datetime
@@ -66,8 +69,16 @@ class VideoListView(BaseView):
             queryset = sorted(queryset, key= lambda v: v.hot(now), reverse=True)
 
 
-        serializer = self.get_serializer(queryset, many=True, include_concert=True)
-        return self.success_response(serializer.data)
+        serializer = self.get_serializer(queryset, many=True)
+        videos = serializer.data
+
+        for video in videos:
+          concert = Concert.objects.get(pk=video['concert'])
+          concert_serializer = ConcertSerializer(concert)
+
+          video['concert'] = concert_serializer.data
+
+        return self.success_response(videos)
 
     """
     Description:
@@ -150,7 +161,7 @@ class VideoListView(BaseView):
     @authenticate
     def post(self, request):
         # Make sure we have all of the proper attributes
-        self.serializer = self.get_serializer(data=request.data, include_concert=True)
+        self.serializer = self.get_serializer(data=request.data)
 
         if not self.serializer.is_valid():
             return self.error_response(self.serializer.errors, 400)
@@ -182,7 +193,13 @@ class VideoListView(BaseView):
         # do this async. TODO : change lilo to use Integers for the video_id field
         transcode_video.delay(video.id)
 
-        return self.success_response(self.serializer.data)
+        concert = Concert.objects.get(pk=video.concert_id)
+        concert_serializer = ConcertSerializer(concert)
+
+        video_data = self.serializer.data
+        video_data['concert'] = concert_serializer.data
+
+        return self.success_response(video_data)
 
 
 class VideoDetailsView(BaseView):
@@ -197,7 +214,14 @@ class VideoDetailsView(BaseView):
 
         # Serialize the result and return it
         self.serializer = self.get_serializer(self.video)
-        return self.success_response(self.serializer.data)
+
+        video = self.serializer.data
+
+        concert = Concert.objects.get(pk=video['concert'])
+        concert_serializer = ConcertSerializer(concert)
+        video['concert'] = concert_serializer.data
+
+        return self.success_response(video)
 
     @authenticate
     def put(self, request, id):
