@@ -150,7 +150,11 @@ class VideoListView(BaseView):
     @authenticate
     def post(self, request):
         # Make sure we have all of the proper attributes
-        self.serializer = self.get_serializer(data=request.data, include_concert=True)
+        context = self.get_serializer_context()
+
+        # Push the concert id into the context so we can use it in the create method
+        context['concert_id'] = request.data.get('concert')
+        self.serializer = self.serializer_class(data=request.data, context=context, include_concert=True)
 
         if not self.serializer.is_valid():
             return self.error_response(self.serializer.errors, 400)

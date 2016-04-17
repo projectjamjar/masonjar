@@ -71,8 +71,8 @@ class VideoSerializer(serializers.ModelSerializer):
         # Get the artists out of here beforehand
         artists = validated_data.pop('artist_objects',[])
 
+        validated_data['concert_id'] = self.context.get('concert_id')
 
-        import ipdb; ipdb.set_trace()
         # Call the super's 'create'
         video = super(VideoSerializer,self).create(validated_data)
 
