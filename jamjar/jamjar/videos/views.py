@@ -6,7 +6,7 @@ from django.db.models import F
 
 from jamjar.base.views import BaseView, authenticate
 from jamjar.videos.models import Video, Edge
-from jamjar.videos.serializers import VideoSerializer, EdgeSerializer
+from jamjar.videos.serializers import VideoSerializer, ExpandedVideoSerializer, EdgeSerializer
 
 from jamjar.concerts.serializers import ConcertSerializer
 from jamjar.concerts.models import Concert
@@ -69,16 +69,9 @@ class VideoListView(BaseView):
             queryset = sorted(queryset, key= lambda v: v.hot(now), reverse=True)
 
 
-        serializer = self.get_serializer(queryset, many=True)
-        videos = serializer.data
+        expanded_serializer = ExpandedVideoSerializer(queryset, many=True)
 
-        for video in videos:
-          concert = Concert.objects.get(pk=video['concert'])
-          concert_serializer = ConcertSerializer(concert)
-
-          video['concert'] = concert_serializer.data
-
-        return self.success_response(videos)
+        return self.success_response(expanded_serializer.data)
 
     """
     Description:
@@ -193,13 +186,8 @@ class VideoListView(BaseView):
         # do this async. TODO : change lilo to use Integers for the video_id field
         transcode_video.delay(video.id)
 
-        concert = Concert.objects.get(pk=video.concert_id)
-        concert_serializer = ConcertSerializer(concert)
-
-        video_data = self.serializer.data
-        video_data['concert'] = concert_serializer.data
-
-        return self.success_response(video_data)
+        expanded_serializer = ExpandedVideoSerializer(video)
+        return self.success_response(expanded_serializer.data)
 
 
 class VideoDetailsView(BaseView):
@@ -213,15 +201,9 @@ class VideoDetailsView(BaseView):
         self.video = self.get_object_or_404(self.model, id=id)
 
         # Serialize the result and return it
-        self.serializer = self.get_serializer(self.video)
+        self.serializer = ExpandedVideoSerializer(self.video)
 
-        video = self.serializer.data
-
-        concert = Concert.objects.get(pk=video['concert'])
-        concert_serializer = ConcertSerializer(concert)
-        video['concert'] = concert_serializer.data
-
-        return self.success_response(video)
+        return self.success_response(self.serializer.data)
 
     @authenticate
     def put(self, request, id):

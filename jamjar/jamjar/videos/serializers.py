@@ -74,6 +74,33 @@ class VideoSerializer(serializers.ModelSerializer):
 
         return video
 
+class ExpandedVideoSerializer(VideoSerializer):
+    class Meta:
+        model = Video
+        fields = ('id',
+                  'name',
+                  'uploaded',
+                  'created_at',
+                  'uuid',
+                  'length',
+                  'file_size',
+                  'is_private',
+                  'views',
+                  'artists',
+                  'web_src',
+                  'hls_src',
+                  'thumb_src',
+                  'concert',
+                  'user',
+                  'width',
+                  'height')
+
+    def __init__(self, *args, **kwargs):
+        super(ExpandedVideoSerializer, self).__init__(*args, **kwargs)
+
+        from jamjar.concerts.serializers import ConcertSerializer
+        self.fields['concert'] = ConcertSerializer(read_only=True)
+
 class EdgeSerializer(serializers.ModelSerializer):
     video1 = VideoSerializer(read_only=True)
     video2 = VideoSerializer(read_only=True)
