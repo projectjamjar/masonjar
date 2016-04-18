@@ -1,4 +1,5 @@
 from collections import defaultdict
+from django.conf import settings
 
 class ConcertGraph(object):
 
@@ -70,7 +71,7 @@ class ConcertGraph(object):
                     offset = -edge_map[index].offset
                     confidence = edge_map[index].confidence
 
-                if confidence <= 5:
+                if confidence <= settings.CONFIDENCE_THRESHOLD:
                     continue
 
                 data = {
