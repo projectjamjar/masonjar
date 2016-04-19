@@ -14,6 +14,8 @@ import hachoir_parser, hachoir_metadata
 import logging; logger = logging.getLogger(__name__)
 
 AUDIO_SAMPLE_RATE = '44100'
+HLS_SEGMENT_LENGTH_SECONDS = 10 # 10 second .ts files
+HLS_MAX_SEGMENTS = 500          # 10 * 500 = 5000 seconds, or max video length ~= 1.5 hours
 
 class VideoTranscoder(object):
     "Helper class for transcoding, uploading, and fingerprinting"
@@ -55,7 +57,7 @@ class VideoTranscoder(object):
 
         try:
             with open(os.devnull, "w") as devnull:
-              subprocess.check_call(['avconv', '-i', src, '-start_number', '0', '-hls_list_size', '0', '-hls_time', '10', '-f', 'hls', out], stdout=devnull, stderr=devnull)
+              subprocess.check_call(['avconv', '-i', src, '-start_number', '0', '-hls_list_size', HLS_MAX_SEGMENTS, '-hls_time', HLS_SEGMENT_LENGTH_SECONDS, '-f', 'hls', out], stdout=devnull, stderr=devnull)
             logger.info('Successfully transcoded {:} to {:}'.format(src, out))
             return True
         except subprocess.CalledProcessError:
