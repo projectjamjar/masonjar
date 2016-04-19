@@ -42,8 +42,15 @@ class Command(BaseCommand):
             print "The video with id {} wasn't found in S3!".format(video.id)
             sys.exit(1)
 
+        print "Transcoding to hls..."
         if not transcoder.transcode_to_hls():
             print "Error transcoding video to HLS!"
             sys.exit(1)
 
+        print "uploading to S3"
         transcoder.upload_to_s3()
+
+        print "Deleting local files"
+        transcoder.delete_source()
+
+        print "Done!"
