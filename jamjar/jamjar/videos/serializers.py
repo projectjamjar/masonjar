@@ -12,7 +12,6 @@ class VideoSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Video
-        depth = 2 # traverse concert relation to get venue
         fields = ('id',
                   'name',
                   'uploaded',
@@ -32,11 +31,7 @@ class VideoSerializer(serializers.ModelSerializer):
                   'height')
 
     def __init__(self, *args, **kwargs):
-        self.include_concert = kwargs.pop('include_concert', False)
         super(VideoSerializer, self).__init__(*args, **kwargs)
-
-        if not self.include_concert:
-            self.fields.pop('concert')
 
     def validate(self, data):
         request = self.context.get('request')
@@ -71,8 +66,6 @@ class VideoSerializer(serializers.ModelSerializer):
         # Get the artists out of here beforehand
         artists = validated_data.pop('artist_objects',[])
 
-
-        import ipdb; ipdb.set_trace()
         # Call the super's 'create'
         video = super(VideoSerializer,self).create(validated_data)
 
@@ -80,6 +73,33 @@ class VideoSerializer(serializers.ModelSerializer):
         video.artists = artists
 
         return video
+
+class ExpandedVideoSerializer(VideoSerializer):
+    class Meta:
+        model = Video
+        fields = ('id',
+                  'name',
+                  'uploaded',
+                  'created_at',
+                  'uuid',
+                  'length',
+                  'file_size',
+                  'is_private',
+                  'views',
+                  'artists',
+                  'web_src',
+                  'hls_src',
+                  'thumb_src',
+                  'concert',
+                  'user',
+                  'width',
+                  'height')
+
+    def __init__(self, *args, **kwargs):
+        super(ExpandedVideoSerializer, self).__init__(*args, **kwargs)
+
+        from jamjar.concerts.serializers import ConcertSerializer
+        self.fields['concert'] = ConcertSerializer(read_only=True)
 
 class EdgeSerializer(serializers.ModelSerializer):
     video1 = VideoSerializer(read_only=True)
