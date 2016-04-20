@@ -66,11 +66,11 @@ urlpatterns = patterns('',
     ########################################
     # Auth Views
     ########################################
-    url(r'^auth/signup/$', Auth.SignupView.as_view()),
-    url(r'^auth/activate/$', Auth.ActivateView.as_view()),
-    url(r'^auth/login/$', Auth.LoginView.as_view()),
-    url(r'^auth/reset/$', Auth.ResetView.as_view()),
-    url(r'^change/$', Auth.ChangePasswordView.as_view()),
-    url(r'^invite/$', Auth.InviteUserView.as_view()),
+    url(r'^auth/signup/$', Auth.SignupView.as_view(), name='signup'),
+    url(r'^auth/activate/$', Auth.ActivateView.as_view(), name='activate'),
+    url(r'^auth/login/$', Auth.LoginView.as_view(), name='login'),
+    url(r'^auth/reset/$', Auth.ResetView.as_view(), name='reset-password'),
+    url(r'^change/$', Auth.ChangePasswordView.as_view(), name='change-password'),
+    url(r'^invite/$', Auth.InviteUserView.as_view(), name='invite-user'),
 )
 
