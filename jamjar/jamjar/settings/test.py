@@ -7,6 +7,18 @@ TMP_VIDEOS_PATH = os.path.expanduser('~/videos')
 if not os.path.exists(TMP_VIDEOS_PATH):
     os.makedirs(TMP_VIDEOS_PATH)
 
+# URLS
+API_BASE_URL = 'http://api.localhost.dev:5001'
+SITE_BASE_URL = 'http://dashboard.localhost.dev:5000/#'
+
+S3_URL = 'https://s3.amazonaws.com/jamjar-videos/dev/{}/{}.{}'
+
+# GMaps API Key
+GMAPS_API_KEY = 'AIzaSyB3ay9JpvAc9SLQKkkuJpYKqCCAH0cVUk0'
+GMAPS_CACHE_BUST = 5 # Update GMapLocations after 5 days of staleness
+
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',

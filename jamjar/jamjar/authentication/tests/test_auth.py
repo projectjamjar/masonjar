@@ -15,10 +15,17 @@ class AccountTests(APITestCase):
             "last_name": "User",
             "password": "password",
             "confirm": "password",
-            "email": "test@projectjamjar.com",
-            "invite": "48c-926669e40c2196dd94de"
+            "email": "test@projectjamjar.com"
         }
         response = self.client.post(url, data, format='json')
-        # self.assertEqual(response.status_code, status.HTTP_201_CREATED)
-        # self.assertEqual(Account.objects.count(), 1)
-        # self.assertEqual(Account.objects.get().name, 'DabApps')
+
+        # We should really change this endpoint to return 201
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+
+        self.assertEqual(User.objects.count(), 1)
+
+        user = User.objects.get()
+        self.assertEqual(user.username, 'test')
+        self.assertEqual(user.first_name, 'Test')
+        self.assertEqual(user.last_name, 'User')
+        self.assertEqual(user.email, 'test@projectjamjar.com')
