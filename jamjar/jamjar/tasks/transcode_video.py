@@ -4,6 +4,7 @@ from tasks import app
 from lilo import Lilo
 import subprocess, logging, os, shutil
 import boto3, datetime
+from celery.contrib import rdb
 
 from jamjar.videos.models import Edge, Video, JamJarMap
 
@@ -107,10 +108,16 @@ class VideoTranscoder(object):
             ###############################
             # JamJar Reconciliation Process
             ###############################
-            negative_offsets = [video for video in matched_videos if video['offset_seconds'] < 0.0]
-            positive_offsets = [video for video in matched_videos if video['offset_seconds'] >= 0.0]
+            negative_offsets = [video for video in matched_videos\
+                                if video['offset_seconds'] < 0.0\
+                                and video['confidence'] >= settings.CONFIDENCE_THRESHOLD]
+            positive_offsets = [video for video in matched_videos\
+                                if video['offset_seconds'] >= 0.0\
+                                and video['confidence'] >= settings.CONFIDENCE_THRESHOLD]
 
             jamstarts_to_replace = set()
+
+            # rdb.set_trace()
 
             if len(negative_offsets) > 0:
                 # If there's a most-negative offset, find its jamjar
@@ -137,14 +144,13 @@ class VideoTranscoder(object):
                 # Add these to the list of starts to replace
                 jamstarts_to_replace = jamstarts_to_replace.union(positive_starts)
 
-            print "({}) Jamjars to replace - {}".format(self.video.name,jamstarts_to_replace)
+            logger.info('({}) Jamjars to replace - {}'.format(self.video.name,jamstarts_to_replace))
 
             # Replace all the jamstarts AYEEE!
             JamJarMap.objects.filter(start_id__in=jamstarts_to_replace).update(start_id=new_start_id)
 
             # And add this one
             JamJarMap.objects.create(video=self.video, start_id=new_start_id)
-
 
             ###############################
             # Fingerprint Addition Process
@@ -154,6 +160,9 @@ class VideoTranscoder(object):
                                     video2_id=match['video_id'],
                                     offset=match['offset_seconds'],
                                     confidence=match['confidence'])
+        else:
+            # If we don't have any matches, add a jamstart that points to this video
+            JamJarMap.objects.create(video=self.video, start_id=self.video.id)
 
         # Add this videos fingerprints to the Lilo DB
         data = lilo.fingerprint_song()
