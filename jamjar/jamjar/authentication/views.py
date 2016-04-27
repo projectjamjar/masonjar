@@ -51,7 +51,7 @@ class SignupView(BaseView):
         Check to see if the email is unused and return the new user object if it is not.
 
     Request:
-        POST /api/auth/signup/
+        POST /auth/signup/
         {
             "username": "test",
             "first_name": "Test",
@@ -80,7 +80,7 @@ class SignupView(BaseView):
                 data['last_name'], data['password'])
         except IntegrityError:
             # TODO: Log signup failure here
-            return self.error_response("A user with that email already exists.", 422)
+            return self.error_response("A user with that username or email already exists.", 422)
 
         # If this user was invited by someone, handle that stuff
         if self.serializer.validated_data.get('invite'):
@@ -143,7 +143,7 @@ class ActivateView(BaseView):
         is currently not active, then set them as active.
 
     Request:
-        POST /api/auth/activate/
+        POST /auth/activate/
         {
             "email": "test@projectjamjar.com",
             "activation_key": "47o-441afc8f5d17b80ce6b7"
@@ -211,7 +211,7 @@ class LoginView(BaseView):
         Calls Django Auth login method to register User ID in Django session framework
 
     Request:
-        POST /api/auth/activate/
+        POST /auth/activate/
         {
             "username": "test",
             "password": "password"
@@ -384,7 +384,7 @@ class ChangePasswordView(BaseView):
         then change the password to the new password.
 
     Request:
-        POST /api/:user_id/change/
+        POST /:user_id/change/
         {
             "old_password": "OldPassword",
             "passwprd": "NewStrongPassword",
@@ -425,7 +425,7 @@ class InviteUserView(BaseView):
         Given an email and a authenticated user, send an invite to a new user
 
     Request:
-        POST /api/:user_id/invite/
+        POST /:user_id/invite/
         {
             "email": "newperson@thatemail.com",
             "message": "Hey, you should join JamJar!"

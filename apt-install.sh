@@ -5,9 +5,11 @@ if [ "$(id -u)" != "0" ]; then
     exit 1
 fi
 
+apt-get remove --purge libav-tools
+
 apt-get update
 apt-get install -y apache2 python-dev python-pip python-virtualenv libmysqlclient-dev zip
-apt-get install -y python-numpy python-scipy python-matplotlib libportaudio-dev python-PyAudio python-MySQLdb libav-tools
+apt-get install -y python-numpy python-scipy python-matplotlib libportaudio-dev python-PyAudio python-MySQLdb
 apt-get install -y pkg-config libblas-dev liblapack-dev libatlas-base-dev gfortran libpng-dev libfreetype6-dev imagemagick
 apt-get install -y portaudio19-dev
 
@@ -25,3 +27,10 @@ wget -O /tmp/redis-3.0.6.tar.gz http://download.redis.io/releases/redis-3.0.6.ta
 tar -xvf /tmp/redis-3.0.6.tar.gz -C /tmp/
 make -C /tmp/redis-3.0.6/
 make -C /tmp/redis-3.0.6/ install
+
+# install avconv
+echo "installing avconv binary"
+sudo rm -rf /usr/bin/avconv ~/apps
+wget -O /tmp/apps.tgz https://s3.amazonaws.com/jamjar-videos/utils/apps.tgz
+tar -xf /tmp/apps.tgz -C ~
+sudo ln -s  ~/apps/bin/avconv /usr/bin/avconv
