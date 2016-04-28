@@ -103,16 +103,17 @@ class VideoTranscoder(object):
 
         if matched_videos is not None and len(matched_videos) > 0:
             # Sort the matched videos in ascending order by their offsets
-            matched_videos.sort(cmp=lambda x, y: cmp(x['offset_seconds'], y['offset_seconds']))
+            matched_videos.sort(cmp=lambda x, y: cmp(x['offset_seconds'], y['offset_seconds']), reverse=True)
+            # rdb.set_trace()
 
             ###############################
             # JamJar Reconciliation Process
             ###############################
             negative_offsets = [video for video in matched_videos\
-                                if video['offset_seconds'] < 0.0\
+                                if video['offset_seconds'] > 0.0\
                                 and video['confidence'] >= settings.CONFIDENCE_THRESHOLD]
             positive_offsets = [video for video in matched_videos\
-                                if video['offset_seconds'] >= 0.0\
+                                if video['offset_seconds'] <= 0.0\
                                 and video['confidence'] >= settings.CONFIDENCE_THRESHOLD]
 
             jamstarts_to_replace = set()

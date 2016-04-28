@@ -4,6 +4,7 @@ from jamjar.videos.models import Video, Edge, JamJarMap
 from jamjar.artists.serializers import ArtistSerializer
 from jamjar.users.serializers import UserSerializer
 from jamjar.artists.models import Artist
+from jamjar.concerts.concert_graph import ConcertGraph
 
 import os
 
@@ -139,20 +140,24 @@ class JamJarVideoSerializer(ExpandedVideoSerializer):
         start_id = obj.jamjars.first().start.id
 
         # Get all the other videos that start with this startjar
-        jamjar_videos = Video.objects.filter(startjars__start_id=start_id)
+        jamjar_videos = Video.objects.filter(jamjars__start_id=start_id)
+        # import ipdb;ipdb.set_trace()
 
         # Serialize all those videos
         jamjar_video_data = VideoSerializer(jamjar_videos,many=True).data
 
         # Build the graph for the jawn
-        edges = Edge.objects.filter(Q(video_1__startjars__start_id=start_id), Q(video_1__startjars__start_id=start_id))
+        edges = Edge.objects.filter(Q(video1__jamjars__start_id=start_id), Q(video2__jamjars__start_id=start_id))
+
+        # edge_data = EdgeSerializer(edges, many=True).data
+        graph = ConcertGraph(edges).disjoint_graphs()[0]
 
         # TODO: Serialize these edges?
 
         jamjar_data = {
             'start': start_id,
             'videos': jamjar_video_data,
-            # 'graph': 
+            'graph': graph
         }
 
         return jamjar_data

@@ -6,7 +6,7 @@ from django.db.models import F
 
 from jamjar.base.views import BaseView, authenticate
 from jamjar.videos.models import Video, Edge
-from jamjar.videos.serializers import VideoSerializer, ExpandedVideoSerializer, EdgeSerializer
+from jamjar.videos.serializers import VideoSerializer, ExpandedVideoSerializer, EdgeSerializer, JamJarVideoSerializer
 
 from jamjar.concerts.serializers import ConcertSerializer
 from jamjar.concerts.models import Concert
@@ -155,7 +155,7 @@ class VideoListView(BaseView):
     def post(self, request):
         # Make sure we have all of the proper attributes
         context = self.get_serializer_context()
-        self.serializer = self.serializer_class(data=request.data, context=context, include_concert=True)
+        self.serializer = self.serializer_class(data=request.data, context=context)
 
         if not self.serializer.is_valid():
             return self.error_response(self.serializer.errors, 400)
@@ -202,7 +202,7 @@ class VideoDetailsView(BaseView):
         self.video = self.get_object_or_404(self.model, id=id)
 
         # Serialize the result and return it
-        self.serializer = ExpandedVideoSerializer(self.video)
+        self.serializer = JamJarVideoSerializer(self.video)
 
         return self.success_response(self.serializer.data)
 
