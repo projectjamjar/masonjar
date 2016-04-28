@@ -1,5 +1,6 @@
 from rest_framework import serializers
-from jamjar.videos.models import Video, Edge
+from django.db.models import Q
+from jamjar.videos.models import Video, Edge, JamJarMap
 from jamjar.artists.serializers import ArtistSerializer
 from jamjar.users.serializers import UserSerializer
 from jamjar.artists.models import Artist
@@ -102,6 +103,61 @@ class ExpandedVideoSerializer(VideoSerializer):
 
         from jamjar.concerts.serializers import ConcertSerializer
         self.fields['concert'] = ConcertSerializer(read_only=True)
+
+class JamJarVideoSerializer(ExpandedVideoSerializer):
+    jamjar = serializers.SerializerMethodField()
+
+    class Meta:
+        model = Video
+        fields = ('id',
+                  'name',
+                  'uploaded',
+                  'created_at',
+                  'uuid',
+                  'length',
+                  'file_size',
+                  'is_private',
+                  'views',
+                  'artists',
+                  'web_src',
+                  'hls_src',
+                  'thumb_src',
+                  'concert',
+                  'user',
+                  'width',
+                  'height',
+                  'jamjar')
+
+    def __init__(self, *args, **kwargs):
+        super(JamJarVideoSerializer, self).__init__(*args, **kwargs)
+
+        from jamjar.concerts.serializers import ConcertSerializer
+        self.fields['concert'] = ConcertSerializer(read_only=True)
+
+    def get_jamjar(self, obj):
+        # Get the startjar of this video
+        start_id = obj.jamjars.first().start.id
+
+        # Get all the other videos that start with this startjar
+        jamjar_videos = Video.objects.filter(startjars__start_id=start_id)
+
+        # Serialize all those videos
+        jamjar_video_data = VideoSerializer(jamjar_videos,many=True).data
+
+        # Build the graph for the jawn
+        edges = Edge.objects.filter(Q(video_1__startjars__start_id=start_id), Q(video_1__startjars__start_id=start_id))
+
+        # TODO: Serialize these edges?
+
+        jamjar_data = {
+            'start': start_id,
+            'videos': jamjar_video_data,
+            # 'graph': 
+        }
+
+        return jamjar_data
+
+
 
 class EdgeSerializer(serializers.ModelSerializer):
     video1 = VideoSerializer(read_only=True)
