@@ -3,10 +3,16 @@ from rest_framework.generics import GenericAPIView
 from rest_framework.authtoken.models import Token
 from rest_framework.parsers import FormParser, MultiPartParser
 from django.db.models import F
+from django.db import IntegrityError
 
 from jamjar.base.views import BaseView, authenticate
-from jamjar.videos.models import Video, Edge
-from jamjar.videos.serializers import VideoSerializer, ExpandedVideoSerializer, EdgeSerializer, JamJarVideoSerializer
+from jamjar.videos.models import Video, Edge, VideoFlag
+from jamjar.videos.serializers import (VideoSerializer,
+    ExpandedVideoSerializer,
+    EdgeSerializer,
+    JamJarVideoSerializer,
+    VideoFlagSerializer
+)
 
 from jamjar.concerts.serializers import ConcertSerializer
 from jamjar.concerts.models import Concert
@@ -256,3 +262,64 @@ class VideoWatchView(BaseView):
         # Attempt to update the video count
         self.model.objects.filter(id=id).update(views=F('views')+1)
         return self.success_response(True)
+
+class VideoFlagView(BaseView):
+    model = VideoFlag
+    serializer_class = VideoFlagSerializer
+
+    """
+    Description:
+        Get a list of all video flags
+        Flag types:
+            'Q' - 'Quality'
+            'I' - 'Inappropriate'
+            'A' - 'Accuracy'
+
+    Request:
+        GET /videos/flags/
+
+    Response:
+        All of the video flags
+    """
+    @authenticate
+    def get(self, request):
+        flags = VideoFlag.objects.all()
+
+        self.serializer = VideoFlagSerializer(flags, many=True)
+
+        return self.success_response(self.serializer.data)
+
+    """
+    Description:
+        Given a video ID, flag type, and note, submit a flag for a video
+        Flag types:
+            'Q' - 'Quality'
+            'I' - 'Inappropriate'
+            'A' - 'Accuracy'
+
+    Request:
+        POST /videos/flags/
+        {
+            "video": 3,
+            "flag_type": "I",
+            "notes": "There are boobs in this video!!"
+        }
+
+    Response:
+        The newly created video flag
+    """
+    @authenticate
+    def post(self, request):
+        # Attempt to update the video count
+        self.serializer = self.get_serializer(data=request.data)
+
+        if not self.serializer.is_valid():
+            return self.error_response(self.serializer.errors, 400)
+
+        # Save the flag object
+        try:
+            flag = self.serializer.save()
+        except IntegrityError as e:
+            return self.error_response(str(e), 400)
+
+        return self.success_response(self.serializer.data)
