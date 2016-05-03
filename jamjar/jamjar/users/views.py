@@ -80,7 +80,7 @@ class UserProfileView(BaseView):
             videos = user.videos.all()
 
         # Get a set of all concert ids which the user contributed to
-        concerts = Concert.objects.filter(videos__user_id=user.id)
+        concerts = Concert.objects.filter(videos__user_id=user.id).distinct()
 
         user_serializer = UserSerializer(user)
         video_serializer = ExpandedVideoSerializer(videos, many=True)
