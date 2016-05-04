@@ -3,7 +3,7 @@ from jamjar.users.models import User
 from jamjar.users.serializers import UserSerializer
 from jamjar.concerts.models import Concert
 from jamjar.concerts.serializers import ConcertSerializer
-from jamjar.videos.serializers import VideoSerializer
+from jamjar.videos.serializers import ExpandedVideoSerializer, VideoSerializer
 from jamjar.videos.models import Video
 
 class UserProfileView(BaseView):
@@ -80,10 +80,10 @@ class UserProfileView(BaseView):
             videos = user.videos.all()
 
         # Get a set of all concert ids which the user contributed to
-        concerts = Concert.objects.filter(videos__user_id=user.id)
+        concerts = Concert.objects.filter(videos__user_id=user.id).distinct()
 
         user_serializer = UserSerializer(user)
-        video_serializer = VideoSerializer(videos, many=True)
+        video_serializer = ExpandedVideoSerializer(videos, many=True)
         concert_serializer = ConcertSerializer(concerts, many=True, expand_videos=False)
 
         response = {

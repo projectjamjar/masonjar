@@ -31,6 +31,7 @@ class VideoListView(BaseView):
         - genres (id)
         - artists (id)
         - uploaders (id)
+        - venues (id)
 
         A "hot" attribute can also be supplied in order to get the hot videos
         as a mix of both view count and time (and soon votes)
@@ -56,6 +57,7 @@ class VideoListView(BaseView):
         genre_filters = filter(None, request.GET.get('genres', '').split(' '))
         artist_filters = filter(None, request.GET.get('artists', '').split(' '))
         uploader_filters = filter(None, request.GET.get('uploaders', '').split(' '))
+        venues_filters = filter(None, request.GET.get('venues', '').split(' '))
 
         if genre_filters:
             queryset = queryset.filter(artists__genres__in=genre_filters)
@@ -65,6 +67,9 @@ class VideoListView(BaseView):
 
         if uploader_filters:
             queryset = queryset.filter(user__in=uploader_filters)
+
+        if venues_filters:
+            queryset = queryset.filter(venue__in=venues_filters)
 
         hot = int(request.GET.get('hot', 0))
 
