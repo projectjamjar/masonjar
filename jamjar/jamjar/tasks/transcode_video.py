@@ -130,7 +130,7 @@ class VideoTranscoder(object):
         digraph.add_weighted_edges_from(digraph_edges)
 
         # find all videos in the subgraph
-        video_ids_in_subgraph = nx.shortest_path(digraph.to_undirected(), self.video.id).keys()
+        video_ids_in_subgraph = nx.node_connected_component(digraph.to_undirected(), self.video.id)
 
         # sort the directed graph such that if A has an edge to B, A will come before B in the resulting list
         temporally_sorted_videos = nx.topological_sort(digraph)
