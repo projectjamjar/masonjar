@@ -6,7 +6,7 @@ from jamjar.venues.models import Venue
 from jamjar.artists.models import Artist
 from jamjar.concerts.models import Concert
 
-from jamjar.videos.serializers import VideoSerializer
+from jamjar.videos.serializers import ExpandedVideoSerializer
 from jamjar.users.serializers import UserSerializer
 from jamjar.venues.serializers import VenueSerializer
 from jamjar.artists.serializers import ArtistSerializer
@@ -25,7 +25,7 @@ MODEL_SEARCH_FIELDS = {
 }
 
 MODEL_SERIALIZERS = {
-    Video: VideoSerializer,
+    Video: ExpandedVideoSerializer,
     Venue: VenueSerializer,
     Artist: ArtistSerializer,
     Concert: ConcertSerializer,
@@ -136,7 +136,7 @@ class SearchResults(BaseView):
             ...
           ],
           "user": []
-        } 
+        }
     """
 
     @authenticate
