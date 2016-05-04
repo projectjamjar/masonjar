@@ -131,13 +131,15 @@ class VideoTranscoder(object):
 
         # find all videos in the subgraph
         video_ids_in_subgraph = nx.shortest_path(digraph.to_undirected(), self.video.id).keys()
+
+        # sort the directed graph such that if A has an edge to B, A will come before B in the resulting list
         temporally_sorted_videos = nx.topological_sort(digraph)
 
-
+        # the first video id in the list is the jamstart for this subgraph
         new_start_id = temporally_sorted_videos[0]
-        video_ids_to_update = set(video_ids_in_subgraph).intersection(set(temporally_sorted_videos))
 
-        JamJarMap.objects.filter(video_id__in=video_ids_to_update).update(start_id=new_start_id)
+        # update start_id for all videos in the resulting subgraph
+        JamJarMap.objects.filter(video_id__in=video_ids_in_subgraph).update(start_id=new_start_id)
 
         # And add this one
         JamJarMap.objects.create(video=self.video, start_id=new_start_id)
@@ -148,9 +150,6 @@ class VideoTranscoder(object):
         lilo = Lilo(settings.LILO_CONFIG, video_path, self.video.id)
         matched_videos = lilo.recognize_track()
 
-        ###############################
-        # Fingerprint Addition Process
-        ###############################
         for match in matched_videos:
             Edge.objects.create(video1_id=self.video.id,
                                 video2_id=match['video_id'],
