@@ -1,8 +1,10 @@
 from rest_framework import serializers
-from jamjar.videos.models import Video, Edge
+from django.db.models import Q
+from jamjar.videos.models import Video, Edge, JamJarMap
 from jamjar.artists.serializers import ArtistSerializer
 from jamjar.users.serializers import UserSerializer
 from jamjar.artists.models import Artist
+from jamjar.concerts.concert_graph import ConcertGraph
 
 import os
 
@@ -67,12 +69,14 @@ class VideoSerializer(serializers.ModelSerializer):
         artists = validated_data.pop('artist_objects',[])
 
         # Call the super's 'create'
+
         video = super(VideoSerializer,self).create(validated_data)
 
         # Assign the artists to the video
         video.artists = artists
 
         return video
+
 
 class ExpandedVideoSerializer(VideoSerializer):
     class Meta:
@@ -100,6 +104,65 @@ class ExpandedVideoSerializer(VideoSerializer):
 
         from jamjar.concerts.serializers import ConcertSerializer
         self.fields['concert'] = ConcertSerializer(read_only=True)
+
+class JamJarVideoSerializer(ExpandedVideoSerializer):
+    jamjar = serializers.SerializerMethodField()
+
+    class Meta:
+        model = Video
+        fields = ('id',
+                  'name',
+                  'uploaded',
+                  'created_at',
+                  'uuid',
+                  'length',
+                  'file_size',
+                  'is_private',
+                  'views',
+                  'artists',
+                  'web_src',
+                  'hls_src',
+                  'thumb_src',
+                  'concert',
+                  'user',
+                  'width',
+                  'height',
+                  'jamjar')
+
+    def __init__(self, *args, **kwargs):
+        super(JamJarVideoSerializer, self).__init__(*args, **kwargs)
+
+        from jamjar.concerts.serializers import ConcertSerializer
+        self.fields['concert'] = ConcertSerializer(read_only=True)
+
+    def get_jamjar(self, obj):
+        # Get the startjar of this video
+        start_id = obj.jamjars.first().start.id
+
+        # Get all the other videos that start with this startjar
+        jamjar_videos = Video.objects.filter(jamjars__start_id=start_id)
+        # import ipdb;ipdb.set_trace()
+
+        # Serialize all those videos
+        jamjar_video_data = VideoSerializer(jamjar_videos,many=True).data
+
+        # Build the graph for the jawn
+        edges = Edge.objects.filter(Q(video1__jamjars__start_id=start_id), Q(video2__jamjars__start_id=start_id))
+
+        # edge_data = EdgeSerializer(edges, many=True).data
+        graph = ConcertGraph(edges).disjoint_graphs()[0]
+
+        # TODO: Serialize these edges?
+
+        jamjar_data = {
+            'start': start_id,
+            'videos': jamjar_video_data,
+            'graph': graph
+        }
+
+        return jamjar_data
+
+
 
 class EdgeSerializer(serializers.ModelSerializer):
     video1 = VideoSerializer(read_only=True)

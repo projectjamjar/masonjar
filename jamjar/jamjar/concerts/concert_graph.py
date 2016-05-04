@@ -1,4 +1,6 @@
 from collections import defaultdict
+from django.conf import settings
+from jamjar.videos.models import JamJarMap
 
 class ConcertGraph(object):
 
@@ -35,10 +37,12 @@ class ConcertGraph(object):
             adjacencies = {}
             for video_id in id_set:
                 adjacencies[video_id] = graph[video_id]
+
+            start_id = JamJarMap.objects.get(video_id=list(id_set)[0]).start_id
             disjoint_graphs.append({
                 "adjacencies": adjacencies,
                 "count": len(adjacencies),
-                "start_id": sorted(id_set)[0]
+                "start_id": start_id
             })
 
         return disjoint_graphs
@@ -70,7 +74,7 @@ class ConcertGraph(object):
                     offset = -edge_map[index].offset
                     confidence = edge_map[index].confidence
 
-                if confidence <= 5:
+                if confidence <= settings.CONFIDENCE_THRESHOLD:
                     continue
 
                 data = {

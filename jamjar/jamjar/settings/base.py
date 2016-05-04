@@ -118,6 +118,10 @@ STATIC_URL = '/static/'
 
 VIDEOS_PATH = '/opt/code/masonjar/videos'
 
+# Configurable constants
+THUMBNAIL_SIZES = [32,64,128,256,512,1024]
+CONFIDENCE_THRESHOLD = 20
+
 # for celery (job queue)
 REDIS_QUEUE = 'redis://localhost:6379/0'
 
@@ -139,9 +143,6 @@ SHELL_PLUS_PRE_IMPORTS = (
     'pprint',
     'sys'
 )
-
-THUMBNAIL_SIZES = [32,64,128,256,512,1024]
-
 
 LOGGING = {
     'version': 1,
