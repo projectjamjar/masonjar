@@ -342,7 +342,7 @@ class VideoVoteView(BaseView):
         POST /videos/vote/
         {
           vote: true/false/null,
-          video_id: video_id
+          video: video_id
         }
 
     Response:
