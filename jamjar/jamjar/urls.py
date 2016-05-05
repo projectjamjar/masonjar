@@ -36,6 +36,7 @@ urlpatterns = patterns('',
     # Video Views
     ########################################
     url(r'^videos/$', Videos.VideoListView.as_view()),
+    url(r'^videos/flags/$', Videos.VideoFlagView.as_view()),
     url(r'^videos/(?P<id>[0-9]+)/$', Videos.VideoDetailsView.as_view()),
     url(r'^videos/(?P<id>[0-9]+)/watching/$', Videos.VideoWatchView.as_view()),
 
