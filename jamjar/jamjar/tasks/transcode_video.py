@@ -6,11 +6,16 @@ import subprocess, logging, os, shutil
 import boto3, datetime
 from celery.contrib import rdb
 
+from django.db.models import Q
+
 from jamjar.videos.models import Edge, Video, JamJarMap
 
 # extract metadata from videos
 from hachoir_core.error import HachoirError
 import hachoir_parser, hachoir_metadata
+
+# friends don't let friends write their own graph algos :p
+import networkx as nx
 
 import logging; logger = logging.getLogger(__name__)
 
@@ -95,75 +100,61 @@ class VideoTranscoder(object):
         video_dir = self.video.get_video_dir()
         shutil.rmtree(video_dir)
 
+    def update_jamstarts(self):
+        concert = self.video.concert
+
+        relevant_edges_query = Q(confidence__gt=settings.CONFIDENCE_THRESHOLD) & Q(video1__concert_id=concert.id) & Q(video2__concert_id=concert.id)
+        relevant_edges = Edge.objects.filter(relevant_edges_query)
+
+        # unique the resulting edges and make all edges positive
+        digraph_edges = []
+        seen_video_ids = set()
+        for edge in relevant_edges:
+            video_ids = (edge.video1_id, edge.video2_id)
+
+            if video_ids in seen_video_ids or video_ids[0] == video_ids[1]:
+                continue
+            else:
+                seen_video_ids.add(video_ids)
+
+            # if the edge is negative, flip it! We only want positive edges
+            if edge.offset < 0:
+                edge.offset *= -1
+                edge.video1_id, edge.video2_id = edge.video2_id, edge.video1_id
+
+            edge_data = (edge.video2_id, edge.video1_id, edge.offset)
+            digraph_edges.append(edge_data)
+
+        # build a graph from the resulting edges
+        digraph = nx.DiGraph()
+        digraph.add_weighted_edges_from(digraph_edges)
+
+        # find all videos in the subgraph
+        video_ids_in_subgraph = nx.node_connected_component(digraph.to_undirected(), self.video.id)
+
+        # sort the directed graph such that if A has an edge to B, A will come before B in the resulting list
+        temporally_sorted_videos = nx.topological_sort(digraph)
+
+        # the first video id in the list is the jamstart for this subgraph
+        new_start_id = temporally_sorted_videos[0]
+
+        # update start_id for all videos in the resulting subgraph
+        JamJarMap.objects.filter(video_id__in=video_ids_in_subgraph).update(start_id=new_start_id)
+
+        # And add this one
+        JamJarMap.objects.create(video=self.video, start_id=new_start_id)
+
     def fingerprint(self):
         "fingerprints an mp4 and inserts the fingerprints into the db"
         video_path = self.video.get_video_filepath('mp4')
         lilo = Lilo(settings.LILO_CONFIG, video_path, self.video.id)
         matched_videos = lilo.recognize_track()
 
-        if matched_videos is not None and len(matched_videos) > 0:
-            # Sort the matched videos in ascending order by their offsets
-            matched_videos.sort(cmp=lambda x, y: cmp(x['offset_seconds'], y['offset_seconds']), reverse=True)
-            # rdb.set_trace()
-
-            ###############################
-            # JamJar Reconciliation Process
-            ###############################
-            negative_offsets = [video for video in matched_videos\
-                                if video['offset_seconds'] > 0.0\
-                                and video['confidence'] >= settings.CONFIDENCE_THRESHOLD]
-            positive_offsets = [video for video in matched_videos\
-                                if video['offset_seconds'] <= 0.0\
-                                and video['confidence'] >= settings.CONFIDENCE_THRESHOLD]
-
-            jamstarts_to_replace = set()
-
-            # rdb.set_trace()
-
-            if len(negative_offsets) > 0:
-                # If there's a most-negative offset, find its jamjar
-                most_negative = negative_offsets[0]
-                most_neg_map = JamJarMap.objects.get(video=most_negative['video_id'])
-                new_start_id = most_neg_map.start_id
-
-                # Collect the starts of all other negative offsets
-                ids = set([video['video_id'] for video in negative_offsets])
-                negative_starts = set(JamJarMap.objects.filter(video_id__in=ids).values_list('start_id', flat=True))
-
-                # Add these to the list of starts to replace
-                jamstarts_to_replace = jamstarts_to_replace.union(negative_starts)
-            else:
-                # Otherwise use this video for the starts
-                new_start_id = self.video.id
-
-            if len(positive_offsets) > 0:
-                # If we have any videos with positive offsets, we gotta update their jamstarts
-                # to new_start as well
-                ids = set([video['video_id'] for video in positive_offsets])
-                positive_starts = set(JamJarMap.objects.filter(video_id__in=ids).values_list('start_id', flat=True))
-
-                # Add these to the list of starts to replace
-                jamstarts_to_replace = jamstarts_to_replace.union(positive_starts)
-
-            logger.info('({}) Jamjars to replace - {}'.format(self.video.name,jamstarts_to_replace))
-
-            # Replace all the jamstarts AYEEE!
-            JamJarMap.objects.filter(start_id__in=jamstarts_to_replace).update(start_id=new_start_id)
-
-            # And add this one
-            JamJarMap.objects.create(video=self.video, start_id=new_start_id)
-
-            ###############################
-            # Fingerprint Addition Process
-            ###############################
-            for match in matched_videos:
-                Edge.objects.create(video1_id=self.video.id,
-                                    video2_id=match['video_id'],
-                                    offset=match['offset_seconds'],
-                                    confidence=match['confidence'])
-        else:
-            # If we don't have any matches, add a jamstart that points to this video
-            JamJarMap.objects.create(video=self.video, start_id=self.video.id)
+        for match in matched_videos:
+            Edge.objects.create(video1_id=self.video.id,
+                                video2_id=match['video_id'],
+                                offset=match['offset_seconds'],
+                                confidence=match['confidence'])
 
         # Add this videos fingerprints to the Lilo DB
         data = lilo.fingerprint_song()
@@ -238,6 +229,9 @@ class VideoTranscoder(object):
 
         # Fingerprint, transcode, and thumbnail the video
         video_length = self.fingerprint()
+
+        self.update_jamstarts()
+
         self.transcode_to_hls()
         self.extract_thumbnail(video_length)
 
