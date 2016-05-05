@@ -125,21 +125,26 @@ class VideoTranscoder(object):
             edge_data = (edge.video2_id, edge.video1_id, edge.offset)
             digraph_edges.append(edge_data)
 
-        # build a graph from the resulting edges
-        digraph = nx.DiGraph()
-        digraph.add_weighted_edges_from(digraph_edges)
+        if len(digraph_edges) == 0:
+          # if there are no edges, then we just have to create a jamjar w/ one video (this one) in it
+          new_start_id = self.video.id
 
-        # find all videos in the subgraph
-        video_ids_in_subgraph = nx.node_connected_component(digraph.to_undirected(), self.video.id)
+        else:
+          # build a graph from the resulting edges
+          digraph = nx.DiGraph()
+          digraph.add_weighted_edges_from(digraph_edges)
 
-        # sort the directed graph such that if A has an edge to B, A will come before B in the resulting list
-        temporally_sorted_videos = nx.topological_sort(digraph)
+          # find all videos in the subgraph
+          video_ids_in_subgraph = nx.node_connected_component(digraph.to_undirected(), self.video.id)
 
-        # the first video id in the list is the jamstart for this subgraph
-        new_start_id = temporally_sorted_videos[0]
+          # sort the directed graph such that if A has an edge to B, A will come before B in the resulting list
+          temporally_sorted_videos = nx.topological_sort(digraph)
 
-        # update start_id for all videos in the resulting subgraph
-        JamJarMap.objects.filter(video_id__in=video_ids_in_subgraph).update(start_id=new_start_id)
+          # the first video id in the list is the jamstart for this subgraph
+          new_start_id = temporally_sorted_videos[0]
+
+          # update start_id for all videos in the resulting subgraph
+          JamJarMap.objects.filter(video_id__in=video_ids_in_subgraph).update(start_id=new_start_id)
 
         # And add this one
         JamJarMap.objects.create(video=self.video, start_id=new_start_id)
