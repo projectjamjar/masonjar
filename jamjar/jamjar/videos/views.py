@@ -6,12 +6,13 @@ from django.db.models import F
 from django.db import IntegrityError
 
 from jamjar.base.views import BaseView, authenticate
-from jamjar.videos.models import Video, Edge, VideoFlag
+from jamjar.videos.models import Video, Edge, VideoFlag, VideoVote
 from jamjar.videos.serializers import (VideoSerializer,
     ExpandedVideoSerializer,
     EdgeSerializer,
     JamJarVideoSerializer,
-    VideoFlagSerializer
+    VideoFlagSerializer,
+    VideoVoteSerializer
 )
 
 from jamjar.concerts.serializers import ConcertSerializer
@@ -328,3 +329,33 @@ class VideoFlagView(BaseView):
             return self.error_response(str(e), 400)
 
         return self.success_response(self.serializer.data)
+
+class VideoVoteView(BaseView):
+    model = VideoVote
+    serializer_class = VideoVoteSerializer
+
+    """
+    Description:
+        Given a boolean (true=upvote, false=downvote, null=unvote), record a user's vote for a video
+
+    Request:
+        POST /videos/vote/
+        {
+          vote: true/false/null,
+          video_id: video_id
+        }
+
+    Response:
+        True
+    """
+    @authenticate
+    def post(self, request):
+        self.serializer = self.get_serializer(data=request.data)
+
+        if not self.serializer.is_valid():
+            return self.error_response(self.serializer.errors, 400)
+
+        data = self.serializer.validated_data
+        VideoVote.objects.update_or_create(user_id=data['user_id'], video_id=data['video'].id, defaults={'vote': data['vote']})
+
+        return self.success_response(True)

@@ -1,6 +1,6 @@
 from rest_framework import serializers
 from django.db.models import Q
-from jamjar.videos.models import Video, Edge, JamJarMap, VideoFlag
+from jamjar.videos.models import Video, Edge, JamJarMap, VideoFlag, VideoVote
 from jamjar.artists.serializers import ArtistSerializer
 from jamjar.users.serializers import UserSerializer
 from jamjar.artists.models import Artist
@@ -178,6 +178,19 @@ class VideoFlagSerializer(serializers.ModelSerializer):
     class Meta:
         model = VideoFlag
         fields = ('id','video','user','flag_type','notes')
+
+    def validate(self, data):
+        request = self.context.get('request')
+        data['user_id'] = request.token.user_id
+
+        return data
+
+class VideoVoteSerializer(serializers.ModelSerializer):
+    user = UserSerializer(read_only=True)
+
+    class Meta:
+        model = VideoVote
+        fields = ('video','user','vote')
 
     def validate(self, data):
         request = self.context.get('request')
