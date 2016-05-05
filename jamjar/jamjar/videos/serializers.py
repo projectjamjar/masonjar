@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from django.db.models import Q
+from django.db.models import Q, Count
 from jamjar.videos.models import Video, Edge, JamJarMap, VideoFlag, VideoVote
 from jamjar.artists.serializers import ArtistSerializer
 from jamjar.users.serializers import UserSerializer
@@ -107,6 +107,7 @@ class ExpandedVideoSerializer(VideoSerializer):
 
 class JamJarVideoSerializer(ExpandedVideoSerializer):
     jamjar = serializers.SerializerMethodField()
+    votes = serializers.SerializerMethodField()
 
     class Meta:
         model = Video
@@ -127,7 +128,8 @@ class JamJarVideoSerializer(ExpandedVideoSerializer):
                   'user',
                   'width',
                   'height',
-                  'jamjar')
+                  'jamjar',
+                  'votes')
 
     def __init__(self, *args, **kwargs):
         super(JamJarVideoSerializer, self).__init__(*args, **kwargs)
@@ -162,7 +164,9 @@ class JamJarVideoSerializer(ExpandedVideoSerializer):
 
         return jamjar_data
 
-
+    def get_votes(self, obj):
+        # group by vote type and return COUNT(vote)
+        return obj.votes.all().values('vote').annotate(total=Count('vote'))
 
 class EdgeSerializer(serializers.ModelSerializer):
     video1 = VideoSerializer(read_only=True)
