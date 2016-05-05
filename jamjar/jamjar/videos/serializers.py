@@ -11,6 +11,7 @@ import os
 class VideoSerializer(serializers.ModelSerializer):
     artists = ArtistSerializer(many=True, read_only=True)
     user = UserSerializer(read_only=True)
+    votes = serializers.SerializerMethodField()
 
     class Meta:
         model = Video
@@ -30,7 +31,8 @@ class VideoSerializer(serializers.ModelSerializer):
                   'concert',
                   'user',
                   'width',
-                  'height')
+                  'height',
+                  'votes')
 
     def __init__(self, *args, **kwargs):
         super(VideoSerializer, self).__init__(*args, **kwargs)
@@ -76,6 +78,10 @@ class VideoSerializer(serializers.ModelSerializer):
         video.artists = artists
 
         return video
+
+    def get_votes(self, obj):
+        # group by vote type and return COUNT(vote)
+        return obj.votes.all().values('vote').annotate(total=Count('vote'))
 
 
 class ExpandedVideoSerializer(VideoSerializer):
