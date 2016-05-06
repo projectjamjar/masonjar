@@ -6,12 +6,13 @@ from django.db.models import F
 from django.db import IntegrityError
 
 from jamjar.base.views import BaseView, authenticate
-from jamjar.videos.models import Video, Edge, VideoFlag
+from jamjar.videos.models import Video, Edge, VideoFlag, VideoVote
 from jamjar.videos.serializers import (VideoSerializer,
     ExpandedVideoSerializer,
     EdgeSerializer,
     JamJarVideoSerializer,
-    VideoFlagSerializer
+    VideoFlagSerializer,
+    VideoVoteSerializer
 )
 
 from jamjar.concerts.serializers import ConcertSerializer
@@ -80,7 +81,7 @@ class VideoListView(BaseView):
             queryset = sorted(queryset, key= lambda v: v.hot(now), reverse=True)
 
 
-        expanded_serializer = ExpandedVideoSerializer(queryset, many=True)
+        expanded_serializer = ExpandedVideoSerializer(queryset, many=True, context={'request': request})
 
         return self.success_response(expanded_serializer.data)
 
@@ -198,7 +199,7 @@ class VideoListView(BaseView):
         # do this async. TODO : change lilo to use Integers for the video_id field
         transcode_video.delay(video.id)
 
-        expanded_serializer = ExpandedVideoSerializer(video)
+        expanded_serializer = ExpandedVideoSerializer(video, context={'request': request})
         return self.success_response(expanded_serializer.data)
 
 
@@ -213,7 +214,7 @@ class VideoDetailsView(BaseView):
         self.video = self.get_object_or_404(self.model, id=id)
 
         # Serialize the result and return it
-        self.serializer = JamJarVideoSerializer(self.video)
+        self.serializer = JamJarVideoSerializer(self.video, context={'request': request})
 
         return self.success_response(self.serializer.data)
 
@@ -223,7 +224,7 @@ class VideoDetailsView(BaseView):
         self.video = self.get_object_or_404(self.model, id=id)
 
         # Initialize the serializer with our data
-        self.serializer = self.get_serializer(self.video, data=request.data)
+        self.serializer = self.get_serializer(self.video, data=request.data, context={'request': request})
 
         # Validate the data
         if not self.serializer.is_valid():
@@ -328,3 +329,33 @@ class VideoFlagView(BaseView):
             return self.error_response(str(e), 400)
 
         return self.success_response(self.serializer.data)
+
+class VideoVoteView(BaseView):
+    model = VideoVote
+    serializer_class = VideoVoteSerializer
+
+    """
+    Description:
+        Given a boolean (true=upvote, false=downvote, null=unvote), record a user's vote for a video
+
+    Request:
+        POST /videos/vote/
+        {
+          vote: true/false/null,
+          video: video_id
+        }
+
+    Response:
+        True
+    """
+    @authenticate
+    def post(self, request):
+        self.serializer = self.get_serializer(data=request.data)
+
+        if not self.serializer.is_valid():
+            return self.error_response(self.serializer.errors, 400)
+
+        data = self.serializer.validated_data
+        VideoVote.objects.update_or_create(user_id=data['user_id'], video_id=data['video'].id, defaults={'vote': data['vote']})
+
+        return self.success_response(True)

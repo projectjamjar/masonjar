@@ -1,6 +1,6 @@
 from rest_framework import serializers
-from django.db.models import Q
-from jamjar.videos.models import Video, Edge, JamJarMap, VideoFlag
+from django.db.models import Q, Count
+from jamjar.videos.models import Video, Edge, JamJarMap, VideoFlag, VideoVote
 from jamjar.artists.serializers import ArtistSerializer
 from jamjar.users.serializers import UserSerializer
 from jamjar.artists.models import Artist
@@ -11,6 +11,7 @@ import os
 class VideoSerializer(serializers.ModelSerializer):
     artists = ArtistSerializer(many=True, read_only=True)
     user = UserSerializer(read_only=True)
+    votes = serializers.SerializerMethodField()
 
     class Meta:
         model = Video
@@ -30,7 +31,8 @@ class VideoSerializer(serializers.ModelSerializer):
                   'concert',
                   'user',
                   'width',
-                  'height')
+                  'height',
+                  'votes')
 
     def __init__(self, *args, **kwargs):
         super(VideoSerializer, self).__init__(*args, **kwargs)
@@ -77,8 +79,29 @@ class VideoSerializer(serializers.ModelSerializer):
 
         return video
 
+    def get_votes(self, obj):
+        request = self.context.get('request', None)
+
+        # group by vote type and return COUNT(vote)
+        video_votes = obj.votes.all().values('vote').annotate(total=Count('vote'))
+
+        if request is None:
+            user_vote = None
+        else:
+            user_id = request.token.user_id
+            # get the vote for the logged in user
+            user_votes = obj.votes.filter(user_id=user_id)
+            user_vote = user_votes[0].vote if len(user_votes) > 0 else None
+
+        return {
+            'user_vote': user_vote,
+            'video_votes': video_votes
+        }
+
+
 
 class ExpandedVideoSerializer(VideoSerializer):
+
     class Meta:
         model = Video
         fields = ('id',
@@ -97,7 +120,8 @@ class ExpandedVideoSerializer(VideoSerializer):
                   'concert',
                   'user',
                   'width',
-                  'height')
+                  'height',
+                  'votes')
 
     def __init__(self, *args, **kwargs):
         super(ExpandedVideoSerializer, self).__init__(*args, **kwargs)
@@ -127,7 +151,8 @@ class JamJarVideoSerializer(ExpandedVideoSerializer):
                   'user',
                   'width',
                   'height',
-                  'jamjar')
+                  'jamjar',
+                  'votes')
 
     def __init__(self, *args, **kwargs):
         super(JamJarVideoSerializer, self).__init__(*args, **kwargs)
@@ -144,7 +169,7 @@ class JamJarVideoSerializer(ExpandedVideoSerializer):
         # import ipdb;ipdb.set_trace()
 
         # Serialize all those videos
-        jamjar_video_data = VideoSerializer(jamjar_videos,many=True).data
+        jamjar_video_data = VideoSerializer(jamjar_videos,many=True, context=self.context).data
 
         # Build the graph for the jawn
         edges = Edge.objects.filter(Q(video1__jamjars__start_id=start_id), Q(video2__jamjars__start_id=start_id))
@@ -162,8 +187,6 @@ class JamJarVideoSerializer(ExpandedVideoSerializer):
 
         return jamjar_data
 
-
-
 class EdgeSerializer(serializers.ModelSerializer):
     video1 = VideoSerializer(read_only=True)
     video2 = VideoSerializer(read_only=True)
@@ -178,6 +201,19 @@ class VideoFlagSerializer(serializers.ModelSerializer):
     class Meta:
         model = VideoFlag
         fields = ('id','video','user','flag_type','notes')
+
+    def validate(self, data):
+        request = self.context.get('request')
+        data['user_id'] = request.token.user_id
+
+        return data
+
+class VideoVoteSerializer(serializers.ModelSerializer):
+    user = UserSerializer(read_only=True)
+
+    class Meta:
+        model = VideoVote
+        fields = ('video','user','vote')
 
     def validate(self, data):
         request = self.context.get('request')
