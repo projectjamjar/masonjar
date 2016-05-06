@@ -81,7 +81,7 @@ class VideoListView(BaseView):
             queryset = sorted(queryset, key= lambda v: v.hot(now), reverse=True)
 
 
-        expanded_serializer = ExpandedVideoSerializer(queryset, many=True)
+        expanded_serializer = ExpandedVideoSerializer(queryset, many=True, context={'request': request})
 
         return self.success_response(expanded_serializer.data)
 
@@ -199,7 +199,7 @@ class VideoListView(BaseView):
         # do this async. TODO : change lilo to use Integers for the video_id field
         transcode_video.delay(video.id)
 
-        expanded_serializer = ExpandedVideoSerializer(video)
+        expanded_serializer = ExpandedVideoSerializer(video, context={'request': request})
         return self.success_response(expanded_serializer.data)
 
 
@@ -214,7 +214,7 @@ class VideoDetailsView(BaseView):
         self.video = self.get_object_or_404(self.model, id=id)
 
         # Serialize the result and return it
-        self.serializer = JamJarVideoSerializer(self.video)
+        self.serializer = JamJarVideoSerializer(self.video, context={'request': request})
 
         return self.success_response(self.serializer.data)
 
@@ -224,7 +224,7 @@ class VideoDetailsView(BaseView):
         self.video = self.get_object_or_404(self.model, id=id)
 
         # Initialize the serializer with our data
-        self.serializer = self.get_serializer(self.video, data=request.data)
+        self.serializer = self.get_serializer(self.video, data=request.data, context={'request': request})
 
         # Validate the data
         if not self.serializer.is_valid():

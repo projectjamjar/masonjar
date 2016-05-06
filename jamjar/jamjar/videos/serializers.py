@@ -80,11 +80,28 @@ class VideoSerializer(serializers.ModelSerializer):
         return video
 
     def get_votes(self, obj):
+        request = self.context.get('request', None)
+
         # group by vote type and return COUNT(vote)
-        return obj.votes.all().values('vote').annotate(total=Count('vote'))
+        video_votes = obj.votes.all().values('vote').annotate(total=Count('vote'))
+
+        if request is None:
+            user_vote = None
+        else:
+            user_id = request.token.user_id
+            # get the vote for the logged in user
+            user_votes = obj.votes.filter(user_id=user_id)
+            user_vote = user_votes[0].vote if len(user_votes) > 0 else None
+
+        return {
+            'user_vote': user_vote,
+            'video_votes': video_votes
+        }
+
 
 
 class ExpandedVideoSerializer(VideoSerializer):
+
     class Meta:
         model = Video
         fields = ('id',
@@ -103,7 +120,8 @@ class ExpandedVideoSerializer(VideoSerializer):
                   'concert',
                   'user',
                   'width',
-                  'height')
+                  'height',
+                  'votes')
 
     def __init__(self, *args, **kwargs):
         super(ExpandedVideoSerializer, self).__init__(*args, **kwargs)
@@ -113,7 +131,6 @@ class ExpandedVideoSerializer(VideoSerializer):
 
 class JamJarVideoSerializer(ExpandedVideoSerializer):
     jamjar = serializers.SerializerMethodField()
-    votes = serializers.SerializerMethodField()
 
     class Meta:
         model = Video
@@ -152,7 +169,7 @@ class JamJarVideoSerializer(ExpandedVideoSerializer):
         # import ipdb;ipdb.set_trace()
 
         # Serialize all those videos
-        jamjar_video_data = VideoSerializer(jamjar_videos,many=True).data
+        jamjar_video_data = VideoSerializer(jamjar_videos,many=True, context=self.context).data
 
         # Build the graph for the jawn
         edges = Edge.objects.filter(Q(video1__jamjars__start_id=start_id), Q(video2__jamjars__start_id=start_id))
@@ -169,10 +186,6 @@ class JamJarVideoSerializer(ExpandedVideoSerializer):
         }
 
         return jamjar_data
-
-    def get_votes(self, obj):
-        # group by vote type and return COUNT(vote)
-        return obj.votes.all().values('vote').annotate(total=Count('vote'))
 
 class EdgeSerializer(serializers.ModelSerializer):
     video1 = VideoSerializer(read_only=True)
