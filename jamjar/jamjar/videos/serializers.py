@@ -83,7 +83,18 @@ class VideoSerializer(serializers.ModelSerializer):
         request = self.context.get('request', None)
 
         # group by vote type and return COUNT(vote)
-        video_votes = obj.votes.all().values('vote').annotate(total=Count('vote'))
+        video_votes = list(obj.votes.all().values('vote').annotate(total=Count('vote')))
+
+        # remove vote types which are already present in response
+        possible_vote_types = [True, False, None]
+        for vote in video_votes:
+            if vote['vote'] in possible_vote_types:
+                vote_idx = possible_vote_types.index(vote['vote'])
+                possible_vote_types.pop(vote_idx)
+
+        # add missing vote types 
+        for vote_type in possible_vote_types:
+            video_votes.append({'vote': vote_type, 'total': 0})
 
         if request is None:
             user_vote = None
