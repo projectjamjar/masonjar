@@ -302,6 +302,7 @@ class VideoFlagView(BaseView):
             'Q' - 'Quality'
             'I' - 'Inappropriate'
             'A' - 'Accuracy'
+            'U' - 'Report User'
 
     Request:
         POST /videos/flags/

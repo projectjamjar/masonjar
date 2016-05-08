@@ -181,6 +181,7 @@ FLAG_TYPES = (
     ('Q','Quality'),
     ('I','Inappropriate'),
     ('A','Accuracy'),
+    ('U','Report User'),
 )
 
 class VideoFlag(BaseModel):
