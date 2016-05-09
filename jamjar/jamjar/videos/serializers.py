@@ -5,6 +5,7 @@ from jamjar.artists.serializers import ArtistSerializer
 from jamjar.users.serializers import UserSerializer
 from jamjar.artists.models import Artist
 from jamjar.concerts.concert_graph import ConcertGraph
+from jamjar.concerts.models import Concert
 
 import os
 
@@ -12,6 +13,7 @@ class VideoSerializer(serializers.ModelSerializer):
     artists = ArtistSerializer(many=True, read_only=True)
     user = UserSerializer(read_only=True)
     votes = serializers.SerializerMethodField()
+    concert = serializers.PrimaryKeyRelatedField(queryset=Concert.all_objects)
 
     class Meta:
         model = Video
@@ -92,7 +94,7 @@ class VideoSerializer(serializers.ModelSerializer):
                 vote_idx = possible_vote_types.index(vote['vote'])
                 possible_vote_types.pop(vote_idx)
 
-        # add missing vote types 
+        # add missing vote types
         for vote_type in possible_vote_types:
             video_votes.append({'vote': vote_type, 'total': 0})
 
