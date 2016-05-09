@@ -188,9 +188,13 @@ class JamJarVideoSerializer(ExpandedVideoSerializer):
         edges = Edge.objects.filter(Q(video1__jamjars__start_id=start_id), Q(video2__jamjars__start_id=start_id))
 
         # edge_data = EdgeSerializer(edges, many=True).data
-        graph = ConcertGraph(edges).disjoint_graphs()[0]
 
-        # TODO: Serialize these edges?
+        graphs = ConcertGraph(edges).disjoint_graphs()
+
+        if len(graphs) > 0:
+            graph = graphs[0]
+        else:
+            graph = None
 
         jamjar_data = {
             'start': start_id,
