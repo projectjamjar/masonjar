@@ -98,7 +98,7 @@ class VideoSerializer(serializers.ModelSerializer):
         for vote_type in possible_vote_types:
             video_votes.append({'vote': vote_type, 'total': 0})
 
-        if request is None:
+        if request is None or not hasattr(request, 'token'):
             user_vote = None
         else:
             user_id = request.token.user_id
