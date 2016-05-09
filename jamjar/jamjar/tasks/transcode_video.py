@@ -39,11 +39,11 @@ class VideoTranscoder(object):
             try:
                 with open(os.devnull, "w") as devnull:
                     if extension == '.mov':
-                        subprocess.check_call(["avconv", "-i", src, '-c:v', 'libx264', '-ar', AUDIO_SAMPLE_RATE, '-f', 'mp4', out], stdout=devnull, stderr=devnull)
+                        subprocess.check_call(["avconv", "-i", src, '-c:v', 'libx264', '-ar', AUDIO_SAMPLE_RATE, '-strict', 'experimental', '-f', 'mp4', out], stdout=devnull, stderr=devnull)
                     elif extension == '.avi':
                         subprocess.check_call(["avconv", "-i", src, '-c:v', 'libx264', '-crf', '20', '-b:a', '128k', '-ar', AUDIO_SAMPLE_RATE, '-strict', 'experimental', '-f', 'mp4', out], stdout=devnull, stderr=devnull)
                     else:
-                        subprocess.check_call(["avconv", "-i", src, '-c:v', 'libx264', '-ar', AUDIO_SAMPLE_RATE, '-f', 'mp4', out], stdout=devnull, stderr=devnull)
+                        subprocess.check_call(["avconv", "-i", src, '-c:v', 'libx264', '-ar', AUDIO_SAMPLE_RATE, '-strict', 'experimental', '-f', 'mp4', out], stdout=devnull, stderr=devnull)
 
                 logger.info('Successfully transcoded {:} to {:}'.format(src, out))
                 return True
