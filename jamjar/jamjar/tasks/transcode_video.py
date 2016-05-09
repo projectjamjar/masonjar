@@ -155,11 +155,12 @@ class VideoTranscoder(object):
         lilo = Lilo(settings.LILO_CONFIG, video_path, self.video.id)
         matched_videos = lilo.recognize_track()
 
-        for match in matched_videos:
-            Edge.objects.create(video1_id=self.video.id,
-                                video2_id=match['video_id'],
-                                offset=match['offset_seconds'],
-                                confidence=match['confidence'])
+        if matched_videos is not None:
+            for match in matched_videos:
+                Edge.objects.create(video1_id=self.video.id,
+                                    video2_id=match['video_id'],
+                                    offset=match['offset_seconds'],
+                                    confidence=match['confidence'])
 
         # Add this videos fingerprints to the Lilo DB
         data = lilo.fingerprint_song()
