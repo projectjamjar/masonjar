@@ -189,3 +189,6 @@ class VideoFlag(BaseModel):
     video = models.ForeignKey(Video, related_name='flags')
     flag_type = models.CharField(max_length=1, choices=FLAG_TYPES)
     notes = models.CharField(max_length=500,null=True,blank=True)
+
+class JamPick(BaseModel):
+    video = models.ForeignKey(Video, related_name='jampick')
