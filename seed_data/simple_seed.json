@@ -1,0 +1,56 @@
+[
+{
+    "fields": {
+        "expire_date": "2016-05-23T05:37:35.886Z",
+        "session_data": "MThjOWFlY2JlODI3ZTZjNThiYTI3MmRjMjI5MDU4OGQ4ODFjMjUzNDp7Il9hdXRoX3VzZXJfaGFzaCI6IjcwOGYyODNkM2U2ZTVhNTIyNjk1MjA2ZmI1ZTkyOWZiMTlkM2RiNzYiLCJfYXV0aF91c2VyX2JhY2tlbmQiOiJkamFuZ28uY29udHJpYi5hdXRoLmJhY2tlbmRzLk1vZGVsQmFja2VuZCIsIl9hdXRoX3VzZXJfaWQiOiIxIn0="
+    },
+    "model": "sessions.session",
+    "pk": "hwlbv1fjs1ghy5ved1ljatnf1pmt52c3"
+},
+{
+    "fields": {
+        "username": "drew",
+        "first_name": "Drew",
+        "last_name": "Banin",
+        "is_deleted": false,
+        "is_active": true,
+        "created_at": "2016-05-09T05:37:08.797Z",
+        "first_login": false,
+        "modified_at": "2016-05-09T05:37:21.713Z",
+        "is_superuser": false,
+        "is_staff": false,
+        "last_login": "2016-05-09T05:37:35.875Z",
+        "groups": [],
+        "user_permissions": [],
+        "password": "pbkdf2_sha256$20000$2w55hqjKtxfc$Rhwm8lSo+QaF5s9G3NeEV9Dh6VZyoMKouTqVXS2M5Vo=",
+        "email": "drewbanin@gmail.com",
+        "date_joined": "2016-05-09T05:37:08.713Z"
+    },
+    "model": "users.user",
+    "pk": 1
+},
+{
+    "fields": {
+        "created_at": "2016-05-09T05:37:08.806Z",
+        "modified_at": "2016-05-09T05:37:21.723Z",
+        "token_type": "A",
+        "token": "4br-43fd7fbf8a6347287895",
+        "user": [
+            "drew"
+        ],
+        "active": false
+    },
+    "model": "authentication.jamjartoken",
+    "pk": 1
+},
+{
+    "fields": {
+        "user": [
+            "drew"
+        ],
+        "created": "2016-05-09T05:37:35.843Z"
+    },
+    "model": "authtoken.token",
+    "pk": "62e693666e99e651d3af9f74925f4d4161c94cec"
+}
+]
