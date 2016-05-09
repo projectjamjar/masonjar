@@ -15,7 +15,11 @@ class Concert(BaseModel):
     date = models.DateField()
     venue = models.ForeignKey('venues.Venue',related_name='concerts')
 
+    # only return concerts w/ > 0 videos in them
     objects = PopulatedConcertManager()
+
+    # return all concerts (useful for video upload)
+    all_objects = models.Manager()
 
     def make_graph(self):
         concert_id = self.id

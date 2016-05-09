@@ -81,7 +81,7 @@ class ConcertSerializer(serializers.ModelSerializer):
         if not venue:
             raise serializers.ValidationError('A venue_place_id is required for a concert')
 
-        (concert, created) = Concert.objects.get_or_create(date=date, venue=venue)
+        (concert, created) = Concert.all_objects.get_or_create(date=date, venue=venue)
 
         if created:
             logger.info("New concert created {} - {}".format(venue.name, date))
