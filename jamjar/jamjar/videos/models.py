@@ -44,7 +44,7 @@ class Video(BaseModel):
     recorded_at = models.DateTimeField(null=True)
 
     objects = PublicVideoManager()
-    public_and_private_objects = models.Manager()
+    all_objects = models.Manager()
 
     class Meta:
         ordering = ['-created_at',]

@@ -75,7 +75,7 @@ class UserProfileView(BaseView):
 
         logged_in_user = request.token.user_id
         if logged_in_user == user.id:
-            videos = Video.public_and_private_objects.filter(user_id=user.id)
+            videos = Video.all_objects.filter(user_id=user.id)
         else:
             videos = user.videos.all()
 

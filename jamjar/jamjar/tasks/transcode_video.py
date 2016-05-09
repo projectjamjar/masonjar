@@ -223,7 +223,7 @@ class VideoTranscoder(object):
         "main entry point to fingerprint, transcode, upload to s3, and delete source dir"
 
         # Get the video by ID
-        self.video = Video.objects.get(pk=video_id)
+        self.video = Video.all_objects.get(pk=video_id)
 
         # do this before transcoding to get original recording date if available
         self.extract_and_set_metadata()
