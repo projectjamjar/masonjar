@@ -23,7 +23,8 @@ def epoch_seconds(date):
 
 class PublicVideoManager(models.Manager):
     def get_queryset(self):
-        return super(PublicVideoManager, self).get_queryset().filter(is_private=False)
+        # don't return private videos or videos that haven't finished uploading yet
+        return super(PublicVideoManager, self).get_queryset().filter(is_private=False, uploaded=True)
 
 class Video(BaseModel):
 
