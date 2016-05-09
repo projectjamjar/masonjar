@@ -6,7 +6,7 @@ from django.db.models import F
 from django.db import IntegrityError
 
 from jamjar.base.views import BaseView, authenticate
-from jamjar.videos.models import Video, Edge, VideoFlag, VideoVote
+from jamjar.videos.models import Video, Edge, VideoFlag, VideoVote, JamPick
 from jamjar.videos.serializers import (VideoSerializer,
     ExpandedVideoSerializer,
     EdgeSerializer,
@@ -360,3 +360,25 @@ class VideoVoteView(BaseView):
         VideoVote.objects.update_or_create(user_id=data['user_id'], video_id=data['video'].id, defaults={'vote': data['vote']})
 
         return self.success_response(True)
+
+class JamPickView(BaseView):
+    serializer_class = VideoSerializer
+
+    """
+    Description:
+        Get a list of curated videos, curated by the dopest curration team everrr
+
+    Request:
+        GET /videos/jampicks/
+
+    Response:
+        A list of all current jampicks
+    """
+    # @authenticate
+    def get(self, request):
+        # Get all da videos that have a non-null jampick
+        queryset = Video.objects.filter(jampick__isnull=False)
+
+        expanded_serializer = ExpandedVideoSerializer(queryset, many=True, context={'request': request})
+
+        return self.success_response(expanded_serializer.data)
