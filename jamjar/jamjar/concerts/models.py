@@ -27,3 +27,9 @@ class Concert(BaseModel):
 
         g = ConcertGraph(concert_edges)
         return g.disjoint_graphs()
+
+class SponsoredEvent(BaseModel):
+    concert = models.ForeignKey(Concert, related_name='sponsored_event')
+    name = models.CharField(max_length=128)
+    artist = models.ForeignKey('artists.Artist', related_name='sponsored_events')
+

@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from jamjar.concerts.models import Concert
+from jamjar.concerts.models import Concert, SponsoredEvent
 from jamjar.venues.models import Venue
 from jamjar.videos.serializers import VideoSerializer
 from jamjar.artists.models import Artist
@@ -107,3 +107,15 @@ class ConcertSerializer(serializers.ModelSerializer):
 
     def get_videos_count(self, obj):
         return obj.videos.count()
+
+class SponsoredEventSerializer(serializers.ModelSerializer):
+    concert = ConcertSerializer(required=True)
+    artist = ArtistSerializer(required=True)
+
+    class Meta:
+        model = SponsoredEvent
+        fields = ('id',
+            'concert',
+            'artist',
+            'name'
+        )
