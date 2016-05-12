@@ -6,7 +6,9 @@ from jamjar.artists.models import Artist
 from jamjar.artists.serializers import ArtistSerializer
 from jamjar.venues.serializers import VenueSerializer
 from jamjar.common.services import GMapService, ServiceError
+from jamjar.videos.models import JamJarMap
 
+from django.db.models import Count
 import logging; logger = logging.getLogger(__name__)
 
 class ConcertSerializer(serializers.ModelSerializer):
@@ -17,6 +19,7 @@ class ConcertSerializer(serializers.ModelSerializer):
     artists = serializers.SerializerMethodField()
     graph = serializers.SerializerMethodField()
     videos_count = serializers.SerializerMethodField()
+    jamjars_count = serializers.SerializerMethodField()
 
     class Meta:
         model = Concert
@@ -28,7 +31,8 @@ class ConcertSerializer(serializers.ModelSerializer):
             'artists',
             'thumbs',
             'graph',
-            'videos_count'
+            'videos_count',
+            'jamjars_count'
         )
         read_only_fields = ('id', 'venue', 'videos')
         write_only_fields = ('venue_place_id',)
@@ -107,3 +111,10 @@ class ConcertSerializer(serializers.ModelSerializer):
 
     def get_videos_count(self, obj):
         return obj.videos.count()
+
+    def get_jamjars_count(self, obj):
+        data = JamJarMap.objects.filter(video__concert__id=obj.id).values('video__concert_id').annotate(num_jamjars=Count('start_id', distinct=True))
+        if len(data) == 0:
+            return 0
+        else:
+            return data[0]['num_jamjars']
