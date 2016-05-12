@@ -13,7 +13,7 @@ install:
   - "pip install -r requirements.txt"
 
 before_script:
-  - echo "USE mysql;\nUPDATE user SET password=PASSWORD('root') WHERE user='root';\nFLUSH PRIVILEGES;\n" | mysql -u root
+  - echo "USE mysql;\nUPDATE user SET password=PASSWORD('rootpass') WHERE user='root';\nFLUSH PRIVILEGES;\n" | mysql -u root
   - './database_setup.sh'
 
 script: make test
