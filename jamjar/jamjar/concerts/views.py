@@ -156,7 +156,22 @@ class SponsoredEventView(BaseView):
         GET /concerts/sponsored
 
     Response:
-        A list of all current sponsored concerts
+        [
+            {
+                "id" : 1,
+                "name" : "My dope event name",
+                "concert" : {...},
+                "artist"  : {...}.
+            },
+            {
+                "id" : 2,
+                "name" : "My other dope event",
+                "concert" : {...},
+                "artist"  : {...}.
+            },
+            ...
+        ]
+
     """
     @authenticate
     def get(self, request):
