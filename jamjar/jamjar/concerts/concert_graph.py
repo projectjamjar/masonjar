@@ -1,6 +1,8 @@
 from collections import defaultdict
 from django.conf import settings
-from jamjar.videos.models import JamJarMap
+from jamjar.videos.models import JamJarMap, Video
+
+import networkx as nx
 
 class ConcertGraph(object):
 
@@ -23,6 +25,9 @@ class ConcertGraph(object):
             video_ids.add(edge.video1.id)
             video_ids.add(edge.video2.id)
 
+        videos = Video.objects.filter(id__in=video_ids)
+        video_id_map = {video.id : video for video in videos}
+
         disjoint_ids = []
         while len(video_ids) > 0:
             video_id  = video_ids.pop()
@@ -38,10 +43,25 @@ class ConcertGraph(object):
             for video_id in id_set:
                 adjacencies[video_id] = graph[video_id]
 
+            subgraph = nx.DiGraph()
+            for video_id, edges in adjacencies.iteritems():
+                forward_edges = [(video_id, edge['video'], edge['offset']) for edge in edges if edge['offset'] > 0]
+                subgraph.add_weighted_edges_from(forward_edges)
+
+            path_length = 0
+            longest_path = nx.dag_longest_path(subgraph)
+            for (video1_id, video2_id) in zip(longest_path, longest_path[1:]):
+                data = subgraph[video1_id][video2_id]
+                path_length -= data['weight']
+
+            for video_id in longest_path:
+                path_length += video_id_map[video_id].length
+
             start_id = JamJarMap.objects.get(video_id=list(id_set)[0]).start_id
             disjoint_graphs.append({
                 "adjacencies": adjacencies,
                 "count": len(adjacencies),
+                "length": path_length,
                 "start_id": start_id
             })
 
