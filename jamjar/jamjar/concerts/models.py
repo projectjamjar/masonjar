@@ -31,5 +31,5 @@ class Concert(BaseModel):
 class SponsoredEvent(BaseModel):
     concert = models.ForeignKey(Concert, related_name='sponsored_event')
     name = models.CharField(max_length=128)
-    artist = models.ForeignKey('artists.Artist', related_name='sponsored_events')
+    artists = models.ManyToManyField('artists.Artist', related_name='sponsored_events')
 

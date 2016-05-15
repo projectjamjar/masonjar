@@ -110,12 +110,12 @@ class ConcertSerializer(serializers.ModelSerializer):
 
 class SponsoredEventSerializer(serializers.ModelSerializer):
     concert = ConcertSerializer(required=True)
-    artist = ArtistSerializer(required=True)
+    artists = ArtistSerializer(required=True, many=True)
 
     class Meta:
         model = SponsoredEvent
         fields = ('id',
             'concert',
-            'artist',
+            'artists',
             'name'
         )
