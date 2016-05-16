@@ -30,14 +30,16 @@ class UserSerializer(serializers.ModelSerializer):
 
 class UserBlockSerializer(serializers.ModelSerializer):
     user = UserSerializer(read_only=True)
-    blocked_user = UserSerializer(read_only=True)
+    blocked_user = UserSerializer(read_only=True, required=False)
 
     class Meta:
         model = UserBlock
         fields = ('id',
             'user',
-            'blocked_user',
+            'is_blocked',
+            'blocked_user'
         )
+        read_only_fields = ('blocked_user',)
 
     def validate(self, data):
         request = self.context.get('request')

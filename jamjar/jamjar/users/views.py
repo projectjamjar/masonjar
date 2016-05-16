@@ -116,8 +116,6 @@ class UserBlockView(BaseView):
 
         data = self.serializer.validated_data
 
-        import ipdb; ipdb.set_trace()
-
         return self.success_response(data)
         #VideoVote.objects.update_or_create(user_id=data['user_id'], video_id=data['video'].id, defaults={'vote': data['vote']})
         #block, created = UserBlock.objects.get_or_create(user_id=user.id, blocked_user_id=1)
