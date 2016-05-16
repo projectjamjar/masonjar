@@ -1,6 +1,6 @@
 from jamjar.base.views import BaseView, authenticate
-from jamjar.users.models import User
-from jamjar.users.serializers import UserSerializer
+from jamjar.users.models import User, UserBlock
+from jamjar.users.serializers import UserSerializer, UserBlockSerializer
 from jamjar.concerts.models import Concert
 from jamjar.concerts.serializers import ConcertSerializer
 from jamjar.videos.serializers import ExpandedVideoSerializer, VideoSerializer
@@ -71,10 +71,13 @@ class UserProfileView(BaseView):
 
     @authenticate
     def get(self, request, username):
+        logged_in_user = request.user
         user = self.get_object_or_404(self.model, username=username)
 
-        logged_in_user = request.token.user_id
-        if logged_in_user == user.id:
+        if logged_in_user.blocks.filter(blocked_user_id=user.id).count() > 0:
+            return self.error_response("User not found", 404)
+
+        if logged_in_user.id == user.id:
             videos = Video.all_objects.filter(user_id=user.id)
         else:
             videos = user.videos.all()
@@ -93,3 +96,28 @@ class UserProfileView(BaseView):
         }
 
         return self.success_response(response)
+
+
+class UserBlockView(BaseView):
+    serializer_class = UserBlockSerializer
+    model = UserBlock
+
+    @authenticate
+    def get(self, request):
+        self.serializer = self.get_serializer(request.user.blocks, many=True)
+        return self.success_response(self.serializer.data)
+
+    @authenticate
+    def post(self, request):
+        self.serializer = self.get_serializer(data=request.data)
+
+        if not self.serializer.is_valid():
+            return self.error_response(self.serializer.errors, 400)
+
+        data = self.serializer.validated_data
+
+        import ipdb; ipdb.set_trace()
+
+        return self.success_response(data)
+        #VideoVote.objects.update_or_create(user_id=data['user_id'], video_id=data['video'].id, defaults={'vote': data['vote']})
+        #block, created = UserBlock.objects.get_or_create(user_id=user.id, blocked_user_id=1)

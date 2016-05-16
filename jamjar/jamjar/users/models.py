@@ -61,3 +61,10 @@ class User(AbstractUser, BaseModel):
         # Post-activation stuff
         #######################################
         # None for now
+
+
+class UserBlock(BaseModel):
+    user = models.ForeignKey('users.User', related_name='blocks')
+    blocked_user = models.ForeignKey('users.User', related_name='blocked')
+    is_blocked = models.BooleanField(default=True)
+

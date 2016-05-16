@@ -65,6 +65,7 @@ urlpatterns = patterns('',
     ########################################
     # User Views
     ########################################
+    url(r'^users/block/$', Users.UserBlockView.as_view()),
     url(r'^users/(?P<username>.+)/$', Users.UserProfileView.as_view()),
 
     ########################################

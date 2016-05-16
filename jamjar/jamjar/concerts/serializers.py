@@ -3,6 +3,7 @@ from jamjar.concerts.models import Concert, SponsoredEvent
 from jamjar.venues.models import Venue
 from jamjar.videos.serializers import VideoSerializer
 from jamjar.artists.models import Artist
+from jamjar.videos.models import Video
 from jamjar.artists.serializers import ArtistSerializer
 from jamjar.venues.serializers import VenueSerializer
 from jamjar.common.services import GMapService, ServiceError
@@ -12,7 +13,7 @@ import logging; logger = logging.getLogger(__name__)
 class ConcertSerializer(serializers.ModelSerializer):
     venue = VenueSerializer(required=False, read_only=True)
     venue_place_id = serializers.CharField(max_length=100,write_only=True, required=False)
-    videos = VideoSerializer(many=True, read_only=True)
+    videos = serializers.SerializerMethodField()
     thumbs = serializers.SerializerMethodField()
     artists = serializers.SerializerMethodField()
     graph = serializers.SerializerMethodField()
@@ -107,6 +108,14 @@ class ConcertSerializer(serializers.ModelSerializer):
 
     def get_videos_count(self, obj):
         return obj.videos.count()
+
+    def get_videos(self, obj):
+        request = self.context.get('request')
+        if request.user:
+            videos = obj.videos.for_user(request.user)
+        else:
+            videos = obj.videos.all()
+        return VideoSerializer(videos, many=True).data
 
 class SponsoredEventSerializer(serializers.ModelSerializer):
     concert = ConcertSerializer(required=True)

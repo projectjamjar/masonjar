@@ -50,7 +50,7 @@ class VideoListView(BaseView):
     @authenticate
     def get(self, request):
         # Get our inital queryset of ALL videos (this could be big!)
-        queryset = Video.objects.all()
+        queryset = Video.objects.for_user(request.user).all()
 
         # Get all the possible filters and split them, making sure we get an
         # empty list if the parameter wasn't passed
@@ -377,7 +377,7 @@ class JamPickView(BaseView):
     # @authenticate
     def get(self, request):
         # Get all da videos that have a non-null jampick
-        queryset = Video.objects.filter(jampick__isnull=False)
+        queryset = Video.objects.for_user(request.user).filter(jampick__isnull=False)
 
         expanded_serializer = ExpandedVideoSerializer(queryset, many=True, context={'request': request})
 
