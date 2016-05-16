@@ -21,9 +21,12 @@ class Concert(BaseModel):
     # return all concerts (useful for video upload)
     all_objects = models.Manager()
 
-    def make_graph(self):
+    def make_graph(self, user=None):
         concert_id = self.id
         concert_edges = Edge.objects.filter(video1__concert_id=concert_id, video2__concert_id=concert_id).select_related('video1', 'video2')
+
+        if user is not None:
+            concert_edges = concert_edges.exclude(video1__user_id__in=user.excluded()).exclude(video2__user_id__in=user.excluded())
 
         g = ConcertGraph(concert_edges)
         return g.disjoint_graphs()

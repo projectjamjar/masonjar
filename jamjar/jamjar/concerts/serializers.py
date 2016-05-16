@@ -104,7 +104,8 @@ class ConcertSerializer(serializers.ModelSerializer):
         return ArtistSerializer(artists, many=True).data
 
     def get_graph(self, obj):
-        return obj.make_graph()
+        request = self.context.get('request')
+        return obj.make_graph(user=request.user)
 
     def get_videos_count(self, obj):
         return obj.videos.count()

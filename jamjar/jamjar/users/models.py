@@ -62,6 +62,8 @@ class User(AbstractUser, BaseModel):
         #######################################
         # None for now
 
+    def excluded(self):
+        return self.blocks.filter(is_blocked=True).values_list('blocked_user_id', flat=True)
 
 class UserBlock(BaseModel):
     user = models.ForeignKey('users.User', related_name='blocks')
