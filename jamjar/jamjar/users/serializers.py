@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from jamjar.users.models import User
+from jamjar.users.models import User, UserBlock
 
 class UserSerializer(serializers.ModelSerializer):
     full_name = serializers.SerializerMethodField()
@@ -27,3 +27,13 @@ class UserSerializer(serializers.ModelSerializer):
             user.save()
 
         return first_login
+
+class UserBlockSerializer(serializers.ModelSerializer):
+    blocked_user = UserSerializer()
+
+    class Meta:
+        model = UserBlock
+        fields = ('id',
+                  'user',
+                  'blocked_user'
+        )

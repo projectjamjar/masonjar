@@ -1,7 +1,7 @@
 from django.db import IntegrityError
 from jamjar.base.views import BaseView, authenticate
-from jamjar.concerts.models import Concert
-from jamjar.concerts.serializers import ConcertSerializer
+from jamjar.concerts.models import Concert, SponsoredEvent
+from jamjar.concerts.serializers import ConcertSerializer, SponsoredEventSerializer
 
 import datetime
 
@@ -143,4 +143,38 @@ class ConcertDetailView(BaseView):
     def get(self, request, id):
         self.concert = self.get_object_or_404(Concert, pk=id)
         self.serializer = self.get_serializer(self.concert, expand_videos=True, include_graph=True)
+        return self.success_response(self.serializer.data)
+
+class SponsoredEventView(BaseView):
+    serializer_class = SponsoredEventSerializer
+
+    """
+    Description:
+        Get a list of sponsored events, curated by the dopest curration team everrrr
+
+    Request:
+        GET /concerts/sponsored
+
+    Response:
+        [
+            {
+                "id" : 1,
+                "name" : "My dope event name",
+                "concert" : {...},
+                "artist"  : {...}.
+            },
+            {
+                "id" : 2,
+                "name" : "My other dope event",
+                "concert" : {...},
+                "artist"  : {...}.
+            },
+            ...
+        ]
+
+    """
+    @authenticate
+    def get(self, request):
+        queryset = SponsoredEvent.objects.all()
+        self.serializer = self.get_serializer(queryset, many=True)
         return self.success_response(self.serializer.data)

@@ -21,10 +21,20 @@ def epoch_seconds(date):
     td = date - epoch
     return td.days * 86400 + td.seconds + (float(td.microseconds) / 1000000)
 
+class VideoQuerySet(models.query.QuerySet):
+    def is_public(self):
+        return self.filter(is_private=False)
+
+    def is_uploaded(self):
+        return self.filter(uploaded=True)
+
 class PublicVideoManager(models.Manager):
     def get_queryset(self):
-        # don't return private videos or videos that haven't finished uploading yet
-        return super(PublicVideoManager, self).get_queryset().filter(is_private=False, uploaded=True)
+        return VideoQuerySet(self.model, using=self._db).is_public().is_uploaded()
+
+    def for_user(self, user):
+        excluded = user.blocks.all().values_list('blocked_user_id', flat=True)
+        return self.exclude(user_id__in=excluded)
 
 class Video(BaseModel):
 
