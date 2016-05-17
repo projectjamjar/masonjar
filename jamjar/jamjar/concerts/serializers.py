@@ -115,11 +115,9 @@ class ConcertSerializer(serializers.ModelSerializer):
         return obj.videos.count()
 
     def get_jamjars_count(self, obj):
-        data = JamJarMap.objects.filter(video__concert__id=obj.id).values('video__concert_id').annotate(num_jamjars=Count('start_id', distinct=True))
-        if len(data) == 0:
-            return 0
-        else:
-            return data[0]['num_jamjars']
+        # get count of jamjars for this concert where the jamjar contains > 1 video
+        num_jamjars = JamJarMap.objects.filter(video__concert_id=obj.id).values('start_id').annotate(num_videos=Count('video_id', distinct=True)).filter(num_videos__gt=1).count()
+        return num_jamjars
 
     def get_videos(self, obj):
         request = self.context.get('request')
