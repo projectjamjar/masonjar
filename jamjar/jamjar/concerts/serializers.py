@@ -116,7 +116,7 @@ class ConcertSerializer(serializers.ModelSerializer):
             videos = obj.videos.for_user(request.user)
         else:
             videos = obj.videos.all()
-        return VideoSerializer(videos, many=True).data
+        return VideoSerializer(videos, many=True, context={"request": request}).data
 
 class SponsoredEventSerializer(serializers.ModelSerializer):
     concert = ConcertSerializer(required=True)
