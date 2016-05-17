@@ -38,7 +38,12 @@ class ConcertGraph(object):
             for video_id in id_set:
                 adjacencies[video_id] = graph[video_id]
 
-            start_id = JamJarMap.objects.get(video_id=list(id_set)[0]).start_id
+            jamstarts = JamJarMap.objects.filter(video_id__in=id_set)
+            if len(jamstarts) == 0:
+                continue
+            else:
+                start_id = jamstarts[0].start_id
+
             disjoint_graphs.append({
                 "adjacencies": adjacencies,
                 "count": len(adjacencies),
