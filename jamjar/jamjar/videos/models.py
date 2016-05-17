@@ -33,7 +33,7 @@ class PublicVideoManager(models.Manager):
         return VideoQuerySet(self.model, using=self._db).is_public().is_uploaded()
 
     def for_user(self, user):
-        excluded = user.blocks.filter(is_blocked=True).values_list('blocked_user_id', flat=True)
+        excluded = user.blocks.all().values_list('blocked_user_id', flat=True)
         return self.exclude(user_id__in=excluded)
 
 class Video(BaseModel):
