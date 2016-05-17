@@ -32,6 +32,11 @@ MODEL_SERIALIZERS = {
     User: UserSerializer,
 }
 
+BLOCKED_FILTER = {
+    Video: lambda q, user: q.exclude(user_id__in=user.excluded()),
+    User: lambda q, user: q.exclude(id__in=user.excluded()),
+}
+
 # limit to 10 results per model
 MODEL_RESULT_LIMIT = 10
 
@@ -146,17 +151,20 @@ class SearchResults(BaseView):
         if not query_string:
             return self.error_response("Search query is empty", 400)
 
-        results = self.search(query_string)
+        user = request.user
+        results = self.search(query_string, user)
         return self.success_response(results)
 
-    def search(self, query_string):
+    def search(self, query_string, user):
         data = {}
 
         for (model, fields) in MODEL_SEARCH_FIELDS.iteritems():
             model_name = model.__name__.lower()
-            search_results = self.perform_search(query_string, model, fields)
+            search_results = self.perform_search(query_string, model, fields, user)
             serializer = MODEL_SERIALIZERS[model]
+
             data[model_name] = serializer(search_results, many=True).data
+
 
         return data
 
@@ -191,7 +199,7 @@ class SearchResults(BaseView):
         return reduce(operator.__or__, token_matches)
 
 
-    def perform_search(self, query_string, model, fields):
+    def perform_search(self, query_string, model, fields, user):
         """
         Perform a search in the given fields of a model or queryset
         """
@@ -203,5 +211,11 @@ class SearchResults(BaseView):
 
         entry_query = self.build_query(query_string, fields)
 
-        return queryset.filter(entry_query).distinct()[:MODEL_RESULT_LIMIT]
+        search_query = queryset.filter(entry_query).distinct()
+
+        if model in BLOCKED_FILTER:
+            exclude_func = BLOCKED_FILTER[model]
+            search_query = exclude_func(search_query, user)
+
+        return search_query[:MODEL_RESULT_LIMIT]
 

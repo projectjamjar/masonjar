@@ -65,7 +65,10 @@ urlpatterns = patterns('',
     ########################################
     # User Views
     ########################################
+    url(r'^users/block/$', Users.UserBlockView.as_view()), # GET
+    url(r'^users/block/(?P<blocked_user_id>[0-9]+)/$', Users.UserBlockView.as_view()), # POST/DELETE
     url(r'^users/(?P<username>.+)/$', Users.UserProfileView.as_view()),
+
 
     ########################################
     # Auth Views

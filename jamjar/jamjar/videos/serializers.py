@@ -178,7 +178,9 @@ class JamJarVideoSerializer(ExpandedVideoSerializer):
         start_id = obj.jamjars.first().start.id
 
         # Get all the other videos that start with this startjar
-        jamjar_videos = Video.objects.filter(jamjars__start_id=start_id)
+
+        request = self.context.get('request')
+        jamjar_videos = Video.objects.for_user(request.user).filter(jamjars__start_id=start_id)
         # import ipdb;ipdb.set_trace()
 
         # Serialize all those videos

@@ -61,3 +61,13 @@ class User(AbstractUser, BaseModel):
         # Post-activation stuff
         #######################################
         # None for now
+
+    def excluded(self):
+        return self.blocks.all().values_list('blocked_user_id', flat=True)
+
+class UserBlock(BaseModel):
+    user = models.ForeignKey('users.User', related_name='blocks')
+    blocked_user = models.ForeignKey('users.User', related_name='blocked')
+
+    class Meta:
+        unique_together = (('user','blocked_user'),)

@@ -1,6 +1,6 @@
 from jamjar.base.views import BaseView, authenticate
-from jamjar.users.models import User
-from jamjar.users.serializers import UserSerializer
+from jamjar.users.models import User, UserBlock
+from jamjar.users.serializers import UserSerializer, UserBlockSerializer
 from jamjar.concerts.models import Concert
 from jamjar.concerts.serializers import ConcertSerializer
 from jamjar.videos.serializers import ExpandedVideoSerializer, VideoSerializer
@@ -71,10 +71,13 @@ class UserProfileView(BaseView):
 
     @authenticate
     def get(self, request, username):
+        logged_in_user = request.user
         user = self.get_object_or_404(self.model, username=username)
 
-        logged_in_user = request.token.user_id
-        if logged_in_user == user.id:
+        if logged_in_user.blocks.filter(blocked_user_id=user.id).count() > 0:
+            return self.error_response("User not found", 404)
+
+        if logged_in_user.id == user.id:
             videos = Video.all_objects.filter(user_id=user.id)
         else:
             videos = user.videos.all()
@@ -93,3 +96,74 @@ class UserProfileView(BaseView):
         }
 
         return self.success_response(response)
+
+
+class UserBlockView(BaseView):
+    serializer_class = UserBlockSerializer
+    model = UserBlock
+
+    """
+    Description:
+        Get a list of all of the current user's Blocked users
+
+    Request:
+        GET /users/block/
+
+    Response:
+        The list of all user blocks with the blocked user serialized
+    """
+    @authenticate
+    def get(self, request, blocked_user_id=None):
+        blocks = request.user.blocks.all()
+        self.serializer = self.get_serializer(blocks, many=True)
+        return self.success_response(self.serializer.data)
+
+    """
+    Description:
+        Block a user
+
+    Request:
+        POST /users/block/:blocked_user_id/
+            (no body needed)
+
+    Response:
+        The new block with the blocked_user serialized
+    """
+    @authenticate
+    def post(self, request, blocked_user_id):
+        # Get the user from the request token and create a block
+        # Note: This will fail if one already exists because of the
+        # class meta on the UserBlock model
+        user_id = request.token.user_id
+        block = UserBlock.objects.create(user_id=user_id,
+            blocked_user_id=blocked_user_id
+        )
+
+        self.serializer = self.get_serializer(block)
+
+        return self.success_response(self.serializer.data)
+
+    """
+    Description:
+        Unblock a user
+
+    Request:
+        DELETE /users/block/:blocked_user_id/
+            (no body needed)
+
+    Response:
+        A message saying it was a success
+    """
+    @authenticate
+    def delete(self, request, blocked_user_id):
+        # Get the UserBlock object and delete it
+        user_id = request.token.user_id
+        block = self.get_object_or_404(self.model,
+            user_id=user_id,
+            blocked_user_id=blocked_user_id
+        )
+
+        blocked_user = block.blocked_user
+        block.delete()
+
+        return self.success_response('User "{}" was unblocked successfully.'.format(blocked_user.username))
