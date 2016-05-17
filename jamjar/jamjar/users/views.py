@@ -102,20 +102,68 @@ class UserBlockView(BaseView):
     serializer_class = UserBlockSerializer
     model = UserBlock
 
+    """
+    Description:
+        Get a list of all of the current user's Blocked users
+
+    Request:
+        GET /users/block/
+
+    Response:
+        The list of all user blocks with the blocked user serialized
+    """
     @authenticate
-    def get(self, request):
-        self.serializer = self.get_serializer(request.user.blocks, many=True)
+    def get(self, request, blocked_user_id=None):
+        blocks = request.user.blocks.all()
+        self.serializer = self.get_serializer(blocks, many=True)
         return self.success_response(self.serializer.data)
 
+    """
+    Description:
+        Block a user
+
+    Request:
+        POST /users/block/:blocked_user_id/
+            (no body needed)
+
+    Response:
+        The new block with the blocked_user serialized
+    """
     @authenticate
-    def post(self, request):
-        self.serializer = self.get_serializer(data=request.data)
+    def post(self, request, blocked_user_id):
+        # Get the user from the request token and create a block
+        # Note: This will fail if one already exists because of the
+        # class meta on the UserBlock model
+        user_id = request.token.user_id
+        block = UserBlock.objects.create(user_id=user_id,
+            blocked_user_id=blocked_user_id
+        )
 
-        if not self.serializer.is_valid():
-            return self.error_response(self.serializer.errors, 400)
+        self.serializer = self.get_serializer(block)
 
-        data = self.serializer.validated_data
+        return self.success_response(self.serializer.data)
 
-        return self.success_response(data)
-        #VideoVote.objects.update_or_create(user_id=data['user_id'], video_id=data['video'].id, defaults={'vote': data['vote']})
-        #block, created = UserBlock.objects.get_or_create(user_id=user.id, blocked_user_id=1)
+    """
+    Description:
+        Unblock a user
+
+    Request:
+        DELETE /users/block/:blocked_user_id/
+            (no body needed)
+
+    Response:
+        A message saying it was a success
+    """
+    @authenticate
+    def delete(self, request, blocked_user_id):
+        # Get the UserBlock object and delete it
+        user_id = request.token.user_id
+        block = self.get_object_or_404(self.model,
+            user_id=user_id,
+            blocked_user_id=blocked_user_id
+        )
+
+        blocked_user = block.blocked_user
+        block.delete()
+
+        return self.success_response('User "{}" was unblocked successfully.'.format(blocked_user.username))

@@ -68,5 +68,6 @@ class User(AbstractUser, BaseModel):
 class UserBlock(BaseModel):
     user = models.ForeignKey('users.User', related_name='blocks')
     blocked_user = models.ForeignKey('users.User', related_name='blocked')
-    is_blocked = models.BooleanField(default=True)
 
+    class Meta:
+        unique_together = (('user','blocked_user'),)

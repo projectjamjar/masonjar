@@ -21,8 +21,9 @@ class Migration(migrations.Migration):
                 ('blocked_user', models.ForeignKey(related_name='blocked', to=settings.AUTH_USER_MODEL)),
                 ('user', models.ForeignKey(related_name='blocks', to=settings.AUTH_USER_MODEL)),
             ],
-            options={
-                'abstract': False,
-            },
+        ),
+        migrations.AlterUniqueTogether(
+            name='userblock',
+            unique_together=set([('user', 'blocked_user')]),
         ),
     ]

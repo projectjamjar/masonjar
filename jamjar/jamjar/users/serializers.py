@@ -29,21 +29,11 @@ class UserSerializer(serializers.ModelSerializer):
         return first_login
 
 class UserBlockSerializer(serializers.ModelSerializer):
-    user = UserSerializer(read_only=True)
-    blocked_user = UserSerializer(read_only=True, required=False)
+    blocked_user = UserSerializer()
 
     class Meta:
         model = UserBlock
         fields = ('id',
-            'user',
-            'is_blocked',
-            'blocked_user'
+                  'user',
+                  'blocked_user'
         )
-        read_only_fields = ('blocked_user',)
-
-    def validate(self, data):
-        request = self.context.get('request')
-        data['user_id'] = request.token.user_id
-
-        return data
-
