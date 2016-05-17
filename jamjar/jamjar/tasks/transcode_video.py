@@ -64,7 +64,7 @@ class VideoTranscoder(object):
 
         try:
             with open(os.devnull, "w") as devnull:
-              subprocess.check_call(['avconv', '-i', src, '-strict', 'experimental', '-start_number', '0', '-hls_list_size', str(HLS_MAX_SEGMENTS), '-hls_time', str(HLS_SEGMENT_LENGTH_SECONDS), '-f', 'hls', out], stdout=devnull, stderr=devnull)
+              subprocess.check_call(['avconv', '-i', src, '-codec', 'copy', '-bsf:v', 'h264_mp4toannexb', '-strict', 'experimental', '-start_number', '0', '-hls_list_size', str(HLS_MAX_SEGMENTS), '-hls_time', str(HLS_SEGMENT_LENGTH_SECONDS), '-f', 'hls', out], stdout=devnull, stderr=devnull)
             logger.info('Successfully transcoded {:} to {:}'.format(src, out))
             return True
         except subprocess.CalledProcessError as e:
