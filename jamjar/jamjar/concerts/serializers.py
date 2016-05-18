@@ -38,16 +38,6 @@ class ConcertSerializer(serializers.ModelSerializer):
         read_only_fields = ('id', 'venue', 'videos')
         write_only_fields = ('venue_place_id',)
 
-    @classmethod
-    def setup_eager_loading(cls, queryset):
-        """ Perform necessary eager loading of data. """
-        # select_related for "to-one" relationships
-        queryset = queryset.select_related('venue')
-
-        # prefetch_related for "to-many" relationships
-        queryset = queryset.prefetch_related('artists', 'artists__images', 'videos', 'videos__user')
-        return queryset
-
     def __init__(self, *args, **kwargs):
         # Pull out expand_videos (defaults to False)
         self.expand_videos = kwargs.pop('expand_videos', False)
@@ -114,11 +104,8 @@ class ConcertSerializer(serializers.ModelSerializer):
         return thumbs
 
     def get_artists(self, obj):
-        
-        queryset = Artist.objects.filter(videos__concert_id=obj.id).distinct()
-        queryset = queryset.prefetch_related('videos', 'videos__concert', 'images', 'genres', 'videos__artists')
-
-        return ArtistSerializer(queryset, many=True).data
+        artists = Artist.objects.filter(videos__concert_id=obj.id).distinct()
+        return ArtistSerializer(artists, many=True).data
 
     def get_graph(self, obj):
         request = self.context.get('request')

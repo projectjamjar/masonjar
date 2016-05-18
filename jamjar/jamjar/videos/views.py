@@ -381,7 +381,6 @@ class JamPickView(BaseView):
     def get(self, request):
         # Get all da videos that have a non-null jampick
         queryset = Video.objects.for_user(request.user).filter(jampick__isnull=False)
-        queryset = ExpandedVideoSerializer.setup_eager_loading(queryset)
 
         expanded_serializer = ExpandedVideoSerializer(queryset, many=True, context={'request': request})
 

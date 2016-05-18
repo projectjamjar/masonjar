@@ -39,16 +39,6 @@ class VideoSerializer(serializers.ModelSerializer):
     def __init__(self, *args, **kwargs):
         super(VideoSerializer, self).__init__(*args, **kwargs)
 
-    @classmethod
-    def setup_eager_loading(cls, queryset):
-        """ Perform necessary eager loading of data. """
-        # select_related for "to-one" relationships
-        queryset = queryset.select_related('concert', 'user')
-
-        # prefetch_related for "to-many" relationships
-        queryset = queryset.prefetch_related('artists', 'artists__images', 'artists__genres')
-        return queryset
-
     def validate(self, data):
         request = self.context.get('request')
         data['user_id'] = request.token.user_id
