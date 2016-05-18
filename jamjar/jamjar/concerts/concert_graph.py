@@ -39,7 +39,7 @@ class ConcertGraph(object):
                 adjacencies[video_id] = graph[video_id]
 
             jamstarts = JamJarMap.objects.filter(video_id__in=id_set)
-            if len(jamstarts) == 0:
+            if len(jamstarts) == 0 or len(adjacencies) == 0:
                 continue
             else:
                 start_id = jamstarts[0].start_id
