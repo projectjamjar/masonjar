@@ -52,7 +52,7 @@ class ConcertListView(BaseView):
         if artist_filters:
             queryset = queryset.filter(videos__artists__id__in=artist_filters)
 
-        queryset = queryset.distinct()
+        queryset = queryset.distinct().prefetch_related('artists','artists__images','artists__genres','videos','videos__jamjars').select_related('venue')
 
         # Serialize the requests and return them
         self.serializer = self.get_serializer(queryset, many=True)

@@ -17,10 +17,11 @@ class ConcertSerializer(serializers.ModelSerializer):
     venue_place_id = serializers.CharField(max_length=100,write_only=True, required=False)
     videos = serializers.SerializerMethodField()
     thumbs = serializers.SerializerMethodField()
-    artists = serializers.SerializerMethodField()
+    # artists = serializers.SerializerMethodField()
+    artists = ArtistSerializer(many=True)
     graph = serializers.SerializerMethodField()
     videos_count = serializers.SerializerMethodField()
-    jamjars_count = serializers.SerializerMethodField()
+    # jamjars_count = serializers.SerializerMethodField()
 
     class Meta:
         model = Concert
@@ -103,9 +104,9 @@ class ConcertSerializer(serializers.ModelSerializer):
         thumbs = [video.thumb_src() for video in first_videos if video.thumb_src() is not None]
         return thumbs
 
-    def get_artists(self, obj):
-        artists = Artist.objects.filter(videos__concert_id=obj.id).distinct()
-        return ArtistSerializer(artists, many=True).data
+    # def get_artists(self, obj):
+    #     artists = Artist.objects.filter(videos__concert_id=obj.id).distinct()
+    #     return ArtistSerializer(artists, many=True).data
 
     def get_graph(self, obj):
         request = self.context.get('request')
