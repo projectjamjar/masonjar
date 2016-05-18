@@ -218,10 +218,10 @@ class VideoTranscoder(object):
     def transcode(self, outputs):
         if 'mp4' in outputs:
             if not self.transcode_to_mp4():
-                 raise RuntimeError('Could not convert video to mp4: {} - {}'.format(self.video.name, self.video.uuid))
+                raise RuntimeError('Could not convert video to mp4: {} - {}'.format(self.video.name, self.video.uuid))
         if 'hls' in outputs:
-            if not self.transcode_to_hls()
-                 raise RuntimeError('Could not convert video to hls: {} - {}'.format(self.video.name, self.video.uuid))
+            if not self.transcode_to_hls():
+                raise RuntimeError('Could not convert video to hls: {} - {}'.format(self.video.name, self.video.uuid))
 
     def run(self, video_id):
         "main entry point to fingerprint, transcode, upload to s3, and delete source dir"
