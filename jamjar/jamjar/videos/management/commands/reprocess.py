@@ -14,11 +14,12 @@ class Command(BaseCommand):
         parser.add_argument('video_id', type=int)
 
     def download_source(self, video):
-        filename = 'video.mp4'
+        original_filename = video.original_filename
+        remote_filename = 'video.mp4'
         local_dir = video.get_video_dir()
 
-        disk_path = os.path.join(local_dir, filename)
-        s3_path = os.path.join(settings.JAMJAR_ENV, str(video.uuid), filename)
+        disk_path = os.path.join(local_dir, original_filename)
+        s3_path = os.path.join(settings.JAMJAR_ENV, str(video.uuid), remote_filename)
 
         if not os.path.exists(local_dir):
             os.makedirs(local_dir)
