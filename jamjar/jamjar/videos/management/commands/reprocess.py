@@ -8,7 +8,7 @@ import boto3, botocore.exceptions
 import os, sys
 
 class Command(BaseCommand):
-    help = 'Reprocess a uploaded video. Transcodes to HLS and re-uploads to S3'
+    help = 'Reprocess a uploaded video. Transcodes to HLS and MP4 and re-uploads to S3'
 
     def add_arguments(self, parser):
         parser.add_argument('video_id', type=int)
@@ -42,10 +42,7 @@ class Command(BaseCommand):
             print "The video with id {} wasn't found in S3!".format(video.id)
             sys.exit(1)
 
-        print "Transcoding to hls..."
-        if not transcoder.transcode_to_hls():
-            print "Error transcoding video to HLS!"
-            sys.exit(1)
+        transcoder.transcode(['mp4', 'hls'])
 
         print "uploading to S3"
         transcoder.upload_to_s3()
