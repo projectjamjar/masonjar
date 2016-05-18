@@ -74,6 +74,21 @@ class VideoListView(BaseView):
         if venues_filters:
             queryset = queryset.filter(venue__in=venues_filters)
 
+        # Optimize queries
+        queryset = queryset.prefetch_related('artists',
+            'artists__genres',
+            'artists__images',
+            'votes',
+            'concert__artists',
+            'concert__artists__genres',
+            'concert__artists__images').select_related(
+            'user',
+            'concert',
+            'concert__venue')
+
+        # Limit this until we make this shit better
+        queryset = queryset[:50]
+
         hot = int(request.GET.get('hot', 0))
 
         if hot:
