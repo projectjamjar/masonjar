@@ -114,6 +114,13 @@ class ConcertSerializer(serializers.ModelSerializer):
             videos = obj.videos.for_user(request.user)
         else:
             videos = obj.videos.all()
+
+        videos = videos.prefetch_related('artists',
+                                         'artists__images',
+                                         'artists__genres',
+                                         'jamjars').select_related(
+                                         'user')
+
         return VideoSerializer(videos, many=True, context={"request": request}).data
 
 class SponsoredEventSerializer(serializers.ModelSerializer):
