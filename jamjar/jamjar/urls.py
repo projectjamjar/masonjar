@@ -81,3 +81,4 @@ urlpatterns = patterns('',
     url(r'^invite/$', Auth.InviteUserView.as_view()),
 )
 
+urlpatterns += patterns('', url(r'^silk/', include('silk.urls', namespace='silk')))

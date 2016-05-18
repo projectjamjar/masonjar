@@ -5,6 +5,8 @@ from rest_framework.parsers import FormParser, MultiPartParser
 from django.db.models import F
 from django.db import IntegrityError
 
+from silk.profiling.profiler import silk_profile
+
 from jamjar.base.views import BaseView, authenticate
 from jamjar.videos.models import Video, Edge, VideoFlag, VideoVote, JamPick
 from jamjar.videos.serializers import (VideoSerializer,
@@ -375,9 +377,11 @@ class JamPickView(BaseView):
         A list of all current jampicks
     """
     # @authenticate
+    @silk_profile(name='Get JamPicks')
     def get(self, request):
         # Get all da videos that have a non-null jampick
         queryset = Video.objects.for_user(request.user).filter(jampick__isnull=False)
+        queryset = ExpandedVideoSerializer.setup_eager_loading(queryset)
 
         expanded_serializer = ExpandedVideoSerializer(queryset, many=True, context={'request': request})
 

@@ -42,6 +42,7 @@ class ArtistListView(BaseView):
     def get(self, request):
         # Our initial queryset is ALL artists (this could be a lot)!
         queryset = Artist.objects.all()
+        queryset = ArtistSerializer.setup_eager_loading(queryset)
 
         # Get all the possible filters and split them, making sure we get an
         # empty list if the parameter wasn't passed

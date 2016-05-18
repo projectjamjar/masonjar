@@ -31,4 +31,4 @@ class ArtistSerializer(serializers.ModelSerializer):
 
 
     def get_genres(self,artist):
-        return [genre.name for genre in artist.genres.all()]
+        return artist.genres.values_list('name', flat=True)

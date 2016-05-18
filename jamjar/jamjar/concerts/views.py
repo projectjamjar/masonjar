@@ -3,6 +3,8 @@ from jamjar.base.views import BaseView, authenticate
 from jamjar.concerts.models import Concert, SponsoredEvent
 from jamjar.concerts.serializers import ConcertSerializer, SponsoredEventSerializer
 
+from silk.profiling.profiler import silk_profile
+
 import datetime
 
 class ConcertListView(BaseView):
@@ -26,6 +28,7 @@ class ConcertListView(BaseView):
         A list of all Concerts
     """
     @authenticate
+    @silk_profile(name='View Concert List')
     def get(self, request):
         # Our initial queryset is ALL concerts (this could be a lot)!
         queryset = Concert.objects.all()
@@ -53,6 +56,7 @@ class ConcertListView(BaseView):
             queryset = queryset.filter(videos__artists__id__in=artist_filters)
 
         queryset = queryset.distinct()
+        queryset = queryset.select_related('venue').prefetch_related('videos', 'videos__artists', 'videos__artists__genres', 'videos__user')
 
         # Serialize the requests and return them
         self.serializer = self.get_serializer(queryset, many=True)
@@ -140,6 +144,7 @@ class ConcertDetailView(BaseView):
         }
     """
     @authenticate
+    @silk_profile(name='View Concert')
     def get(self, request, id):
         self.concert = self.get_object_or_404(Concert, pk=id)
         self.serializer = self.get_serializer(self.concert, expand_videos=True, include_graph=True)
