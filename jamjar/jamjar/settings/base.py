@@ -22,7 +22,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 # Application definition
 DEPENDENCY_APPS = [
-    #'silk',
+    'silk',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -58,7 +58,7 @@ PROJECT_APPS = [
 INSTALLED_APPS = DEPENDENCY_APPS + PROJECT_APPS
 
 MIDDLEWARE_CLASSES = (
-    #'silk.middleware.SilkyMiddleware',
+    'silk.middleware.SilkyMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'corsheaders.middleware.CorsMiddleware',
     'django.middleware.common.CommonMiddleware',
