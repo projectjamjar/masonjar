@@ -20,6 +20,7 @@ import networkx as nx
 import logging; logger = logging.getLogger(__name__)
 
 AUDIO_SAMPLE_RATE = '44100'
+BITRATE = '1600k'
 HLS_SEGMENT_LENGTH_SECONDS = 10 # 10 second .ts files
 HLS_MAX_SEGMENTS = 500          # 10 * 500 = 5000 seconds, or max video length ~= 1.5 hours
 
@@ -34,28 +35,22 @@ class VideoTranscoder(object):
         "transcodes an mp4 file to hls"
         src = self.video.tmp_src()
         out = self.video.get_video_filepath('mp4')
-        extension = os.path.splitext(self.video.original_filename)[1].lower()
-        if extension != '.mp4':
-            try:
-                with open(os.devnull, "w") as devnull:
-                    if extension == '.mov':
-                        subprocess.check_call(["avconv", "-i", src, '-c:v', 'libx264', '-ar', AUDIO_SAMPLE_RATE, '-strict', 'experimental', '-f', 'mp4', out], stdout=devnull, stderr=devnull)
-                    elif extension == '.avi':
-                        subprocess.check_call(["avconv", "-i", src, '-c:v', 'libx264', '-crf', '20', '-b:a', '128k', '-ar', AUDIO_SAMPLE_RATE, '-strict', 'experimental', '-f', 'mp4', out], stdout=devnull, stderr=devnull)
-                    else:
-                        subprocess.check_call(["avconv", "-i", src, '-c:v', 'libx264', '-ar', AUDIO_SAMPLE_RATE, '-strict', 'experimental', '-f', 'mp4', out], stdout=devnull, stderr=devnull)
 
-                logger.info('Successfully transcoded {:} to {:}'.format(src, out))
-                return True
-            except subprocess.CalledProcessError as e:
-                print e
-                # this will retry the job
-                #raise RuntimeError('Error transcoding {:} to {:}. Error code: {:}'.format(src, out, result))
-                return False
-        else:
-            # Simply rename the file to mp4
-            os.rename(src,out)
+        transcode_stats_prefix = os.path.join(self.video.get_video_dir(), "transcode-stats")
+        try:
+            # 2-pass encoding @ 1600k bitrate. Results in watchable videos w/ real small filesize!!
+            logger.info('Running MP4 encoding pass #1 for video {}'.format(self.video.id))
+            subprocess.check_call(['avconv', '-y', '-i', src, '-c:v', 'libx264', '-strict', 'experimental', '-preset', 'medium', '-b:v', BITRATE, '-pass', '1', '-passlogfile', transcode_stats_prefix, '-an', '-f', 'mp4', '/dev/null'])
+            logger.info('Running MP4 encoding pass #2 for video {}'.format(self.video.id))
+            subprocess.check_call(['avconv', '-y', '-i', src, '-ar', AUDIO_SAMPLE_RATE, '-c:v', 'libx264', '-strict', 'experimental', '-preset', 'medium', '-b:v', BITRATE, '-pass', '2', '-passlogfile', transcode_stats_prefix, '-c:a', 'aac', out])
+            logger.info('Successfully transcoded {:} to {:}'.format(src, out))
+
             return True
+        except subprocess.CalledProcessError as e:
+            print e
+            # this will retry the job
+            #raise RuntimeError('Error transcoding {:} to {:}. Error code: {:}'.format(src, out, result))
+            return False
 
     def transcode_to_hls(self):
         "transcodes an mp4 file to hls"
@@ -63,8 +58,8 @@ class VideoTranscoder(object):
         out = self.video.get_video_filepath('m3u8')
 
         try:
-            with open(os.devnull, "w") as devnull:
-              subprocess.check_call(['avconv', '-i', src, '-strict', 'experimental', '-start_number', '0', '-hls_list_size', str(HLS_MAX_SEGMENTS), '-hls_time', str(HLS_SEGMENT_LENGTH_SECONDS), '-f', 'hls', out], stdout=devnull, stderr=devnull)
+            logger.info('Running HLS encoding for video {}'.format(self.video.id))
+            subprocess.check_call(['avconv', '-i', src, '-strict', 'experimental', '-b:v', BITRATE, '-start_number', '0', '-hls_list_size', str(HLS_MAX_SEGMENTS), '-hls_time', str(HLS_SEGMENT_LENGTH_SECONDS), '-f', 'hls', out])
             logger.info('Successfully transcoded {:} to {:}'.format(src, out))
             return True
         except subprocess.CalledProcessError as e:
