@@ -215,6 +215,13 @@ class VideoTranscoder(object):
         self.video.height = metadata.get('height')
         self.video.recorded_at = metadata.get('creation_date', datetime.datetime.now())
 
+    def transcode(self, outputs):
+        if 'mp4' in outputs:
+            self.transcode_to_mp4():
+                 raise RuntimeError('Could not convert video: {} - {}'.format(self.video.name, self.video.uuid))
+        if 'hls' in outputs:
+            self.transcode_to_hls()
+
     def run(self, video_id):
         "main entry point to fingerprint, transcode, upload to s3, and delete source dir"
 
@@ -224,16 +231,13 @@ class VideoTranscoder(object):
         # do this before transcoding to get original recording date if available
         self.extract_and_set_metadata()
 
-        # Transcode to mp4 here if needed, otherwise rename video
-        if not self.transcode_to_mp4():
-             raise RuntimeError('Could not convert video: {} - {}'.format(self.video.name, self.video.uuid))
+        self.transcode(['mp4', 'hls'])
 
         # Fingerprint, transcode, and thumbnail the video
         video_length = self.fingerprint()
 
         self.update_jamstarts()
 
-        self.transcode_to_hls()
         self.extract_thumbnail(video_length)
 
         # Upload the transcoded videos and thumbnail to S3
