@@ -82,8 +82,28 @@ class UserProfileView(BaseView):
         else:
             videos = user.videos.all()
 
+        # Prefetch video relations
+        videos = videos.prefetch_related('artists',
+            'artists__genres',
+            'artists__images',
+            'votes',
+            'concert__artists',
+            'concert__artists__genres',
+            'concert__artists__images').select_related(
+            'user',
+            'concert',
+            'concert__venue')
+
         # Get a set of all concert ids which the user contributed to
         concerts = Concert.objects.filter(videos__user_id=user.id).distinct()
+
+        # Prefetch concert relations
+        concerts = concerts.prefetch_related('artists',
+                                             'artists__images',
+                                             'artists__genres',
+                                             'videos',
+                                             'videos__jamjars').select_related(
+                                             'venue')
 
         user_serializer = UserSerializer(user)
         video_serializer = ExpandedVideoSerializer(videos, many=True)

@@ -35,6 +35,15 @@ ALLOWED_HOSTS = [
     'localhost'
 ]
 
+# Add silk to the apps and stuff
+INSTALLED_APPS += [
+    'silk',
+]
+
+MIDDLEWARE_CLASSES = [
+    'silk.middleware.SilkyMiddleware',
+] + MIDDLEWARE_CLASSES
+
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
