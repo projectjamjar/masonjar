@@ -16,7 +16,7 @@ class ConcertSerializer(serializers.ModelSerializer):
     venue_place_id = serializers.CharField(max_length=100,write_only=True, required=False)
     videos = serializers.SerializerMethodField()
     thumbs = serializers.SerializerMethodField()
-    artists = ArtistSerializer(many=True)
+    artists = ArtistSerializer(many=True, read_only=True)
     graph = serializers.SerializerMethodField()
     videos_count = serializers.SerializerMethodField()
 
