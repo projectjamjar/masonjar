@@ -6,6 +6,7 @@ PORT=5001
 SEED?=seed_data/basic_seed.json
 PRESENTATION_SEED?=seed_data/presentation_seed.json
 FAKE_SEED?=seed_data/fake_seed.json
+DUMPFILE:=db_backups/dump_$(TIMESTAMP).json
 
 ###########################################
 # Install
@@ -30,7 +31,7 @@ seed: $(MANAGER)
 	python $(MANAGER) loaddata $(SEED)
 
 dump: $(MANAGER)
-	python $(MANAGER) dumpdata --natural-foreign --exclude auth.permission --exclude contenttypes --indent 4 > seed_data/seed.json
+	python $(MANAGER) dumpdata --natural-foreign --exclude auth.permission --exclude contenttypes --indent 4 > $(DUMPFILE)
 
 
 ###########################################

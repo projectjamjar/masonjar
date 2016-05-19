@@ -13,3 +13,4 @@ secrets.zip
 jamjar/jamjar/settings/prod.py
 
 jamjar/worker.pid
+db_backups/
