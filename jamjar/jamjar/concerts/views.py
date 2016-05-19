@@ -52,7 +52,12 @@ class ConcertListView(BaseView):
         if artist_filters:
             queryset = queryset.filter(videos__artists__id__in=artist_filters)
 
-        queryset = queryset.distinct()
+        queryset = queryset.distinct().prefetch_related('artists',
+                                                        'artists__images',
+                                                        'artists__genres',
+                                                        'videos',
+                                                        'videos__jamjars').select_related(
+                                                        'venue')
 
         # Serialize the requests and return them
         self.serializer = self.get_serializer(queryset, many=True)
@@ -141,7 +146,18 @@ class ConcertDetailView(BaseView):
     """
     @authenticate
     def get(self, request, id):
-        self.concert = self.get_object_or_404(Concert, pk=id)
+        # self.concert = self.get_object_or_404(Concert, pk=id)
+        
+        try:
+            self.concert = Concert.objects.prefetch_related('artists',
+                                                            'artists__images',
+                                                            'artists__genres',
+                                                            'videos',
+                                                            'videos__jamjars').select_related(
+                                                            'venue').get(pk=id)
+        except Concert.DoesNotExist, e:
+            return self.error_response('A Concert with this ID does not exist.')
+
         self.serializer = self.get_serializer(self.concert, expand_videos=True, include_graph=True)
         return self.success_response(self.serializer.data)
 
