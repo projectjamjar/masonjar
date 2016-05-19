@@ -20,7 +20,7 @@ import networkx as nx
 import logging; logger = logging.getLogger(__name__)
 
 AUDIO_SAMPLE_RATE = '44100'
-MP4_BITRATE = '3200k'
+MP4_BITRATE = '2400k'
 HLS_BITRATE = '1600k'
 HLS_SEGMENT_LENGTH_SECONDS = 10 # 10 second .ts files
 HLS_MAX_SEGMENTS = 500          # 10 * 500 = 5000 seconds, or max video length ~= 1.5 hours

@@ -56,7 +56,7 @@ test:
 	cd jamjar && JAMJAR_ENV=test python manage.py test && cd -
 
 queue: install redis
-	cd jamjar && celery multi start worker -A jamjar.tasks.tasks.app --logfile=../logs/queue.log --loglevel=info
+	cd jamjar && celery multi start worker -A jamjar.tasks.tasks.app --logfile=../logs/queue.log --loglevel=info -c 1
 
 kill-server:
 	pkill -f $(MANAGER)
