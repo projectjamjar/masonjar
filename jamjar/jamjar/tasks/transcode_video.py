@@ -247,6 +247,11 @@ class VideoTranscoder(object):
 
         # Update the video length and upload status
         self.video.length = video_length
+
+        # relate the artists from this video to the concert
+        for artist in self.video.artists.all():
+            self.video.concert.artists.add(artist)
+
         self.video.uploaded = True
         self.video.save()
         # except:
