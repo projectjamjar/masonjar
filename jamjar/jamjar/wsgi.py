@@ -11,6 +11,13 @@ import os
 
 from django.core.wsgi import get_wsgi_application
 
-os.environ.setdefault("DJANGO_SETTINGS_MODULE", "jamjar.settings")
+jamjar_env = os.environ.get('JAMJAR_ENV', None)
+
+if jamjar_env in ['prod', 'dev']:
+  settings_module = "jamjar.settings.{}".format(jamjar_env)
+  os.environ.setdefault("DJANGO_SETTINGS_MODULE", settings_module)
+else:
+    raise RuntimeError("No acceptable JAMJAR_ENV specified! Given: {}".format(jamjar_env))
+
 
 application = get_wsgi_application()

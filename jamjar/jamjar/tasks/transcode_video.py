@@ -6,7 +6,7 @@ import subprocess, logging, os, shutil
 import boto3, datetime
 from celery.contrib import rdb
 
-from django.db.models import Q
+from django.db.models import Q, Count
 
 from jamjar.videos.models import Edge, Video, JamJarMap
 
@@ -145,6 +145,12 @@ class VideoTranscoder(object):
         # And add this one
         JamJarMap.objects.create(video=self.video, start_id=new_start_id)
 
+    def update_concert_jamjars_count(self):
+        concert = self.video.concert
+        jamjars_count = JamJarMap.objects.filter(video__concert_id=concert.id).values('start_id').annotate(num_videos=Count('video_id', distinct=True)).filter(num_videos__gt=1).count()
+        concert.jamjars_count = jamjars_count
+        concert.save()
+
     def fingerprint(self):
         "fingerprints an mp4 and inserts the fingerprints into the db"
         video_path = self.video.get_video_filepath('mp4')
@@ -239,6 +245,7 @@ class VideoTranscoder(object):
         video_length = self.fingerprint()
 
         self.update_jamstarts()
+        self.update_concert_jamjars_count()
 
         self.extract_thumbnail(video_length)
 

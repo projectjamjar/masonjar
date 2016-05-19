@@ -19,6 +19,7 @@ virtualenv env
 echo "source `which activate.sh`" >> ~/.bashrc
 
 a2enmod proxy_http
+a2enmod rewrite
 cp apache2.conf /etc/apache2/
 service apache2 restart
 
@@ -34,3 +35,6 @@ sudo rm -rf /usr/bin/avconv ~/apps
 wget -O /tmp/apps.tgz https://s3.amazonaws.com/jamjar-videos/utils/apps.tgz
 tar -xf /tmp/apps.tgz -C ~
 sudo ln -s  ~/apps/bin/avconv /usr/bin/avconv
+
+echo "* ALL DONE! If running in production, copy apache/000-[server].conf to /etc/apache2/sites-enabled/"
+echo "* Then, run sudo service apache2 restart"

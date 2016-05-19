@@ -15,6 +15,13 @@ class Concert(BaseModel):
     date = models.DateField()
     venue = models.ForeignKey('venues.Venue',related_name='concerts')
 
+    # Artists models need to be added here as an optimization so we don't
+    # always need to go through the Videos to get them
+    artists = models.ManyToManyField('artists.Artist', related_name='concerts')
+
+    # The cached number of jamjars as determined by the jamjar reconciliation process
+    jamjars_count = models.IntegerField(default=0)
+
     # only return concerts w/ > 0 videos in them
     objects = PopulatedConcertManager()
 

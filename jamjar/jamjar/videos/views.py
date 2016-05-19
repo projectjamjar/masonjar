@@ -5,6 +5,8 @@ from rest_framework.parsers import FormParser, MultiPartParser
 from django.db.models import F
 from django.db import IntegrityError
 
+from silk.profiling.profiler import silk_profile
+
 from jamjar.base.views import BaseView, authenticate
 from jamjar.videos.models import Video, Edge, VideoFlag, VideoVote, JamPick
 from jamjar.videos.serializers import (VideoSerializer,
@@ -71,6 +73,21 @@ class VideoListView(BaseView):
 
         if venues_filters:
             queryset = queryset.filter(venue__in=venues_filters)
+
+        # Optimize queries
+        queryset = queryset.prefetch_related('artists',
+            'artists__genres',
+            'artists__images',
+            'votes',
+            'concert__artists',
+            'concert__artists__genres',
+            'concert__artists__images').select_related(
+            'user',
+            'concert',
+            'concert__venue')
+
+        # Limit this until we make this shit better
+        queryset = queryset[:50]
 
         hot = int(request.GET.get('hot', 0))
 
@@ -375,9 +392,11 @@ class JamPickView(BaseView):
         A list of all current jampicks
     """
     # @authenticate
+    @silk_profile(name='Get JamPicks')
     def get(self, request):
         # Get all da videos that have a non-null jampick
         queryset = Video.objects.for_user(request.user).filter(jampick__isnull=False)
+        queryset = queryset.select_related('user', 'concert', 'concert__venue').prefetch_related('artists', 'artists__genres', 'artists__images', 'concert__artists')
 
         expanded_serializer = ExpandedVideoSerializer(queryset, many=True, context={'request': request})
 
