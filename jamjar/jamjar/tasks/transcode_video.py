@@ -6,7 +6,7 @@ import subprocess, logging, os, shutil
 import boto3, datetime
 from celery.contrib import rdb
 
-from django.db.models import Q
+from django.db.models import Q, Count
 
 from jamjar.videos.models import Edge, Video, JamJarMap
 
@@ -20,6 +20,8 @@ import networkx as nx
 import logging; logger = logging.getLogger(__name__)
 
 AUDIO_SAMPLE_RATE = '44100'
+MP4_BITRATE = '3200k'
+HLS_BITRATE = '1600k'
 HLS_SEGMENT_LENGTH_SECONDS = 10 # 10 second .ts files
 HLS_MAX_SEGMENTS = 500          # 10 * 500 = 5000 seconds, or max video length ~= 1.5 hours
 
@@ -34,28 +36,22 @@ class VideoTranscoder(object):
         "transcodes an mp4 file to hls"
         src = self.video.tmp_src()
         out = self.video.get_video_filepath('mp4')
-        extension = os.path.splitext(self.video.original_filename)[1].lower()
-        if extension != '.mp4':
-            try:
-                with open(os.devnull, "w") as devnull:
-                    if extension == '.mov':
-                        subprocess.check_call(["avconv", "-i", src, '-c:v', 'libx264', '-ar', AUDIO_SAMPLE_RATE, '-strict', 'experimental', '-f', 'mp4', out], stdout=devnull, stderr=devnull)
-                    elif extension == '.avi':
-                        subprocess.check_call(["avconv", "-i", src, '-c:v', 'libx264', '-crf', '20', '-b:a', '128k', '-ar', AUDIO_SAMPLE_RATE, '-strict', 'experimental', '-f', 'mp4', out], stdout=devnull, stderr=devnull)
-                    else:
-                        subprocess.check_call(["avconv", "-i", src, '-c:v', 'libx264', '-ar', AUDIO_SAMPLE_RATE, '-strict', 'experimental', '-f', 'mp4', out], stdout=devnull, stderr=devnull)
 
-                logger.info('Successfully transcoded {:} to {:}'.format(src, out))
-                return True
-            except subprocess.CalledProcessError as e:
-                print e
-                # this will retry the job
-                #raise RuntimeError('Error transcoding {:} to {:}. Error code: {:}'.format(src, out, result))
-                return False
-        else:
-            # Simply rename the file to mp4
-            os.rename(src,out)
+        transcode_stats_prefix = os.path.join(self.video.get_video_dir(), "transcode-stats")
+        try:
+            # 2-pass encoding @ 1600k bitrate. Results in watchable videos w/ real small filesize!!
+            logger.info('Running MP4 encoding pass #1 for video {}'.format(self.video.id))
+            subprocess.check_call(['avconv', '-y', '-i', src, '-c:v', 'libx264', '-strict', 'experimental', '-preset', 'medium', '-b:v', MP4_BITRATE, '-pass', '1', '-passlogfile', transcode_stats_prefix, '-an', '-f', 'mp4', '/dev/null'])
+            logger.info('Running MP4 encoding pass #2 for video {}'.format(self.video.id))
+            subprocess.check_call(['avconv', '-y', '-i', src, '-ar', AUDIO_SAMPLE_RATE, '-c:v', 'libx264', '-strict', 'experimental', '-preset', 'medium', '-b:v', MP4_BITRATE, '-pass', '2', '-passlogfile', transcode_stats_prefix, '-c:a', 'aac', out])
+            logger.info('Successfully transcoded {:} to {:}'.format(src, out))
+
             return True
+        except subprocess.CalledProcessError as e:
+            print e
+            # this will retry the job
+            #raise RuntimeError('Error transcoding {:} to {:}. Error code: {:}'.format(src, out, result))
+            return False
 
     def transcode_to_hls(self):
         "transcodes an mp4 file to hls"
@@ -63,8 +59,8 @@ class VideoTranscoder(object):
         out = self.video.get_video_filepath('m3u8')
 
         try:
-            with open(os.devnull, "w") as devnull:
-              subprocess.check_call(['avconv', '-i', src, '-strict', 'experimental', '-start_number', '0', '-hls_list_size', str(HLS_MAX_SEGMENTS), '-hls_time', str(HLS_SEGMENT_LENGTH_SECONDS), '-f', 'hls', out], stdout=devnull, stderr=devnull)
+            logger.info('Running HLS encoding for video {}'.format(self.video.id))
+            subprocess.check_call(['avconv', '-i', src, '-strict', 'experimental', '-b:v', HLS_BITRATE, '-start_number', '0', '-hls_list_size', str(HLS_MAX_SEGMENTS), '-hls_time', str(HLS_SEGMENT_LENGTH_SECONDS), '-f', 'hls', out])
             logger.info('Successfully transcoded {:} to {:}'.format(src, out))
             return True
         except subprocess.CalledProcessError as e:
@@ -149,6 +145,12 @@ class VideoTranscoder(object):
         # And add this one
         JamJarMap.objects.create(video=self.video, start_id=new_start_id)
 
+    def update_concert_jamjars_count(self):
+        concert = self.video.concert
+        jamjars_count = JamJarMap.objects.filter(video__concert_id=concert.id).values('start_id').annotate(num_videos=Count('video_id', distinct=True)).filter(num_videos__gt=1).count()
+        concert.jamjars_count = jamjars_count
+        concert.save()
+
     def fingerprint(self):
         "fingerprints an mp4 and inserts the fingerprints into the db"
         video_path = self.video.get_video_filepath('mp4')
@@ -220,6 +222,14 @@ class VideoTranscoder(object):
         self.video.height = metadata.get('height')
         self.video.recorded_at = metadata.get('creation_date', datetime.datetime.now())
 
+    def transcode(self, outputs):
+        if 'mp4' in outputs:
+            if not self.transcode_to_mp4():
+                raise RuntimeError('Could not convert video to mp4: {} - {}'.format(self.video.name, self.video.uuid))
+        if 'hls' in outputs:
+            if not self.transcode_to_hls():
+                raise RuntimeError('Could not convert video to hls: {} - {}'.format(self.video.name, self.video.uuid))
+
     def run(self, video_id):
         "main entry point to fingerprint, transcode, upload to s3, and delete source dir"
 
@@ -229,16 +239,14 @@ class VideoTranscoder(object):
         # do this before transcoding to get original recording date if available
         self.extract_and_set_metadata()
 
-        # Transcode to mp4 here if needed, otherwise rename video
-        if not self.transcode_to_mp4():
-             raise RuntimeError('Could not convert video: {} - {}'.format(self.video.name, self.video.uuid))
+        self.transcode(['mp4', 'hls'])
 
         # Fingerprint, transcode, and thumbnail the video
         video_length = self.fingerprint()
 
         self.update_jamstarts()
+        self.update_concert_jamjars_count()
 
-        self.transcode_to_hls()
         self.extract_thumbnail(video_length)
 
         # Upload the transcoded videos and thumbnail to S3

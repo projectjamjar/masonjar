@@ -9,7 +9,6 @@ from jamjar.venues.serializers import VenueSerializer
 from jamjar.common.services import GMapService, ServiceError
 from jamjar.videos.models import JamJarMap
 
-from django.db.models import Count
 import logging; logger = logging.getLogger(__name__)
 
 class ConcertSerializer(serializers.ModelSerializer):
@@ -17,10 +16,9 @@ class ConcertSerializer(serializers.ModelSerializer):
     venue_place_id = serializers.CharField(max_length=100,write_only=True, required=False)
     videos = serializers.SerializerMethodField()
     thumbs = serializers.SerializerMethodField()
-    artists = serializers.SerializerMethodField()
+    artists = ArtistSerializer(many=True, read_only=True)
     graph = serializers.SerializerMethodField()
     videos_count = serializers.SerializerMethodField()
-    jamjars_count = serializers.SerializerMethodField()
 
     class Meta:
         model = Concert
@@ -103,10 +101,6 @@ class ConcertSerializer(serializers.ModelSerializer):
         thumbs = [video.thumb_src() for video in first_videos if video.thumb_src() is not None]
         return thumbs
 
-    def get_artists(self, obj):
-        artists = Artist.objects.filter(videos__concert_id=obj.id).distinct()
-        return ArtistSerializer(artists, many=True).data
-
     def get_graph(self, obj):
         request = self.context.get('request')
         return obj.make_graph(user=request.user)
@@ -114,17 +108,19 @@ class ConcertSerializer(serializers.ModelSerializer):
     def get_videos_count(self, obj):
         return obj.videos.count()
 
-    def get_jamjars_count(self, obj):
-        # get count of jamjars for this concert where the jamjar contains > 1 video
-        num_jamjars = JamJarMap.objects.filter(video__concert_id=obj.id).values('start_id').annotate(num_videos=Count('video_id', distinct=True)).filter(num_videos__gt=1).count()
-        return num_jamjars
-
     def get_videos(self, obj):
         request = self.context.get('request')
         if request.user:
             videos = obj.videos.for_user(request.user)
         else:
             videos = obj.videos.all()
+
+        videos = videos.prefetch_related('artists',
+                                         'artists__images',
+                                         'artists__genres',
+                                         'jamjars').select_related(
+                                         'user')
+
         return VideoSerializer(videos, many=True, context={"request": request}).data
 
 class SponsoredEventSerializer(serializers.ModelSerializer):

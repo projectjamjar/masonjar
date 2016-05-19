@@ -50,6 +50,7 @@ shell: install redis $(MANAGER)
 
 runserver: install redis $(MANAGER)
 	nohup python $(MANAGER) runserver $(IP):$(PORT) > logs/server.log 2>&1 &
+	#JAMJAR_ENV=prod gunicorn jamjar.wsgi:application --bind 0.0.0.0:5001 --threads 4
 
 test:
 	cd jamjar && JAMJAR_ENV=test python manage.py test && cd -
