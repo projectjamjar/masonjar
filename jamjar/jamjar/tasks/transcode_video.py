@@ -31,6 +31,8 @@ PROBE   = "/home/ubuntu/libav-bin/bin/avprobe"
 
 MAX_WIDTH = 1024
 MAX_HEIGHT = 576
+MAX_HLS_WIDTH = 640
+MAX_HLS_HEIGHT = 480
 MAX_BITRATE = 2 * 1000 * 1000
 
 def GET_BITRATE(src):
@@ -83,8 +85,11 @@ def MP4_OPTS(video, src, out):
     print " ".join(opts)
     return opts
 
-def HLS_OPTS(src, out):
-    return [
+def HLS_OPTS(video, src, out):
+    output_width = min(video.width, MAX_HLS_WIDTH)
+    output_height = min(video.height, MAX_HLS_HEIGHT)
+
+    opts = [
       ENCODER,
       "-y",
       "-i", src,
@@ -95,15 +100,20 @@ def HLS_OPTS(src, out):
       "-b:v", "500k",
       "-maxrate", "500k",
       "-bufsize", "1000k",
-      "-s", "vga",
+      "-vf", "scale=iw*sar*min({max_width}/(iw*sar)\,{max_height}/ih):ih*min({max_width}/(iw*sar)\,{max_height}/ih),pad={max_width}:{max_height}:(ow-iw)/2:(oh-ih)/2".format(max_width=output_width, max_height=output_height),
       "-codec:a", "libfdk_aac",
       "-b:a", "128k",
+      "-ss", "0",
+      "-t", str(int(video.length)), # TOTAL HACK! AVCONV IS SO FUCKED
       "-start_number", "0",
       "-hls_time", HLS_SEGMENT_LENGTH_SECONDS,
       "-hls_list_size", HLS_MAX_SEGMENTS,
       "-f", "hls",
       out
     ]
+
+    print " ".join(opts)
+    return opts
 
 
 class VideoTranscoder(object):
@@ -138,7 +148,7 @@ class VideoTranscoder(object):
 
         try:
             logger.info('Running HLS encoding for video {}'.format(self.video.id))
-            subprocess.check_call(HLS_OPTS(src, out))
+            subprocess.check_call(HLS_OPTS(self.video, src, out))
             logger.info('Successfully transcoded {:} to {:}'.format(src, out))
             return True
         except subprocess.CalledProcessError as e:
