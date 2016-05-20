@@ -76,7 +76,7 @@ def MP4_OPTS(video, src, out):
       "-codec:a", "libfdk_aac",
       "-b:a", "256k",
       "-movflags", "+faststart",
-      "-cutoff", "18000",
+      "-cutoff", "20000",
       "-f", "mp4",
       out
     ]
