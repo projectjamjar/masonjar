@@ -3,7 +3,7 @@ MANAGER=jamjar/manage.py
 IP=0.0.0.0
 PORT=5001
 
-SEED?=seed_data/basic_seed.json
+SEED?=seed_data/simple_seed.json
 PRESENTATION_SEED?=seed_data/presentation_seed.json
 FAKE_SEED?=seed_data/fake_seed.json
 DUMPFILE:=db_backups/dump_$(TIMESTAMP).json

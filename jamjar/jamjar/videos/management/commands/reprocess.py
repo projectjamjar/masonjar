@@ -15,11 +15,10 @@ class Command(BaseCommand):
 
     def download_source(self, video):
         original_filename = video.original_filename
-        remote_filename = 'video.mp4'
         local_dir = video.get_video_dir()
 
         disk_path = os.path.join(local_dir, original_filename)
-        s3_path = os.path.join(settings.JAMJAR_ENV, str(video.uuid), remote_filename)
+        s3_path = os.path.join(settings.JAMJAR_ENV, str(video.uuid), original_filename)
 
         if not os.path.exists(local_dir):
             os.makedirs(local_dir)
@@ -49,6 +48,6 @@ class Command(BaseCommand):
         transcoder.upload_to_s3()
 
         print "Deleting local files"
-        transcoder.delete_source()
+        #transcoder.delete_source()
 
         print "Done!"

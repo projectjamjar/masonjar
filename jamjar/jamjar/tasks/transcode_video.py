@@ -17,13 +17,94 @@ import hachoir_parser, hachoir_metadata
 # friends don't let friends write their own graph algos :p
 import networkx as nx
 
+from ConfigParser import ConfigParser
+import StringIO
+
 import logging; logger = logging.getLogger(__name__)
 
 AUDIO_SAMPLE_RATE = '44100'
-MP4_BITRATE = '2400k'
-HLS_BITRATE = '1600k'
-HLS_SEGMENT_LENGTH_SECONDS = 10 # 10 second .ts files
-HLS_MAX_SEGMENTS = 500          # 10 * 500 = 5000 seconds, or max video length ~= 1.5 hours
+HLS_SEGMENT_LENGTH_SECONDS = '10' # 10 second .ts files
+HLS_MAX_SEGMENTS = '500'          # 10 * 500 = 5000 seconds, or max video length ~= 1.5 hours
+
+ENCODER = "/home/ubuntu/libav-bin/bin/avconv"
+PROBE   = "/home/ubuntu/libav-bin/bin/avprobe"
+
+MAX_WIDTH = 1024
+MAX_HEIGHT = 576
+MAX_BITRATE = 2 * 1000 * 1000
+
+def GET_BITRATE(src):
+    cmd = [PROBE, "-show_streams", src]
+    res = subprocess.check_output(cmd)
+    buf = StringIO.StringIO(res)
+
+    bit_rate = MAX_BITRATE
+    
+    parser = ConfigParser({'codec_type': None, 'bit_rate': None})
+    parser.readfp(buf)
+    
+    for section in parser.sections():
+        section_type = parser.get(section, "codec_type", None) 
+        if section_type == 'video':
+           src_bit_rate = parser.get(section, 'bit_rate')
+           if src_bit_rate is not None:
+               bit_rate =  min(int(float(src_bit_rate)), MAX_BITRATE)
+               break
+
+    return bit_rate
+
+def MP4_OPTS(video, src, out):
+    output_width = min(video.width, MAX_WIDTH)
+    output_height = min(video.height, MAX_HEIGHT)
+
+    bitrate = str(GET_BITRATE(src))
+
+    opts = [
+      ENCODER,
+      "-y",
+      "-i", src,
+      "-ar", AUDIO_SAMPLE_RATE,
+      "-ac", "2",
+      "-codec:v", "libx264",
+      "-profile:v", "baseline",
+      "-profile:a", "aac_he_v2",
+      "-preset", "slow",
+      "-b:v", bitrate,
+      "-maxrate", bitrate,
+      "-bufsize", "1000k",
+      "-vf", "scale=iw*sar*min({max_width}/(iw*sar)\,{max_height}/ih):ih*min({max_width}/(iw*sar)\,{max_height}/ih),pad={max_width}:{max_height}:(ow-iw)/2:(oh-ih)/2".format(max_width=output_width, max_height=output_height),
+      "-codec:a", "libfdk_aac",
+      "-b:a", "256k",
+      "-movflags", "+faststart",
+      "-cutoff", "18000",
+      "-f", "mp4",
+      out
+    ]
+    print " ".join(opts)
+    return opts
+
+def HLS_OPTS(src, out):
+    return [
+      ENCODER,
+      "-y",
+      "-i", src,
+      "-codec:v", "libx264",
+      "-profile:v", "baseline",
+      "-profile:a", "aac_he_v2",
+      "-preset", "slow",
+      "-b:v", "500k",
+      "-maxrate", "500k",
+      "-bufsize", "1000k",
+      "-s", "vga",
+      "-codec:a", "libfdk_aac",
+      "-b:a", "128k",
+      "-start_number", "0",
+      "-hls_time", HLS_SEGMENT_LENGTH_SECONDS,
+      "-hls_list_size", HLS_MAX_SEGMENTS,
+      "-f", "hls",
+      out
+    ]
+
 
 class VideoTranscoder(object):
     "Helper class for transcoding, uploading, and fingerprinting"
@@ -39,11 +120,8 @@ class VideoTranscoder(object):
 
         transcode_stats_prefix = os.path.join(self.video.get_video_dir(), "transcode-stats")
         try:
-            # 2-pass encoding @ 1600k bitrate. Results in watchable videos w/ real small filesize!!
-            logger.info('Running MP4 encoding pass #1 for video {}'.format(self.video.id))
-            subprocess.check_call(['avconv', '-y', '-i', src, '-c:v', 'libx264', '-strict', 'experimental', '-preset', 'medium', '-b:v', MP4_BITRATE, '-pass', '1', '-passlogfile', transcode_stats_prefix, '-an', '-f', 'mp4', '/dev/null'])
-            logger.info('Running MP4 encoding pass #2 for video {}'.format(self.video.id))
-            subprocess.check_call(['avconv', '-y', '-i', src, '-ar', AUDIO_SAMPLE_RATE, '-c:v', 'libx264', '-strict', 'experimental', '-preset', 'medium', '-b:v', MP4_BITRATE, '-pass', '2', '-passlogfile', transcode_stats_prefix, '-c:a', 'aac', out])
+            logger.info('Running MP4 encoding for video {}'.format(self.video.id))
+            subprocess.check_call(MP4_OPTS(self.video, src, out))
             logger.info('Successfully transcoded {:} to {:}'.format(src, out))
 
             return True
@@ -60,7 +138,7 @@ class VideoTranscoder(object):
 
         try:
             logger.info('Running HLS encoding for video {}'.format(self.video.id))
-            subprocess.check_call(['avconv', '-i', src, '-strict', 'experimental', '-b:v', HLS_BITRATE, '-start_number', '0', '-hls_list_size', str(HLS_MAX_SEGMENTS), '-hls_time', str(HLS_SEGMENT_LENGTH_SECONDS), '-f', 'hls', out])
+            subprocess.check_call(HLS_OPTS(src, out))
             logger.info('Successfully transcoded {:} to {:}'.format(src, out))
             return True
         except subprocess.CalledProcessError as e:
@@ -211,12 +289,14 @@ class VideoTranscoder(object):
         "pull video creation date and dimensions out of video header. This should work for mp4/mov/avi files"
         src = self.video.tmp_src()
 
+
         parser = hachoir_parser.createParser(unicode(src))
         if not parser:
             logger.warning("Could not parse file {}".format(src))
             return
 
         metadata = hachoir_metadata.extractMetadata(parser)
+
 
         self.video.width  = metadata.get('width')
         self.video.height = metadata.get('height')
@@ -251,7 +331,7 @@ class VideoTranscoder(object):
 
         # Upload the transcoded videos and thumbnail to S3
         self.upload_to_s3()
-        self.delete_source()
+        #self.delete_source()
 
         # Update the video length and upload status
         self.video.length = video_length
