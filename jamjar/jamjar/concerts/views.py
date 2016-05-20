@@ -25,7 +25,6 @@ class ConcertListView(BaseView):
     Response:
         A list of all Concerts
     """
-    @authenticate
     def get(self, request):
         # Our initial queryset is ALL concerts (this could be a lot)!
         queryset = Concert.objects.all()
@@ -144,7 +143,6 @@ class ConcertDetailView(BaseView):
           }
         }
     """
-    @authenticate
     def get(self, request, id):
         # self.concert = self.get_object_or_404(Concert, pk=id)
         
