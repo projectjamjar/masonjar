@@ -338,7 +338,7 @@ class VideoTranscoder(object):
         self.update_jamstarts()
         self.update_concert_jamjars_count()
 
-        self.extract_thumbnail(video_length)
+        self.extract_thumbnail(self.video.length)
 
         # Upload the transcoded videos and thumbnail to S3
         self.upload_to_s3()
