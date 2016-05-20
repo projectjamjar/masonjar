@@ -48,6 +48,6 @@ class Command(BaseCommand):
         transcoder.upload_to_s3()
 
         print "Deleting local files"
-        #transcoder.delete_source()
+        transcoder.delete_source()
 
         print "Done!"

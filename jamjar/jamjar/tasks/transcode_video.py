@@ -310,6 +310,7 @@ class VideoTranscoder(object):
 
         self.video.width  = metadata.get('width')
         self.video.height = metadata.get('height')
+        self.video.length = metadata.get('duration').total_seconds()
         self.video.recorded_at = metadata.get('creation_date', datetime.datetime.now())
 
     def transcode(self, outputs):
@@ -332,7 +333,7 @@ class VideoTranscoder(object):
         self.transcode(['mp4', 'hls'])
 
         # Fingerprint, transcode, and thumbnail the video
-        video_length = self.fingerprint()
+        self.fingerprint()
 
         self.update_jamstarts()
         self.update_concert_jamjars_count()
@@ -341,10 +342,7 @@ class VideoTranscoder(object):
 
         # Upload the transcoded videos and thumbnail to S3
         self.upload_to_s3()
-        #self.delete_source()
-
-        # Update the video length and upload status
-        self.video.length = video_length
+        self.delete_source()
 
         # relate the artists from this video to the concert
         for artist in self.video.artists.all():
