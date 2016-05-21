@@ -9,7 +9,9 @@ from concert_graph import ConcertGraph
 class PopulatedConcertManager(models.Manager):
     def get_queryset(self):
         # don't return concerts with 0 videos in them!
-        return super(PopulatedConcertManager, self).get_queryset().annotate(num_videos=Count('videos')).filter(num_videos__gt=0)
+        queryset = super(PopulatedConcertManager, self).get_queryset()
+        filtered_queryset = queryset.filter(videos__uploaded=True, videos__is_private=False)
+        return filtered_queryset.annotate(num_videos=Count('videos')).filter(num_videos__gt=0)
 
 class Concert(BaseModel):
     date = models.DateField()
