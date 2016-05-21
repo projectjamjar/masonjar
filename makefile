@@ -59,6 +59,11 @@ test:
 queue: install redis
 	cd jamjar && celery multi start worker -A jamjar.tasks.tasks.app --logfile=../logs/queue.log --loglevel=info -c 1
 
+queue-monitor:
+	# Run this on your host computer to tunnel into the monitor, then go to http://localhost:5555
+	# ssh -L 5555:localhost:5555 transcoder -N
+	cd jamjar && nohup celery flower -A jamjar.tasks.tasks.app --port=5555 &> logs/monitor.log &
+
 kill-server:
 	pkill -f $(MANAGER)
 

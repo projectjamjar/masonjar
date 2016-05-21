@@ -11,6 +11,7 @@ venv/
 secrets/
 secrets.zip
 jamjar/jamjar/settings/prod.py
+jamjar/nohup.out
 
 jamjar/worker.pid
 db_backups/
