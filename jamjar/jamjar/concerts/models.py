@@ -32,6 +32,7 @@ class Concert(BaseModel):
         concert_id = self.id
         concert_edges = Edge.objects.filter(video1__concert_id=concert_id, video2__concert_id=concert_id)\
                                     .filter(video1__uploaded=True, video2__uploaded=True)\
+                                    .filter(video1__is_cycle=False, video2__is_cycle=False)\
                                     .select_related('video1', 'video2')
 
         if hasattr(user, 'excluded'):

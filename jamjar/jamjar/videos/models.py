@@ -50,6 +50,7 @@ class Video(BaseModel):
     original_filename = models.CharField(max_length=256,null=True)
     file_size = models.FloatField(null=True)
     is_private = models.BooleanField(default=False)
+    is_cycle = models.BooleanField(default=False)
     views = models.IntegerField(default=0)
     artists = models.ManyToManyField('artists.Artist', related_name='videos',blank=True)
     width  = models.IntegerField(default=0)
