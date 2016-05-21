@@ -34,7 +34,7 @@ class Concert(BaseModel):
                                     .filter(video1__uploaded=True, video2__uploaded=True)\
                                     .select_related('video1', 'video2')
 
-        if user is not None:
+        if hasattr(user, 'excluded'):
             concert_edges = concert_edges.exclude(video1__user_id__in=user.excluded()).exclude(video2__user_id__in=user.excluded())
 
         g = ConcertGraph(concert_edges)

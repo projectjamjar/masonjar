@@ -23,6 +23,7 @@ import jamjar.artists.views as Artists
 import jamjar.venues.views as Venues
 import jamjar.search.views as Search
 import jamjar.users.views as Users
+import jamjar.feedback.views as Feedback
 
 
 urlpatterns = patterns('',
@@ -79,6 +80,12 @@ urlpatterns = patterns('',
     url(r'^auth/reset/$', Auth.ResetView.as_view()),
     url(r'^change/$', Auth.ChangePasswordView.as_view()),
     url(r'^invite/$', Auth.InviteUserView.as_view()),
+
+    ########################################
+    # Feedback Views
+    ########################################
+    url(r'^feedback/$', Feedback.FeedbackView.as_view()),
+
 )
 
 urlpatterns += patterns('', url(r'^silk/', include('silk.urls', namespace='silk')))
