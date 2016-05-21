@@ -12,7 +12,7 @@ activate_account = {
         'Reply-To': 'support@projectjamjar.com'
     },
     'text': """
-Hello from JamJar!
+Hi {{username}}!
 
 Thanks for signing up for JamJar!  We know you're excited to get started, so click this link:
 {{activate_link}}
@@ -28,7 +28,7 @@ JamJar Support
 <a href="http://projectjamjar.com">
     <img src="http://projectjamjar.com/assets/images/jamjar_combo_logo/jamjar_combo_wide.png" alt="logo" width="400" height="200"/>
 </a>
-<p>Hello from JamJar!</p>
+<p>Hi {{username}}!</p>
 
 <p>
 Thanks for signing up for JamJar!  We know you're excited to get started, so click this link:
@@ -55,7 +55,7 @@ activation_successful = {
         'Reply-To': 'support@projectjamjar.com'
     },
     'text': """
-Hello from JamJar!
+Hi {{username}}!
 
 You've succesfully activated your jamjar account!  You can now go to:
 {{login_link}}
@@ -71,7 +71,7 @@ JamJar Support
 <a href="http://projectjamjar.com">
     <img src="http://projectjamjar.com/assets/images/jamjar_combo_logo/jamjar_combo_wide.png" alt="logo" width="400" height="200"/>
 </a>
-<p>Hello from JamJar!</p>
+<p>Hi {{username}}!</p>
 
 <p>
 You've succesfully activated your jamjar account!  You can now go to:
