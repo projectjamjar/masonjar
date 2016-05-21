@@ -123,8 +123,8 @@ VIDEOS_PATH = '/opt/code/masonjar/videos'
 THUMBNAIL_SIZES = [32,64,128,256,512,1024]
 CONFIDENCE_THRESHOLD = 20
 
-AVCONV_ENCODER = "avconv"
-AVCONV_PROBE   = "avprobe"
+AVCONV_ENCODER = "/home/vagrant/apps/bin/avconv"
+AVCONV_PROBE   = "/home/vagrant/apps/bin/avprobe"
 
 # for celery (job queue)
 REDIS_QUEUE = 'redis://localhost:6379/0'

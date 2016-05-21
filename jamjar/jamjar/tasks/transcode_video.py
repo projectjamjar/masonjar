@@ -65,14 +65,23 @@ def MP4_OPTS(video, src, out):
       "-ar", AUDIO_SAMPLE_RATE,
       "-ac", "2",
       "-codec:v", "libx264",
-      "-profile:v", "baseline",
-      "-profile:a", "aac_eld",
       "-preset", "slow",
       "-b:v", bitrate,
       "-maxrate:v", bitrate,
       "-bufsize:v", "1000k",
       "-vf", "scale=iw*sar*min({max_width}/(iw*sar)\,{max_height}/ih):ih*min({max_width}/(iw*sar)\,{max_height}/ih),pad={max_width}:{max_height}:(ow-iw)/2:(oh-ih)/2".format(max_width=output_width, max_height=output_height),
-      "-codec:a", "libfdk_aac",
+    ]
+
+    if settings.JAMJAR_ENV == 'prod':
+        opts += [
+          "-profile:v", "baseline",
+          "-profile:a", "aac_eld",
+          "-codec:a", "libfdk_aac",
+        ]
+    else:
+        opts += ["-strict", "experimental"]
+
+    opts += [
       "-b:a", "256k",
       "-movflags", "+faststart",
       "-cutoff", "20000",
@@ -91,14 +100,24 @@ def HLS_OPTS(video, src, out):
       "-y",
       "-i", src,
       "-codec:v", "libx264",
-      "-profile:v", "baseline",
-      "-profile:a", "aac_he_v2",
       "-preset", "slow",
       "-b:v", "500k",
       "-maxrate", "500k",
       "-bufsize", "1000k",
       "-vf", "scale=iw*sar*min({max_width}/(iw*sar)\,{max_height}/ih):ih*min({max_width}/(iw*sar)\,{max_height}/ih),pad={max_width}:{max_height}:(ow-iw)/2:(oh-ih)/2".format(max_width=output_width, max_height=output_height),
-      "-codec:a", "libfdk_aac",
+    ]
+
+
+    if settings.JAMJAR_ENV == 'prod':
+        opts += [
+          "-profile:v", "baseline",
+          "-profile:a", "aac_he_v2",
+          "-codec:a", "libfdk_aac",
+        ]
+    else:
+        opts += ['-strict', 'experimental']
+
+    opts += [
       "-b:a", "128k",
       "-ss", "0",
       "-t", str(int(video.length)), # TOTAL HACK! AVCONV IS SO FUCKED
@@ -296,7 +315,7 @@ class VideoTranscoder(object):
         "pull video creation date and dimensions out of video header. This should work for mp4/mov/avi files"
         src = self.video.tmp_src()
 
-
+        logger.info('Getting metadata for video: "{:}"'.format(src))
         parser = hachoir_parser.createParser(unicode(src))
         if not parser:
             logger.warning("Could not parse file {}".format(src))
