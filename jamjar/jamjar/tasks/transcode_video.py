@@ -7,6 +7,7 @@ import boto3, datetime
 from celery.contrib import rdb
 
 from django.db.models import Q, Count
+from django.db.utils import IntegrityError
 
 from jamjar.videos.models import Edge, Video, JamJarMap
 
@@ -277,7 +278,12 @@ class VideoTranscoder(object):
             for match in matched_videos:
                 match_data = {"offset": match['offset_seconds'], "confidence": match['confidence']}
                 if self.video.id != int(match['video_id']):
-                    Edge.objects.get_or_create(video1_id=self.video.id, video2_id=match['video_id'], defaults=match_data)
+                    try:
+                        Edge.objects.get_or_create(video1_id=self.video.id, video2_id=match['video_id'], defaults=match_data)
+                    except IntegrityError as e:
+                        msg = "Could not create edge from {} to {} ({})".format(self.video.id, match['video_id'], e)
+                        logger.error(msg)
+
 
         # Add this videos fingerprints to the Lilo DB
         data = lilo.fingerprint_song()
