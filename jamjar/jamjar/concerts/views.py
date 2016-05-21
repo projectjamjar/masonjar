@@ -58,6 +58,8 @@ class ConcertListView(BaseView):
                                                         'videos__jamjars').select_related(
                                                         'venue')
 
+        queryset = queryset.order_by('-created_at')
+
         # Serialize the requests and return them
         self.serializer = self.get_serializer(queryset, many=True)
         return self.success_response(self.serializer.data)
