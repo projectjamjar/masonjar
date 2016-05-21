@@ -66,7 +66,7 @@ class SignupView(BaseView):
         The new user object
     """
     def post(self, request):
-        print request.data
+        #print request.data
 
         # Validate the request
         self.serializer = self.serializer_class(data=request.data)
