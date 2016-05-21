@@ -26,8 +26,8 @@ AUDIO_SAMPLE_RATE = '44100'
 HLS_SEGMENT_LENGTH_SECONDS = '10' # 10 second .ts files
 HLS_MAX_SEGMENTS = '500'          # 10 * 500 = 5000 seconds, or max video length ~= 1.5 hours
 
-ENCODER = "/home/ubuntu/libav-bin/bin/avconv"
-PROBE   = "/home/ubuntu/libav-bin/bin/avprobe"
+ENCODER = settings.AVCONV_ENCODER
+PROBE   = settings.AVCONV_`PROBE
 
 MAX_WIDTH = 1024
 MAX_HEIGHT = 576
