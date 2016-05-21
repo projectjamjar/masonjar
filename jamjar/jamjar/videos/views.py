@@ -228,7 +228,10 @@ class VideoDetailsView(BaseView):
     @authenticate
     def get(self, request, id):
         # Attempt to get the video
-        self.video = self.get_object_or_404(self.model, id=id)
+        self.video = self.get_object_or_404(Video.all_objects, id=id)
+
+        if (self.video.is_private and request.user.id != self.video.user.id) or (self.video.uploaded == False):
+            return self.error_response("Video with id {} not found".format(id), 404)
 
         # Serialize the result and return it
         self.serializer = JamJarVideoSerializer(self.video, context={'request': request})

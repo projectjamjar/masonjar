@@ -147,7 +147,7 @@ class ConcertDetailView(BaseView):
         # self.concert = self.get_object_or_404(Concert, pk=id)
         
         try:
-            self.concert = Concert.objects.prefetch_related('artists',
+            self.concert = Concert.all_objects.prefetch_related('artists',
                                                             'artists__images',
                                                             'artists__genres',
                                                             'videos',
