@@ -246,7 +246,7 @@ class VideoTranscoder(object):
                 new_start_id = self.video.id
 
                 # mark this jamstart as being in a cycle
-                video.is_cycle = True
+                self.video.is_cycle = True
 
             except nx.NetworkXNoCycle:
                 # sort the directed graph such that if A has an edge to B, A will come before B in the resulting list
@@ -275,10 +275,9 @@ class VideoTranscoder(object):
 
         if matched_videos is not None:
             for match in matched_videos:
-                Edge.objects.create(video1_id=self.video.id,
-                                    video2_id=match['video_id'],
-                                    offset=match['offset_seconds'],
-                                    confidence=match['confidence'])
+                match_data = {"offset": match['offset_seconds'], "confidence": match['confidence']}
+                if self.video.id != int(match['video_id']):
+                    Edge.objects.get_or_create(video1_id=self.video.id, video2_id=match['video_id'], defaults=match_data)
 
         # Add this videos fingerprints to the Lilo DB
         data = lilo.fingerprint_song()
