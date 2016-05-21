@@ -50,7 +50,8 @@ PROJECT_APPS = [
     'jamjar.concerts',
     'jamjar.venues',
     'jamjar.artists',
-    'jamjar.common'
+    'jamjar.common',
+    'jamjar.feedback'
 ]
 
 
