@@ -41,9 +41,10 @@ class LoginSerializer(serializers.Serializer):
                        'Please contact support if you feel that this is incorrect.')
                 raise ValidationError(msg)
 
-            if not user.is_active:
-                msg = 'User account is either not activated (check your email) or has been disabled.'
-                raise ValidationError(msg)
+            # Disable this until after spring jam
+            # if not user.is_active:
+            #     msg = 'User account is either not activated (check your email) or has been disabled.'
+            #     raise ValidationError(msg)
         else:
             msg = 'Unable to log in with provided credentials.'
             # TODO: Log invalid login here

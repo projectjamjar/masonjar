@@ -115,19 +115,22 @@ class SignupView(BaseView):
 
         mail = EmailMultiAlternatives(
             subject=email_info['subject'],
-            body=email_info['text'].format(activate_link=activate_link),
+            body=email_info['text'].format(username=self.user.username, activate_link=activate_link),
             from_email=email_info['from_email'],
             to=[self.user.email],
             headers=email_info['headers']
         )
 
-        mail.attach_alternative(email_info['html'].format(activate_link=activate_link),
+        mail.attach_alternative(email_info['html'].format(username=self.user.username, activate_link=activate_link),
                                 'text/html')
 
         mail.send()
 
         if settings.JAMJAR_ENV == 'dev':
             self.user.activate()
+
+        # DELETE AFTER SPRING JAM
+        self.user.activate()
 
         # TODO: Log signup here
 
@@ -185,13 +188,13 @@ class ActivateView(BaseView):
 
         mail = EmailMultiAlternatives(
             subject=email_info['subject'],
-            body=email_info['text'].format(login_link=login_link),
+            body=email_info['text'].format(username=user.username, login_link=login_link),
             from_email=email_info['from_email'],
             to=[email],
             headers=email_info['headers']
         )
 
-        mail.attach_alternative(email_info['html'].format(login_link=login_link),
+        mail.attach_alternative(email_info['html'].format(username=user.username, login_link=login_link),
                                 'text/html')
         mail.send()
 
