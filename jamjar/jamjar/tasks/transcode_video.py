@@ -26,9 +26,6 @@ AUDIO_SAMPLE_RATE = '44100'
 HLS_SEGMENT_LENGTH_SECONDS = '10' # 10 second .ts files
 HLS_MAX_SEGMENTS = '500'          # 10 * 500 = 5000 seconds, or max video length ~= 1.5 hours
 
-ENCODER = settings.AVCONV_ENCODER
-PROBE   = settings.AVCONV_`PROBE
-
 MAX_WIDTH = 1024
 MAX_HEIGHT = 576
 MAX_HLS_WIDTH = 640
@@ -36,7 +33,7 @@ MAX_HLS_HEIGHT = 480
 MAX_BITRATE = 2 * 1000 * 1000
 
 def GET_BITRATE(src):
-    cmd = [PROBE, "-show_streams", src]
+    cmd = [settings.AVCONV_PROBE, "-show_streams", src]
     res = subprocess.check_output(cmd)
     buf = StringIO.StringIO(res)
 
@@ -62,7 +59,7 @@ def MP4_OPTS(video, src, out):
     bitrate = str(GET_BITRATE(src))
 
     opts = [
-      ENCODER,
+      settings.AVCONV_ENCODER,
       "-y",
       "-i", src,
       "-ar", AUDIO_SAMPLE_RATE,
@@ -90,7 +87,7 @@ def HLS_OPTS(video, src, out):
     output_height = min(video.height, MAX_HLS_HEIGHT)
 
     opts = [
-      ENCODER,
+      settings.AVCONV_ENCODER,
       "-y",
       "-i", src,
       "-codec:v", "libx264",
