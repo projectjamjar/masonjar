@@ -129,6 +129,9 @@ class SignupView(BaseView):
         if settings.JAMJAR_ENV == 'dev':
             self.user.activate()
 
+        # DELETE AFTER SPRING JAM
+        self.user.activate()
+
         # TODO: Log signup here
 
         response = { 'user': self.response_serializer(self.user,include_first_login=True).data }
