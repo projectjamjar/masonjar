@@ -98,12 +98,11 @@ class VideoSerializer(serializers.ModelSerializer):
         for vote_type in possible_vote_types:
             video_votes.append({'vote': vote_type, 'total': 0})
 
-        if request is None or not hasattr(request, 'token'):
+        if request.user.is_anonymous():
             user_vote = None
         else:
-            user_id = request.token.user_id
             # get the vote for the logged in user
-            user_votes = obj.votes.filter(user_id=user_id)
+            user_votes = obj.votes.filter(user=request.user)
             user_vote = user_votes[0].vote if len(user_votes) > 0 else None
 
         return {
