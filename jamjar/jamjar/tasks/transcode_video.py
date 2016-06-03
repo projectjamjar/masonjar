@@ -224,7 +224,7 @@ class VideoTranscoder(object):
                 edge.offset *= -1
                 edge.video1_id, edge.video2_id = edge.video2_id, edge.video1_id
 
-            edge_data = (edge.video2_id, edge.video1_id, edge.offset)
+            edge_data = (int(edge.video2_id), int(edge.video1_id), edge.offset)
             digraph_edges.append(edge_data)
 
         if len(digraph_edges) == 0:
@@ -234,10 +234,14 @@ class VideoTranscoder(object):
         else:
             # build a graph from the resulting edges
             digraph = nx.DiGraph()
+            video_id = int(self.video.id)
+            digraph.add_node(video_id)
             digraph.add_weighted_edges_from(digraph_edges)
 
             # find all videos in the subgraph
-            video_ids_in_subgraph = nx.node_connected_component(digraph.to_undirected(), self.video.id)
+            undirected_graph = digraph.to_undirected()
+
+            video_ids_in_subgraph = nx.node_connected_component(undirected_graph, video_id)
 
             # check if a cycle exists -- if so: fuck this video
             # if not: continue as normal
